@@ -27,7 +27,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		collectionView!.dataSource = self
 		collectionView!.delegate = self
 		
-		lessons[0][1].complete = true
+		//lessons[0][1].complete = true
     }
 	
 	override func viewWillAppear(animated: Bool) {

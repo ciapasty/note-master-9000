@@ -54,8 +54,8 @@
                                     <outletCollection property="gestureRecognizers" destination="twt-f5-6i7" appends="YES" id="laG-NX-2uy"/>
                                 </connections>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trebleClef" translatesAutoresizingMaskIntoConstraints="NO" id="K76-nU-eQj" customClass="HelpDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <rect key="frame" x="478" y="64" width="107" height="356"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K76-nU-eQj" customClass="HelpDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
+                                <rect key="frame" x="478" y="64" width="71" height="356"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCY-Wx-llc" userLabel="Bottom Buttons View">
                                 <rect key="frame" x="0.0" y="420" width="600" height="180"/>
@@ -292,7 +292,7 @@
                             <constraint firstItem="QxO-xj-raK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="dKQ-vU-HGf"/>
                             <constraint firstItem="K76-nU-eQj" firstAttribute="top" secondItem="QxO-xj-raK" secondAttribute="top" id="e2v-ry-nEs"/>
                             <constraint firstItem="ReZ-ec-Y6n" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="fUc-Ii-bNH"/>
-                            <constraint firstItem="K76-nU-eQj" firstAttribute="width" secondItem="QxO-xj-raK" secondAttribute="width" multiplier="0.3" id="le7-F5-9in"/>
+                            <constraint firstItem="K76-nU-eQj" firstAttribute="width" secondItem="QxO-xj-raK" secondAttribute="width" multiplier="0.2" id="le7-F5-9in"/>
                             <constraint firstItem="K76-nU-eQj" firstAttribute="centerY" secondItem="QxO-xj-raK" secondAttribute="centerY" id="n5A-3u-6ur"/>
                             <constraint firstItem="QxO-xj-raK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pqo-Jz-ERd"/>
                             <constraint firstItem="a0C-mn-WFu" firstAttribute="leading" secondItem="QxO-xj-raK" secondAttribute="leading" id="qMm-xf-gcF"/>
@@ -330,7 +330,11 @@
                                 <action selector="exitButtonTap:" destination="BYZ-38-t0r" id="60A-t0-ijr"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="?" id="2lt-RS-uOa"/>
+                        <barButtonItem key="rightBarButtonItem" title="?" id="2lt-RS-uOa">
+                            <connections>
+                                <action selector="onHelpButton:" destination="BYZ-38-t0r" id="rmp-nX-eoT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="aNoteButton" destination="FVG-pX-jSx" id="PjQ-vv-LZD"/>
@@ -564,7 +568,4 @@
             <point key="canvasLocation" x="-203" y="310"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="trebleClef" width="296" height="612"/>
-    </resources>
 </document>
