@@ -10,17 +10,13 @@ import UIKit
 
 class HelpDrawingView: UIImageView {
 
+	let trebleHelp = ["E", "D", "C", "B", "A", "G", "F"]
+	let bassHelp = ["G", "F", "E", "D", "C", "B", "A"]
+	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)!
 		
-		let layer = CATextLayer()
-		
-		layer.string = "ASDF"
-		layer.font = UIFont(name: "Helvetica", size: 50)
-		layer.foregroundColor = UIColor.blackColor().CGColor
-		
-		self.layer.addSublayer(layer)
-		
+		self.backgroundColor = UIColor(white: 1, alpha: 0.7)
 	}
 	
 	/*
@@ -30,5 +26,50 @@ class HelpDrawingView: UIImageView {
         // Drawing code
     }
     */
+	
+	func drawHelp(clef: Clef) {
+		
+		let letterFrame = CGRect(x: self.bounds.origin.x,
+		                         y: self.bounds.origin.y,
+		                         width: self.bounds.height/10,
+		                         height: self.bounds.height/10)
+		
+		let helpOrigin = CGPoint(x: self.bounds.origin.x+letterFrame.width/2,
+		                         y: self.bounds.origin.y+letterFrame.height/2)
+		
+		for i in 6...12 {
+			let layer = CATextLayer()
+			
+			layer.frame = letterFrame
+			layer.contentsScale = UIScreen.mainScreen().scale
+			layer.alignmentMode = kCAAlignmentCenter
+			layer.font = UIFont.systemFontOfSize(1, weight: UIFontWeightLight)
+			layer.fontSize = self.frame.height/10
+			
+			layer.shadowOffset = CGSize(width: 1, height: 1)
+			layer.shadowColor = UIColor.whiteColor().CGColor
+			layer.shadowRadius = 2.0
+			layer.shadowOpacity = 0.8
+			
+			if clef == Clef.trebleClef {
+				layer.string = trebleHelp[i-6]
+			} else if clef == Clef.bassClef {
+				layer.string = bassHelp[i-6]
+			}
+			
+			layer.foregroundColor = UIColor.blackColor().CGColor
+			
+			if i % 2 == 0 {
+				layer.position = CGPoint(x: helpOrigin.x,
+				                         y: helpOrigin.y+(self.bounds.height*CGFloat(Double(i)/20.0))-(self.bounds.height/100))
+			} else {
+				layer.position = CGPoint(x: helpOrigin.x+letterFrame.width*3/4,
+				                         y: helpOrigin.y+(self.bounds.height*CGFloat(Double(i)/20.0))-(self.bounds.height/100))
+			}
+			
+			self.layer.addSublayer(layer)
+		}
+		
+	}
 
 }

@@ -74,6 +74,8 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 
 		currentNote = randomNoteInRange(noteRange, gauss: gaussianRand)
 		previousNote = currentNote
+		
+		helpDrawingView.drawHelp(clef!)
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -94,7 +96,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	// MARK: Button/view touches
 	
-	
 	@IBAction func exitButtonTap(sender: UIBarButtonItem) {
 		let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .Alert)
 		let exitAction = UIAlertAction(title: "Quit", style: .Default, handler: {
@@ -110,18 +111,20 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	}
 	
 	@IBAction func tapOnNoteView(sender: UITapGestureRecognizer) {
-		loadFileIntoAVPlayer(noteNameDict[currentNote!]!)
-		if avPlayer.playing {
-			stopAVPLayer()
-			loadFileIntoAVPlayer(noteNameDict[currentNote!]!)
-			startAVPlayer()
+		if helpVisible {
+			hideHelp()
 		} else {
-			startAVPlayer()
+			loadFileIntoAVPlayer(noteNameDict[currentNote!]!)
+			if avPlayer.playing {
+				stopAVPLayer()
+				loadFileIntoAVPlayer(noteNameDict[currentNote!]!)
+				startAVPlayer()
+			} else {
+				startAVPlayer()
+			}
+			// Animation
+			noteVibrateAnimation()
 		}
-		// Animation
-		noteVibrateAnimation()
-		
-		hideHelp()
 	}
 	
 	@IBAction func swipeForHelp(sender: UISwipeGestureRecognizer) {
@@ -130,7 +133,14 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		} else if sender.direction == .Right {
 			hideHelp()
 		}
-		
+	}
+	
+	@IBAction func onHelpButton(sender: UIBarButtonItem) {
+		if helpVisible {
+			hideHelp()
+		} else {
+			showHelp()
+		}
 	}
 	
 	@IBAction func onNoteButton(sender: UIButton) {
