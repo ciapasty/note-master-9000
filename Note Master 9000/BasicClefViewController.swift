@@ -12,6 +12,7 @@ import AVFoundation
 
 class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
+	@IBOutlet var backView: UIView!
 	@IBOutlet weak var staffDrawingView: StaffDrawingView!
 	@IBOutlet weak var notesDrawingView: StaffDrawingView!
 	@IBOutlet weak var clefImageView: UIImageView!
@@ -81,8 +82,18 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	override func viewWillAppear(animated: Bool) {
 		let nav = self.navigationController?.navigationBar
 		nav?.barStyle = UIBarStyle.Black
-		//nav?.barTintColor = UIColor.whiteColor()
-		//nav?.tintColor = UIColor.blackColor()
+		nav?.barTintColor = palette.light
+		nav?.tintColor = palette.dark
+		nav?.titleTextAttributes = [NSForegroundColorAttributeName: palette.dark]
+		
+		backView.backgroundColor = palette.light
+		
+		for button in noteButtons {
+			button.setTitleColor(palette.dark, forState: .Normal)
+		}
+		
+		clefImageView.image = clefImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+		clefImageView.tintColor = palette.dark
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -148,9 +159,9 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		
 		// TODO: remove color flash
 		if (currentNote!.rawValue % 7) == noteNameValueDict[sender.titleLabel!.text!] {
-			self.staffDrawingView.backgroundColor = UIColor(red: 0.5, green: 1, blue: 0.5, alpha: 1)
+			self.staffDrawingView.backgroundColor = palette.green
 		} else {
-			self.staffDrawingView.backgroundColor = UIColor(red: 1, green: 0.5, blue: 0.5, alpha: 1)
+			self.staffDrawingView.backgroundColor = palette.red
 		}
 		// ====
 		
@@ -211,7 +222,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	}
 	
 	func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?) {
-		print("\(error!.localizedDescription)")
+		//print("\(error!.localizedDescription)")
 	}
 	
 	// MARK: Setup methods
@@ -275,11 +286,11 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	func noteVibrateAnimation() {
 		stemDrawingView.animateNoteStem()
-		notesDrawingView.center.x += 10
-		stemDrawingView.center.x += 10
+		notesDrawingView.center.x += 7
+		stemDrawingView.center.x += 7
 		UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.05, initialSpringVelocity: 8.0, options: [], animations: { () -> Void in
-			self.notesDrawingView.center.x -= 10
-			self.stemDrawingView.center.x -= 10
+			self.notesDrawingView.center.x -= 7
+			self.stemDrawingView.center.x -= 7
 			}, completion: nil)
 	}
 	

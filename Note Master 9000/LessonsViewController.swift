@@ -34,12 +34,11 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		// MARK navigationBar setup
 		let nav = self.navigationController?.navigationBar
 		nav?.barStyle = UIBarStyle.Default
-		nav?.barTintColor = UIColor.whiteColor()
-		nav?.tintColor = UIColor.blackColor()
-		nav?.titleTextAttributes = [
-			NSForegroundColorAttributeName: UIColor.blackColor()
-		]
+		nav?.barTintColor = palette.light
+		nav?.tintColor = palette.dark
+		nav?.titleTextAttributes = [NSForegroundColorAttributeName: palette.dark]
 		//====
+		collectionView.backgroundColor = palette.light
 	}
 
     override func didReceiveMemoryWarning() {
@@ -91,6 +90,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 	func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
 		let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "lessonHeader", forIndexPath: indexPath) as! LessonCollectionHeader
 		
+		header.sectionTitle.textColor = palette.dark
 		header.sectionTitle.text = lessonsSections[indexPath.section]
 		return header
 	}
