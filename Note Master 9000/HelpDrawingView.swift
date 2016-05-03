@@ -29,11 +29,20 @@ class HelpDrawingView: UIImageView {
 	
 	func drawHelp(clef: Clef) {
 		
+		let letterFrame = CGRect(x: self.bounds.origin.x,
+		                         y: self.bounds.origin.y,
+		                         width: self.bounds.height/10,
+		                         height: self.bounds.height/10)
+		
+		let helpOrigin = CGPoint(x: self.bounds.origin.x+letterFrame.width/2,
+		                         y: self.bounds.origin.y+letterFrame.height/2)
+		
 		for i in 6...12 {
 			let layer = CATextLayer()
 			
-			layer.frame = self.frame
+			layer.frame = letterFrame
 			layer.contentsScale = UIScreen.mainScreen().scale
+			layer.alignmentMode = kCAAlignmentCenter
 			layer.font = UIFont.systemFontOfSize(1, weight: UIFontWeightLight)
 			layer.fontSize = self.frame.height/10
 			
@@ -51,13 +60,12 @@ class HelpDrawingView: UIImageView {
 			layer.foregroundColor = UIColor.blackColor().CGColor
 			
 			if i % 2 == 0 {
-				layer.position = CGPoint(x: (self.bounds.width*11/20),
-				                         y: (self.bounds.height/2)+(self.bounds.height*CGFloat(Double(i)/20.0))-(self.frame.height/100))
+				layer.position = CGPoint(x: helpOrigin.x,
+				                         y: helpOrigin.y+(self.bounds.height*CGFloat(Double(i)/20.0))-(self.bounds.height/100))
 			} else {
-				layer.position = CGPoint(x: (self.bounds.width*19/20),
-				                         y: (self.bounds.height/2)+(self.bounds.height*CGFloat(Double(i)/20.0))-(self.frame.height/100))
+				layer.position = CGPoint(x: helpOrigin.x+letterFrame.width*3/4,
+				                         y: helpOrigin.y+(self.bounds.height*CGFloat(Double(i)/20.0))-(self.bounds.height/100))
 			}
-			
 			
 			self.layer.addSublayer(layer)
 		}
