@@ -22,7 +22,6 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QxO-xj-raK" customClass="StaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
                                 <rect key="frame" x="122" y="64" width="356" height="356"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" secondItem="QxO-xj-raK" secondAttribute="width" multiplier="1:1" id="lg7-P6-BDC"/>
                                 </constraints>
@@ -215,7 +214,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="X4X-qL-rVl" firstAttribute="width" secondItem="ReZ-ec-Y6n" secondAttribute="width" id="449-z0-X8W"/>
                                     <constraint firstItem="eNE-GH-pif" firstAttribute="width" secondItem="HzF-Xd-mpU" secondAttribute="width" id="Anx-nA-tH4"/>
@@ -269,7 +267,6 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="RND-XH-GNR" firstAttribute="centerY" secondItem="QxO-xj-raK" secondAttribute="centerY" id="2gA-xQ-OFn"/>
@@ -339,6 +336,7 @@
                     <connections>
                         <outlet property="aNoteButton" destination="FVG-pX-jSx" id="PjQ-vv-LZD"/>
                         <outlet property="bNoteButton" destination="Bi7-DU-WTw" id="iQn-Wf-127"/>
+                        <outlet property="backView" destination="8bC-Xf-vdC" id="kt1-xO-QBd"/>
                         <outlet property="cNoteButton" destination="ReZ-ec-Y6n" id="ff1-Nx-Ym1"/>
                         <outlet property="clefImageView" destination="xlg-OX-WBz" id="lcM-GS-oQB"/>
                         <outlet property="dNoteButton" destination="X4X-qL-rVl" id="Zvi-ci-Psk"/>
@@ -512,7 +510,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WcW-xY-PaG">
                                             <rect key="frame" x="276" y="13" width="49" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>

@@ -16,7 +16,7 @@ class HelpDrawingView: UIImageView {
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)!
 		
-		self.backgroundColor = UIColor(white: 1, alpha: 0.7)
+		self.backgroundColor = palette.lightTrans
 	}
 	
 	/*
@@ -46,18 +46,13 @@ class HelpDrawingView: UIImageView {
 			layer.font = UIFont.systemFontOfSize(1, weight: UIFontWeightLight)
 			layer.fontSize = self.frame.height/10
 			
-			layer.shadowOffset = CGSize(width: 1, height: 1)
-			layer.shadowColor = UIColor.whiteColor().CGColor
-			layer.shadowRadius = 2.0
-			layer.shadowOpacity = 0.8
-			
 			if clef == Clef.trebleClef {
 				layer.string = trebleHelp[i-6]
 			} else if clef == Clef.bassClef {
 				layer.string = bassHelp[i-6]
 			}
 			
-			layer.foregroundColor = UIColor.blackColor().CGColor
+			layer.foregroundColor = palette.dark.CGColor
 			
 			if i % 2 == 0 {
 				layer.position = CGPoint(x: helpOrigin.x,

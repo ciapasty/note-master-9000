@@ -19,10 +19,6 @@ class LessonCollectionCell: UICollectionViewCell {
 		}
 	}
 	
-	override init(frame: CGRect) {
-		super.init(frame: frame)
-	}
-	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		//fatalError("init(coder:) has not been implemented")
@@ -30,6 +26,9 @@ class LessonCollectionCell: UICollectionViewCell {
 	
 	private func setupCell() {
 		lessonImg.image = UIImage(named: lesson.clef.rawValue)
+		lessonImg.image = lessonImg.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+		lessonImg.tintColor = palette.dark
+		
 		lessonTitle.text = lesson.title
 		drawCircle(lesson.complete)
 	}
@@ -38,14 +37,7 @@ class LessonCollectionCell: UICollectionViewCell {
 		lessonImg.layer.sublayers = nil
 		
 		let layer = CAShapeLayer()
-		let green = UIColor(red: 32.0/255.0,
-		                    green: 179.0/255.0,
-		                    blue: 49.0/255.0,
-		                    alpha: 1.0)
-		let greenAlpha = UIColor(red: 42.0/255.0,
-		                         green: 189.0/255.0,
-		                         blue: 59.0/255.0,
-		                         alpha: 0.8)
+		
 		layer.frame = CGRect(
 			x: ((lessonImg.frame.width-lessonImg.frame.height)/2)-5,
 			y: -5,
@@ -55,12 +47,14 @@ class LessonCollectionCell: UICollectionViewCell {
 		layer.borderWidth = 2.0
 		
 		if complete {
-			layer.borderColor = green.CGColor
-			layer.backgroundColor = greenAlpha.CGColor
+			layer.borderColor = palette.green.CGColor
+			layer.backgroundColor = palette.greenTrans.CGColor
 			layer.cornerRadius = layer.frame.width/2
-			lessonTitle.textColor = green
+			lessonTitle.textColor = palette.green
 		} else {
-			layer.borderColor = UIColor.darkGrayColor().CGColor
+			layer.borderColor = palette.dark.CGColor
+			//layer.backgroundColor = palette.blueTrans.CGColor
+			lessonImg.backgroundColor = palette.blueTrans
 			layer.cornerRadius = layer.frame.width/2
 		}
 		

@@ -51,7 +51,8 @@ class StaffDrawingView: UIImageView {
 		
 		noteLayer.path = notePath.CGPath
 		noteLayer.lineWidth = 1.0
-		noteLayer.strokeColor = UIColor.blackColor().CGColor
+		noteLayer.strokeColor = palette.dark.CGColor
+		noteLayer.fillColor = palette.dark.CGColor
 		
 		return noteLayer
 	}
@@ -70,7 +71,7 @@ class StaffDrawingView: UIImageView {
 		
 		noteStemLayer.path = noteStemPath.CGPath
 		noteStemLayer.lineWidth = 2.0
-		noteStemLayer.strokeColor = UIColor.blackColor().CGColor
+		noteStemLayer.strokeColor = palette.dark.CGColor
 		
 		return noteStemLayer
 	}
@@ -102,7 +103,7 @@ class StaffDrawingView: UIImageView {
 		
 		lineLayer.path = linePath.CGPath
 		lineLayer.lineWidth = 1.0
-		lineLayer.strokeColor = UIColor.blackColor().CGColor
+		lineLayer.strokeColor = palette.dark.CGColor
 		return lineLayer
 		
 	}
@@ -114,7 +115,6 @@ class StaffDrawingView: UIImageView {
 	
 	func drawStaffLayer(animated: Bool) -> CALayer {
 		
-		let staffColor = UIColor.blackColor()
 		let staffPathH = UIBezierPath()
 		let staffPathV = UIBezierPath()
 		let staffLayerH = CAShapeLayer()
@@ -129,7 +129,7 @@ class StaffDrawingView: UIImageView {
 		
 		staffLayerH.path = staffPathH.CGPath
 		staffLayerH.lineWidth = 1.0
-		staffLayerH.strokeColor = staffColor.CGColor
+		staffLayerH.strokeColor = palette.dark.CGColor
 		
 		staffLayer.addSublayer(staffLayerH)
 		
@@ -148,7 +148,7 @@ class StaffDrawingView: UIImageView {
 		
 		staffLayerV.path = staffPathV.CGPath
 		staffLayerV.lineWidth = 3.0
-		staffLayerV.strokeColor = staffColor.CGColor
+		staffLayerV.strokeColor = palette.dark.CGColor
 		
 		staffLayer.addSublayer(staffLayerV)
 		
