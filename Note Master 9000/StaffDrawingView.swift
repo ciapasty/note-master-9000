@@ -25,7 +25,7 @@ class StaffDrawingView: UIImageView {
 	
 	//==== CALayer drawing
 	
-	func drawNote(note: Note, animated: Bool){
+	func drawNote(note: Note, color: UIColor, animated: Bool){
 		self.layer.sublayers = nil
 		
 		let noteHeight = self.frame.height/12
@@ -36,11 +36,10 @@ class StaffDrawingView: UIImageView {
 			width: noteWidth, height: noteHeight)
 		
 		self.layer.addSublayer(drawAddLines(note))
-		self.layer.addSublayer(drawNoteLayer(note, noteRect: noteRect))
-		//self.layer.addSublayer(drawNoteStem(note, noteRect: noteRect))
+		self.layer.addSublayer(drawNoteLayer(note, noteRect: noteRect, color: color))
 	}
 	
-	func drawNoteLayer(note: Note, noteRect: CGRect) -> CALayer {
+	func drawNoteLayer(note: Note, noteRect: CGRect, color: UIColor) -> CALayer {
 		let notePath = UIBezierPath(ovalInRect: CGRect(x: 0-noteRect.width/2, y: 0-noteRect.height/2, width: noteRect.width, height: noteRect.height))
 		let noteLayer = CAShapeLayer()
 		
@@ -51,13 +50,13 @@ class StaffDrawingView: UIImageView {
 		
 		noteLayer.path = notePath.CGPath
 		noteLayer.lineWidth = 1.0
-		noteLayer.strokeColor = palette.dark.CGColor
-		noteLayer.fillColor = palette.dark.CGColor
+		noteLayer.strokeColor = color.CGColor
+		noteLayer.fillColor = color.CGColor
 		
 		return noteLayer
 	}
 	
-	func drawNoteStem(note: Note, noteRect: CGRect) -> CALayer {
+	func drawNoteStem(note: Note, noteRect: CGRect, color: UIColor) -> CALayer {
 		let noteStemPath = UIBezierPath()
 		let noteStemLayer = CAShapeLayer()
 		
@@ -71,7 +70,7 @@ class StaffDrawingView: UIImageView {
 		
 		noteStemLayer.path = noteStemPath.CGPath
 		noteStemLayer.lineWidth = 2.0
-		noteStemLayer.strokeColor = palette.dark.CGColor
+		noteStemLayer.strokeColor = color.CGColor
 		
 		return noteStemLayer
 	}

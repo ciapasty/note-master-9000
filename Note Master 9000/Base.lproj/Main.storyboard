@@ -56,6 +56,9 @@
                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K76-nU-eQj" customClass="HelpDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
                                 <rect key="frame" x="478" y="64" width="71" height="356"/>
                             </imageView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="p6J-ml-9nN">
+                                <rect key="frame" x="0.0" y="64" width="600" height="2"/>
+                            </progressView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCY-Wx-llc" userLabel="Bottom Buttons View">
                                 <rect key="frame" x="0.0" y="420" width="600" height="180"/>
                                 <subviews>
@@ -269,6 +272,7 @@
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="p6J-ml-9nN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1y6-Cp-lsm"/>
                             <constraint firstItem="RND-XH-GNR" firstAttribute="centerY" secondItem="QxO-xj-raK" secondAttribute="centerY" id="2gA-xQ-OFn"/>
                             <constraint firstItem="K76-nU-eQj" firstAttribute="bottom" secondItem="QxO-xj-raK" secondAttribute="bottom" id="3pC-fn-96e"/>
                             <constraint firstItem="K76-nU-eQj" firstAttribute="leading" secondItem="QxO-xj-raK" secondAttribute="trailing" id="5no-dp-a6W"/>
@@ -276,6 +280,7 @@
                             <constraint firstItem="a0C-mn-WFu" firstAttribute="top" secondItem="QxO-xj-raK" secondAttribute="top" id="BF4-S5-5KS"/>
                             <constraint firstItem="QxO-xj-raK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Ely-Km-NmV"/>
                             <constraint firstItem="xlg-OX-WBz" firstAttribute="centerY" secondItem="QxO-xj-raK" secondAttribute="centerY" constant="5" id="Flf-jn-E6c"/>
+                            <constraint firstItem="p6J-ml-9nN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="GPk-QE-UWX"/>
                             <constraint firstAttribute="trailing" secondItem="fCY-Wx-llc" secondAttribute="trailing" id="KcO-bt-E1p"/>
                             <constraint firstItem="fCY-Wx-llc" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="KhT-mU-NeC"/>
                             <constraint firstItem="RND-XH-GNR" firstAttribute="centerX" secondItem="QxO-xj-raK" secondAttribute="centerX" id="N0W-o8-tvC"/>
@@ -289,6 +294,7 @@
                             <constraint firstItem="QxO-xj-raK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="dKQ-vU-HGf"/>
                             <constraint firstItem="K76-nU-eQj" firstAttribute="top" secondItem="QxO-xj-raK" secondAttribute="top" id="e2v-ry-nEs"/>
                             <constraint firstItem="ReZ-ec-Y6n" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="fUc-Ii-bNH"/>
+                            <constraint firstAttribute="trailing" secondItem="p6J-ml-9nN" secondAttribute="trailing" id="ju7-fM-3Oa"/>
                             <constraint firstItem="K76-nU-eQj" firstAttribute="width" secondItem="QxO-xj-raK" secondAttribute="width" multiplier="0.2" id="le7-F5-9in"/>
                             <constraint firstItem="K76-nU-eQj" firstAttribute="centerY" secondItem="QxO-xj-raK" secondAttribute="centerY" id="n5A-3u-6ur"/>
                             <constraint firstItem="QxO-xj-raK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pqo-Jz-ERd"/>
@@ -321,6 +327,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="7dm-hx-mT6">
+                        <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title="Back" id="lHV-zL-7Ju"/>
                         <barButtonItem key="leftBarButtonItem" title="Quit" id="M63-W1-Sm8">
                             <connections>
@@ -346,6 +353,7 @@
                         <outlet property="gNoteButton" destination="eNE-GH-pif" id="H5y-fl-Hb6"/>
                         <outlet property="helpDrawingView" destination="K76-nU-eQj" id="qcf-fa-ve1"/>
                         <outlet property="notesDrawingView" destination="RND-XH-GNR" id="8ln-Tg-XRM"/>
+                        <outlet property="progressBar" destination="p6J-ml-9nN" id="OUH-2y-GNf"/>
                         <outlet property="staffDrawingView" destination="QxO-xj-raK" id="i0D-QK-Jzi"/>
                         <outlet property="stemDrawingView" destination="a0C-mn-WFu" id="pVW-TU-q7n"/>
                         <segue destination="Kym-7b-BDG" kind="unwind" identifier="backToLessons" unwindAction="backToLessonsView:" id="7ID-bd-j0I"/>

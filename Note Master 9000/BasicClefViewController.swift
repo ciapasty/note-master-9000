@@ -13,6 +13,7 @@ import AVFoundation
 class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	@IBOutlet var backView: UIView!
+	@IBOutlet weak var progressBar: UIProgressView!
 	@IBOutlet weak var staffDrawingView: StaffDrawingView!
 	@IBOutlet weak var notesDrawingView: StaffDrawingView!
 	@IBOutlet weak var clefImageView: UIImageView!
@@ -94,6 +95,10 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		
 		clefImageView.image = clefImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
 		clefImageView.tintColor = palette.dark
+		
+		progressBar.progressTintColor = palette.green
+		progressBar.trackTintColor = palette.darkTrans
+		progressBar.progress = 0
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -118,7 +123,13 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		alert.addAction(exitAction)
 		alert.addAction(cancelAction)
 		
+		let subview = alert.view.subviews.first! as UIView
+		let alertContentView = subview.subviews.first! as UIView
+		alertContentView.backgroundColor = palette.light
+		
 		self.presentViewController(alert, animated: true, completion: nil)
+		
+		alert.view.tintColor = palette.darkBlue
 	}
 	
 	@IBAction func tapOnNoteView(sender: UITapGestureRecognizer) {
@@ -157,18 +168,23 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	@IBAction func onNoteButton(sender: UIButton) {
 		noteButtonsEnabled(false)
 		
-		// TODO: remove color flash
 		if (currentNote!.rawValue % 7) == noteNameValueDict[sender.titleLabel!.text!] {
-			self.staffDrawingView.backgroundColor = palette.green
+			if progressBar.progress != 0 {
+				staffDrawingView.layer.sublayers?.popLast()
+				staffDrawingView.layer.sublayers?.popLast()
+			}
+			
+			drawGhostNote()
+			
+			previousNote = currentNote
+			currentNote = randomNoteInRange(noteRange, gauss: gaussianRand)
+			
+			drawNewNote()
+			
+			progressBar.setProgress(progressBar.progress+0.05, animated: true)
 		} else {
-			self.staffDrawingView.backgroundColor = palette.red
+			wrongAnimation()
 		}
-		// ====
-		
-		previousNote = currentNote
-		currentNote = randomNoteInRange(noteRange, gauss: gaussianRand)
-		
-		drawNewNote()
 		
 		hideHelp()
 		
@@ -229,7 +245,58 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	func drawNewNote() {
 		stemDrawingView.setupStem(currentNote!, animated: true)
-		notesDrawingView.drawNote(currentNote!, animated: true)
+		notesDrawingView.drawNote(currentNote!, color: palette.dark, animated: true)
+	}
+	
+	func drawGhostNote() {// -> UIBezierPath {
+		let layer = CALayer()
+		
+		let noteHeight = staffDrawingView.frame.height/12
+		let noteWidth = noteHeight*1.5
+		let noteRect = CGRect(
+			x: (staffDrawingView.frame.width*3/5)-(noteWidth/2),
+			y: (staffDrawingView.frame.height*CGFloat(Double(currentNote!.rawValue)/20.0))-(noteHeight/2),
+			width: noteWidth, height: noteHeight)
+		
+		layer.addSublayer(staffDrawingView.drawNoteLayer(currentNote!, noteRect: noteRect, color: palette.greenTrans))
+		layer.addSublayer(staffDrawingView.drawNoteStem(currentNote!, noteRect: noteRect, color: palette.greenTrans))
+		
+		let anim = CAKeyframeAnimation(keyPath: "position")
+		
+		// set the animations path to our bezier curve
+		anim.path = drawGhostPath().CGPath
+		
+		// set some more parameters for the animation
+		// this rotation mode means that our object will rotate so that it's parallel to whatever point it is currently on the curve
+		anim.rotationMode = kCAAnimationRotateAuto
+		anim.repeatCount = Float.infinity
+		anim.duration = 5.0
+		
+		staffDrawingView.layer.addAnimation(anim, forKey: "animate position along path")
+		
+		staffDrawingView.layer.addSublayer(layer)
+	}
+	
+	func drawGhostPath() -> UIBezierPath {
+		let layer = CAShapeLayer()
+		let bezierStart = CGPoint(x: staffDrawingView.frame.width*3/5,
+		                         y: (staffDrawingView.frame.height*CGFloat(Double(currentNote!.rawValue)/20.0)))
+		let bezierEnd = CGPoint(x: staffDrawingView.frame.width*CGFloat(progressBar.progress),
+		                        y: 0)
+		let control = CGPoint(x: staffDrawingView.frame.width/2, y: 0)
+		let path = UIBezierPath()
+		
+		path.moveToPoint(bezierStart)
+		path.addQuadCurveToPoint(bezierEnd, controlPoint: control)
+		
+		layer.path = path.CGPath
+		layer.lineWidth = 1.0
+		layer.strokeColor = palette.red.CGColor
+		layer.fillColor = UIColor.clearColor().CGColor
+		
+		staffDrawingView.layer.addSublayer(layer)
+		
+		return path
 	}
 	
 	func setupStaffView(clef: Clef) {
@@ -263,6 +330,27 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	}
 	
 	// MARK: Layout animation method
+	
+	func wrongAnimation() {
+		
+		let shake:CGFloat = 12
+		
+		self.notesDrawingView.center.x += shake
+		self.stemDrawingView.center.x += shake
+		self.staffDrawingView.center.x += shake
+		self.clefImageView.center.x += shake
+		
+		noteButtonsEnabled(false)
+		
+		UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.1, initialSpringVelocity: 8.0, options: [], animations: { () -> Void in
+			self.notesDrawingView.center.x -= shake
+			self.stemDrawingView.center.x -= shake
+			self.staffDrawingView.center.x -= shake
+			self.clefImageView.center.x -= shake
+			}, completion: { finished in
+				self.noteButtonsEnabled(true)
+		})
+	}
 	
 	func showHelp() {
 		 if !helpVisible {
