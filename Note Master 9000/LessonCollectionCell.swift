@@ -25,9 +25,6 @@ class LessonCollectionCell: UICollectionViewCell {
 	}
 	
 	private func setupCell() {
-		lessonImg.image = UIImage(named: lesson.clef.rawValue)
-		lessonImg.image = lessonImg.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-		lessonImg.tintColor = palette.dark
 		
 		lessonTitle.text = lesson.title
 		drawCircle(lesson.complete)
@@ -37,6 +34,7 @@ class LessonCollectionCell: UICollectionViewCell {
 		lessonImg.layer.sublayers = nil
 		
 		let layer = CAShapeLayer()
+		let imgLayer = CALayer()
 		
 		layer.frame = CGRect(
 			x: ((lessonImg.frame.width-lessonImg.frame.height)/2)-5,
@@ -46,6 +44,10 @@ class LessonCollectionCell: UICollectionViewCell {
 		
 		layer.borderWidth = 2.0
 		
+		imgLayer.frame = CGRect(origin: CGPointZero, size: lessonImg.frame.size)
+		imgLayer.contents = UIImage(named: lesson.clef.rawValue+"_small")?.CGImage
+		imgLayer.contentsGravity = kCAGravityResizeAspect
+		
 		if complete {
 			layer.borderColor = palette.green.CGColor
 			layer.backgroundColor = palette.greenTrans.CGColor
@@ -53,11 +55,12 @@ class LessonCollectionCell: UICollectionViewCell {
 			lessonTitle.textColor = palette.green
 		} else {
 			layer.borderColor = palette.dark.CGColor
-			//layer.backgroundColor = palette.blueTrans.CGColor
-			lessonImg.backgroundColor = palette.blueTrans
+			layer.backgroundColor = palette.blueTrans.CGColor
 			layer.cornerRadius = layer.frame.width/2
+			lessonTitle.textColor = palette.dark
 		}
 		
 		lessonImg.layer.addSublayer(layer)
+		lessonImg.layer.addSublayer(imgLayer)
 	}
 }

@@ -444,5 +444,11 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	func addProgress() {
 		progressBar.setProgress(progressBar.progress+0.05, animated: true)
 		staffDrawingView.layer.sublayers?.popLast()
+		
+		if progressBar.progress == 1.0 {
+			lesson!.complete = true
+			performSegueWithIdentifier("backToLessons", sender: self)
+			lessons[0][0].complete = true
+		}
 	}
 }
