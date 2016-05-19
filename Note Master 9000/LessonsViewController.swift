@@ -13,6 +13,9 @@ private let reuseIdentifier = "lessonCell"
 class LessonsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 	
 	@IBOutlet weak var collectionView: UICollectionView!
+	
+	var cellHeight:CGFloat? = nil
+	var cellSize:CGSize? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +30,11 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		collectionView!.dataSource = self
 		collectionView!.delegate = self
 		
-		//lessons[0][1].complete = true
+		cellHeight = UIScreen.mainScreen().bounds.height/6.3
+		cellSize = CGSize(width: cellHeight!, height: cellHeight!)
+		
+		lessons[0][0].complete = true
+		
     }
 	
 	override func viewWillAppear(animated: Bool) {
@@ -64,7 +71,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 	
 	@IBAction func backToLessonsView(segue: UIStoryboardSegue) {
-		
+		collectionView.reloadData()
 	}
 
     // MARK: UICollectionViewDataSource
@@ -105,16 +112,16 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		let itemCount = CGFloat(lessons[section].count)
 		
 		if itemCount <= 3 {
-			spaceLeft = scWidth - itemCount*90 - (itemCount - 1)*2.0
+			spaceLeft = scWidth - itemCount*cellHeight! - (itemCount - 1)*2.0
 		} else {
-			spaceLeft = scWidth - 3*90 - (3 - 1)*2.0
+			spaceLeft = scWidth - 3*cellHeight! - (3 - 1)*2.0
 		}
 		
 		return UIEdgeInsets(top: 20, left: spaceLeft/2, bottom: 20, right: spaceLeft/2)
 	}
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-		return CGSize(width: 90, height: 90)
+		return cellSize!
 	}
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
