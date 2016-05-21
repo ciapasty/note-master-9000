@@ -25,15 +25,15 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 
         // Register cell classes
         //collectionView!.registerClass(LessonCollectionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-		collectionView!.backgroundColor = UIColor.whiteColor()
+		collectionView!.backgroundColor = palette.light.base()
 		
 		collectionView!.dataSource = self
 		collectionView!.delegate = self
 		
-		cellHeight = UIScreen.mainScreen().bounds.height/6.3
+		cellHeight = round(UIScreen.mainScreen().bounds.height/6.3)
 		cellSize = CGSize(width: cellHeight!, height: cellHeight!)
 		
-		lessons[0][0].complete = true
+		//lessons[0][0].complete = true
 		
     }
 	
@@ -41,11 +41,11 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		// MARK navigationBar setup
 		let nav = self.navigationController?.navigationBar
 		nav?.barStyle = UIBarStyle.Default
-		nav?.barTintColor = palette.light
-		nav?.tintColor = palette.dark
-		nav?.titleTextAttributes = [NSForegroundColorAttributeName: palette.dark]
+		nav?.barTintColor = palette.light.base()
+		nav?.tintColor = palette.dark.base()
+		nav?.titleTextAttributes = [NSForegroundColorAttributeName: palette.dark.base()]
 		//====
-		collectionView.backgroundColor = palette.light
+		collectionView.backgroundColor = palette.light.base()
 	}
 
     override func didReceiveMemoryWarning() {
@@ -97,7 +97,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 	func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
 		let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "lessonHeader", forIndexPath: indexPath) as! LessonCollectionHeader
 		
-		header.sectionTitle.textColor = palette.dark
+		header.sectionTitle.textColor = palette.dark.base()
 		header.sectionTitle.text = lessonsSections[indexPath.section]
 		return header
 	}

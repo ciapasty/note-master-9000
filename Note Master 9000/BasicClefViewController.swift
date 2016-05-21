@@ -83,21 +83,21 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	override func viewWillAppear(animated: Bool) {
 		let nav = self.navigationController?.navigationBar
 		nav?.barStyle = UIBarStyle.Black
-		nav?.barTintColor = palette.light
-		nav?.tintColor = palette.dark
-		nav?.titleTextAttributes = [NSForegroundColorAttributeName: palette.dark]
+		nav?.barTintColor = palette.light.base()
+		nav?.tintColor = palette.dark.base()
+		nav?.titleTextAttributes = [NSForegroundColorAttributeName: (lesson?.color.dark())!]
 		
-		backView.backgroundColor = palette.light
+		backView.backgroundColor = palette.light.base()
 		
 		for button in noteButtons {
-			button.setTitleColor(palette.dark, forState: .Normal)
+			button.setTitleColor(palette.dark.base(), forState: .Normal)
 		}
 		
 		clefImageView.image = clefImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-		clefImageView.tintColor = palette.dark
+		clefImageView.tintColor = palette.dark.base()
 		
-		progressBar.progressTintColor = palette.green
-		progressBar.trackTintColor = palette.darkTrans
+		progressBar.progressTintColor = palette.green.base()
+		progressBar.trackTintColor = palette.dark.trans()
 		progressBar.progress = 0
 	}
 
@@ -125,11 +125,11 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		
 		let subview = alert.view.subviews.first! as UIView
 		let alertContentView = subview.subviews.first! as UIView
-		alertContentView.backgroundColor = palette.light
+		alertContentView.backgroundColor = palette.light.base()
 		
 		self.presentViewController(alert, animated: true, completion: nil)
 		
-		alert.view.tintColor = palette.darkBlue
+		alert.view.tintColor = lesson?.color.dark()
 	}
 	
 	@IBAction func tapOnNoteView(sender: UITapGestureRecognizer) {
@@ -240,7 +240,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	func drawNewNote(delay: NSTimeInterval) {
 		stemDrawingView.setupStem(currentNote!, animated: true)
-		notesDrawingView.drawNote(currentNote!, color: palette.dark, animated: true)
+		notesDrawingView.drawNote(currentNote!, color: palette.dark.base(), animated: true)
 		noteSlideAnimation(delay)
 	}
 	
@@ -256,8 +256,8 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		
 		layer.frame = staffDrawingView.frame
 		
-		layer.addSublayer(staffDrawingView.drawNoteLayer(currentNote!, noteRect: noteRect, color: palette.greenTrans))
-		layer.addSublayer(staffDrawingView.drawNoteStem(currentNote!, noteRect: noteRect, color: palette.greenTrans))
+		layer.addSublayer(staffDrawingView.drawNoteLayer(currentNote!, noteRect: noteRect, color: palette.green.trans()))
+		layer.addSublayer(staffDrawingView.drawNoteStem(currentNote!, noteRect: noteRect, color: palette.green.trans()))
 		
 		staffDrawingView.layer.addSublayer(layer)
 		

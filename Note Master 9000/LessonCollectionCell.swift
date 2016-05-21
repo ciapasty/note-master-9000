@@ -25,7 +25,6 @@ class LessonCollectionCell: UICollectionViewCell {
 	}
 	
 	private func setupCell() {
-		
 		lessonTitle.text = lesson.title
 		drawCircle(lesson.complete)
 	}
@@ -49,15 +48,15 @@ class LessonCollectionCell: UICollectionViewCell {
 		imgLayer.contentsGravity = kCAGravityResizeAspect
 		
 		if complete {
-			layer.borderColor = palette.green.CGColor
-			layer.backgroundColor = palette.greenTrans.CGColor
+			layer.borderColor = palette.green.dark().CGColor
+			layer.backgroundColor = palette.green.trans().CGColor
 			layer.cornerRadius = layer.frame.width/2
-			lessonTitle.textColor = palette.green
+			lessonTitle.textColor = palette.green.dark()
 		} else {
-			layer.borderColor = palette.dark.CGColor
-			layer.backgroundColor = palette.blueTrans.CGColor
+			layer.borderColor = palette.dark.base().CGColor
+			layer.backgroundColor = lesson.color.base().CGColor
 			layer.cornerRadius = layer.frame.width/2
-			lessonTitle.textColor = palette.dark
+			lessonTitle.textColor = palette.dark.base()
 		}
 		
 		lessonImg.layer.addSublayer(layer)
