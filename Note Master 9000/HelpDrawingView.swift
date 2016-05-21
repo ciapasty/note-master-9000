@@ -16,7 +16,7 @@ class HelpDrawingView: UIImageView {
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)!
 		
-		self.backgroundColor = palette.lightTrans
+		self.backgroundColor = palette.light.trans()
 	}
 	
 	/*
@@ -52,7 +52,7 @@ class HelpDrawingView: UIImageView {
 				layer.string = bassHelp[i-6]
 			}
 			
-			layer.foregroundColor = palette.dark.CGColor
+			layer.foregroundColor = palette.dark.base().CGColor
 			
 			if i % 2 == 0 {
 				layer.position = CGPoint(x: helpOrigin.x,

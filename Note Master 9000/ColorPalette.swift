@@ -9,7 +9,58 @@
 import Foundation
 import UIKit
 
+func colorCap(value: Int) -> Int {
+	return max(0, min(255, value))
+}
+
+public struct MyColor {
+	var red:Int
+	var green:Int
+	var blue:Int
+
+	init (red: Int, green: Int, blue: Int){
+		self.red = red
+		self.green = green
+		self.blue = blue
+	}
+	
+	func dark() -> UIColor {
+		let dRed:CGFloat = CGFloat(colorCap(red-50))/255
+		let dGreen:CGFloat = CGFloat(colorCap(green-50))/255
+		let dBlue:CGFloat = CGFloat(colorCap(blue-50))/255
+		return UIColor(red: dRed, green: dGreen, blue: dBlue, alpha: 1.0)
+	}
+	
+	func light() -> UIColor {
+		let dRed:CGFloat = CGFloat(colorCap(red+50))/255
+		let dGreen:CGFloat = CGFloat(colorCap(green+50))/255
+		let dBlue:CGFloat = CGFloat(colorCap(blue+50))/255
+		return UIColor(red: dRed, green: dGreen, blue: dBlue, alpha: 1.0)
+	}
+	
+	func trans() -> UIColor {
+		return UIColor(red: CGFloat(red)/255, green: CGFloat(green)/255, blue: CGFloat(blue)/255, alpha: 0.5)
+	}
+	
+	func base() -> UIColor {
+		return UIColor(red: CGFloat(red)/255, green: CGFloat(green)/255, blue: CGFloat(blue)/255, alpha: 1.0)
+	}
+}
+
 public struct ColorPalette {
+	let light:MyColor = MyColor(red: 255, green: 248, blue: 237)
+	let dark:MyColor = MyColor(red: 61, green: 54, blue: 51)
+	let red:MyColor = MyColor(red: 224, green: 72, blue: 72)
+	let green:MyColor = MyColor(red: 158, green: 224, blue: 72)
+	let blue:MyColor = MyColor(red: 72, green: 116, blue: 224)
+	let brightBlue:MyColor = MyColor(red: 72, green: 219, blue: 224)
+	let purple:MyColor = MyColor(red: 113, green: 41, blue: 224)
+	let yellow:MyColor = MyColor(red: 255, green: 224, blue: 61)
+	let orange:MyColor = MyColor(red: 255, green: 130, blue: 61)
+}
+
+/*
+public struct ColorPalette2 {
 	let light = UIColor(red: 255/255, green: 248/255, blue: 237/255, alpha: 1)
 	let lightTrans = UIColor(red: 255/255, green: 248/255, blue: 237/255, alpha: 0.7)
 	let dark = UIColor(red: 61/255, green: 54/255, blue: 51/255, alpha: 1)
@@ -25,5 +76,6 @@ public struct ColorPalette {
 	let blueTrans = UIColor(red: 72/255, green: 219/255, blue: 224/255, alpha: 0.7)
 	let darkBlue = UIColor(red: 0/255, green: 147/255, blue: 142/255, alpha: 1)
 }
+*/
 
 public let palette = ColorPalette()

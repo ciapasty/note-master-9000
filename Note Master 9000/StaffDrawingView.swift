@@ -102,7 +102,7 @@ class StaffDrawingView: UIImageView {
 		
 		lineLayer.path = linePath.CGPath
 		lineLayer.lineWidth = 1.0
-		lineLayer.strokeColor = palette.dark.CGColor
+		lineLayer.strokeColor = palette.dark.base().CGColor
 		return lineLayer
 		
 	}
@@ -128,7 +128,7 @@ class StaffDrawingView: UIImageView {
 		
 		staffLayerH.path = staffPathH.CGPath
 		staffLayerH.lineWidth = 1.0
-		staffLayerH.strokeColor = palette.dark.CGColor
+		staffLayerH.strokeColor = palette.dark.base().CGColor
 		
 		staffLayer.addSublayer(staffLayerH)
 		
@@ -147,7 +147,7 @@ class StaffDrawingView: UIImageView {
 		
 		staffLayerV.path = staffPathV.CGPath
 		staffLayerV.lineWidth = 3.0
-		staffLayerV.strokeColor = palette.dark.CGColor
+		staffLayerV.strokeColor = palette.dark.base().CGColor
 		
 		staffLayer.addSublayer(staffLayerV)
 		
