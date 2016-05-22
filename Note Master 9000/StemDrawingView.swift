@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: UIView Extension
+
 extension UIView {
 	func dg_center(usePresentationLayerIfPossible: Bool) -> CGPoint {
 		if usePresentationLayerIfPossible, let presentationLayer = layer.presentationLayer() as? CALayer {
@@ -18,6 +20,8 @@ extension UIView {
 }
 
 class StemDrawingView: UIImageView {
+	
+	// MARK: Properties
 	
 	var note: Note? = nil
 	let pathLayer = CAShapeLayer()
@@ -36,6 +40,8 @@ class StemDrawingView: UIImageView {
 			displayLink.paused = !animating
 		}
 	}
+	
+	// MARK: Initialization
 
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)!
@@ -61,6 +67,7 @@ class StemDrawingView: UIImageView {
 		displayLink.paused = true
 	}
 	
+	//MARK: Note stem drawing/animation
 	
 	func animateNoteStem() {
 		if note!.rawValue < 10 {

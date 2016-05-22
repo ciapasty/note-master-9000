@@ -10,6 +10,8 @@ import UIKit
 
 class StaffDrawingView: UIImageView {
 	
+	// MARK: Initialization
+	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)!
 		//fatalError("init(coder:) has not been implemented")
@@ -23,7 +25,7 @@ class StaffDrawingView: UIImageView {
     }
     */
 	
-	//==== CALayer drawing
+	// MARK: Note Drawing
 	
 	func drawNote(note: Note, color: UIColor, animated: Bool){
 		self.layer.sublayers = nil
@@ -107,6 +109,8 @@ class StaffDrawingView: UIImageView {
 		
 	}
 	
+	// MARK: Staff Drawing
+	
 	func drawStaff(animated anim: Bool) {
 		self.layer.sublayers = nil
 		self.layer.addSublayer(drawStaffLayer(anim))
@@ -163,6 +167,8 @@ class StaffDrawingView: UIImageView {
 		return staffLayer
 	}
 }
+
+// MARK: Clef enumerator
 
 public enum Clef: String {
 	case trebleClef, bassClef

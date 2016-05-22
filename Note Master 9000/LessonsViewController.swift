@@ -12,10 +12,14 @@ private let reuseIdentifier = "lessonCell"
 
 class LessonsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 	
+	// MARK: Outlets
+	
 	@IBOutlet weak var collectionView: UICollectionView!
 	
-	var cellHeight:CGFloat? = nil
-	var cellSize:CGSize? = nil
+	// MARK: Properties
+	
+	var cellHeight = CGFloat()
+	var cellSize = CGSize()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +35,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		collectionView!.delegate = self
 		
 		cellHeight = round(UIScreen.mainScreen().bounds.height/6.3)
-		cellSize = CGSize(width: cellHeight!, height: cellHeight!)
+		cellSize = CGSize(width: cellHeight, height: cellHeight)
 		
 		//lessons[0][0].complete = true
 		
@@ -57,7 +61,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		return true
 	}
 	
-    // MARK: - Navigation
+    // MARK: Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -112,16 +116,16 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		let itemCount = CGFloat(lessons[section].count)
 		
 		if itemCount <= 3 {
-			spaceLeft = scWidth - itemCount*cellHeight! - (itemCount - 1)*2.0
+			spaceLeft = scWidth - itemCount*cellHeight - (itemCount - 1)*2.0
 		} else {
-			spaceLeft = scWidth - 3*cellHeight! - (3 - 1)*2.0
+			spaceLeft = scWidth - 3*cellHeight - (3 - 1)*2.0
 		}
 		
 		return UIEdgeInsets(top: 20, left: spaceLeft/2, bottom: 20, right: spaceLeft/2)
 	}
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-		return cellSize!
+		return cellSize
 	}
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {

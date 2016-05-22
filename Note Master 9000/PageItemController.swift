@@ -10,6 +10,13 @@ import UIKit
 
 class PageItemController: UIViewController {
 	
+	// MARK: Outlets
+	
+	@IBOutlet weak var contentImageView: UIImageView!
+	@IBOutlet weak var contentLabel: UILabel!
+	
+	// MARK: Properties
+	
 	var itemIndex: Int = 0
 	var imageName: String = "" {
 		didSet {
@@ -21,9 +28,8 @@ class PageItemController: UIViewController {
 			}
 		}
 	}
-
-	@IBOutlet weak var contentImageView: UIImageView!
-	@IBOutlet weak var contentLabel: UILabel!
+	
+	// MARK: ViewController
 	
     override func viewDidLoad() {
         super.viewDidLoad()

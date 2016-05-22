@@ -9,9 +9,13 @@
 import UIKit
 
 class HelpDrawingView: UIImageView {
+	
+	// MARK: Properties
 
 	let trebleHelp = ["E", "D", "C", "B", "A", "G", "F"]
 	let bassHelp = ["G", "F", "E", "D", "C", "B", "A"]
+	
+	// MARK: Initialization
 	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)!
@@ -26,6 +30,8 @@ class HelpDrawingView: UIImageView {
         // Drawing code
     }
     */
+	
+	// MARK: Drawing
 	
 	func drawHelp(clef: Clef) {
 		

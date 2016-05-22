@@ -12,6 +12,8 @@ import AVFoundation
 
 class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
+	// MARK: Outlets
+	
 	@IBOutlet var backView: UIView!
 	@IBOutlet weak var progressBar: UIProgressView!
 	@IBOutlet weak var staffDrawingView: StaffDrawingView!
@@ -30,11 +32,13 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	@IBOutlet weak var aNoteButton: UIButton!
 	@IBOutlet weak var bNoteButton: UIButton!
 	
+	// MARK: Properties
+	
 	var avPlayer:AVAudioPlayer = AVAudioPlayer()
 	
-	var noteButtons: [UIButton] = []
-	var noteNameValueDict: [String:Int] = [:]
-	var noteNameDict: [Note:String] = [:]
+	var noteButtons = [UIButton]()
+	var noteNameValueDict = [String:Int]()
+	var noteNameDict = [Note:String]()
 	
 	var lesson:noteLesson? {
 		didSet {
@@ -63,6 +67,8 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	let randSource = GKRandomSource()
 	
 	var helpVisible = false
+	
+	// MARK: ViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -182,16 +188,9 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 		
 		hideHelp()
-		
-		// TODO: remove color flash
-		UIView.animateWithDuration(0.5, animations: {
-			self.staffDrawingView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0)
-			}, completion: { finished in
-				self.noteButtonsEnabled(true)
-		})
 	}
 	
-	// MARK: Audio player methods
+	// MARK: Audio player
 	
 	func loadFileIntoAVPlayer(note: String) {
 		let fileURL:NSURL = NSBundle.mainBundle().URLForResource(note, withExtension: "wav", subdirectory: "Audio")!
@@ -236,7 +235,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		//print("\(error!.localizedDescription)")
 	}
 	
-	// MARK: Setup methods
+	// MARK: Drawing methods
 	
 	func drawNewNote(delay: NSTimeInterval) {
 		stemDrawingView.setupStem(currentNote!, animated: true)
@@ -244,7 +243,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		noteSlideAnimation(delay)
 	}
 	
-	func drawGhostNote() {// -> UIBezierPath {
+	func drawGhostNote() {
 		let layer = CALayer()
 		
 		let noteHeight = staffDrawingView.frame.height/12
@@ -291,6 +290,8 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		return path
 	}
 	
+	// MARK: Setup methods
+	
 	func setupStaffView(clef: Clef) {
 		clefImageView.image = UIImage(named: clef.rawValue)
 		staffDrawingView.drawStaff(animated: true)
@@ -303,7 +304,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		navigationItem.title = lesson?.title
 	}
 	
-	// MARK: Random note seleciton method
+	// MARK: Other methods
 	
 	func randomNoteInRange(range: (Int, Int), gauss: Bool) -> Note {
 		var note: Note
@@ -321,7 +322,26 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 	
-	// MARK: Layout animation method
+	func noteButtonsEnabled(state: Bool) {
+		for button in noteButtons {
+			button.enabled = state
+		}
+	}
+	
+	func addProgress() {
+		progressBar.setProgress(progressBar.progress+0.05, animated: true)
+		staffDrawingView.layer.sublayers?.popLast()
+		
+		noteButtonsEnabled(true)
+		
+		if progressBar.progress == 1.0 {
+			lesson!.complete = true
+			performSegueWithIdentifier("backToLessons", sender: self)
+			lessons[0][0].complete = true
+		}
+	}
+	
+	// MARK: Layout animations
 	
 	func wrongAnimation() {
 		
@@ -431,24 +451,5 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		
 		//Note slide animation
 		drawNewNote(0.8)
-	}
-	
-	// MARK: Other methods
-	
-	func noteButtonsEnabled(state: Bool) {
-		for button in noteButtons {
-			button.enabled = state
-		}
-	}
-	
-	func addProgress() {
-		progressBar.setProgress(progressBar.progress+0.05, animated: true)
-		staffDrawingView.layer.sublayers?.popLast()
-		
-		if progressBar.progress == 1.0 {
-			lesson!.complete = true
-			performSegueWithIdentifier("backToLessons", sender: self)
-			lessons[0][0].complete = true
-		}
 	}
 }

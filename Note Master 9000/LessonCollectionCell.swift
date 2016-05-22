@@ -10,8 +10,12 @@ import UIKit
 
 class LessonCollectionCell: UICollectionViewCell {
 	
+	// MARK: Outlets
+	
 	@IBOutlet weak var lessonImg: UIImageView!
 	@IBOutlet weak var lessonTitle: UILabel!
+	
+	// MARK: Properties
 	
 	var lesson: noteLesson = noteLesson() {
 		didSet {
@@ -19,10 +23,14 @@ class LessonCollectionCell: UICollectionViewCell {
 		}
 	}
 	
+	// MARK: Initialization
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		//fatalError("init(coder:) has not been implemented")
 	}
+	
+	// MARK: Setup/Drawing
 	
 	private func setupCell() {
 		lessonTitle.text = lesson.title
