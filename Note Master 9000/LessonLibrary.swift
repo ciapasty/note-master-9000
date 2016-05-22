@@ -9,6 +9,8 @@
 import UIKit
 import Foundation
 
+// MARK: Lesson structure
+
 public struct noteLesson {
 	let title: String
 	let clef: Clef
@@ -30,11 +32,15 @@ public struct noteLesson {
 	}
 }
 
+// MARK: Lesson section names
+
 public let lessonsSections = [
 	"Basic Treble Clef",
 	"Advanced Treble Clef",
 	"Basic Bass Clef",
 	"Advanced Bass Clef"]
+
+// MARK: Lesson plan
 
 public var lessons: [[noteLesson]] = [
 	[

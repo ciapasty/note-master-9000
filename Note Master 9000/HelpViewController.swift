@@ -10,9 +10,12 @@ import UIKit
 
 class HelpViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
-	private var pageViewController: UIPageViewController?
+	// MARK: Properties
 	
+	private var pageViewController: UIPageViewController?
 	private let contentImages = ["trebleClef", "bassClef"]
+	
+	// MARK: ViewController
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,8 @@ class HelpViewController: UIViewController, UIPageViewControllerDelegate, UIPage
 	override func prefersStatusBarHidden() -> Bool {
 		return true
 	}
+	
+	// MARK: PageViewCOntroller
 	
 	private func createPageViewController() {
 		
@@ -53,6 +58,8 @@ class HelpViewController: UIViewController, UIPageViewControllerDelegate, UIPage
 		appearance.currentPageIndicatorTintColor = UIColor.blackColor()
 		appearance.backgroundColor = UIColor.whiteColor()
 	}
+	
+	// MARK: PaegViewControllerDelegate
 	
 	func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
 		return contentImages.count
