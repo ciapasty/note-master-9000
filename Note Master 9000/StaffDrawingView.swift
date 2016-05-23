@@ -123,8 +123,8 @@ class StaffDrawingView: UIImageView {
 		
 		layer.frame = self.frame
 		
-		layer.addSublayer(drawNoteLayer(note, noteRect: noteRect, color: palette.green.light()))
-		layer.addSublayer(drawNoteStem(note, noteRect: noteRect, color: palette.green.light()))
+		layer.addSublayer(drawNoteLayer(note, noteRect: noteRect, color: palette.green.trans()))
+		layer.addSublayer(drawNoteStem(note, noteRect: noteRect, color: palette.green.trans()))
 		
 		self.layer.addSublayer(layer)
 		
@@ -218,8 +218,6 @@ class StaffDrawingView: UIImageView {
 	}
 	
 	// MARK: Clef drawing
-	
-	//0.68
 	
 	func drawClefLayer (clef: Clef) -> CALayer {
 		let clefLayer = CALayer()

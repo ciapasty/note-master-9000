@@ -91,7 +91,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		nav?.barStyle = UIBarStyle.Black
 		nav?.barTintColor = palette.light.base()
 		nav?.tintColor = palette.dark.base()
-		nav?.titleTextAttributes = [NSForegroundColorAttributeName: (lesson?.color.dark())!]
+		nav?.titleTextAttributes = [NSForegroundColorAttributeName: (lesson?.color.base())!]
 		
 		backView.backgroundColor = palette.light.base()
 		
@@ -140,7 +140,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		
 		self.presentViewController(alert, animated: true, completion: nil)
 		
-		alert.view.tintColor = lesson?.color.dark()
+		alert.view.tintColor = lesson?.color.base()
 	}
 	
 	@IBAction func tapOnNoteView(sender: UITapGestureRecognizer) {
