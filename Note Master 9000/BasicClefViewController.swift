@@ -102,7 +102,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		clefImageView.image = clefImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
 		clefImageView.tintColor = palette.dark.base()
 		
-		progressBar.progressTintColor = palette.green.base()
+		progressBar.progressTintColor = palette.green.light()
 		progressBar.trackTintColor = palette.dark.trans()
 		progressBar.progress = 0
 	}
@@ -110,6 +110,11 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
+	}
+	
+	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+		staffDrawingView.drawStaff(clef!, animated: false)
+		drawNewNote(0, animated: false)
 	}
 	
 	override func prefersStatusBarHidden() -> Bool {
@@ -176,13 +181,13 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		
 		if (currentNote!.rawValue % 7) == noteNameValueDict[sender.titleLabel!.text!] {
 			
-			drawGhostNote()
+			staffDrawingView.drawGhostNote(currentNote!, progress: progressBar.progress)
 			NSTimer.scheduledTimerWithTimeInterval(0.45, target: self, selector: #selector(BasicClefViewController.addProgress), userInfo: nil, repeats: false)
 			
 			previousNote = currentNote
 			currentNote = randomNoteInRange(noteRange, gauss: gaussianRand)
 			
-			drawNewNote(0)
+			drawNewNote(0, animated: true)
 		} else {
 			wrongAnimation()
 		}
@@ -237,64 +242,19 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	// MARK: Drawing methods
 	
-	func drawNewNote(delay: NSTimeInterval) {
-		stemDrawingView.setupStem(currentNote!, animated: true)
-		notesDrawingView.drawNote(currentNote!, color: palette.dark.base(), animated: true)
-		noteSlideAnimation(delay)
-	}
-	
-	func drawGhostNote() {
-		let layer = CALayer()
-		
-		let noteHeight = staffDrawingView.frame.height/12
-		let noteWidth = noteHeight*1.5
-		let noteRect = CGRect(
-			x: (staffDrawingView.frame.width*3/5)-(noteWidth/2),
-			y: (staffDrawingView.frame.height*CGFloat(Double(currentNote!.rawValue)/20.0))-(noteHeight/2),
-			width: noteWidth, height: noteHeight)
-		
-		layer.frame = staffDrawingView.frame
-		
-		layer.addSublayer(staffDrawingView.drawNoteLayer(currentNote!, noteRect: noteRect, color: palette.green.trans()))
-		layer.addSublayer(staffDrawingView.drawNoteStem(currentNote!, noteRect: noteRect, color: palette.green.trans()))
-		
-		staffDrawingView.layer.addSublayer(layer)
-		
-		let anim = CAKeyframeAnimation(keyPath: "position")
-		anim.path = drawGhostPath().CGPath
-		anim.duration = 0.5
-		
-		var scaling:CATransform3D = layer.transform
-		scaling = CATransform3DScale(scaling, 0.01, 0.01, 1.0)
-		let scale = CABasicAnimation(keyPath: "transform")
-		scale.duration = 0.5
-		scale.toValue = NSValue.init(CATransform3D: scaling)
-		
-		layer.addAnimation(scale, forKey: "transformAnimation")
-		layer.addAnimation(anim, forKey: "animate position along path")
-		
-	}
-	
-	func drawGhostPath() -> UIBezierPath {
-		//let layer = CAShapeLayer()
-		let bezierStart = CGPoint(x: staffDrawingView.frame.width/2,
-		                          y: staffDrawingView.frame.height/2)
-		let bezierEnd = CGPoint(x: staffDrawingView.frame.width*CGFloat(progressBar.progress),
-		                        y: 0)
-		let control = CGPoint(x: staffDrawingView.frame.width/2, y: 0)
-		let path = UIBezierPath()
-		
-		path.moveToPoint(bezierStart)
-		path.addQuadCurveToPoint(bezierEnd, controlPoint: control)
-		
-		return path
+	func drawNewNote(delay: NSTimeInterval, animated: Bool) {
+		stemDrawingView.setupStem(currentNote!, animated: animated)
+		notesDrawingView.drawNote(currentNote!, color: palette.dark.base(), animated: animated)
+		if animated {
+			noteSlideAnimation(delay)
+		}
 	}
 	
 	// MARK: Setup methods
 	
 	func setupStaffView(clef: Clef) {
 		clefImageView.image = UIImage(named: clef.rawValue)
-		staffDrawingView.drawStaff(animated: true)
+		staffDrawingView.drawStaff(clef, animated: true)
 	}
 	
 	func setupLesson() {
@@ -450,6 +410,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 			}, completion: nil)
 		
 		//Note slide animation
-		drawNewNote(0.8)
+		drawNewNote(0.8, animated: true)
 	}
 }
