@@ -160,10 +160,12 @@ class StaffDrawingView: UIImageView {
 	
 	// MARK: Staff Drawing
 	
-	func drawStaff(clef: Clef, animated anim: Bool) {
+	func drawStaff(clef clef: Clef?, animated anim: Bool) {
 		self.layer.sublayers = nil
 		self.layer.addSublayer(drawStaffLayer(anim))
-		self.layer.addSublayer(drawClefLayer(clef))
+		if (clef != nil) {
+			self.layer.addSublayer(drawClefLayer(clef!))
+		}
 	}
 	
 	func drawStaffLayer(animated: Bool) -> CALayer {
@@ -186,7 +188,7 @@ class StaffDrawingView: UIImageView {
 		
 		staffLayer.addSublayer(staffLayerH)
 		
-		// Horizontal animation
+		// Horizontal line animation
 		if animated {
 			let animateHorizontal = CABasicAnimation(keyPath: "strokeEnd")
 			animateHorizontal.duration = 0.7
@@ -205,7 +207,7 @@ class StaffDrawingView: UIImageView {
 		
 		staffLayer.addSublayer(staffLayerV)
 		
-		// Vertical animation
+		// Vertical lines animation
 		if animated {
 			let animateVertical = CABasicAnimation(keyPath: "strokeEnd")
 			animateVertical.duration = 0.8*0.7

@@ -113,7 +113,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	}
 	
 	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
-		staffDrawingView.drawStaff(clef!, animated: false)
+		staffDrawingView.drawStaff(clef: nil, animated: false)
 		drawNewNote(0, animated: false)
 	}
 	
@@ -254,7 +254,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	func setupStaffView(clef: Clef) {
 		clefImageView.image = UIImage(named: clef.rawValue)
-		staffDrawingView.drawStaff(clef, animated: true)
+		staffDrawingView.drawStaff(clef: nil, animated: true)
 	}
 	
 	func setupLesson() {
