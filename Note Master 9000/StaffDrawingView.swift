@@ -109,11 +109,63 @@ class StaffDrawingView: UIImageView {
 		
 	}
 	
+	// MARK: Ghost note drawing
+	
+	func drawGhostNote(note: Note, progress: Float) {
+		let layer = CALayer()
+		
+		let noteHeight = self.frame.height/12
+		let noteWidth = noteHeight*1.5
+		let noteRect = CGRect(
+			x: (self.frame.width*3/5)-(noteWidth/2),
+			y: (self.frame.height*CGFloat(Double(note.rawValue)/20.0))-(noteHeight/2),
+			width: noteWidth, height: noteHeight)
+		
+		layer.frame = self.frame
+		
+		layer.addSublayer(drawNoteLayer(note, noteRect: noteRect, color: palette.green.trans()))
+		layer.addSublayer(drawNoteStem(note, noteRect: noteRect, color: palette.green.trans()))
+		
+		self.layer.addSublayer(layer)
+		
+		let anim = CAKeyframeAnimation(keyPath: "position")
+		anim.path = drawGhostPath(progress).CGPath
+		anim.duration = 0.5
+		
+		var scaling:CATransform3D = layer.transform
+		scaling = CATransform3DScale(scaling, 0.01, 0.01, 1.0)
+		let scale = CABasicAnimation(keyPath: "transform")
+		scale.duration = 0.5
+		scale.toValue = NSValue.init(CATransform3D: scaling)
+		
+		layer.addAnimation(scale, forKey: "transformAnimation")
+		layer.addAnimation(anim, forKey: "animate position along path")
+		
+	}
+	
+	func drawGhostPath(progress: Float) -> UIBezierPath {
+		//let layer = CAShapeLayer()
+		let bezierStart = CGPoint(x: self.frame.width/2,
+		                          y: self.frame.height/2)
+		let bezierEnd = CGPoint(x: self.frame.width*CGFloat(progress),
+		                        y: 0)
+		let control = CGPoint(x: self.frame.width/2, y: 0)
+		let path = UIBezierPath()
+		
+		path.moveToPoint(bezierStart)
+		path.addQuadCurveToPoint(bezierEnd, controlPoint: control)
+		
+		return path
+	}
+	
 	// MARK: Staff Drawing
 	
-	func drawStaff(animated anim: Bool) {
+	func drawStaff(clef clef: Clef?, animated anim: Bool) {
 		self.layer.sublayers = nil
 		self.layer.addSublayer(drawStaffLayer(anim))
+		if (clef != nil) {
+			self.layer.addSublayer(drawClefLayer(clef!))
+		}
 	}
 	
 	func drawStaffLayer(animated: Bool) -> CALayer {
@@ -136,7 +188,7 @@ class StaffDrawingView: UIImageView {
 		
 		staffLayer.addSublayer(staffLayerH)
 		
-		// Horizontal animation
+		// Horizontal line animation
 		if animated {
 			let animateHorizontal = CABasicAnimation(keyPath: "strokeEnd")
 			animateHorizontal.duration = 0.7
@@ -155,7 +207,7 @@ class StaffDrawingView: UIImageView {
 		
 		staffLayer.addSublayer(staffLayerV)
 		
-		// Vertical animation
+		// Vertical lines animation
 		if animated {
 			let animateVertical = CABasicAnimation(keyPath: "strokeEnd")
 			animateVertical.duration = 0.8*0.7
@@ -165,6 +217,22 @@ class StaffDrawingView: UIImageView {
 		}
 		
 		return staffLayer
+	}
+	
+	// MARK: Clef drawing
+	
+	func drawClefLayer (clef: Clef) -> CALayer {
+		let clefLayer = CALayer()
+		
+		let height = CGFloat(self.frame.height*0.68)
+		let posX = CGFloat(self.frame.width*0.05)
+		let posY = CGFloat(5+(self.frame.height-height)/2)
+		
+		clefLayer.frame = CGRect(x: posX, y: posY, width: height*0.48, height: height)
+		clefLayer.contents = UIImage(named: clef.rawValue)?.CGImage
+		clefLayer.contentsGravity = kCAGravityResizeAspect
+		
+		return clefLayer
 	}
 }
 
