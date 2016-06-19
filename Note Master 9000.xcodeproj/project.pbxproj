@@ -26,28 +26,12 @@
 		CEC1D4C51C9C651600C29666 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC1D4C31C9C651600C29666 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		CEC1D4CC1C9C651600C29666 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CEC1D4AC1C9C651600C29666 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CEC1D4B31C9C651600C29666;
-			remoteInfo = "Note Master 9000";
-		};
-		CEC1D4D71C9C651600C29666 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CEC1D4AC1C9C651600C29666 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CEC1D4B31C9C651600C29666;
-			remoteInfo = "Note Master 9000";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		CE060D1C1CB190BE001FA9B9 /* LessonCollectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonCollectionHeader.swift; sourceTree = "<group>"; };
 		CE2EA3751CA9A99700135AC8 /* PageItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageItemController.swift; sourceTree = "<group>"; };
 		CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpDrawingView.swift; sourceTree = "<group>"; };
 		CE38BF761CD90EEB00E6A31C /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		CE3F91C01D16BD3400AD54CA /* Note Master 9000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Note Master 9000.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4E351D1CB024D900420A25 /* LessonLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonLibrary.swift; sourceTree = "<group>"; };
 		CE7393C61CAEB8DD00DFCEED /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Audio; sourceTree = "<group>"; };
 		CE77223D1CAAF3EC00D26F33 /* LessonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonsViewController.swift; sourceTree = "<group>"; };
@@ -56,33 +40,16 @@
 		CEB104C21CA9855C0057D49E /* StemDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StemDrawingView.swift; sourceTree = "<group>"; };
 		CEB2412C1CA1CD9600BDD998 /* StaffDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffDrawingView.swift; sourceTree = "<group>"; };
 		CEBE3F9A1CAFB09C00C87B5A /* LessonCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonCollectionCell.swift; sourceTree = "<group>"; };
-		CEC1D4B41C9C651600C29666 /* Note Master 9000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Note Master 9000.app"; path = "/Users/maciejeichler/Programming/note-master-9000/build/Debug-iphoneos/Note Master 9000.app"; sourceTree = "<absolute>"; };
 		CEC1D4B71C9C651600C29666 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEC1D4B91C9C651600C29666 /* BasicClefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicClefViewController.swift; sourceTree = "<group>"; };
 		CEC1D4BC1C9C651600C29666 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEC1D4C11C9C651600C29666 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEC1D4C41C9C651600C29666 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEC1D4C61C9C651600C29666 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEC1D4CB1C9C651600C29666 /* Note Master 9000Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Note Master 9000Tests.xctest"; path = "/Users/maciejeichler/Programming/note-master-9000/build/Debug-iphoneos/Note Master 9000Tests.xctest"; sourceTree = "<absolute>"; };
-		CEC1D4D61C9C651600C29666 /* Note Master 9000UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Note Master 9000UITests.xctest"; path = "/Users/maciejeichler/Programming/note-master-9000/build/Debug-iphoneos/Note Master 9000UITests.xctest"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		CEC1D4B11C9C651600C29666 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEC1D4C81C9C651600C29666 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEC1D4D31C9C651600C29666 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -131,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				CEC1D4B61C9C651600C29666 /* Note Master 9000 */,
+				CE3F91C01D16BD3400AD54CA /* Note Master 9000.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,44 +133,8 @@
 			);
 			name = "Note Master 9000";
 			productName = "Note Master 9000";
-			productReference = CEC1D4B41C9C651600C29666 /* Note Master 9000.app */;
+			productReference = CE3F91C01D16BD3400AD54CA /* Note Master 9000.app */;
 			productType = "com.apple.product-type.application";
-		};
-		CEC1D4CA1C9C651600C29666 /* Note Master 9000Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CEC1D4E21C9C651600C29666 /* Build configuration list for PBXNativeTarget "Note Master 9000Tests" */;
-			buildPhases = (
-				CEC1D4C71C9C651600C29666 /* Sources */,
-				CEC1D4C81C9C651600C29666 /* Frameworks */,
-				CEC1D4C91C9C651600C29666 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CEC1D4CD1C9C651600C29666 /* PBXTargetDependency */,
-			);
-			name = "Note Master 9000Tests";
-			productName = "Note Master 9000Tests";
-			productReference = CEC1D4CB1C9C651600C29666 /* Note Master 9000Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		CEC1D4D51C9C651600C29666 /* Note Master 9000UITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CEC1D4E51C9C651600C29666 /* Build configuration list for PBXNativeTarget "Note Master 9000UITests" */;
-			buildPhases = (
-				CEC1D4D21C9C651600C29666 /* Sources */,
-				CEC1D4D31C9C651600C29666 /* Frameworks */,
-				CEC1D4D41C9C651600C29666 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CEC1D4D81C9C651600C29666 /* PBXTargetDependency */,
-			);
-			name = "Note Master 9000UITests";
-			productName = "Note Master 9000UITests";
-			productReference = CEC1D4D61C9C651600C29666 /* Note Master 9000UITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -217,16 +149,6 @@
 					CEC1D4B31C9C651600C29666 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = MHY8D43JSU;
-					};
-					CEC1D4CA1C9C651600C29666 = {
-						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = MHY8D43JSU;
-						TestTargetID = CEC1D4B31C9C651600C29666;
-					};
-					CEC1D4D51C9C651600C29666 = {
-						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = MHY8D43JSU;
-						TestTargetID = CEC1D4B31C9C651600C29666;
 					};
 				};
 			};
@@ -244,8 +166,6 @@
 			projectRoot = "";
 			targets = (
 				CEC1D4B31C9C651600C29666 /* Note Master 9000 */,
-				CEC1D4CA1C9C651600C29666 /* Note Master 9000Tests */,
-				CEC1D4D51C9C651600C29666 /* Note Master 9000UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -259,20 +179,6 @@
 				CEC1D4C21C9C651600C29666 /* Assets.xcassets in Resources */,
 				CEC1D4BD1C9C651600C29666 /* Main.storyboard in Resources */,
 				CE7393C71CAEB8DD00DFCEED /* Audio in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEC1D4C91C9C651600C29666 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEC1D4D41C9C651600C29666 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,34 +205,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEC1D4C71C9C651600C29666 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CEC1D4D21C9C651600C29666 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CEC1D4CD1C9C651600C29666 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CEC1D4B31C9C651600C29666 /* Note Master 9000 */;
-			targetProxy = CEC1D4CC1C9C651600C29666 /* PBXContainerItemProxy */;
-		};
-		CEC1D4D81C9C651600C29666 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CEC1D4B31C9C651600C29666 /* Note Master 9000 */;
-			targetProxy = CEC1D4D71C9C651600C29666 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CEC1D4BB1C9C651600C29666 /* Main.storyboard */ = {
@@ -365,7 +244,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: maciej.eichler@gmail.com (FGF5GMSUSP)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -410,7 +289,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: maciej.eichler@gmail.com (FGF5GMSUSP)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -436,6 +315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Note Master 9000/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mattijah.Note-Master-9000";
@@ -450,59 +330,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Note Master 9000/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mattijah.Note-Master-9000";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-			};
-			name = Release;
-		};
-		CEC1D4E31C9C651600C29666 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "Note Master 9000Tests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mattijah.Note-Master-9000Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Note Master 9000.app/Note Master 9000";
-			};
-			name = Debug;
-		};
-		CEC1D4E41C9C651600C29666 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "Note Master 9000Tests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mattijah.Note-Master-9000Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Note Master 9000.app/Note Master 9000";
-			};
-			name = Release;
-		};
-		CEC1D4E61C9C651600C29666 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "Note Master 9000UITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mattijah.Note-Master-9000UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "Note Master 9000";
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		CEC1D4E71C9C651600C29666 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "Note Master 9000UITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mattijah.Note-Master-9000UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = "Note Master 9000";
-				USES_XCTRUNNER = YES;
 			};
 			name = Release;
 		};
@@ -523,24 +356,6 @@
 			buildConfigurations = (
 				CEC1D4E01C9C651600C29666 /* Debug */,
 				CEC1D4E11C9C651600C29666 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CEC1D4E21C9C651600C29666 /* Build configuration list for PBXNativeTarget "Note Master 9000Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CEC1D4E31C9C651600C29666 /* Debug */,
-				CEC1D4E41C9C651600C29666 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CEC1D4E51C9C651600C29666 /* Build configuration list for PBXNativeTarget "Note Master 9000UITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CEC1D4E61C9C651600C29666 /* Debug */,
-				CEC1D4E71C9C651600C29666 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
