@@ -65,8 +65,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "showClefView"
-		{
+		if segue.identifier == "showClefView" {
 			let cell = sender as! LessonCollectionCell
 			if let destination = segue.destinationViewController as? BasicClefViewController {
 				destination.lesson = cell.lesson

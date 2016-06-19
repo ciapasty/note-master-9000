@@ -22,11 +22,8 @@
 		CEC1D4B81C9C651600C29666 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1D4B71C9C651600C29666 /* AppDelegate.swift */; };
 		CEC1D4BA1C9C651600C29666 /* BasicClefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1D4B91C9C651600C29666 /* BasicClefViewController.swift */; };
 		CEC1D4BD1C9C651600C29666 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC1D4BB1C9C651600C29666 /* Main.storyboard */; };
-		CEC1D4C01C9C651600C29666 /* Note_Master_9000.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEC1D4BE1C9C651600C29666 /* Note_Master_9000.xcdatamodeld */; };
 		CEC1D4C21C9C651600C29666 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC1D4C11C9C651600C29666 /* Assets.xcassets */; };
 		CEC1D4C51C9C651600C29666 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC1D4C31C9C651600C29666 /* LaunchScreen.storyboard */; };
-		CEC1D4D01C9C651600C29666 /* Note_Master_9000Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1D4CF1C9C651600C29666 /* Note_Master_9000Tests.swift */; };
-		CEC1D4DB1C9C651600C29666 /* Note_Master_9000UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1D4DA1C9C651600C29666 /* Note_Master_9000UITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,20 +56,15 @@
 		CEB104C21CA9855C0057D49E /* StemDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StemDrawingView.swift; sourceTree = "<group>"; };
 		CEB2412C1CA1CD9600BDD998 /* StaffDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffDrawingView.swift; sourceTree = "<group>"; };
 		CEBE3F9A1CAFB09C00C87B5A /* LessonCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonCollectionCell.swift; sourceTree = "<group>"; };
-		CEC1D4B41C9C651600C29666 /* Note Master 9000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Note Master 9000.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC1D4B41C9C651600C29666 /* Note Master 9000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Note Master 9000.app"; path = "/Users/maciejeichler/Programming/note-master-9000/build/Debug-iphoneos/Note Master 9000.app"; sourceTree = "<absolute>"; };
 		CEC1D4B71C9C651600C29666 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEC1D4B91C9C651600C29666 /* BasicClefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicClefViewController.swift; sourceTree = "<group>"; };
 		CEC1D4BC1C9C651600C29666 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CEC1D4BF1C9C651600C29666 /* Note_Master_9000.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Note_Master_9000.xcdatamodel; sourceTree = "<group>"; };
 		CEC1D4C11C9C651600C29666 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEC1D4C41C9C651600C29666 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEC1D4C61C9C651600C29666 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEC1D4CB1C9C651600C29666 /* Note Master 9000Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Note Master 9000Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEC1D4CF1C9C651600C29666 /* Note_Master_9000Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note_Master_9000Tests.swift; sourceTree = "<group>"; };
-		CEC1D4D11C9C651600C29666 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEC1D4D61C9C651600C29666 /* Note Master 9000UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Note Master 9000UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEC1D4DA1C9C651600C29666 /* Note_Master_9000UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note_Master_9000UITests.swift; sourceTree = "<group>"; };
-		CEC1D4DC1C9C651600C29666 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEC1D4CB1C9C651600C29666 /* Note Master 9000Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Note Master 9000Tests.xctest"; path = "/Users/maciejeichler/Programming/note-master-9000/build/Debug-iphoneos/Note Master 9000Tests.xctest"; sourceTree = "<absolute>"; };
+		CEC1D4D61C9C651600C29666 /* Note Master 9000UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Note Master 9000UITests.xctest"; path = "/Users/maciejeichler/Programming/note-master-9000/build/Debug-iphoneos/Note Master 9000UITests.xctest"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,20 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				CEC1D4B61C9C651600C29666 /* Note Master 9000 */,
-				CEC1D4CE1C9C651600C29666 /* Note Master 9000Tests */,
-				CEC1D4D91C9C651600C29666 /* Note Master 9000UITests */,
-				CEC1D4B51C9C651600C29666 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		CEC1D4B51C9C651600C29666 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CEC1D4B41C9C651600C29666 /* Note Master 9000.app */,
-				CEC1D4CB1C9C651600C29666 /* Note Master 9000Tests.xctest */,
-				CEC1D4D61C9C651600C29666 /* Note Master 9000UITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		CEC1D4B61C9C651600C29666 /* Note Master 9000 */ = {
@@ -165,27 +144,8 @@
 				CEC1D4C11C9C651600C29666 /* Assets.xcassets */,
 				CE7393C61CAEB8DD00DFCEED /* Audio */,
 				CEC1D4C61C9C651600C29666 /* Info.plist */,
-				CEC1D4BE1C9C651600C29666 /* Note_Master_9000.xcdatamodeld */,
 			);
 			path = "Note Master 9000";
-			sourceTree = "<group>";
-		};
-		CEC1D4CE1C9C651600C29666 /* Note Master 9000Tests */ = {
-			isa = PBXGroup;
-			children = (
-				CEC1D4CF1C9C651600C29666 /* Note_Master_9000Tests.swift */,
-				CEC1D4D11C9C651600C29666 /* Info.plist */,
-			);
-			path = "Note Master 9000Tests";
-			sourceTree = "<group>";
-		};
-		CEC1D4D91C9C651600C29666 /* Note Master 9000UITests */ = {
-			isa = PBXGroup;
-			children = (
-				CEC1D4DA1C9C651600C29666 /* Note_Master_9000UITests.swift */,
-				CEC1D4DC1C9C651600C29666 /* Info.plist */,
-			);
-			path = "Note Master 9000UITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,7 +239,7 @@
 				Base,
 			);
 			mainGroup = CEC1D4AB1C9C651600C29666;
-			productRefGroup = CEC1D4B51C9C651600C29666 /* Products */;
+			productRefGroup = CEC1D4AB1C9C651600C29666;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -332,7 +292,6 @@
 				CE77223E1CAAF3EC00D26F33 /* LessonsViewController.swift in Sources */,
 				CE38BF771CD90EEB00E6A31C /* ColorPalette.swift in Sources */,
 				CE7722421CAAFCEA00D26F33 /* NotesLibrary.swift in Sources */,
-				CEC1D4C01C9C651600C29666 /* Note_Master_9000.xcdatamodeld in Sources */,
 				CE335F091CBA2C9000A32355 /* HelpDrawingView.swift in Sources */,
 				CE4E351E1CB024D900420A25 /* LessonLibrary.swift in Sources */,
 				CEC1D4B81C9C651600C29666 /* AppDelegate.swift in Sources */,
@@ -344,7 +303,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC1D4D01C9C651600C29666 /* Note_Master_9000Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +310,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC1D4DB1C9C651600C29666 /* Note_Master_9000UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,19 +546,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		CEC1D4BE1C9C651600C29666 /* Note_Master_9000.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CEC1D4BF1C9C651600C29666 /* Note_Master_9000.xcdatamodel */,
-			);
-			currentVersion = CEC1D4BF1C9C651600C29666 /* Note_Master_9000.xcdatamodel */;
-			path = Note_Master_9000.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = CEC1D4AC1C9C651600C29666 /* Project object */;
 }
