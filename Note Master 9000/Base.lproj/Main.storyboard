@@ -20,44 +20,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QxO-xj-raK" customClass="StaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <rect key="frame" x="100" y="20" width="400" height="400"/>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7V-ba-6Jb" customClass="StaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
+                                <rect key="frame" x="122" y="64" width="356" height="356"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" secondItem="QxO-xj-raK" secondAttribute="width" multiplier="1:1" id="lg7-P6-BDC"/>
+                                    <constraint firstAttribute="width" secondItem="A7V-ba-6Jb" secondAttribute="height" multiplier="1:1" id="Nwh-VO-rA6"/>
                                 </constraints>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="lg7-P6-BDC"/>
-                                    </mask>
-                                </variation>
-                            </imageView>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xlg-OX-WBz">
-                                <rect key="frame" x="120" y="89" width="131" height="272"/>
+                                <rect key="frame" x="142" y="126" width="117" height="242"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xlg-OX-WBz" secondAttribute="height" multiplier="296:612" id="BtJ-U4-bqw"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RND-XH-GNR" customClass="StaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <rect key="frame" x="100" y="20" width="400" height="400"/>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2g-wU-eI4" customClass="StaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
+                                <rect key="frame" x="122" y="64" width="356" height="356"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" secondItem="RND-XH-GNR" secondAttribute="width" multiplier="1:1" id="FKn-qz-TGF"/>
+                                    <constraint firstAttribute="width" secondItem="k2g-wU-eI4" secondAttribute="height" multiplier="1:1" id="7fz-Im-drz"/>
                                 </constraints>
-                            </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a0C-mn-WFu" customClass="StemDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <rect key="frame" x="100" y="20" width="400" height="400"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GnV-Ii-xgp" customClass="StemDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
+                                <rect key="frame" x="122" y="64" width="356" height="356"/>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="a0C-mn-WFu" secondAttribute="height" id="ttd-ry-yZ9"/>
+                                    <constraint firstAttribute="width" secondItem="GnV-Ii-xgp" secondAttribute="height" multiplier="1:1" id="dqo-ry-zUM"/>
                                 </constraints>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="twt-f5-6i7" appends="YES" id="laG-NX-2uy"/>
+                                    <outletCollection property="gestureRecognizers" destination="twt-f5-6i7" appends="YES" id="fxo-h9-47q"/>
                                 </connections>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K76-nU-eQj" customClass="HelpDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <rect key="frame" x="500" y="20" width="80" height="400"/>
-                            </imageView>
+                            </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nA-QV-DWy" customClass="HelpDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
+                                <rect key="frame" x="478" y="64" width="71" height="356"/>
+                            </view>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="p6J-ml-9nN">
-                                <rect key="frame" x="0.0" y="20" width="600" height="2"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="2"/>
                             </progressView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCY-Wx-llc" userLabel="Bottom Buttons View">
                                 <rect key="frame" x="0.0" y="420" width="600" height="180"/>
@@ -273,51 +269,45 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="p6J-ml-9nN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1y6-Cp-lsm"/>
-                            <constraint firstItem="RND-XH-GNR" firstAttribute="centerY" secondItem="QxO-xj-raK" secondAttribute="centerY" id="2gA-xQ-OFn"/>
-                            <constraint firstItem="K76-nU-eQj" firstAttribute="bottom" secondItem="QxO-xj-raK" secondAttribute="bottom" id="3pC-fn-96e"/>
-                            <constraint firstItem="K76-nU-eQj" firstAttribute="leading" secondItem="QxO-xj-raK" secondAttribute="trailing" id="5no-dp-a6W"/>
-                            <constraint firstItem="fCY-Wx-llc" firstAttribute="top" secondItem="QxO-xj-raK" secondAttribute="bottom" id="7JS-iS-Zf8"/>
-                            <constraint firstItem="a0C-mn-WFu" firstAttribute="top" secondItem="QxO-xj-raK" secondAttribute="top" id="BF4-S5-5KS"/>
-                            <constraint firstItem="QxO-xj-raK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Ely-Km-NmV"/>
-                            <constraint firstItem="xlg-OX-WBz" firstAttribute="centerY" secondItem="QxO-xj-raK" secondAttribute="centerY" constant="5" id="Flf-jn-E6c"/>
+                            <constraint firstItem="7nA-QV-DWy" firstAttribute="top" secondItem="A7V-ba-6Jb" secondAttribute="top" id="5Th-IO-lCy"/>
+                            <constraint firstItem="GnV-Ii-xgp" firstAttribute="width" secondItem="A7V-ba-6Jb" secondAttribute="width" id="7i0-zY-NFf"/>
+                            <constraint firstItem="fCY-Wx-llc" firstAttribute="top" secondItem="A7V-ba-6Jb" secondAttribute="bottom" id="8bq-gI-cLS"/>
                             <constraint firstItem="p6J-ml-9nN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="GPk-QE-UWX"/>
+                            <constraint firstItem="k2g-wU-eI4" firstAttribute="width" secondItem="A7V-ba-6Jb" secondAttribute="width" id="HEg-Xd-GgR"/>
+                            <constraint firstItem="7nA-QV-DWy" firstAttribute="leading" secondItem="A7V-ba-6Jb" secondAttribute="trailing" id="HHN-ar-EoC"/>
                             <constraint firstAttribute="trailing" secondItem="fCY-Wx-llc" secondAttribute="trailing" id="KcO-bt-E1p"/>
                             <constraint firstItem="fCY-Wx-llc" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="KhT-mU-NeC"/>
-                            <constraint firstItem="RND-XH-GNR" firstAttribute="centerX" secondItem="QxO-xj-raK" secondAttribute="centerX" id="N0W-o8-tvC"/>
-                            <constraint firstItem="a0C-mn-WFu" firstAttribute="centerX" secondItem="QxO-xj-raK" secondAttribute="centerX" id="PP9-pw-4ul"/>
-                            <constraint firstItem="a0C-mn-WFu" firstAttribute="bottom" secondItem="QxO-xj-raK" secondAttribute="bottom" id="Pw1-8n-I1Y"/>
-                            <constraint firstItem="xlg-OX-WBz" firstAttribute="leading" secondItem="QxO-xj-raK" secondAttribute="leading" constant="20" id="Vkm-cw-DKe"/>
+                            <constraint firstItem="k2g-wU-eI4" firstAttribute="centerY" secondItem="A7V-ba-6Jb" secondAttribute="centerY" id="Lc5-d8-Czv"/>
+                            <constraint firstItem="A7V-ba-6Jb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PWo-mH-zep"/>
+                            <constraint firstItem="xlg-OX-WBz" firstAttribute="leading" secondItem="A7V-ba-6Jb" secondAttribute="leading" constant="20" id="Vyk-jE-tsp"/>
                             <constraint firstAttribute="bottom" secondItem="fCY-Wx-llc" secondAttribute="bottom" id="XHL-YJ-1ZP"/>
-                            <constraint firstItem="xlg-OX-WBz" firstAttribute="height" secondItem="QxO-xj-raK" secondAttribute="height" multiplier="0.68" id="b82-Rf-EMc"/>
+                            <constraint firstItem="7nA-QV-DWy" firstAttribute="bottom" secondItem="A7V-ba-6Jb" secondAttribute="bottom" id="ZLx-Hz-kqA"/>
+                            <constraint firstItem="k2g-wU-eI4" firstAttribute="centerX" secondItem="A7V-ba-6Jb" secondAttribute="centerX" id="aNW-ZC-7i4"/>
+                            <constraint firstItem="GnV-Ii-xgp" firstAttribute="centerY" secondItem="A7V-ba-6Jb" secondAttribute="centerY" id="avx-Ee-jXj"/>
                             <constraint firstItem="fCY-Wx-llc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bbb-Ge-XYd"/>
-                            <constraint firstItem="a0C-mn-WFu" firstAttribute="trailing" secondItem="QxO-xj-raK" secondAttribute="trailing" id="chB-eO-WAX"/>
-                            <constraint firstItem="QxO-xj-raK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="dKQ-vU-HGf"/>
-                            <constraint firstItem="K76-nU-eQj" firstAttribute="top" secondItem="QxO-xj-raK" secondAttribute="top" id="e2v-ry-nEs"/>
+                            <constraint firstItem="A7V-ba-6Jb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="f7X-0f-aDD"/>
                             <constraint firstItem="ReZ-ec-Y6n" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="fUc-Ii-bNH"/>
+                            <constraint firstItem="xlg-OX-WBz" firstAttribute="centerY" secondItem="A7V-ba-6Jb" secondAttribute="centerY" constant="5" id="gTN-rx-cQn"/>
                             <constraint firstAttribute="trailing" secondItem="p6J-ml-9nN" secondAttribute="trailing" id="ju7-fM-3Oa"/>
-                            <constraint firstItem="K76-nU-eQj" firstAttribute="width" secondItem="QxO-xj-raK" secondAttribute="width" multiplier="0.2" id="le7-F5-9in"/>
-                            <constraint firstItem="K76-nU-eQj" firstAttribute="centerY" secondItem="QxO-xj-raK" secondAttribute="centerY" id="n5A-3u-6ur"/>
-                            <constraint firstItem="QxO-xj-raK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pqo-Jz-ERd"/>
-                            <constraint firstItem="a0C-mn-WFu" firstAttribute="leading" secondItem="QxO-xj-raK" secondAttribute="leading" id="qMm-xf-gcF"/>
-                            <constraint firstItem="RND-XH-GNR" firstAttribute="width" secondItem="QxO-xj-raK" secondAttribute="width" id="x4j-5N-hGH"/>
-                            <constraint firstItem="a0C-mn-WFu" firstAttribute="centerY" secondItem="QxO-xj-raK" secondAttribute="centerY" id="y6B-be-kk0"/>
+                            <constraint firstItem="7nA-QV-DWy" firstAttribute="width" secondItem="A7V-ba-6Jb" secondAttribute="width" multiplier="0.2" id="kyd-sG-Vcj"/>
+                            <constraint firstItem="xlg-OX-WBz" firstAttribute="height" secondItem="A7V-ba-6Jb" secondAttribute="height" multiplier="0.68" id="sdt-zA-Omp"/>
+                            <constraint firstItem="GnV-Ii-xgp" firstAttribute="centerX" secondItem="A7V-ba-6Jb" secondAttribute="centerX" id="sr4-69-dvx"/>
+                            <constraint firstItem="A7V-ba-6Jb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="vFN-8L-TS1"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="Ely-Km-NmV"/>
+                                <exclude reference="vFN-8L-TS1"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <exclude reference="pqo-Jz-ERd"/>
-                                <exclude reference="7JS-iS-Zf8"/>
                                 <exclude reference="XHL-YJ-1ZP"/>
                                 <exclude reference="bbb-Ge-XYd"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
-                                <include reference="Ely-Km-NmV"/>
+                                <include reference="vFN-8L-TS1"/>
                                 <exclude reference="KhT-mU-NeC"/>
                             </mask>
                         </variation>
@@ -351,11 +341,11 @@
                         <outlet property="exitButton" destination="M63-W1-Sm8" id="w9h-r2-s7v"/>
                         <outlet property="fNoteButton" destination="HzF-Xd-mpU" id="7yE-8j-jLi"/>
                         <outlet property="gNoteButton" destination="eNE-GH-pif" id="H5y-fl-Hb6"/>
-                        <outlet property="helpDrawingView" destination="K76-nU-eQj" id="qcf-fa-ve1"/>
-                        <outlet property="notesDrawingView" destination="RND-XH-GNR" id="8ln-Tg-XRM"/>
+                        <outlet property="helpDrawingView" destination="7nA-QV-DWy" id="RJN-58-eWu"/>
+                        <outlet property="notesDrawingView" destination="k2g-wU-eI4" id="cZB-T4-1Mq"/>
                         <outlet property="progressBar" destination="p6J-ml-9nN" id="OUH-2y-GNf"/>
-                        <outlet property="staffDrawingView" destination="QxO-xj-raK" id="i0D-QK-Jzi"/>
-                        <outlet property="stemDrawingView" destination="a0C-mn-WFu" id="pVW-TU-q7n"/>
+                        <outlet property="staffDrawingView" destination="A7V-ba-6Jb" id="Lne-Pf-Zrm"/>
+                        <outlet property="stemDrawingView" destination="GnV-Ii-xgp" id="KX6-Ka-nLS"/>
                         <segue destination="Kym-7b-BDG" kind="unwind" identifier="backToLessons" unwindAction="backToLessonsView:" id="7ID-bd-j0I"/>
                     </connections>
                 </viewController>
@@ -363,7 +353,7 @@
                 <exit id="Kym-7b-BDG" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="twt-f5-6i7">
                     <connections>
-                        <action selector="tapOnNoteView:" destination="BYZ-38-t0r" id="WGW-sT-6Uq"/>
+                        <action selector="tapOnNoteView:" destination="BYZ-38-t0r" id="ddq-kG-1GU"/>
                     </connections>
                 </tapGestureRecognizer>
                 <swipeGestureRecognizer direction="left" id="cyc-E9-Cjg">

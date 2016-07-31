@@ -19,7 +19,7 @@ extension UIView {
 	}
 }
 
-class StemDrawingView: UIImageView {
+class StemDrawingView: UIView {
 	
 	// MARK: Properties
 	
