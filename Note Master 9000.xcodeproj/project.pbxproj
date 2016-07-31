@@ -11,7 +11,7 @@
 		CE2EA3761CA9A99700135AC8 /* PageItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2EA3751CA9A99700135AC8 /* PageItemController.swift */; };
 		CE335F091CBA2C9000A32355 /* HelpDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */; };
 		CE38BF771CD90EEB00E6A31C /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38BF761CD90EEB00E6A31C /* ColorPalette.swift */; };
-		CE4E351E1CB024D900420A25 /* LessonLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4E351D1CB024D900420A25 /* LessonLibrary.swift */; };
+		CE4E351E1CB024D900420A25 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4E351D1CB024D900420A25 /* Lesson.swift */; };
 		CE7393C71CAEB8DD00DFCEED /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = CE7393C61CAEB8DD00DFCEED /* Audio */; };
 		CE77223E1CAAF3EC00D26F33 /* LessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77223D1CAAF3EC00D26F33 /* LessonsViewController.swift */; };
 		CE7722421CAAFCEA00D26F33 /* NotesLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7722411CAAFCEA00D26F33 /* NotesLibrary.swift */; };
@@ -24,6 +24,7 @@
 		CEC1D4BD1C9C651600C29666 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC1D4BB1C9C651600C29666 /* Main.storyboard */; };
 		CEC1D4C21C9C651600C29666 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC1D4C11C9C651600C29666 /* Assets.xcassets */; };
 		CEC1D4C51C9C651600C29666 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC1D4C31C9C651600C29666 /* LaunchScreen.storyboard */; };
+		CED1A6D01D4E22690063E9B3 /* LessonPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED1A6CF1D4E22690063E9B3 /* LessonPlan.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +33,7 @@
 		CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpDrawingView.swift; sourceTree = "<group>"; };
 		CE38BF761CD90EEB00E6A31C /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		CE3F91C01D16BD3400AD54CA /* Note Master 9000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Note Master 9000.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE4E351D1CB024D900420A25 /* LessonLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonLibrary.swift; sourceTree = "<group>"; };
+		CE4E351D1CB024D900420A25 /* Lesson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
 		CE7393C61CAEB8DD00DFCEED /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Audio; sourceTree = "<group>"; };
 		CE77223D1CAAF3EC00D26F33 /* LessonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonsViewController.swift; sourceTree = "<group>"; };
 		CE7722411CAAFCEA00D26F33 /* NotesLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesLibrary.swift; sourceTree = "<group>"; };
@@ -46,6 +47,7 @@
 		CEC1D4C11C9C651600C29666 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEC1D4C41C9C651600C29666 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEC1D4C61C9C651600C29666 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CED1A6CF1D4E22690063E9B3 /* LessonPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonPlan.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +76,6 @@
 				CE77223D1CAAF3EC00D26F33 /* LessonsViewController.swift */,
 				CEC1D4B91C9C651600C29666 /* BasicClefViewController.swift */,
 				CEB104BC1CA958CC0057D49E /* HelpViewController.swift */,
-				CE2EA3751CA9A99700135AC8 /* PageItemController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -84,11 +85,13 @@
 			children = (
 				CEBE3F9A1CAFB09C00C87B5A /* LessonCollectionCell.swift */,
 				CE060D1C1CB190BE001FA9B9 /* LessonCollectionHeader.swift */,
+				CE2EA3751CA9A99700135AC8 /* PageItemController.swift */,
 				CEB2412C1CA1CD9600BDD998 /* StaffDrawingView.swift */,
 				CEB104C21CA9855C0057D49E /* StemDrawingView.swift */,
 				CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */,
 				CE7722411CAAFCEA00D26F33 /* NotesLibrary.swift */,
-				CE4E351D1CB024D900420A25 /* LessonLibrary.swift */,
+				CE4E351D1CB024D900420A25 /* Lesson.swift */,
+				CED1A6CF1D4E22690063E9B3 /* LessonPlan.swift */,
 				CE38BF761CD90EEB00E6A31C /* ColorPalette.swift */,
 			);
 			name = Classes;
@@ -189,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED1A6D01D4E22690063E9B3 /* LessonPlan.swift in Sources */,
 				CE060D1D1CB190BE001FA9B9 /* LessonCollectionHeader.swift in Sources */,
 				CEBE3F9B1CAFB09C00C87B5A /* LessonCollectionCell.swift in Sources */,
 				CEB104C31CA9855C0057D49E /* StemDrawingView.swift in Sources */,
@@ -199,7 +203,7 @@
 				CE38BF771CD90EEB00E6A31C /* ColorPalette.swift in Sources */,
 				CE7722421CAAFCEA00D26F33 /* NotesLibrary.swift in Sources */,
 				CE335F091CBA2C9000A32355 /* HelpDrawingView.swift in Sources */,
-				CE4E351E1CB024D900420A25 /* LessonLibrary.swift in Sources */,
+				CE4E351E1CB024D900420A25 /* Lesson.swift in Sources */,
 				CEC1D4B81C9C651600C29666 /* AppDelegate.swift in Sources */,
 				CEB104BD1CA958CC0057D49E /* HelpViewController.swift in Sources */,
 			);
@@ -244,7 +248,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: maciej.eichler@gmail.com (FGF5GMSUSP)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -289,7 +294,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: maciej.eichler@gmail.com (FGF5GMSUSP)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
