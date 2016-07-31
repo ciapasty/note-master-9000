@@ -13,7 +13,7 @@ class HelpViewController: UIViewController, UIPageViewControllerDelegate, UIPage
 	// MARK: Properties
 	
 	private var pageViewController: UIPageViewController?
-	private let contentImages = ["trebleClef", "bassClef"]
+	var contentImages = [String]()
 	
 	// MARK: ViewController
 	
@@ -33,7 +33,7 @@ class HelpViewController: UIViewController, UIPageViewControllerDelegate, UIPage
 		return true
 	}
 	
-	// MARK: PageViewCOntroller
+	// MARK: PageViewController
 	
 	private func createPageViewController() {
 		

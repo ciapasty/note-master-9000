@@ -10,34 +10,30 @@ import UIKit
 
 class LessonCollectionCell: UICollectionViewCell {
 	
-	// MARK: Outlets
-	
-	@IBOutlet weak var lessonImg: UIImageView!
-	@IBOutlet weak var lessonTitle: UILabel!
-	
 	// MARK: Properties
 	
-	var lesson: noteLesson = noteLesson() {
-		didSet {
-			setupCell()
+	var clef: Clef?
+	var color: MyColor?
+	var lesson: Lesson {
+		get {
+			return self.lesson
+		}
+		set {
+			lessonTitle.text = newValue.title
+			clef = newValue.clef
+			color = newValue.color
+			setupCell(newValue.complete)
 		}
 	}
 	
-	// MARK: Initialization
+	// MARK: Outlets
 	
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		//fatalError("init(coder:) has not been implemented")
-	}
+	@IBOutlet weak var lessonImg: UIView!
+	@IBOutlet weak var lessonTitle: UILabel!
 	
 	// MARK: Setup/Drawing
 	
-	private func setupCell() {
-		lessonTitle.text = lesson.title
-		drawCircle(lesson.complete)
-	}
-	
-	func drawCircle(complete: Bool) {
+	func setupCell(complete: Bool) {
 		lessonImg.layer.sublayers = nil
 		
 		let layer = CAShapeLayer()
@@ -52,7 +48,7 @@ class LessonCollectionCell: UICollectionViewCell {
 		layer.borderWidth = 2.0
 		
 		imgLayer.frame = CGRect(origin: CGPointZero, size: lessonImg.frame.size)
-		imgLayer.contents = UIImage(named: lesson.clef.rawValue+"_small")?.CGImage
+		imgLayer.contents = UIImage(named: clef!.rawValue+"_small")?.CGImage
 		imgLayer.contentsGravity = kCAGravityResizeAspect
 		
 		if complete {
@@ -62,7 +58,7 @@ class LessonCollectionCell: UICollectionViewCell {
 			lessonTitle.textColor = palette.green.dark()
 		} else {
 			layer.borderColor = palette.dark.base().CGColor
-			layer.backgroundColor = lesson.color.base().CGColor
+			layer.backgroundColor = color!.base().CGColor
 			layer.cornerRadius = layer.frame.width/2
 			lessonTitle.textColor = palette.dark.base()
 		}

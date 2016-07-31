@@ -40,7 +40,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	var noteNameValueDict = [String:Int]()
 	var noteNameDict = [Note:String]()
 	
-	var lesson:noteLesson? {
+	var lesson:NoteLesson? {
 		didSet {
 			setupLesson()
 		}

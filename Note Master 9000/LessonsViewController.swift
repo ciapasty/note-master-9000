@@ -65,16 +65,30 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "showClefView" {
-			let cell = sender as! LessonCollectionCell
+		if segue.identifier == "showTutorialView" {
+			let lesson = sender as! TutorialLesson
+			if let destination = segue.destinationViewController as? HelpViewController {
+				destination.contentImages = lesson.imageNames
+			}
+		}
+		if segue.identifier == "showNoteView" {
+			let lesson = sender as! NoteLesson
 			if let destination = segue.destinationViewController as? BasicClefViewController {
-				destination.lesson = cell.lesson
+				destination.lesson = lesson
 			}
 		}
     }
 	
 	@IBAction func backToLessonsView(segue: UIStoryboardSegue) {
 		collectionView.reloadData()
+	}
+	
+	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+		if let lesson = lessons[indexPath.section][indexPath.row] as? TutorialLesson {
+			self.performSegueWithIdentifier("showTutorialView", sender: lesson)
+		} else if let lesson = lessons[indexPath.section][indexPath.row] as? NoteLesson {
+			self.performSegueWithIdentifier("showNoteView", sender: lesson)
+		}
 	}
 
     // MARK: UICollectionViewDataSource
@@ -92,8 +106,9 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! LessonCollectionCell
-
-		cell.lesson = lessons[indexPath.section][indexPath.row]
+		
+		cell.lesson = lessons[indexPath.section][indexPath.row] as Lesson
+		
         return cell
     }
 	
