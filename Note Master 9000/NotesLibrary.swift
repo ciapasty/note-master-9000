@@ -8,11 +8,11 @@
 
 import Foundation
 
-public enum Note: Int {
+enum Note: Int {
 	case N1 = 1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14, N15, N16, N17, N18, N19
 }
 
-public let trebleNotesNameValueDict = [
+let trebleNotesNameValueDict = [
 	"E": 0,
 	"D": 1,
 	"C": 2,
@@ -21,7 +21,7 @@ public let trebleNotesNameValueDict = [
 	"G": 5,
 	"F": 6]
 
-public let bassNotesNameValueDict = [
+let bassNotesNameValueDict = [
 	"G": 0,
 	"F": 1,
 	"E": 2,
@@ -30,7 +30,7 @@ public let bassNotesNameValueDict = [
 	"B": 5,
 	"A": 6]
 
-public let trebleNotesNameDict = [
+let trebleNotesNameDict = [
 	Note.N1: "D6",
 	Note.N2: "C6",
 	Note.N3: "B5",
@@ -49,9 +49,10 @@ public let trebleNotesNameDict = [
 	Note.N16: "C4",
 	Note.N17: "B3",
 	Note.N18: "A3",
-	Note.N19: "G3"]
+	Note.N19: "G3"
+]
 
-public let bassNotesNameDict = [
+let bassNotesNameDict = [
 	Note.N1: "F4",
 	Note.N2: "E4",
 	Note.N3: "D4",
@@ -70,4 +71,5 @@ public let bassNotesNameDict = [
 	Note.N16: "E2",
 	Note.N17: "D2",
 	Note.N18: "C2",
-	Note.N19: "B1"]
+	Note.N19: "B1"
+]
