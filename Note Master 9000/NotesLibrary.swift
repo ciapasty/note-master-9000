@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum Clef: String {
+	case trebleClef, bassClef
+}
+
 enum Note: Int {
 	case N1 = 1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14, N15, N16, N17, N18, N19
 }
