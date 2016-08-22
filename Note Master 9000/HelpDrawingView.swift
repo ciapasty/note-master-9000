@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HelpDrawingView: UIImageView {
+class HelpDrawingView: UIView {
 	
 	// MARK: Properties
 
