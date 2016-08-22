@@ -14,15 +14,12 @@ class LessonCollectionCell: UICollectionViewCell {
 	
 	var clef: Clef?
 	var color: MyColor?
-	var lesson: Lesson {
-		get {
-			return self.lesson
-		}
-		set {
-			lessonTitle.text = newValue.title
-			clef = newValue.clef
-			color = newValue.color
-			setupCell(newValue.complete)
+	var lesson: Lesson? {
+		didSet {
+			lessonTitle.text = lesson!.title
+			clef = lesson!.clef
+			color = lesson!.color
+			drawLessonMiniatureLayer(withCompletion: lesson!.complete)
 		}
 	}
 	
@@ -33,7 +30,7 @@ class LessonCollectionCell: UICollectionViewCell {
 	
 	// MARK: Setup/Drawing
 	
-	func setupCell(complete: Bool) {
+	private func drawLessonMiniatureLayer(withCompletion complete: Bool) {
 		lessonImg.layer.sublayers = nil
 		
 		let layer = CAShapeLayer()

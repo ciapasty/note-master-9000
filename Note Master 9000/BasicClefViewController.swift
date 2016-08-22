@@ -68,12 +68,28 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	var helpVisible = false
 	
+	private struct Constants {
+		static let BasicAnimationDuration: Double = 0.4
+		static let ButtonAnimationStartDelay: Double = 0.5
+		static let ButtonAnimationDelay: Double = 0.1
+		static let ButtonAnimationDamping: CGFloat = 0.6
+		static let ClefAnimationDamping: CGFloat = 0.8
+		static let ButtonAnimationVelocity: CGFloat = 1.0
+		static let NoteVibrateAnimationVelocity: CGFloat = 8.0
+		static let NoteVibrateAnimationDamping: CGFloat = 0.05
+		static let NoteVibrateAnimationOffset: CGFloat = 7
+		static let WrongAnimationVelocity: CGFloat = 8.0
+		static let WrongAnimationDamping: CGFloat = 0.1
+		static let WrongAnimationOffset: CGFloat = 12
+
+	}
+	
 	// MARK: ViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		noteButtons = [cNoteButton, dNoteButton, eNoteButton, fNoteButton, gNoteButton, aNoteButton, bNoteButton]
+		noteButtons = [cNoteButton, gNoteButton, dNoteButton, aNoteButton, eNoteButton, bNoteButton, fNoteButton]
 		
 		view.layoutIfNeeded()
 		
@@ -113,8 +129,8 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	}
 	
 	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
-		staffDrawingView.drawStaff(clef: nil, animated: false)
-		drawNewNote(0, animated: false)
+		staffDrawingView.drawStaff(withClef: nil, animated: false)
+		drawNewNote(withDelay: 0, animated: false)
 	}
 	
 	override func prefersStatusBarHidden() -> Bool {
@@ -187,7 +203,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 			previousNote = currentNote
 			currentNote = randomNoteInRange(noteRange, gauss: gaussianRand)
 			
-			drawNewNote(0, animated: true)
+			drawNewNote(withDelay: 0, animated: true)
 		} else {
 			wrongAnimation()
 		}
@@ -242,9 +258,9 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	// MARK: Drawing methods
 	
-	func drawNewNote(delay: NSTimeInterval, animated: Bool) {
+	func drawNewNote(withDelay delay: NSTimeInterval, animated: Bool) {
 		stemDrawingView.setupStem(currentNote!, animated: animated)
-		notesDrawingView.drawNote(currentNote!, color: palette.dark.base(), animated: animated)
+		notesDrawingView.drawNote(currentNote!)
 		if animated {
 			noteSlideAnimation(delay)
 		}
@@ -254,7 +270,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	func setupStaffView(clef: Clef) {
 		clefImageView.image = UIImage(named: clef.rawValue)
-		staffDrawingView.drawStaff(clef: nil, animated: true)
+		staffDrawingView.drawStaff(withClef: nil, animated: true)
 	}
 	
 	func setupLesson() {
@@ -266,15 +282,15 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	// MARK: Other methods
 	
-	func randomNoteInRange(range: (Int, Int), gauss: Bool) -> Note {
+	func randomNoteInRange(range: (min: Int, max: Int), gauss: Bool) -> Note {
 		var note: Note
 		if gauss {
-			let noteInRange = GKGaussianDistribution(randomSource: randSource, lowestValue: range.0, highestValue: range.1+1)
+			let noteInRange = GKGaussianDistribution(randomSource: randSource, lowestValue: range.min, highestValue: range.max+1)
 			note = Note(rawValue: noteInRange.nextInt())!
 		} else {
-			note = Note(rawValue: Int(arc4random_uniform(UInt32(range.1+1 - range.0))) + range.0)!
+			note = Note(rawValue: Int(arc4random_uniform(UInt32(range.max+1 - range.min))) + range.min)!
 		}
-		
+	
 		if note == previousNote {
 			return randomNoteInRange(range, gauss: gauss)
 		} else {
@@ -297,28 +313,24 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		if progressBar.progress == 1.0 {
 			lesson!.complete = true
 			performSegueWithIdentifier("backToLessons", sender: self)
-			lessons[0][0].complete = true
 		}
 	}
 	
 	// MARK: Layout animations
 	
 	func wrongAnimation() {
-		
-		let shake:CGFloat = 12
-		
-		self.notesDrawingView.center.x += shake
-		self.stemDrawingView.center.x += shake
-		self.staffDrawingView.center.x += shake
-		self.clefImageView.center.x += shake
+		self.notesDrawingView.center.x += Constants.WrongAnimationOffset
+		self.stemDrawingView.center.x += Constants.WrongAnimationOffset
+		self.staffDrawingView.center.x += Constants.WrongAnimationOffset
+		self.clefImageView.center.x += Constants.WrongAnimationOffset
 		
 		noteButtonsEnabled(false)
 		
-		UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.1, initialSpringVelocity: 8.0, options: [], animations: { () -> Void in
-			self.notesDrawingView.center.x -= shake
-			self.stemDrawingView.center.x -= shake
-			self.staffDrawingView.center.x -= shake
-			self.clefImageView.center.x -= shake
+		UIView.animateWithDuration(Constants.BasicAnimationDuration, delay: 0.0, usingSpringWithDamping: Constants.WrongAnimationDamping, initialSpringVelocity: Constants.WrongAnimationVelocity, options: [], animations: { () -> Void in
+			self.notesDrawingView.center.x -= Constants.WrongAnimationOffset
+			self.stemDrawingView.center.x -= Constants.WrongAnimationOffset
+			self.staffDrawingView.center.x -= Constants.WrongAnimationOffset
+			self.clefImageView.center.x -= Constants.WrongAnimationOffset
 			}, completion: { finished in
 				self.noteButtonsEnabled(true)
 		})
@@ -326,7 +338,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	func showHelp() {
 		 if !helpVisible {
-			UIView.animateWithDuration(0.4, animations: {
+			UIView.animateWithDuration(Constants.BasicAnimationDuration, animations: {
 				self.helpDrawingView.alpha = 1.0
 				self.helpDrawingView.center.x -= self.helpDrawingView.frame.width
 				self.helpVisible = true
@@ -336,7 +348,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	func hideHelp() {
 		if helpVisible {
-			UIView.animateWithDuration(0.4, animations: {
+			UIView.animateWithDuration(Constants.BasicAnimationDuration, animations: {
 				self.helpDrawingView.alpha = 0.0
 				self.helpDrawingView.center.x += self.helpDrawingView.frame.width
 				self.helpVisible = false
@@ -347,7 +359,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	func noteSlideAnimation(delay: NSTimeInterval) {
 		notesDrawingView.center.x += self.view.bounds.width
 		stemDrawingView.center.x += self.view.bounds.width
-		UIView.animateWithDuration(0.2, delay: delay, options: [.CurveEaseIn], animations: {
+		UIView.animateWithDuration(Constants.BasicAnimationDuration/2, delay: delay, options: [.CurveEaseIn], animations: {
 			self.notesDrawingView.center.x -= self.view.bounds.width
 			self.stemDrawingView.center.x -= self.view.bounds.width
 			}, completion: { finished in
@@ -357,59 +369,37 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	func noteVibrateAnimation() {
 		stemDrawingView.animateNoteStem()
-		notesDrawingView.center.x += 7
-		stemDrawingView.center.x += 7
-		UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 0.05, initialSpringVelocity: 8.0, options: [], animations: { () -> Void in
-			self.notesDrawingView.center.x -= 7
-			self.stemDrawingView.center.x -= 7
+		notesDrawingView.center.x += Constants.NoteVibrateAnimationOffset
+		stemDrawingView.center.x += Constants.NoteVibrateAnimationOffset
+		UIView.animateWithDuration(Constants.BasicAnimationDuration, delay: 0.0, usingSpringWithDamping: Constants.NoteVibrateAnimationDamping, initialSpringVelocity: Constants.NoteVibrateAnimationVelocity, options: [], animations: { () -> Void in
+			self.notesDrawingView.center.x -= Constants.NoteVibrateAnimationOffset
+			self.stemDrawingView.center.x -= Constants.NoteVibrateAnimationOffset
 			}, completion: nil)
 	}
 	
 	func animateViews() {
-		cNoteButton.center.y += self.view.bounds.height/2
-		dNoteButton.center.y += self.view.bounds.height/2
-		eNoteButton.center.y += self.view.bounds.height/2
-		fNoteButton.center.y += self.view.bounds.height/2
-		gNoteButton.center.y += self.view.bounds.height/2
-		aNoteButton.center.y += self.view.bounds.height/2
-		bNoteButton.center.y += self.view.bounds.height/2
+		var buttonAnimationDelay = 0.0
+		var buttonAnimationDelayScale = 0.0
+		for button in noteButtons {
+			animate(button: button, withDuration: Constants.BasicAnimationDuration, andDelay: Constants.ButtonAnimationStartDelay+buttonAnimationDelay)
+			buttonAnimationDelayScale += 0.5
+			buttonAnimationDelay = Constants.ButtonAnimationDelay*buttonAnimationDelayScale
+		}
+		
+		//Clef ImageView Animation
 		clefImageView.center.x += self.view.bounds.width
-		
-		let duration = 0.4
-		let startDelay = 0.5
-		let delay = 0.1
-		let damping:CGFloat = 0.6
-		let velocity:CGFloat = 1.0
-		let options:UIViewAnimationOptions = []
-		
-		UIView.animateWithDuration(duration, delay: startDelay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: options, animations: {
-			self.cNoteButton.center.y -= self.view.bounds.height/2
-			}, completion: nil)
-		UIView.animateWithDuration(duration, delay: startDelay+delay, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: options, animations: {
-			self.dNoteButton.center.y -= self.view.bounds.height/2
-			}, completion: nil)
-		UIView.animateWithDuration(duration, delay: startDelay+delay*2, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: options, animations: {
-			self.eNoteButton.center.y -= self.view.bounds.height/2
-			}, completion: nil)
-		UIView.animateWithDuration(duration, delay: startDelay+delay*3, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: options, animations: {
-			self.fNoteButton.center.y -= self.view.bounds.height/2
-			}, completion: nil)
-		UIView.animateWithDuration(duration, delay: startDelay+delay*1.5, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: options, animations: {
-			self.gNoteButton.center.y -= self.view.bounds.height/2
-			}, completion: nil)
-		UIView.animateWithDuration(duration, delay: startDelay+delay*2.5, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: options, animations: {
-			self.aNoteButton.center.y -= self.view.bounds.height/2
-			}, completion: nil)
-		UIView.animateWithDuration(duration, delay: startDelay+delay*3.5, usingSpringWithDamping: damping, initialSpringVelocity: velocity, options: options, animations: {
-			self.bNoteButton.center.y -= self.view.bounds.height/2
-			}, completion: nil)
-		
-		// Clef ImageView Animation
-		UIView.animateWithDuration(duration, delay: 0.6, usingSpringWithDamping: 0.8, initialSpringVelocity: velocity, options: options, animations: {
+		UIView.animateWithDuration(Constants.BasicAnimationDuration, delay: Constants.ButtonAnimationStartDelay+0.1, usingSpringWithDamping: Constants.ClefAnimationDamping, initialSpringVelocity: Constants.ButtonAnimationVelocity, options: [], animations: {
 			self.clefImageView.center.x -= self.view.bounds.width
 			}, completion: nil)
 		
 		//Note slide animation
-		drawNewNote(0.8, animated: true)
+		drawNewNote(withDelay: Constants.ButtonAnimationStartDelay+0.3, animated: true)
+	}
+	
+	func animate(button button: UIButton, withDuration duration: Double, andDelay delay: Double) {
+		button.center.y += self.view.bounds.height/2
+		UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: Constants.ButtonAnimationDamping, initialSpringVelocity: Constants.ButtonAnimationVelocity, options: [], animations: {
+			button.center.y -= self.view.bounds.height/2
+			}, completion: nil)
 	}
 }

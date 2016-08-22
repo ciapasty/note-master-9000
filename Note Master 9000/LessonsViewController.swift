@@ -8,8 +8,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "lessonCell"
-
 class LessonsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 	
 	// MARK: Outlets
@@ -20,6 +18,10 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 	
 	var cellHeight = CGFloat()
 	var cellSize = CGSize()
+	
+	private struct Constants {
+		static let LessonCellIdentifier = "lessonCell"
+	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +44,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 	
 	override func viewWillAppear(animated: Bool) {
-		// MARK navigationBar setup
+		// MARK: navigationBar setup
 		let nav = self.navigationController?.navigationBar
 		nav?.barStyle = UIBarStyle.Default
 		nav?.barTintColor = palette.light.base()
@@ -63,18 +65,20 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 	
     // MARK: Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "showTutorialView" {
-			let lesson = sender as! TutorialLesson
-			if let destination = segue.destinationViewController as? HelpViewController {
-				destination.contentImages = lesson.imageNames
-			}
-		}
-		if segue.identifier == "showNoteView" {
-			let lesson = sender as! NoteLesson
-			if let destination = segue.destinationViewController as? BasicClefViewController {
-				destination.lesson = lesson
+		if let identifier = segue.identifier {
+			switch identifier {
+			case "showTutorialView":
+				let lesson = sender as! TutorialLesson
+				if let destination = segue.destinationViewController as? HelpViewController {
+					destination.contentImages = lesson.imageNames
+				}
+			case "showNoteView":
+				let lesson = sender as! NoteLesson
+				if let destination = segue.destinationViewController as? BasicClefViewController {
+					destination.lesson = lesson
+				}
+			default: break
 			}
 		}
     }
@@ -105,7 +109,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! LessonCollectionCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.LessonCellIdentifier, forIndexPath: indexPath) as! LessonCollectionCell
 		
 		cell.lesson = lessons[indexPath.section][indexPath.row] as Lesson
 		

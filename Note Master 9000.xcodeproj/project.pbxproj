@@ -70,12 +70,35 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		CE1CD9601D6A48C000125319 /* Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				CEBE3F9A1CAFB09C00C87B5A /* LessonCollectionCell.swift */,
+				CE060D1C1CB190BE001FA9B9 /* LessonCollectionHeader.swift */,
+				CEB2412C1CA1CD9600BDD998 /* StaffDrawingView.swift */,
+				CEB104C21CA9855C0057D49E /* StemDrawingView.swift */,
+				CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */,
+			);
+			name = Subclasses;
+			sourceTree = "<group>";
+		};
+		CE1CD9611D6A48E000125319 /* Supporting Items */ = {
+			isa = PBXGroup;
+			children = (
+				CE38BF761CD90EEB00E6A31C /* ColorPalette.swift */,
+				CE7722411CAAFCEA00D26F33 /* NotesLibrary.swift */,
+				CED1A6CF1D4E22690063E9B3 /* LessonPlan.swift */,
+			);
+			name = "Supporting Items";
+			sourceTree = "<group>";
+		};
 		CEB104BE1CA958D70057D49E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				CE77223D1CAAF3EC00D26F33 /* LessonsViewController.swift */,
 				CEC1D4B91C9C651600C29666 /* BasicClefViewController.swift */,
 				CEB104BC1CA958CC0057D49E /* HelpViewController.swift */,
+				CE2EA3751CA9A99700135AC8 /* PageItemController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -83,16 +106,7 @@
 		CEB104BF1CA958EE0057D49E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CEBE3F9A1CAFB09C00C87B5A /* LessonCollectionCell.swift */,
-				CE060D1C1CB190BE001FA9B9 /* LessonCollectionHeader.swift */,
-				CE2EA3751CA9A99700135AC8 /* PageItemController.swift */,
-				CEB2412C1CA1CD9600BDD998 /* StaffDrawingView.swift */,
-				CEB104C21CA9855C0057D49E /* StemDrawingView.swift */,
-				CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */,
-				CE7722411CAAFCEA00D26F33 /* NotesLibrary.swift */,
 				CE4E351D1CB024D900420A25 /* Lesson.swift */,
-				CED1A6CF1D4E22690063E9B3 /* LessonPlan.swift */,
-				CE38BF761CD90EEB00E6A31C /* ColorPalette.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -110,7 +124,9 @@
 			children = (
 				CEC1D4B71C9C651600C29666 /* AppDelegate.swift */,
 				CEB104BE1CA958D70057D49E /* ViewControllers */,
+				CE1CD9601D6A48C000125319 /* Subclasses */,
 				CEB104BF1CA958EE0057D49E /* Classes */,
+				CE1CD9611D6A48E000125319 /* Supporting Items */,
 				CE04C50E1CAF07EA00BAB646 /* Storyboards */,
 				CEC1D4C11C9C651600C29666 /* Assets.xcassets */,
 				CE7393C61CAEB8DD00DFCEED /* Audio */,
