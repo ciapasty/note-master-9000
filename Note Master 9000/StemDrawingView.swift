@@ -56,7 +56,7 @@ class StemDrawingView: UIView {
 		pathLayer.fillRule = kCAFillModeRemoved
 		pathLayer.fillColor = UIColor.clearColor().CGColor
 		pathLayer.lineWidth = 2
-		pathLayer.strokeColor = palette.dark.base().CGColor
+		pathLayer.strokeColor = ColorPalette.MidnightBlue.CGColor
 		
 		self.layer.addSublayer(pathLayer)
 		
@@ -138,7 +138,7 @@ class StemDrawingView: UIView {
 		
 		noteStemLayer.path = noteStemPath.CGPath
 		noteStemLayer.lineWidth = 2.0
-		noteStemLayer.strokeColor = palette.dark.base().CGColor
+		noteStemLayer.strokeColor = ColorPalette.MidnightBlue.CGColor
 		
 		return noteStemLayer
 	}

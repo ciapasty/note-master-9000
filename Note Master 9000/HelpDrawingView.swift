@@ -20,7 +20,7 @@ class HelpDrawingView: UIView {
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)!
 		
-		self.backgroundColor = palette.light.trans()
+		backgroundColor = ColorPalette.Clouds.colorWithAlphaComponent(0.5)
 	}
 	
 	/*
@@ -58,7 +58,7 @@ class HelpDrawingView: UIView {
 				layer.string = bassHelp[i-6]
 			}
 			
-			layer.foregroundColor = palette.dark.base().CGColor
+			layer.foregroundColor = ColorPalette.MidnightBlue.CGColor
 			
 			if i % 2 == 0 {
 				layer.position = CGPoint(x: helpOrigin.x,

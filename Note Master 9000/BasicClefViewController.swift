@@ -84,48 +84,39 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 
 	}
 	
-	// MARK: ViewController
+	// MARK: - ViewController lifecycle
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		noteButtons = [cNoteButton, gNoteButton, dNoteButton, aNoteButton, eNoteButton, bNoteButton, fNoteButton]
 		
-		view.layoutIfNeeded()
-		
 		currentNote = randomNoteInRange(noteRange, gauss: gaussianRand)
 		previousNote = currentNote
 		
-		animateViews()
-		setupStaffView(clef!)
+		view.layoutIfNeeded()
 		
+		animateViews()
+		setupStaffView(clef!, animated: true)
 		helpDrawingView.drawHelp(clef!)
 	}
 	
 	override func viewWillAppear(animated: Bool) {
 		let nav = self.navigationController?.navigationBar
 		nav?.barStyle = UIBarStyle.Black
-		nav?.barTintColor = palette.light.base()
-		nav?.tintColor = palette.dark.base()
-		nav?.titleTextAttributes = [NSForegroundColorAttributeName: (lesson?.color.base())!]
+		nav?.barTintColor = ColorPalette.Clouds
+		nav?.tintColor = ColorPalette.MidnightBlue
+		nav?.titleTextAttributes = [NSForegroundColorAttributeName: (lesson?.color)!]
 		
-		backView.backgroundColor = palette.light.base()
+		backView.backgroundColor = ColorPalette.Clouds
 		
 		for button in noteButtons {
-			button.setTitleColor(palette.dark.base(), forState: .Normal)
+			button.setTitleColor(ColorPalette.MidnightBlue, forState: .Normal)
 		}
 		
-		clefImageView.image = clefImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-		clefImageView.tintColor = palette.dark.base()
-		
-		progressBar.progressTintColor = palette.green.light()
-		progressBar.trackTintColor = palette.dark.trans()
+		progressBar.progressTintColor = ColorPalette.Emerald
+		progressBar.trackTintColor = ColorPalette.MidnightBlue
 		progressBar.progress = 0
-	}
-
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
 	
 	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -137,7 +128,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		return true
 	}
 	
-	// MARK: Button/view touches
+	// MARK: - Button/view touches
 	
 	@IBAction func exitButtonTap(sender: UIBarButtonItem) {
 		let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .Alert)
@@ -152,11 +143,11 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		
 		let subview = alert.view.subviews.first! as UIView
 		let alertContentView = subview.subviews.first! as UIView
-		alertContentView.backgroundColor = palette.light.base()
+		alertContentView.backgroundColor = ColorPalette.Clouds
 		
 		self.presentViewController(alert, animated: true, completion: nil)
 		
-		alert.view.tintColor = lesson?.color.base()
+		alert.view.tintColor = lesson?.color
 	}
 	
 	@IBAction func tapOnNoteView(sender: UITapGestureRecognizer) {
@@ -211,7 +202,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		hideHelp()
 	}
 	
-	// MARK: Audio player
+	// MARK: - Audio player
 	
 	func loadFileIntoAVPlayer(note: String) {
 		let fileURL:NSURL = NSBundle.mainBundle().URLForResource(note, withExtension: "wav", subdirectory: "Audio")!
@@ -268,9 +259,12 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	// MARK: Setup methods
 	
-	func setupStaffView(clef: Clef) {
+	func setupStaffView(clef: Clef, animated: Bool) {
 		clefImageView.image = UIImage(named: clef.rawValue)
-		staffDrawingView.drawStaff(withClef: nil, animated: true)
+		clefImageView.image = clefImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+		clefImageView.tintColor = ColorPalette.MidnightBlue
+		
+		staffDrawingView.drawStaff(withClef: nil, animated: animated)
 	}
 	
 	func setupLesson() {
@@ -316,7 +310,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 	
-	// MARK: Layout animations
+	// MARK: - Layout animations
 	
 	func wrongAnimation() {
 		self.notesDrawingView.center.x += Constants.WrongAnimationOffset
@@ -381,7 +375,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		var buttonAnimationDelay = 0.0
 		var buttonAnimationDelayScale = 0.0
 		for button in noteButtons {
-			animate(button: button, withDuration: Constants.BasicAnimationDuration, andDelay: Constants.ButtonAnimationStartDelay+buttonAnimationDelay)
+			animateButton(button, withDuration: Constants.BasicAnimationDuration, andDelay: Constants.ButtonAnimationStartDelay+buttonAnimationDelay)
 			buttonAnimationDelayScale += 0.5
 			buttonAnimationDelay = Constants.ButtonAnimationDelay*buttonAnimationDelayScale
 		}
@@ -396,7 +390,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		drawNewNote(withDelay: Constants.ButtonAnimationStartDelay+0.3, animated: true)
 	}
 	
-	func animate(button button: UIButton, withDuration duration: Double, andDelay delay: Double) {
+	func animateButton(button: UIButton, withDuration duration: Double, andDelay delay: Double) {
 		button.center.y += self.view.bounds.height/2
 		UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: Constants.ButtonAnimationDamping, initialSpringVelocity: Constants.ButtonAnimationVelocity, options: [], animations: {
 			button.center.y -= self.view.bounds.height/2

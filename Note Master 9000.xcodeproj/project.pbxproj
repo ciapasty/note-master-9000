@@ -70,7 +70,7 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		CE1CD9601D6A48C000125319 /* Subclasses */ = {
+		CE1CD9601D6A48C000125319 /* View Subclasses */ = {
 			isa = PBXGroup;
 			children = (
 				CEBE3F9A1CAFB09C00C87B5A /* LessonCollectionCell.swift */,
@@ -79,7 +79,7 @@
 				CEB104C21CA9855C0057D49E /* StemDrawingView.swift */,
 				CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */,
 			);
-			name = Subclasses;
+			name = "View Subclasses";
 			sourceTree = "<group>";
 		};
 		CE1CD9611D6A48E000125319 /* Supporting Items */ = {
@@ -124,7 +124,7 @@
 			children = (
 				CEC1D4B71C9C651600C29666 /* AppDelegate.swift */,
 				CEB104BE1CA958D70057D49E /* ViewControllers */,
-				CE1CD9601D6A48C000125319 /* Subclasses */,
+				CE1CD9601D6A48C000125319 /* View Subclasses */,
 				CEB104BF1CA958EE0057D49E /* Classes */,
 				CE1CD9611D6A48E000125319 /* Supporting Items */,
 				CE04C50E1CAF07EA00BAB646 /* Storyboards */,

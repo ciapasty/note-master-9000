@@ -31,7 +31,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 
         // Register cell classes
         //collectionView!.registerClass(LessonCollectionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-		collectionView!.backgroundColor = palette.light.base()
+		collectionView!.backgroundColor = ColorPalette.Clouds
 		
 		collectionView!.dataSource = self
 		collectionView!.delegate = self
@@ -47,11 +47,11 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		// MARK: navigationBar setup
 		let nav = self.navigationController?.navigationBar
 		nav?.barStyle = UIBarStyle.Default
-		nav?.barTintColor = palette.light.base()
-		nav?.tintColor = palette.dark.base()
-		nav?.titleTextAttributes = [NSForegroundColorAttributeName: palette.dark.base()]
+		nav?.barTintColor = ColorPalette.Clouds
+		nav?.tintColor = ColorPalette.MidnightBlue
+		nav?.titleTextAttributes = [NSForegroundColorAttributeName: ColorPalette.MidnightBlue]
 		//====
-		collectionView.backgroundColor = palette.light.base()
+		collectionView.backgroundColor = ColorPalette.Clouds
 	}
 
     override func didReceiveMemoryWarning() {
@@ -119,7 +119,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 	func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
 		let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "lessonHeader", forIndexPath: indexPath) as! LessonCollectionHeader
 		
-		header.sectionTitle.textColor = palette.dark.base()
+		header.sectionTitle.textColor = ColorPalette.MidnightBlue
 		header.sectionTitle.text = lessonsSections[indexPath.section]
 		return header
 	}

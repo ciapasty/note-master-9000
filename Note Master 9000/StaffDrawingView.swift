@@ -26,7 +26,7 @@ class StaffDrawingView: UIView {
 		self.layer.sublayers = nil
 		
 		self.layer.addSublayer(drawAddLines(note))
-		self.layer.addSublayer(drawNoteLayer(note, noteRect: getNoteRect(note), color: palette.dark.base()))
+		self.layer.addSublayer(drawNoteLayer(note, noteRect: getNoteRect(note), color: ColorPalette.MidnightBlue))
 	}
 	
 	private func drawNoteLayer(note: Note, noteRect: CGRect, color: UIColor) -> CALayer {
@@ -92,7 +92,7 @@ class StaffDrawingView: UIView {
 		
 		lineLayer.path = linePath.CGPath
 		lineLayer.lineWidth = Constants.StaffHorizontalLinesWidth
-		lineLayer.strokeColor = palette.dark.base().CGColor
+		lineLayer.strokeColor = ColorPalette.MidnightBlue.CGColor
 		return lineLayer
 		
 	}
@@ -114,8 +114,8 @@ class StaffDrawingView: UIView {
 		
 		layer.frame = self.frame
 		
-		layer.addSublayer(drawNoteLayer(note, noteRect: getNoteRect(note), color: palette.green.trans()))
-		layer.addSublayer(drawNoteStem(note, noteRect: getNoteRect(note), color: palette.green.trans()))
+		layer.addSublayer(drawNoteLayer(note, noteRect: getNoteRect(note), color: ColorPalette.Emerald.colorWithAlphaComponent(0.7)))
+		layer.addSublayer(drawNoteStem(note, noteRect: getNoteRect(note), color: ColorPalette.Emerald.colorWithAlphaComponent(0.7)))
 		
 		self.layer.addSublayer(layer)
 		
@@ -175,7 +175,7 @@ class StaffDrawingView: UIView {
 		
 		staffLayerH.path = staffPathH.CGPath
 		staffLayerH.lineWidth = Constants.StaffHorizontalLinesWidth
-		staffLayerH.strokeColor = palette.dark.base().CGColor
+		staffLayerH.strokeColor = ColorPalette.MidnightBlue.CGColor
 		
 		staffLayer.addSublayer(staffLayerH)
 		
@@ -194,7 +194,7 @@ class StaffDrawingView: UIView {
 		
 		staffLayerV.path = staffPathV.CGPath
 		staffLayerV.lineWidth = Constants.StaffVerticalLinesWidth
-		staffLayerV.strokeColor = palette.dark.base().CGColor
+		staffLayerV.strokeColor = ColorPalette.MidnightBlue.CGColor
 		
 		staffLayer.addSublayer(staffLayerV)
 		

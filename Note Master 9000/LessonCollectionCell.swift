@@ -13,7 +13,7 @@ class LessonCollectionCell: UICollectionViewCell {
 	// MARK: Properties
 	
 	var clef: Clef?
-	var color: MyColor?
+	var color: UIColor?
 	var lesson: Lesson? {
 		didSet {
 			lessonTitle.text = lesson!.title
@@ -49,15 +49,15 @@ class LessonCollectionCell: UICollectionViewCell {
 		imgLayer.contentsGravity = kCAGravityResizeAspect
 		
 		if complete {
-			layer.borderColor = palette.green.dark().CGColor
-			layer.backgroundColor = palette.green.trans().CGColor
+			layer.borderColor = ColorPalette.Nephritis.CGColor
+			layer.backgroundColor = ColorPalette.Amethyst.colorWithAlphaComponent(0.7).CGColor
 			layer.cornerRadius = layer.frame.width/2
-			lessonTitle.textColor = palette.green.dark()
+			lessonTitle.textColor = ColorPalette.Nephritis
 		} else {
-			layer.borderColor = palette.dark.base().CGColor
-			layer.backgroundColor = color!.base().CGColor
+			layer.borderColor = ColorPalette.MidnightBlue.CGColor
+			layer.backgroundColor = color!.CGColor
 			layer.cornerRadius = layer.frame.width/2
-			lessonTitle.textColor = palette.dark.base()
+			lessonTitle.textColor = ColorPalette.MidnightBlue
 		}
 		
 		lessonImg.layer.addSublayer(layer)
