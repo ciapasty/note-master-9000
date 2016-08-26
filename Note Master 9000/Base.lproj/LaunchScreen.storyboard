@@ -3,8 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -19,31 +18,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trebleClef" translatesAutoresizingMaskIntoConstraints="NO" id="BEK-mC-s9V">
-                                <rect key="frame" x="120" y="120" width="360" height="360"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note Master 9000" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vk-W8-foX">
+                                <rect key="frame" x="174" y="280" width="253" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="BEK-mC-s9V" secondAttribute="height" multiplier="1:1" id="9gW-Qq-jfx"/>
+                                    <constraint firstAttribute="width" constant="42" id="1MH-HM-iCu"/>
                                 </constraints>
-                            </imageView>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="33"/>
+                                <color key="textColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1MH-HM-iCu"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version: Alpha 0.3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gg9-im-C4c">
+                                <rect key="frame" x="20" y="571" width="136" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                <color key="textColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.94117647058823528" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="BEK-mC-s9V" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="EQO-ey-qKV"/>
-                            <constraint firstItem="BEK-mC-s9V" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.6" id="i1i-sV-yQl"/>
-                            <constraint firstItem="BEK-mC-s9V" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="yhs-Av-5D3"/>
+                            <constraint firstItem="0vk-W8-foX" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="289" id="C2r-4p-tcI"/>
+                            <constraint firstItem="0vk-W8-foX" firstAttribute="centerX" secondItem="gg9-im-C4c" secondAttribute="centerX" id="JC7-Yw-Om9"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="gg9-im-C4c" secondAttribute="leading" id="UxM-EH-jfM"/>
+                            <constraint firstItem="0vk-W8-foX" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="k7U-W9-EWu"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="gg9-im-C4c" secondAttribute="bottom" constant="8" symbolic="YES" id="va9-J9-Yey"/>
+                            <constraint firstItem="0vk-W8-foX" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="yLy-ah-4IF"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="C2r-4p-tcI"/>
+                                <exclude reference="JC7-Yw-Om9"/>
+                            </mask>
+                        </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <connections>
-                        <outlet property="noteDrawingView" destination="BEK-mC-s9V" id="Uto-7h-asN"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="trebleClef" width="296" height="612"/>
-    </resources>
 </document>

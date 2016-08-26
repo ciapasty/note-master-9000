@@ -132,7 +132,7 @@ class StemDrawingView: UIView {
 		updatePathLayer()
 	}
 	
-	func drawNoteStem(note: Note, noteRect: CGRect) -> CALayer {
+	private func drawNoteStem(note: Note, noteRect: CGRect) -> CALayer {
 		let noteStemPath = UIBezierPath()
 		let noteStemLayer = CAShapeLayer()
 		
