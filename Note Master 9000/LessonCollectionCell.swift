@@ -28,6 +28,15 @@ class LessonCollectionCell: UICollectionViewCell {
 	@IBOutlet weak var lessonImg: UIView!
 	@IBOutlet weak var lessonTitle: UILabel!
 	
+	// Mark: Constants
+	
+	private struct Constants {
+		static let LessonIconLayerVerticalMargin: CGFloat = 5.0
+		static let LessonIconLayerHorizontalMargin: CGFloat = 10
+		static let LessonIconLayerBorderWidth: CGFloat = 3.0
+		static let LassonIconLayerBackgroundAlpha: CGFloat = 0.5
+	}
+	
 	// MARK: Setup/Drawing
 	
 	private func drawLessonMiniatureLayer(withCompletion complete: Bool) {
@@ -37,27 +46,24 @@ class LessonCollectionCell: UICollectionViewCell {
 		let imgLayer = CALayer()
 		
 		layer.frame = CGRect(
-			x: ((lessonImg.frame.width-lessonImg.frame.height)/2)-5,
-			y: -5,
-			width: lessonImg.frame.height+10,
-		    height: lessonImg.frame.height+10)
+			x: ((lessonImg.frame.width-lessonImg.frame.height)/2)-Constants.LessonIconLayerVerticalMargin,
+			y: -Constants.LessonIconLayerVerticalMargin,
+			width: lessonImg.frame.height+Constants.LessonIconLayerHorizontalMargin,
+		    height: lessonImg.frame.height+Constants.LessonIconLayerHorizontalMargin)
 		
-		layer.borderWidth = 2.0
+		layer.borderWidth = Constants.LessonIconLayerBorderWidth
+		layer.borderColor = color!.CGColor
+		layer.backgroundColor = color!.colorWithAlphaComponent(Constants.LassonIconLayerBackgroundAlpha).CGColor
+		layer.cornerRadius = layer.frame.width/2
+		lessonTitle.textColor = ColorPalette.MidnightBlue
 		
 		imgLayer.frame = CGRect(origin: CGPointZero, size: lessonImg.frame.size)
 		imgLayer.contents = UIImage(named: clef!.rawValue+"_small")?.CGImage
 		imgLayer.contentsGravity = kCAGravityResizeAspect
 		
+		
 		if complete {
-			layer.borderColor = ColorPalette.Nephritis.CGColor
-			layer.backgroundColor = ColorPalette.Amethyst.colorWithAlphaComponent(0.7).CGColor
-			layer.cornerRadius = layer.frame.width/2
-			lessonTitle.textColor = ColorPalette.Nephritis
-		} else {
-			layer.borderColor = ColorPalette.MidnightBlue.CGColor
-			layer.backgroundColor = color!.CGColor
-			layer.cornerRadius = layer.frame.width/2
-			lessonTitle.textColor = ColorPalette.MidnightBlue
+			// TODO: Add completion sing to lesson icon
 		}
 		
 		lessonImg.layer.addSublayer(layer)
