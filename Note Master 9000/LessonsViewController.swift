@@ -29,8 +29,6 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Register cell classes
-        //collectionView!.registerClass(LessonCollectionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 		collectionView!.backgroundColor = ColorPalette.Clouds
 		
 		collectionView!.dataSource = self
@@ -38,9 +36,6 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		
 		cellHeight = round(UIScreen.mainScreen().bounds.height/6.3)
 		cellSize = CGSize(width: cellHeight, height: cellHeight)
-		
-		//lessons[0][0].complete = true
-		
     }
 	
 	override func viewWillAppear(animated: Bool) {
@@ -59,11 +54,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
         // Dispose of any resources that can be recreated.
     }
 	
-	override func prefersStatusBarHidden() -> Bool {
-		return true
-	}
-	
-    // MARK: Navigation
+    // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if let identifier = segue.identifier {
@@ -95,7 +86,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		}
 	}
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections

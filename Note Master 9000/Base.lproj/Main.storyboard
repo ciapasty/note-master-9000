@@ -265,6 +265,37 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="toj-z5-5Bt">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htt-3F-YYH">
+                                        <rect key="frame" x="245" y="200" width="110" height="78"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="65"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="85"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MY-Nb-7KJ">
+                                        <rect key="frame" x="240" y="286" width="120" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="htt-3F-YYH" firstAttribute="centerX" secondItem="toj-z5-5Bt" secondAttribute="centerX" id="7v3-Ew-NSe"/>
+                                    <constraint firstItem="5MY-Nb-7KJ" firstAttribute="top" secondItem="htt-3F-YYH" secondAttribute="bottom" constant="8" symbolic="YES" id="Nt3-h6-uBA"/>
+                                    <constraint firstItem="5MY-Nb-7KJ" firstAttribute="centerY" secondItem="toj-z5-5Bt" secondAttribute="centerY" id="cMH-5U-nbb"/>
+                                    <constraint firstItem="5MY-Nb-7KJ" firstAttribute="centerX" secondItem="htt-3F-YYH" secondAttribute="centerX" id="iPr-FS-JXq"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="rjs-gk-bZP" appends="YES" id="1ST-YM-Ddg"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
@@ -279,6 +310,7 @@
                             <constraint firstItem="fCY-Wx-llc" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="KhT-mU-NeC"/>
                             <constraint firstItem="k2g-wU-eI4" firstAttribute="centerY" secondItem="A7V-ba-6Jb" secondAttribute="centerY" id="Lc5-d8-Czv"/>
                             <constraint firstItem="A7V-ba-6Jb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PWo-mH-zep"/>
+                            <constraint firstItem="toj-z5-5Bt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="UAW-dp-tRz"/>
                             <constraint firstItem="xlg-OX-WBz" firstAttribute="leading" secondItem="A7V-ba-6Jb" secondAttribute="leading" constant="20" id="Vyk-jE-tsp"/>
                             <constraint firstAttribute="bottom" secondItem="fCY-Wx-llc" secondAttribute="bottom" id="XHL-YJ-1ZP"/>
                             <constraint firstItem="7nA-QV-DWy" firstAttribute="bottom" secondItem="A7V-ba-6Jb" secondAttribute="bottom" id="ZLx-Hz-kqA"/>
@@ -286,10 +318,13 @@
                             <constraint firstItem="GnV-Ii-xgp" firstAttribute="centerY" secondItem="A7V-ba-6Jb" secondAttribute="centerY" id="avx-Ee-jXj"/>
                             <constraint firstItem="fCY-Wx-llc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bbb-Ge-XYd"/>
                             <constraint firstItem="A7V-ba-6Jb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="f7X-0f-aDD"/>
+                            <constraint firstAttribute="trailing" secondItem="toj-z5-5Bt" secondAttribute="trailing" id="fPi-Wm-DsQ"/>
                             <constraint firstItem="ReZ-ec-Y6n" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="fUc-Ii-bNH"/>
                             <constraint firstItem="xlg-OX-WBz" firstAttribute="centerY" secondItem="A7V-ba-6Jb" secondAttribute="centerY" constant="5" id="gTN-rx-cQn"/>
                             <constraint firstAttribute="trailing" secondItem="p6J-ml-9nN" secondAttribute="trailing" id="ju7-fM-3Oa"/>
                             <constraint firstItem="7nA-QV-DWy" firstAttribute="width" secondItem="A7V-ba-6Jb" secondAttribute="width" multiplier="0.2" id="kyd-sG-Vcj"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="toj-z5-5Bt" secondAttribute="bottom" id="lvy-Z5-dI4"/>
+                            <constraint firstItem="toj-z5-5Bt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qQp-gk-lKE"/>
                             <constraint firstItem="xlg-OX-WBz" firstAttribute="height" secondItem="A7V-ba-6Jb" secondAttribute="height" multiplier="0.68" id="sdt-zA-Omp"/>
                             <constraint firstItem="GnV-Ii-xgp" firstAttribute="centerX" secondItem="A7V-ba-6Jb" secondAttribute="centerX" id="sr4-69-dvx"/>
                             <constraint firstItem="A7V-ba-6Jb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="vFN-8L-TS1"/>
@@ -342,26 +377,34 @@
                         <outlet property="fNoteButton" destination="HzF-Xd-mpU" id="7yE-8j-jLi"/>
                         <outlet property="gNoteButton" destination="eNE-GH-pif" id="H5y-fl-Hb6"/>
                         <outlet property="helpDrawingView" destination="7nA-QV-DWy" id="RJN-58-eWu"/>
+                        <outlet property="lessonDescriptionLabel" destination="5MY-Nb-7KJ" id="5Oa-VM-aLQ"/>
+                        <outlet property="lessonTitleLabel" destination="htt-3F-YYH" id="c88-Ww-QYB"/>
                         <outlet property="notesDrawingView" destination="k2g-wU-eI4" id="cZB-T4-1Mq"/>
                         <outlet property="progressBar" destination="p6J-ml-9nN" id="OUH-2y-GNf"/>
                         <outlet property="staffDrawingView" destination="A7V-ba-6Jb" id="Lne-Pf-Zrm"/>
                         <outlet property="stemDrawingView" destination="GnV-Ii-xgp" id="KX6-Ka-nLS"/>
+                        <outlet property="welcomeView" destination="toj-z5-5Bt" id="9xy-AJ-yP2"/>
                         <segue destination="Kym-7b-BDG" kind="unwind" identifier="backToLessons" unwindAction="backToLessonsView:" id="7ID-bd-j0I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="Kym-7b-BDG" userLabel="Exit" sceneMemberID="exit"/>
-                <tapGestureRecognizer id="twt-f5-6i7">
+                <tapGestureRecognizer id="rjs-gk-bZP" userLabel="Tap On WelcomeView">
+                    <connections>
+                        <action selector="hideWelcomeView:" destination="BYZ-38-t0r" id="5mm-Kp-vra"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="twt-f5-6i7" userLabel="Tap On NoteView">
                     <connections>
                         <action selector="tapOnNoteView:" destination="BYZ-38-t0r" id="ddq-kG-1GU"/>
                     </connections>
                 </tapGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="cyc-E9-Cjg">
+                <swipeGestureRecognizer direction="left" id="cyc-E9-Cjg" userLabel="Swipe Left On NoteView">
                     <connections>
                         <action selector="swipeForHelp:" destination="BYZ-38-t0r" id="Hki-3e-WV7"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="fQE-iG-7fh">
+                <swipeGestureRecognizer direction="right" id="fQE-iG-7fh" userLabel="Swipe Right On NoteView">
                     <connections>
                         <action selector="swipeForHelp:" destination="BYZ-38-t0r" id="8Of-su-Ehy"/>
                     </connections>
@@ -478,7 +521,7 @@
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtJ-JS-fJw">
                                                     <rect key="frame" x="0.0" y="66" width="90" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -505,8 +548,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WcW-xY-PaG">
-                                            <rect key="frame" x="272" y="11" width="57" height="29"/>
-                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                            <rect key="frame" x="270" y="9" width="60" height="32"/>
+                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="26"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>

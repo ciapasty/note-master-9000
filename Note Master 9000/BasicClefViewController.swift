@@ -22,6 +22,10 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	@IBOutlet weak var stemDrawingView: StemDrawingView!
 	@IBOutlet weak var helpDrawingView: HelpDrawingView!
 	
+	@IBOutlet weak var welcomeView: UIView!
+	@IBOutlet weak var lessonTitleLabel: UILabel!
+	@IBOutlet weak var lessonDescriptionLabel: UILabel!
+	
 	@IBOutlet weak var exitButton: UIBarButtonItem!
 	
 	@IBOutlet weak var cNoteButton: UIButton!
@@ -32,7 +36,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	@IBOutlet weak var aNoteButton: UIButton!
 	@IBOutlet weak var bNoteButton: UIButton!
 	
-	// MARK: Properties
+	// MARK: - Properties
 	
 	lazy var avPlayer:AVAudioPlayer = AVAudioPlayer()
 	
@@ -94,38 +98,43 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		currentNote = randomNoteInRange(noteRange, gauss: gaussianRand)
 		previousNote = currentNote
 		
-		view.layoutIfNeeded()
-		
-		animateViews()
-		setupStaffView(clef!, animated: true)
-		helpDrawingView.drawHelp(clef!)
+		setupLesson()
 	}
 	
 	override func viewWillAppear(animated: Bool) {
 		let nav = self.navigationController?.navigationBar
-		nav?.barStyle = UIBarStyle.Black
-		nav?.barTintColor = ColorPalette.Clouds
-		nav?.tintColor = ColorPalette.MidnightBlue
-		nav?.titleTextAttributes = [NSForegroundColorAttributeName: (lesson?.color)!]
 		
-		backView.backgroundColor = ColorPalette.Clouds
+		if lesson?.color == ColorPalette.Orange { //|| lesson?.color == ColorPalette.GreenSee {
+			nav?.barStyle = .Default
+			lessonTitleLabel.textColor = ColorPalette.MidnightBlue
+			lessonDescriptionLabel.textColor = ColorPalette.MidnightBlue
+			nav?.tintColor = ColorPalette.MidnightBlue
+			nav?.titleTextAttributes = [NSForegroundColorAttributeName: ColorPalette.MidnightBlue]
+		} else {
+			nav?.barStyle = .Black
+			lessonTitleLabel.textColor = ColorPalette.Clouds
+			lessonDescriptionLabel.textColor = ColorPalette.Clouds
+			nav?.tintColor = ColorPalette.Clouds
+			nav?.titleTextAttributes = [NSForegroundColorAttributeName: ColorPalette.Clouds]
+		}
+		
+		nav?.barTintColor = lesson?.color //ColorPalette.MidnightBlue
+		nav?.alpha = 0.0
 		
 		for button in noteButtons {
 			button.setTitleColor(ColorPalette.MidnightBlue, forState: .Normal)
 		}
 		
-		progressBar.progressTintColor = ColorPalette.Emerald
-		progressBar.trackTintColor = ColorPalette.MidnightBlue
+		progressBar.progressTintColor = ColorPalette.Nephritis
+		progressBar.trackTintColor = UIColor.clearColor()
 		progressBar.progress = 0
+		
+		backView.backgroundColor = ColorPalette.Clouds
 	}
 	
 	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
 		staffDrawingView.drawStaff(withClef: nil, animated: false)
 		drawNewNote(withDelay: 0, animated: false)
-	}
-	
-	override func prefersStatusBarHidden() -> Bool {
-		return true
 	}
 	
 	// MARK: - Button/view touches
@@ -148,6 +157,21 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		self.presentViewController(alert, animated: true, completion: nil)
 		
 		alert.view.tintColor = lesson?.color
+	}
+	
+	@IBAction func hideWelcomeView(sender: UITapGestureRecognizer) {
+		let nav = self.navigationController?.navigationBar
+		nav?.alpha = 1.0
+		
+		animateViews()
+		setupStaffView(clef!, animated: true)
+		helpDrawingView.drawHelp(clef!)
+
+		UIView.animateWithDuration(1.0, animations: {
+			self.welcomeView.alpha = 0.0
+			}) { finished in
+				self.welcomeView.removeFromSuperview()
+		}
 	}
 	
 	@IBAction func tapOnNoteView(sender: UITapGestureRecognizer) {
@@ -268,10 +292,14 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	}
 	
 	private func setupLesson() {
-		clef = (lesson?.clef)!
-		noteRange = (lesson?.noteRange)!
-		gaussianRand = (lesson?.gauss)!
-		navigationItem.title = lesson?.title
+		if let ls = lesson {
+			clef = ls.clef
+			noteRange = ls.noteRange
+			gaussianRand = ls.gauss
+			navigationItem.title = ls.title
+			lessonTitleLabel?.text = ls.title
+			welcomeView?.backgroundColor = ls.color
+		}
 	}
 	
 	// MARK: Other methods
