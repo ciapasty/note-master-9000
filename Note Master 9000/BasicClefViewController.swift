@@ -386,12 +386,12 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	private func showFinishedViewAnimation() {
 		let nav = self.navigationController?.navigationBar
-		nav?.alpha = 1.0
-		
-		UIView.animateWithDuration(Constants.BasicAnimationDuration) {
-			self.finishedView.alpha = 1
-			nav?.alpha = 0.0
-		}
+		//nav?.alpha = 1.0
+		UIView.animateWithDuration(Constants.BasicAnimationDuration, delay: Constants.BasicAnimationDuration, options: [], animations: {
+				self.finishedView.alpha = 1
+			}, completion: { finished in
+				nav?.alpha = 0.0
+		})
 	}
 	
 	private func showHelpAnimation() {
