@@ -22,6 +22,8 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 	private struct Constants {
 		static let LessonCellIdentifier = "lessonCell"
 	}
+	
+	// MARK: - ViewController lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +50,6 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		//====
 		collectionView.backgroundColor = ColorPalette.Clouds
 	}
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 	
     // MARK: - Navigation
 
@@ -75,6 +72,8 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 	
 	@IBAction func backToLessonsView(segue: UIStoryboardSegue) {
+		let nav = self.navigationController?.navigationBar
+		nav?.alpha = 1.0
 		collectionView.reloadData()
 	}
 	
