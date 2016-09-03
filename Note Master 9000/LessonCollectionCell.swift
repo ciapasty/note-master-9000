@@ -61,12 +61,24 @@ class LessonCollectionCell: UICollectionViewCell {
 		imgLayer.contents = UIImage(named: clef!.rawValue+"_small")?.CGImage
 		imgLayer.contentsGravity = kCAGravityResizeAspect
 		
-		
-		if complete {
-			// TODO: Add completion sing to lesson icon
-		}
-		
 		lessonImg.layer.addSublayer(layer)
 		lessonImg.layer.addSublayer(imgLayer)
+		
+		if complete {
+			lessonImg.layer.addSublayer(drawCompletionSign(layer.frame))
+		}
+	}
+	
+	private func drawCompletionSign(frame: CGRect) -> CALayer {
+		let layer = CAShapeLayer()
+		
+		layer.frame = CGRect(x: frame.width*3/4,
+		                     y: -Constants.LessonIconLayerVerticalMargin,
+		                     width: frame.height/3,
+		                     height: frame.height/3)
+		layer.backgroundColor = ColorPalette.Nephritis.CGColor
+		layer.cornerRadius = layer.frame.height/2
+		
+		return layer
 	}
 }

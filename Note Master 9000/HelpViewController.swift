@@ -29,10 +29,6 @@ class HelpViewController: UIViewController, UIPageViewControllerDelegate, UIPage
 		// Dispose of any resources that can be recreated.
 	}
 	
-	override func prefersStatusBarHidden() -> Bool {
-		return true
-	}
-	
 	// MARK: PageViewController
 	
 	private func createPageViewController() {

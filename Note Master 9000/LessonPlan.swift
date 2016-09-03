@@ -20,18 +20,67 @@ let lessonsSections = [
 
 var lessons: [[Lesson]] = [
 	[
-		TutorialLesson(title: "Tutorial", clef: Clef.trebleClef, color: ColorPalette.PeterRiver, images: ["trebleClef", "bassClef"], texts: ["This is treble clef", "This is a bass clef"]),
-		NoteLesson(title: "Basic", clef: Clef.trebleClef, color: ColorPalette.Orange, fromNote: Note.N5, toNote: Note.N15, gauss: true),
-		NoteLesson(title: "Extended", clef: Clef.trebleClef, color: ColorPalette.Orange, fromNote: Note.N1, toNote: Note.N19, gauss: false)
+		TutorialLesson(
+			index: 1,
+			title: "Tutorial",
+			description: "A simple tutorial screen",
+			clef: Clef.trebleClef,
+			color: ColorPalette.PeterRiver,
+			images: ["trebleClef", "bassClef"],
+			texts: ["This is treble clef", "This is a bass clef"]),
+		NoteLesson(
+			index: 2,
+			title: "Basic",
+			description: "Basic treble clef practice with gauss randomization",
+			clef: Clef.trebleClef,
+			color: ColorPalette.Orange,
+			fromNote: Note.N5, toNote: Note.N15,
+			gauss: true),
+		NoteLesson(
+			index: 3,
+			title: "Extended",
+			description: "Treble clef practice with full note range and linear randomization",
+			clef: Clef.trebleClef,
+			color: ColorPalette.BelizeHole,
+			fromNote: Note.N1, toNote: Note.N19,
+			gauss: false)
 	],
 	[
-		NoteLesson(title: "A B C D E", clef: Clef.trebleClef, color: ColorPalette.Orange, fromNote: Note.N7, toNote: Note.N11, gauss: false),
+		NoteLesson(
+			index: 4,
+			title: "A B C D E",
+			description: "Practice covering only narrow note range",
+			clef: Clef.trebleClef,
+			color: ColorPalette.Wisteria,
+			fromNote: Note.N7, toNote: Note.N11,
+			gauss: false),
 	],
 	[
-		NoteLesson(title: "Basic", clef: Clef.bassClef, color: ColorPalette.Pomegrante, fromNote: Note.N4, toNote: Note.N16, gauss: true)
+		NoteLesson(
+			index: 5,
+			title: "Basic",
+			description: "Bass clef practice",
+			clef: Clef.bassClef,
+			color: ColorPalette.Pomegrante,
+			fromNote: Note.N4, toNote: Note.N16,
+			gauss: true)
 	],
 	[
-		NoteLesson(title: "Upper", clef: Clef.bassClef, color: ColorPalette.Pomegrante, fromNote: Note.N1, toNote: Note.N5, gauss: false),
-		NoteLesson(title: "Lower", clef: Clef.bassClef, color: ColorPalette.Pomegrante, fromNote: Note.N14, toNote: Note.N19, gauss: false)
+		NoteLesson(
+			index: 6,
+			title: "Upper",
+			description: "Upper range bass clef practice",
+			clef: Clef.bassClef,
+			color: ColorPalette.GreenSee,
+			fromNote: Note.N1, toNote: Note.N5,
+			gauss: false),
+		NoteLesson(
+			index: 7,
+			title: "Lower",
+			description: "Lower range bass clef practice",
+			clef: Clef.bassClef,
+			color: ColorPalette.Asbestos,
+			fromNote: Note.N14, toNote: Note.N19,
+			gauss: false)
 	]
 ]

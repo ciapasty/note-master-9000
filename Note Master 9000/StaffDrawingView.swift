@@ -114,8 +114,8 @@ class StaffDrawingView: UIView {
 		
 		layer.frame = self.frame
 		
-		layer.addSublayer(drawNoteLayer(note, noteRect: getNoteRect(note), color: ColorPalette.Emerald.colorWithAlphaComponent(0.7)))
-		layer.addSublayer(drawNoteStem(note, noteRect: getNoteRect(note), color: ColorPalette.Emerald.colorWithAlphaComponent(0.7)))
+		layer.addSublayer(drawNoteLayer(note, noteRect: getNoteRect(note), color: ColorPalette.Nephritis.colorWithAlphaComponent(0.7)))
+		layer.addSublayer(drawNoteStem(note, noteRect: getNoteRect(note), color: ColorPalette.Nephritis.colorWithAlphaComponent(0.7)))
 		
 		self.layer.addSublayer(layer)
 		
