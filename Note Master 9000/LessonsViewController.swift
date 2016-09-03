@@ -27,6 +27,10 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		static let SectionHeaderIdentifier = "lessonHeader"
 		static let ShowNoteLessonSegueIdentifier = "showNoteView"
 		static let ShowTutorialLessonSegueIdentifier = "showTutorialView"
+		
+		static let LessonCellToScreenHeightRatio: CGFloat = 6.3
+		static let LessonCellTopBottomMargin: CGFloat = 20
+		static let LessonCellMinimumInteritemSpacing: CGFloat = 2.0
 	}
 	
 	// MARK: - ViewController lifecycle
@@ -42,7 +46,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		collectionView!.dataSource = self
 		collectionView!.delegate = self
 		
-		cellHeight = round(UIScreen.mainScreen().bounds.height/6.3)
+		cellHeight = round(UIScreen.mainScreen().bounds.height/Constants.LessonCellToScreenHeightRatio)
 		cellSize = CGSize(width: cellHeight, height: cellHeight)
 		
 		lessons[3][0].complete = true
@@ -121,12 +125,15 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		let itemCount = CGFloat(lessons[section].count)
 		
 		if itemCount <= 3 {
-			spaceLeft = scWidth - itemCount*cellHeight - (itemCount - 1)*2.0
+			spaceLeft = scWidth - itemCount*cellHeight - (itemCount - 1)*Constants.LessonCellMinimumInteritemSpacing
 		} else {
-			spaceLeft = scWidth - 3*cellHeight - (3 - 1)*2.0
+			spaceLeft = scWidth - 3*cellHeight - 2*Constants.LessonCellMinimumInteritemSpacing
 		}
 		
-		return UIEdgeInsets(top: 20, left: spaceLeft/2, bottom: 20, right: spaceLeft/2)
+		return UIEdgeInsets(top: Constants.LessonCellTopBottomMargin,
+		                    left: spaceLeft/2,
+		                    bottom: Constants.LessonCellTopBottomMargin,
+		                    right: spaceLeft/2)
 	}
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -134,7 +141,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 	}
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-		return 2.0
+		return Constants.LessonCellMinimumInteritemSpacing
 	}
 	
 	// MARK: - Navigation

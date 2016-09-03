@@ -9,14 +9,15 @@
 import UIKit
 
 class Lesson {
-	let index: Int? = nil
+	let index: Int
 	let title: String
 	let description: String
 	let clef: Clef
 	let color: UIColor
 	var complete: Bool = false
 	
-	init(title: String, description: String, clef: Clef, color: UIColor) {
+	init(index: Int, title: String, description: String, clef: Clef, color: UIColor) {
+		self.index = index
 		self.title = title
 		self.description = description
 		self.clef = clef
@@ -28,11 +29,11 @@ class NoteLesson: Lesson {
 	let noteRange: (Int,Int)
 	let gauss: Bool
 	
-	init(title: String, description: String, clef: Clef, color: UIColor, fromNote: Note, toNote: Note, gauss: Bool) {
+	init(index: Int, title: String, description: String, clef: Clef, color: UIColor, fromNote: Note, toNote: Note, gauss: Bool) {
 		self.noteRange = (fromNote.rawValue, toNote.rawValue)
 		self.gauss = gauss
 		
-		super.init(title: title, description: description, clef: clef, color: color)
+		super.init(index: index, title: title, description: description, clef: clef, color: color)
 	}
 }
 
@@ -40,10 +41,10 @@ class TutorialLesson: Lesson {
 	let imageNames: [String]
 	let imageTexts: [String]
 	
-	init(title: String, description: String, clef: Clef, color: UIColor, images: [String], texts: [String]) {
+	init(index: Int, title: String, description: String, clef: Clef, color: UIColor, images: [String], texts: [String]) {
 		self.imageNames = images
 		self.imageTexts = texts
 		
-		super.init(title: title, description: description, clef: clef, color: color)
+		super.init(index: index, title: title, description: description, clef: clef, color: color)
 	}
 }

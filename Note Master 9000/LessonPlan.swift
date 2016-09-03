@@ -21,6 +21,7 @@ let lessonsSections = [
 var lessons: [[Lesson]] = [
 	[
 		TutorialLesson(
+			index: 1,
 			title: "Tutorial",
 			description: "A simple tutorial screen",
 			clef: Clef.trebleClef,
@@ -28,6 +29,7 @@ var lessons: [[Lesson]] = [
 			images: ["trebleClef", "bassClef"],
 			texts: ["This is treble clef", "This is a bass clef"]),
 		NoteLesson(
+			index: 2,
 			title: "Basic",
 			description: "Basic treble clef practice with gauss randomization",
 			clef: Clef.trebleClef,
@@ -35,6 +37,7 @@ var lessons: [[Lesson]] = [
 			fromNote: Note.N5, toNote: Note.N15,
 			gauss: true),
 		NoteLesson(
+			index: 3,
 			title: "Extended",
 			description: "Treble clef practice with full note range and linear randomization",
 			clef: Clef.trebleClef,
@@ -44,6 +47,7 @@ var lessons: [[Lesson]] = [
 	],
 	[
 		NoteLesson(
+			index: 4,
 			title: "A B C D E",
 			description: "Practice covering only narrow note range",
 			clef: Clef.trebleClef,
@@ -53,6 +57,7 @@ var lessons: [[Lesson]] = [
 	],
 	[
 		NoteLesson(
+			index: 5,
 			title: "Basic",
 			description: "Bass clef practice",
 			clef: Clef.bassClef,
@@ -62,6 +67,7 @@ var lessons: [[Lesson]] = [
 	],
 	[
 		NoteLesson(
+			index: 6,
 			title: "Upper",
 			description: "Upper range bass clef practice",
 			clef: Clef.bassClef,
@@ -69,6 +75,7 @@ var lessons: [[Lesson]] = [
 			fromNote: Note.N1, toNote: Note.N5,
 			gauss: false),
 		NoteLesson(
+			index: 7,
 			title: "Lower",
 			description: "Lower range bass clef practice",
 			clef: Clef.bassClef,

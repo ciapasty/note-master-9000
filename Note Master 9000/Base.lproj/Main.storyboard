@@ -286,15 +286,46 @@
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="34"/>
                                         </variation>
                                     </label>
+                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBP-MF-TVa">
+                                        <rect key="frame" x="278" y="136" width="44" height="70"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="dEC-s0-uHD"/>
+                                        </constraints>
+                                    </view>
+                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rGQ-Nu-qug">
+                                        <rect key="frame" x="278" y="20" width="44" height="71"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="4Rr-Q7-2RY"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lesson" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adp-Uu-vSV">
+                                        <rect key="frame" x="263" y="99" width="75" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="34"/>
+                                        </variation>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="htt-3F-YYH" firstAttribute="top" secondItem="FBP-MF-TVa" secondAttribute="bottom" constant="8" symbolic="YES" id="49N-Ke-g3l"/>
                                     <constraint firstItem="htt-3F-YYH" firstAttribute="centerX" secondItem="toj-z5-5Bt" secondAttribute="centerX" id="7v3-Ew-NSe"/>
+                                    <constraint firstItem="FBP-MF-TVa" firstAttribute="centerX" secondItem="toj-z5-5Bt" secondAttribute="centerX" id="867-Yq-2O4"/>
+                                    <constraint firstItem="adp-Uu-vSV" firstAttribute="centerX" secondItem="toj-z5-5Bt" secondAttribute="centerX" id="8oB-Je-n4e"/>
+                                    <constraint firstItem="rGQ-Nu-qug" firstAttribute="top" secondItem="toj-z5-5Bt" secondAttribute="top" constant="20" symbolic="YES" id="F8Q-Z5-kpF"/>
+                                    <constraint firstItem="FBP-MF-TVa" firstAttribute="height" secondItem="rGQ-Nu-qug" secondAttribute="height" id="INk-u2-emz"/>
+                                    <constraint firstItem="FBP-MF-TVa" firstAttribute="top" secondItem="adp-Uu-vSV" secondAttribute="bottom" constant="8" symbolic="YES" id="LCA-9d-iEs"/>
                                     <constraint firstAttribute="trailing" secondItem="5MY-Nb-7KJ" secondAttribute="trailing" constant="20" symbolic="YES" id="MfE-Lp-AHj"/>
                                     <constraint firstItem="5MY-Nb-7KJ" firstAttribute="top" secondItem="htt-3F-YYH" secondAttribute="bottom" constant="8" symbolic="YES" id="Nt3-h6-uBA"/>
                                     <constraint firstItem="5MY-Nb-7KJ" firstAttribute="top" secondItem="toj-z5-5Bt" secondAttribute="centerY" id="ehk-4w-5FD"/>
+                                    <constraint firstItem="rGQ-Nu-qug" firstAttribute="centerX" secondItem="toj-z5-5Bt" secondAttribute="centerX" id="faQ-nO-F7P"/>
                                     <constraint firstItem="5MY-Nb-7KJ" firstAttribute="centerX" secondItem="htt-3F-YYH" secondAttribute="centerX" id="iPr-FS-JXq"/>
+                                    <constraint firstItem="adp-Uu-vSV" firstAttribute="top" secondItem="rGQ-Nu-qug" secondAttribute="bottom" constant="8" symbolic="YES" id="ujV-Gt-XZN"/>
                                     <constraint firstItem="5MY-Nb-7KJ" firstAttribute="leading" secondItem="toj-z5-5Bt" secondAttribute="leading" constant="20" symbolic="YES" id="ziP-nd-ap8"/>
                                 </constraints>
                                 <connections>
@@ -481,6 +512,7 @@
                         <outlet property="gNoteButton" destination="eNE-GH-pif" id="H5y-fl-Hb6"/>
                         <outlet property="helpDrawingView" destination="7nA-QV-DWy" id="RJN-58-eWu"/>
                         <outlet property="lessonDescriptionLabel" destination="5MY-Nb-7KJ" id="5Oa-VM-aLQ"/>
+                        <outlet property="lessonNumberLabel" destination="adp-Uu-vSV" id="kea-lv-VxT"/>
                         <outlet property="lessonPlanButton" destination="GH3-5Q-nZv" id="nvA-ir-Ooz"/>
                         <outlet property="lessonTitleLabel" destination="htt-3F-YYH" id="c88-Ww-QYB"/>
                         <outlet property="nextLessonButton" destination="Bfp-WM-5m3" id="uYH-0s-e33"/>

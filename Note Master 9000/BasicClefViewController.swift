@@ -23,6 +23,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	@IBOutlet weak var helpDrawingView: HelpDrawingView!
 	
 	@IBOutlet weak var welcomeView: UIView!
+	@IBOutlet weak var lessonNumberLabel: UILabel!
 	@IBOutlet weak var lessonTitleLabel: UILabel!
 	@IBOutlet weak var lessonDescriptionLabel: UILabel!
 	
@@ -249,23 +250,27 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		let nav = self.navigationController?.navigationBar
 		
 		if lesson?.color == ColorPalette.Orange { //|| lesson?.color == ColorPalette.GreenSee {
+			let textColor = ColorPalette.WetAsphalt
 			nav?.barStyle = .Default
-			lessonTitleLabel.textColor = ColorPalette.WetAsphalt
-			lessonDescriptionLabel.textColor = ColorPalette.WetAsphalt
-			finishedLabel.textColor = ColorPalette.WetAsphalt
-			lessonPlanButton.setTitleColor(ColorPalette.WetAsphalt, forState: .Normal)
-			nextLessonButton.setTitleColor(ColorPalette.WetAsphalt, forState: .Normal)
-			nav?.tintColor = ColorPalette.WetAsphalt
-			nav?.titleTextAttributes = [NSForegroundColorAttributeName: ColorPalette.WetAsphalt]
+			lessonNumberLabel.textColor = textColor
+			lessonTitleLabel.textColor = textColor
+			lessonDescriptionLabel.textColor = textColor
+			finishedLabel.textColor = textColor
+			lessonPlanButton.setTitleColor(textColor, forState: .Normal)
+			nextLessonButton.setTitleColor(textColor, forState: .Normal)
+			nav?.tintColor = textColor
+			nav?.titleTextAttributes = [NSForegroundColorAttributeName: textColor]
 		} else {
+			let textColor = ColorPalette.Clouds
 			nav?.barStyle = .Black
-			lessonTitleLabel.textColor = ColorPalette.Clouds
-			lessonDescriptionLabel.textColor = ColorPalette.Clouds
-			finishedLabel.textColor = ColorPalette.Clouds
-			lessonPlanButton.setTitleColor(ColorPalette.Clouds, forState: .Normal)
-			nextLessonButton.setTitleColor(ColorPalette.Clouds, forState: .Normal)
-			nav?.tintColor = ColorPalette.Clouds
-			nav?.titleTextAttributes = [NSForegroundColorAttributeName: ColorPalette.Clouds]
+			lessonNumberLabel.textColor = textColor
+			lessonTitleLabel.textColor = textColor
+			lessonDescriptionLabel.textColor = textColor
+			finishedLabel.textColor = textColor
+			lessonPlanButton.setTitleColor(textColor, forState: .Normal)
+			nextLessonButton.setTitleColor(textColor, forState: .Normal)
+			nav?.tintColor = textColor
+			nav?.titleTextAttributes = [NSForegroundColorAttributeName: textColor]
 		}
 		
 		nav?.barTintColor = lesson!.color //ColorPalette.MidnightBlue
@@ -302,6 +307,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 			noteRange = ls.noteRange
 			gaussianRand = ls.gauss
 			navigationItem.title = ls.title
+			lessonNumberLabel?.text = "Lesson \(ls.index)"
 			lessonTitleLabel?.text = ls.title
 			lessonDescriptionLabel?.text = ls.description
 		}
@@ -333,9 +339,9 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 	
-	private func noteButtonsEnabled(state: Bool) {
+	private func noteButtonsEnabled(enabled: Bool) {
 		for button in noteButtons {
-			button.enabled = state
+			button.enabled = enabled
 		}
 	}
 	
@@ -368,7 +374,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		
 		noteButtonsEnabled(false)
 		
-		UIView.animateWithDuration(Constants.BasicAnimationDuration, delay: 0.0, usingSpringWithDamping: Constants.WrongAnimationDamping, initialSpringVelocity: Constants.WrongAnimationVelocity, options: [], animations: { () -> Void in
+		UIView.animateWithDuration(Constants.BasicAnimationDuration, delay: 0.0, usingSpringWithDamping: Constants.WrongAnimationDamping, initialSpringVelocity: Constants.WrongAnimationVelocity, options: [], animations: {
 			self.notesDrawingView.center.x -= Constants.WrongAnimationOffset
 			self.stemDrawingView.center.x -= Constants.WrongAnimationOffset
 			self.staffDrawingView.center.x -= Constants.WrongAnimationOffset
@@ -382,7 +388,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		let nav = self.navigationController?.navigationBar
 		nav?.alpha = 1.0
 		
-		UIView.animateWithDuration(0.4) {
+		UIView.animateWithDuration(Constants.BasicAnimationDuration) {
 			self.finishedView.alpha = 1
 			nav?.alpha = 0.0
 		}
