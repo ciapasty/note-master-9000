@@ -16,11 +16,17 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 	
 	// MARK: Properties
 	
-	var cellHeight = CGFloat()
-	var cellSize = CGSize()
+	private var activeLessonIndexPath: NSIndexPath?
+	private var showNextLessonFlag: Bool = false
+	
+	private var cellHeight = CGFloat()
+	private var cellSize = CGSize()
 	
 	private struct Constants {
 		static let LessonCellIdentifier = "lessonCell"
+		static let SectionHeaderIdentifier = "lessonHeader"
+		static let ShowNoteLessonSegueIdentifier = "showNoteView"
+		static let ShowTutorialLessonSegueIdentifier = "showTutorialView"
 	}
 	
 	// MARK: - ViewController lifecycle
@@ -38,6 +44,9 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		
 		cellHeight = round(UIScreen.mainScreen().bounds.height/6.3)
 		cellSize = CGSize(width: cellHeight, height: cellHeight)
+		
+		lessons[3][0].complete = true
+		lessons[3][1].complete = true
     }
 	
 	override func viewWillAppear(animated: Bool) {
@@ -47,45 +56,24 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		nav?.barTintColor = ColorPalette.Clouds
 		nav?.tintColor = ColorPalette.MidnightBlue
 		nav?.titleTextAttributes = [NSForegroundColorAttributeName: ColorPalette.MidnightBlue]
+		nav?.alpha = 1.0
 		//====
 		collectionView.backgroundColor = ColorPalette.Clouds
-	}
-	
-    // MARK: - Navigation
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if let identifier = segue.identifier {
-			switch identifier {
-			case "showTutorialView":
-				let lesson = sender as! TutorialLesson
-				if let destination = segue.destinationViewController as? HelpViewController {
-					destination.contentImages = lesson.imageNames
+		collectionView.reloadData()
+		
+		if showNextLessonFlag {
+			if let indexPath = nextLessonIndexPath(activeLessonIndexPath!) {
+				activeLessonIndexPath = indexPath
+				if let lesson = lessons[indexPath.section][indexPath.row] as? TutorialLesson {
+					self.performSegueWithIdentifier(Constants.ShowTutorialLessonSegueIdentifier, sender: lesson)
+				} else if let lesson = lessons[indexPath.section][indexPath.row] as? NoteLesson {
+					self.performSegueWithIdentifier(Constants.ShowNoteLessonSegueIdentifier, sender: lesson)
 				}
-			case "showNoteView":
-				let lesson = sender as! NoteLesson
-				if let destination = segue.destinationViewController as? BasicClefViewController {
-					destination.lesson = lesson
-				}
-			default: break
 			}
 		}
-    }
-	
-	@IBAction func backToLessonsView(segue: UIStoryboardSegue) {
-		let nav = self.navigationController?.navigationBar
-		nav?.alpha = 1.0
-		collectionView.reloadData()
-	}
-	
-	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		if let lesson = lessons[indexPath.section][indexPath.row] as? TutorialLesson {
-			self.performSegueWithIdentifier("showTutorialView", sender: lesson)
-		} else if let lesson = lessons[indexPath.section][indexPath.row] as? NoteLesson {
-			self.performSegueWithIdentifier("showNoteView", sender: lesson)
-		}
 	}
 
-    // MARK: - UICollectionViewDataSource
+    // MARK: - UICollectionView
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -107,11 +95,20 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 	
 	func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-		let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "lessonHeader", forIndexPath: indexPath) as! LessonCollectionHeader
+		let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: Constants.SectionHeaderIdentifier, forIndexPath: indexPath) as! LessonCollectionHeader
 		
 		header.sectionTitle.textColor = ColorPalette.MidnightBlue
 		header.sectionTitle.text = lessonsSections[indexPath.section]
 		return header
+	}
+	
+	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+		activeLessonIndexPath = indexPath
+		if let lesson = lessons[indexPath.section][indexPath.row] as? TutorialLesson {
+			self.performSegueWithIdentifier(Constants.ShowTutorialLessonSegueIdentifier, sender: lesson)
+		} else if let lesson = lessons[indexPath.section][indexPath.row] as? NoteLesson {
+			self.performSegueWithIdentifier(Constants.ShowNoteLessonSegueIdentifier, sender: lesson)
+		}
 	}
 
 	// MARK: UICollectionViewDelegateFlowLayout
@@ -138,5 +135,43 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
 		return 2.0
+	}
+	
+	// MARK: - Navigation
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if let identifier = segue.identifier {
+			switch identifier {
+			case Constants.ShowTutorialLessonSegueIdentifier:
+				let lesson = sender as! TutorialLesson
+				if let destination = segue.destinationViewController as? HelpViewController {
+					destination.contentImages = lesson.imageNames
+				}
+			case Constants.ShowNoteLessonSegueIdentifier:
+				let lesson = sender as! NoteLesson
+				if let destination = segue.destinationViewController as? BasicClefViewController {
+					destination.lesson = lesson
+				}
+			default: break
+			}
+		}
+	}
+	
+	@IBAction func backToLessonsView(segue: UIStoryboardSegue) {
+		if let src = segue.sourceViewController as? BasicClefViewController {
+			showNextLessonFlag = src.goToNextLessonFlag
+		}
+	}
+	
+	// MARK: - Helper functions
+	
+	private func nextLessonIndexPath(indexPath: NSIndexPath) -> NSIndexPath? {
+		if lessons[indexPath.section].endIndex > indexPath.row+1 {
+			return NSIndexPath(forRow: indexPath.row+1, inSection: indexPath.section)
+		} else if lessons.endIndex > indexPath.section+1 {
+			return NSIndexPath(forRow: 0, inSection: indexPath.section+1)
+		} else {
+			return nil
+		}
 	}
 }

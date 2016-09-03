@@ -9,6 +9,7 @@
 import UIKit
 
 class Lesson {
+	let index: Int? = nil
 	let title: String
 	let description: String
 	let clef: Clef

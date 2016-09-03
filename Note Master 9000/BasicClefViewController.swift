@@ -42,6 +42,13 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	@IBOutlet weak var bNoteButton: UIButton!
 	
 	// MARK: - Properties
+	var lesson:NoteLesson? {
+		didSet {
+			setupLesson()
+		}
+	}
+	
+	var goToNextLessonFlag: Bool = false
 	
 	private lazy var avPlayer:AVAudioPlayer = AVAudioPlayer()
 	
@@ -49,14 +56,8 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	private var noteNameValueDict = [String:Int]()
 	private var noteNameDict = [Note:String]()
 	
-	var requiredCorrectNotes: Int = 10
+	var requiredCorrectNotes: Int = 1
 	private var currentProgress: Float = 0.0
-	
-	var lesson:NoteLesson? {
-		didSet {
-			setupLesson()
-		}
-	}
 	
 	private var noteRange = (0,0)
 	
@@ -81,6 +82,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		static let WrongAnimationVelocity: CGFloat = 8.0
 		static let WrongAnimationDamping: CGFloat = 0.1
 		static let WrongAnimationOffset: CGFloat = 12
+		static let BackToLessonsViewSegueIdentifier = "backToLessons"
 	}
 	
 	// MARK: - ViewController lifecycle
@@ -111,7 +113,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .Alert)
 		let exitAction = UIAlertAction(title: "Quit", style: .Default, handler: {
 			(_)in
-			self.performSegueWithIdentifier("backToLessons", sender: self)
+			self.performSegueWithIdentifier(Constants.BackToLessonsViewSegueIdentifier, sender: self)
 		})
 		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
 		
@@ -191,7 +193,8 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	}
 	
 	@IBAction func goToNextLesson() {
-		
+		goToNextLessonFlag = true
+		performSegueWithIdentifier(Constants.BackToLessonsViewSegueIdentifier, sender: self)
 	}
 	
 	
@@ -375,6 +378,16 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		})
 	}
 	
+	private func showFinishedViewAnimation() {
+		let nav = self.navigationController?.navigationBar
+		nav?.alpha = 1.0
+		
+		UIView.animateWithDuration(0.4) {
+			self.finishedView.alpha = 1
+			nav?.alpha = 0.0
+		}
+	}
+	
 	private func showHelpAnimation() {
 		 if !helpVisible {
 			UIView.animateWithDuration(Constants.BasicAnimationDuration, animations: {
@@ -403,16 +416,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 			self.welcomeView.alpha = 0.0
 			}) { finished in
 				self.welcomeView.removeFromSuperview()
-			}
-	}
-	
-	private func showFinishedViewAnimation() {
-		let nav = self.navigationController?.navigationBar
-		nav?.alpha = 1.0
-		
-		UIView.animateWithDuration(0.6) {
-			self.finishedView.alpha = 1
-			nav?.alpha = 0.0
 			}
 	}
 	

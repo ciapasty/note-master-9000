@@ -74,8 +74,8 @@ class LessonCollectionCell: UICollectionViewCell {
 		
 		layer.frame = CGRect(x: frame.width*3/4,
 		                     y: -Constants.LessonIconLayerVerticalMargin,
-		                     width: frame.height/4,
-		                     height: frame.height/4)
+		                     width: frame.height/3,
+		                     height: frame.height/3)
 		layer.backgroundColor = ColorPalette.Nephritis.CGColor
 		layer.cornerRadius = layer.frame.height/2
 		
