@@ -1,46 +1,36 @@
 //
-//  HelpPage1ViewController.swift
+//  LessonViewController.swift
 //  Note Master 9000
 //
-//  Created by Maciej Eichler on 28/03/16.
+//  Created by Maciej Eichler on 11/09/16.
 //  Copyright © 2016 Mattijah. All rights reserved.
 //
 
 import UIKit
 
-class PageItemController: UIViewController {
+class LessonViewController: UIViewController {
 	
-	// MARK: Outlets
+	@IBOutlet weak var welcomeView: UIView!
+	@IBOutlet weak var lessonNumberLabel: UILabel!
+	@IBOutlet weak var lessonTitleLabel: UILabel!
+	@IBOutlet weak var lessonDescriptionLabel: UILabel!
 	
-	@IBOutlet weak var contentImageView: UIImageView!
-	@IBOutlet weak var contentLabel: UILabel!
-	
-	// MARK: Properties
-	
-	var itemIndex: Int = 0
-	var imageName: String = "" {
-		didSet {
-			if let label = contentLabel {
-				label.text = imageName
-			}
-			if let imageView = contentImageView {
-				imageView.image = UIImage(named: imageName)
-			}
-		}
-	}
-	
-	// MARK: ViewController
-	
+	@IBOutlet weak var finishedView: UIView!
+	@IBOutlet weak var finishedLabel: UILabel!
+	@IBOutlet weak var nextLessonButton: UIButton!
+	@IBOutlet weak var lessonPlanButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-		contentLabel!.text = imageName
-		contentImageView!.image = UIImage(named: imageName)
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
     /*
     // MARK: - Navigation

@@ -10,10 +10,12 @@ import UIKit
 
 class HelpDrawingView: UIView {
 	
-	// MARK: Properties
-
-	let trebleHelp = ["E", "D", "C", "B", "A", "G", "F"]
-	let bassHelp = ["G", "F", "E", "D", "C", "B", "A"]
+	// MARK: Constants
+	
+	private struct Constants {
+		static let TrebleClefNoteNames = ["E", "D", "C", "B", "A", "G", "F"]
+		static let BassClefNoteNames = ["G", "F", "E", "D", "C", "B", "A"]
+	}
 	
 	// MARK: Initialization
 	
@@ -53,9 +55,9 @@ class HelpDrawingView: UIView {
 			layer.fontSize = self.frame.height/10
 			
 			if clef == Clef.trebleClef {
-				layer.string = trebleHelp[i-6]
+				layer.string = Constants.TrebleClefNoteNames[i-6]
 			} else if clef == Clef.bassClef {
-				layer.string = bassHelp[i-6]
+				layer.string = Constants.BassClefNoteNames[i-6]
 			}
 			
 			layer.foregroundColor = ColorPalette.MidnightBlue.CGColor

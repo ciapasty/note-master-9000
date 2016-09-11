@@ -10,17 +10,15 @@ import UIKit
 
 class LessonsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 	
-	// MARK: Outlets
-	
 	@IBOutlet weak var collectionView: UICollectionView!
-	
-	// MARK: Properties
 	
 	private var activeLessonIndexPath: NSIndexPath?
 	private var showNextLessonFlag: Bool = false
 	
 	private var cellHeight = CGFloat()
 	private var cellSize = CGSize()
+	
+	// MARK: - Constants
 	
 	private struct Constants {
 		static let LessonCellIdentifier = "lessonCell"
@@ -151,8 +149,8 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 			switch identifier {
 			case Constants.ShowTutorialLessonSegueIdentifier:
 				let lesson = sender as! TutorialLesson
-				if let destination = segue.destinationViewController as? HelpViewController {
-					destination.contentImages = lesson.imageNames
+				if let destination = segue.destinationViewController as? TutorialViewController {
+					destination.lesson = lesson
 				}
 			case Constants.ShowNoteLessonSegueIdentifier:
 				let lesson = sender as! NoteLesson

@@ -42,14 +42,13 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	@IBOutlet weak var aNoteButton: UIButton!
 	@IBOutlet weak var bNoteButton: UIButton!
 	
-	// MARK: - Properties
-	var lesson:NoteLesson? {
+	var lesson: NoteLesson? {
 		didSet {
 			setupLesson()
 		}
 	}
 	
-	var goToNextLessonFlag: Bool = false
+	var goToNextLessonFlag: Bool = false // temporary solution
 	
 	private lazy var avPlayer:AVAudioPlayer = AVAudioPlayer()
 	
@@ -57,7 +56,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	private var noteNameValueDict = [String:Int]()
 	private var noteNameDict = [Note:String]()
 	
-	var requiredCorrectNotes: Int = 1
+	var requiredCorrectNotes: Int = 10 // temporarily here
 	private var currentProgress: Float = 0.0
 	
 	private var noteRange = (0,0)
@@ -70,6 +69,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	private var helpVisible = false
 	
+	// MARK: - Constants
 	private struct Constants {
 		static let BasicAnimationDuration: Double = 0.4
 		static let ButtonAnimationStartDelay: Double = 0.5
@@ -100,6 +100,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	}
 	
 	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
 		setupViews()
 	}
 	
@@ -317,7 +318,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	private func drawNewNote(withDelay delay: NSTimeInterval, animated: Bool) {
 		stemDrawingView.setupStem(currentNote!, animated: animated)
-		notesDrawingView.drawNote(currentNote!)
+		notesDrawingView.drawNote(currentNote!, withStem: false)
 		if animated {
 			noteSlideAnimation(delay)
 		}
