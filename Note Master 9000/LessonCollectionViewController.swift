@@ -8,12 +8,9 @@
 
 import UIKit
 
-class LessonsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class LessonCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 	
 	@IBOutlet weak var collectionView: UICollectionView!
-	
-	private var activeLessonIndexPath: NSIndexPath?
-	private var showNextLessonFlag: Bool = false
 	
 	private var cellHeight = CGFloat()
 	private var cellSize = CGSize()
@@ -23,8 +20,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 	private struct Constants {
 		static let LessonCellIdentifier = "lessonCell"
 		static let SectionHeaderIdentifier = "lessonHeader"
-		static let ShowNoteLessonSegueIdentifier = "showNoteView"
-		static let ShowTutorialLessonSegueIdentifier = "showTutorialView"
+		static let ShowLessonSegueIdentifier = "showLessonView"
 		
 		static let LessonCellToScreenHeightRatio: CGFloat = 6.3
 		static let LessonCellTopBottomMargin: CGFloat = 20
@@ -62,17 +58,6 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 		//====
 		collectionView.backgroundColor = ColorPalette.Clouds
 		collectionView.reloadData()
-		
-		if showNextLessonFlag {
-			if let indexPath = nextLessonIndexPath(activeLessonIndexPath!) {
-				activeLessonIndexPath = indexPath
-				if let lesson = lessons[indexPath.section][indexPath.row] as? TutorialLesson {
-					self.performSegueWithIdentifier(Constants.ShowTutorialLessonSegueIdentifier, sender: lesson)
-				} else if let lesson = lessons[indexPath.section][indexPath.row] as? NoteLesson {
-					self.performSegueWithIdentifier(Constants.ShowNoteLessonSegueIdentifier, sender: lesson)
-				}
-			}
-		}
 	}
 
     // MARK: - UICollectionView
@@ -105,12 +90,7 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 	}
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		activeLessonIndexPath = indexPath
-		if let lesson = lessons[indexPath.section][indexPath.row] as? TutorialLesson {
-			self.performSegueWithIdentifier(Constants.ShowTutorialLessonSegueIdentifier, sender: lesson)
-		} else if let lesson = lessons[indexPath.section][indexPath.row] as? NoteLesson {
-			self.performSegueWithIdentifier(Constants.ShowNoteLessonSegueIdentifier, sender: lesson)
-		}
+		self.performSegueWithIdentifier(Constants.ShowLessonSegueIdentifier, sender: lessons[indexPath.section][indexPath.row])
 	}
 
 	// MARK: UICollectionViewDelegateFlowLayout
@@ -145,28 +125,18 @@ class LessonsViewController: UIViewController, UICollectionViewDataSource, UICol
 	// MARK: - Navigation
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if let identifier = segue.identifier {
-			switch identifier {
-			case Constants.ShowTutorialLessonSegueIdentifier:
-				let lesson = sender as! TutorialLesson
-				if let destination = segue.destinationViewController as? TutorialViewController {
-					destination.lesson = lesson
+		if segue.identifier == Constants.ShowLessonSegueIdentifier {
+			if let lessonVC = segue.destinationViewController as? LessonViewController {
+				if let lesson = sender as? TutorialLesson {
+					lessonVC.tutorialLesson = lesson
+				} else if let lesson = sender as? NoteLesson {
+					lessonVC.noteLesson = lesson
 				}
-			case Constants.ShowNoteLessonSegueIdentifier:
-				let lesson = sender as! NoteLesson
-				if let destination = segue.destinationViewController as? BasicClefViewController {
-					destination.lesson = lesson
-				}
-			default: break
 			}
 		}
 	}
 	
-	@IBAction func backToLessonsView(segue: UIStoryboardSegue) {
-		if let src = segue.sourceViewController as? BasicClefViewController {
-			showNextLessonFlag = src.goToNextLessonFlag
-		}
-	}
+	@IBAction func backToLessonsView(segue: UIStoryboardSegue) {}
 	
 	// MARK: - Helper functions
 	

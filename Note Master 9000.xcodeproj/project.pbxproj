@@ -13,7 +13,7 @@
 		CE38BF771CD90EEB00E6A31C /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38BF761CD90EEB00E6A31C /* ColorPalette.swift */; };
 		CE4E351E1CB024D900420A25 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4E351D1CB024D900420A25 /* Lesson.swift */; };
 		CE7393C71CAEB8DD00DFCEED /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = CE7393C61CAEB8DD00DFCEED /* Audio */; };
-		CE77223E1CAAF3EC00D26F33 /* LessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77223D1CAAF3EC00D26F33 /* LessonsViewController.swift */; };
+		CE77223E1CAAF3EC00D26F33 /* LessonCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77223D1CAAF3EC00D26F33 /* LessonCollectionViewController.swift */; };
 		CE7722421CAAFCEA00D26F33 /* NotesLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7722411CAAFCEA00D26F33 /* NotesLibrary.swift */; };
 		CEB104BD1CA958CC0057D49E /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB104BC1CA958CC0057D49E /* TutorialViewController.swift */; };
 		CEB104C31CA9855C0057D49E /* StemDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB104C21CA9855C0057D49E /* StemDrawingView.swift */; };
@@ -36,7 +36,7 @@
 		CE3F91C01D16BD3400AD54CA /* Note Master 9000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Note Master 9000.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4E351D1CB024D900420A25 /* Lesson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
 		CE7393C61CAEB8DD00DFCEED /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Audio; sourceTree = "<group>"; };
-		CE77223D1CAAF3EC00D26F33 /* LessonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonsViewController.swift; sourceTree = "<group>"; };
+		CE77223D1CAAF3EC00D26F33 /* LessonCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonCollectionViewController.swift; sourceTree = "<group>"; };
 		CE7722411CAAFCEA00D26F33 /* NotesLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesLibrary.swift; sourceTree = "<group>"; };
 		CEB104BC1CA958CC0057D49E /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		CEB104C21CA9855C0057D49E /* StemDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StemDrawingView.swift; sourceTree = "<group>"; };
@@ -97,11 +97,11 @@
 		CEB104BE1CA958D70057D49E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CE77223D1CAAF3EC00D26F33 /* LessonsViewController.swift */,
-				CEC1D4B91C9C651600C29666 /* BasicClefViewController.swift */,
+				CE77223D1CAAF3EC00D26F33 /* LessonCollectionViewController.swift */,
 				CEC9BD5D1D8598CC00953AAC /* LessonViewController.swift */,
 				CEB104BC1CA958CC0057D49E /* TutorialViewController.swift */,
 				CE2EA3751CA9A99700135AC8 /* TutorialPageItemController.swift */,
+				CEC1D4B91C9C651600C29666 /* BasicClefViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -218,7 +218,7 @@
 				CE2EA3761CA9A99700135AC8 /* TutorialPageItemController.swift in Sources */,
 				CEC1D4BA1C9C651600C29666 /* BasicClefViewController.swift in Sources */,
 				CEB2412D1CA1CD9600BDD998 /* StaffDrawingView.swift in Sources */,
-				CE77223E1CAAF3EC00D26F33 /* LessonsViewController.swift in Sources */,
+				CE77223E1CAAF3EC00D26F33 /* LessonCollectionViewController.swift in Sources */,
 				CE38BF771CD90EEB00E6A31C /* ColorPalette.swift in Sources */,
 				CE7722421CAAFCEA00D26F33 /* NotesLibrary.swift in Sources */,
 				CE335F091CBA2C9000A32355 /* HelpDrawingView.swift in Sources */,
