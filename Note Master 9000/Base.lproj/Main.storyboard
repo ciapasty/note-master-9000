@@ -17,49 +17,49 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7V-ba-6Jb" customClass="StaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <rect key="frame" x="113" y="0.0" width="375" height="375"/>
+                                <rect key="frame" x="112" y="44" width="376" height="376"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="A7V-ba-6Jb" secondAttribute="height" multiplier="1:1" id="Nwh-VO-rA6"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xlg-OX-WBz">
-                                <rect key="frame" x="133" y="65" width="123" height="255"/>
+                                <rect key="frame" x="132" y="109" width="123" height="256"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xlg-OX-WBz" secondAttribute="height" multiplier="296:612" id="BtJ-U4-bqw"/>
                                 </constraints>
                             </imageView>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2g-wU-eI4" customClass="StaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <rect key="frame" x="113" y="0.0" width="375" height="375"/>
+                                <rect key="frame" x="112" y="44" width="376" height="376"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="k2g-wU-eI4" secondAttribute="height" multiplier="1:1" id="7fz-Im-drz"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="twt-f5-6i7" appends="YES" id="muX-St-3Mi"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GnV-Ii-xgp" customClass="StemDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <rect key="frame" x="113" y="0.0" width="375" height="375"/>
+                                <rect key="frame" x="112" y="44" width="376" height="376"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="GnV-Ii-xgp" secondAttribute="height" multiplier="1:1" id="dqo-ry-zUM"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="twt-f5-6i7" appends="YES" id="fxo-h9-47q"/>
-                                </connections>
                             </view>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nA-QV-DWy" customClass="HelpDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <rect key="frame" x="488" y="0.0" width="75" height="375"/>
+                                <rect key="frame" x="488" y="44" width="75" height="376"/>
                             </view>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="p6J-ml-9nN">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="2"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="2"/>
                             </progressView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCY-Wx-llc" userLabel="Bottom Buttons View">
-                                <rect key="frame" x="0.0" y="375" width="600" height="161"/>
+                                <rect key="frame" x="0.0" y="420" width="600" height="180"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReZ-ec-Y6n">
-                                        <rect key="frame" x="179" y="23" width="53" height="53"/>
+                                        <rect key="frame" x="165" y="25" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ReZ-ec-Y6n" secondAttribute="height" multiplier="1:1" id="7kL-hW-JBs"/>
                                         </constraints>
@@ -81,7 +81,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4X-qL-rVl">
-                                        <rect key="frame" x="242" y="23" width="53" height="53"/>
+                                        <rect key="frame" x="235" y="25" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="X4X-qL-rVl" secondAttribute="height" multiplier="1:1" id="tQl-BX-pit"/>
                                         </constraints>
@@ -103,7 +103,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qI-d3-nig">
-                                        <rect key="frame" x="305" y="23" width="53" height="53"/>
+                                        <rect key="frame" x="305" y="25" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="9qI-d3-nig" secondAttribute="height" multiplier="1:1" id="5D1-47-QWn"/>
                                         </constraints>
@@ -125,7 +125,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzF-Xd-mpU">
-                                        <rect key="frame" x="368" y="23" width="53" height="53"/>
+                                        <rect key="frame" x="375" y="25" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="HzF-Xd-mpU" secondAttribute="height" multiplier="1:1" id="ods-9f-Y9U"/>
                                         </constraints>
@@ -147,7 +147,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNE-GH-pif">
-                                        <rect key="frame" x="211" y="86" width="53" height="53"/>
+                                        <rect key="frame" x="200" y="95" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="eNE-GH-pif" secondAttribute="height" multiplier="1:1" id="gCy-yv-T6x"/>
                                         </constraints>
@@ -169,7 +169,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVG-pX-jSx">
-                                        <rect key="frame" x="274" y="86" width="53" height="53"/>
+                                        <rect key="frame" x="270" y="95" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FVG-pX-jSx" secondAttribute="height" multiplier="1:1" id="Cd9-ty-bBq"/>
                                         </constraints>
@@ -191,7 +191,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bi7-DU-WTw">
-                                        <rect key="frame" x="337" y="86" width="53" height="53"/>
+                                        <rect key="frame" x="340" y="95" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Bi7-DU-WTw" secondAttribute="height" multiplier="1:1" id="EVX-kV-aeB"/>
                                         </constraints>
@@ -316,10 +316,10 @@
                             <outletCollection property="gestureRecognizers" destination="fQE-iG-7fh" appends="YES" id="jZD-2v-Kmq"/>
                         </connections>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="aNoteButton" destination="FVG-pX-jSx" id="PjQ-vv-LZD"/>
                         <outlet property="bNoteButton" destination="Bi7-DU-WTw" id="iQn-Wf-127"/>
-                        <outlet property="backView" destination="8bC-Xf-vdC" id="kt1-xO-QBd"/>
                         <outlet property="cNoteButton" destination="ReZ-ec-Y6n" id="ff1-Nx-Ym1"/>
                         <outlet property="clefImageView" destination="xlg-OX-WBz" id="lcM-GS-oQB"/>
                         <outlet property="dNoteButton" destination="X4X-qL-rVl" id="Zvi-ci-Psk"/>
@@ -367,13 +367,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a long placeholder text to check font size" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="q2w-VU-CWd">
-                                <rect key="frame" x="20" y="371" width="560" height="180"/>
+                                <rect key="frame" x="20" y="376" width="560" height="180"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGk-C6-iYx" customClass="TutorialStaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <rect key="frame" x="147" y="64" width="307" height="307"/>
+                                <rect key="frame" x="144" y="64" width="312" height="312"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dGk-C6-iYx" secondAttribute="height" id="htC-up-NRr"/>
                                 </constraints>
@@ -391,7 +391,7 @@
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="contentLabel" destination="q2w-VU-CWd" id="LhA-dz-tdl"/>
                         <outlet property="contentView" destination="dGk-C6-iYx" id="ys0-Ko-mNY"/>
@@ -411,7 +411,7 @@
             </objects>
             <point key="canvasLocation" x="2549" y="9"/>
         </scene>
-        <!--Title-->
+        <!--Lesson-->
         <scene sceneID="rtx-Df-HaI">
             <objects>
                 <viewController id="hk8-vp-bzt" customClass="LessonViewController" customModule="Note_Master_9000" customModuleProvider="target" sceneMemberID="viewController">
@@ -423,14 +423,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PaH-yO-aYB">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PaH-yO-aYB">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
-                                    <segue destination="VSE-sR-eq1" kind="embed" identifier="embedLesson" id="xSF-FG-hhR"/>
+                                    <segue destination="VSE-sR-eq1" kind="embed" identifier="embedTutorialLesson" id="xSF-FG-hhR"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iy9-lA-Alb">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iy9-lA-Alb">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="embed" identifier="embedNoteLesson" id="fpf-x3-7N0"/>
                                 </connections>
@@ -498,8 +498,11 @@
                                     <constraint firstItem="I4U-GQ-sVs" firstAttribute="leading" secondItem="RTB-RT-p5U" secondAttribute="leading" constant="20" symbolic="YES" id="qWP-Ol-pLT"/>
                                     <constraint firstItem="I4U-GQ-sVs" firstAttribute="centerX" secondItem="W5T-eK-VV4" secondAttribute="centerX" id="yhB-So-y1H"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9Br-AB-n7y" appends="YES" id="Zmd-I8-1dW"/>
+                                </connections>
                             </view>
-                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDF-OE-sfz">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDF-OE-sfz">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lesson Finished!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7d-KS-ofm">
@@ -532,7 +535,7 @@
                                             <rect key="frame" x="185" y="591" width="82" height="30"/>
                                         </variation>
                                         <connections>
-                                            <segue destination="W2e-nk-n6u" kind="unwind" unwindAction="backToLessonsView:" id="ObF-vk-scN"/>
+                                            <segue destination="W2e-nk-n6u" kind="unwind" identifier="backToLessonPlan" unwindAction="backToLessonsView:" id="ObF-vk-scN"/>
                                         </connections>
                                     </button>
                                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vm2-Ym-d3s">
@@ -594,28 +597,33 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Iy9-lA-Alb" firstAttribute="centerY" secondItem="PaH-yO-aYB" secondAttribute="centerY" id="1c2-eL-rgj"/>
+                            <constraint firstAttribute="bottom" secondItem="PaH-yO-aYB" secondAttribute="bottom" id="21C-Gl-525"/>
                             <constraint firstItem="PaH-yO-aYB" firstAttribute="leading" secondItem="2T8-zH-Cgd" secondAttribute="leading" id="2m1-fp-1bu"/>
+                            <constraint firstItem="Iy9-lA-Alb" firstAttribute="leading" secondItem="2T8-zH-Cgd" secondAttribute="leading" id="4WF-eO-NBc"/>
+                            <constraint firstAttribute="bottom" secondItem="Iy9-lA-Alb" secondAttribute="bottom" id="7DP-4y-7zJ"/>
                             <constraint firstItem="GYv-qh-R6F" firstAttribute="top" secondItem="RTB-RT-p5U" secondAttribute="bottom" id="7J4-SI-xol"/>
+                            <constraint firstAttribute="trailing" secondItem="Iy9-lA-Alb" secondAttribute="trailing" id="EOb-r9-DDz"/>
+                            <constraint firstItem="PaH-yO-aYB" firstAttribute="top" secondItem="2T8-zH-Cgd" secondAttribute="top" id="EgB-9g-KGB"/>
                             <constraint firstItem="pDF-OE-sfz" firstAttribute="top" secondItem="2T8-zH-Cgd" secondAttribute="top" id="FR1-fX-CYJ"/>
                             <constraint firstItem="GYv-qh-R6F" firstAttribute="top" secondItem="pDF-OE-sfz" secondAttribute="bottom" id="OOy-80-h96"/>
-                            <constraint firstItem="PaH-yO-aYB" firstAttribute="top" secondItem="2Jh-Dy-Cg3" secondAttribute="bottom" id="Ptn-fE-OCF"/>
                             <constraint firstItem="RTB-RT-p5U" firstAttribute="top" secondItem="2T8-zH-Cgd" secondAttribute="top" id="WMJ-Ym-ajV"/>
-                            <constraint firstItem="GYv-qh-R6F" firstAttribute="top" secondItem="PaH-yO-aYB" secondAttribute="bottom" id="gh3-MG-Jrl"/>
+                            <constraint firstItem="Iy9-lA-Alb" firstAttribute="top" secondItem="2T8-zH-Cgd" secondAttribute="top" id="kAS-ac-dMt"/>
                             <constraint firstAttribute="trailing" secondItem="RTB-RT-p5U" secondAttribute="trailing" id="ljl-Wv-VRY"/>
                             <constraint firstItem="RTB-RT-p5U" firstAttribute="leading" secondItem="2T8-zH-Cgd" secondAttribute="leading" id="op3-75-kFi"/>
-                            <constraint firstItem="Iy9-lA-Alb" firstAttribute="centerX" secondItem="PaH-yO-aYB" secondAttribute="centerX" id="ozx-cS-tae"/>
-                            <constraint firstItem="Iy9-lA-Alb" firstAttribute="width" secondItem="PaH-yO-aYB" secondAttribute="width" id="rCi-pl-w8e"/>
                             <constraint firstAttribute="trailing" secondItem="pDF-OE-sfz" secondAttribute="trailing" id="rh8-wx-2lE"/>
-                            <constraint firstItem="Iy9-lA-Alb" firstAttribute="height" secondItem="PaH-yO-aYB" secondAttribute="height" id="sOK-6k-Mwh"/>
                             <constraint firstItem="pDF-OE-sfz" firstAttribute="leading" secondItem="2T8-zH-Cgd" secondAttribute="leading" id="tJC-DW-jjo"/>
                             <constraint firstAttribute="trailing" secondItem="PaH-yO-aYB" secondAttribute="trailing" id="uWC-UG-1fW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="l3g-1f-eJy">
+                    <navigationItem key="navigationItem" title="Lesson" id="l3g-1f-eJy">
                         <barButtonItem key="leftBarButtonItem" title="Quit" id="z3t-HU-pai">
                             <connections>
                                 <action selector="exitButtonTap:" destination="hk8-vp-bzt" id="Fff-7e-4uh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="end!" id="14G-DP-vnj">
+                            <connections>
+                                <action selector="endLesson:" destination="hk8-vp-bzt" id="VAW-j6-fKV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -634,6 +642,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H1g-ax-ohf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="W2e-nk-n6u" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="9Br-AB-n7y">
+                    <connections>
+                        <action selector="hideWelcomeView:" destination="hk8-vp-bzt" id="Vz5-od-cvH"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1186" y="310"/>
         </scene>
@@ -646,13 +659,14 @@
                         <viewControllerLayoutGuide type="bottom" id="eli-ws-cZK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="C40-9F-qCA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tutorial" id="M6p-OZ-JFF">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Ila-Zi-Zp1"/>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tdm-4h-eWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

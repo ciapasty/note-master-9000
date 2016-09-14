@@ -90,7 +90,7 @@ class LessonCollectionViewController: UIViewController, UICollectionViewDataSour
 	}
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		self.performSegueWithIdentifier(Constants.ShowLessonSegueIdentifier, sender: lessons[indexPath.section][indexPath.row])
+		self.performSegueWithIdentifier(Constants.ShowLessonSegueIdentifier, sender: indexPath)
 	}
 
 	// MARK: UICollectionViewDelegateFlowLayout
@@ -127,26 +127,11 @@ class LessonCollectionViewController: UIViewController, UICollectionViewDataSour
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == Constants.ShowLessonSegueIdentifier {
 			if let lessonVC = segue.destinationViewController as? LessonViewController {
-				if let lesson = sender as? TutorialLesson {
-					lessonVC.tutorialLesson = lesson
-				} else if let lesson = sender as? NoteLesson {
-					lessonVC.noteLesson = lesson
-				}
+				lessonVC.lessonIndexPath = sender as? NSIndexPath
 			}
 		}
 	}
 	
 	@IBAction func backToLessonsView(segue: UIStoryboardSegue) {}
-	
-	// MARK: - Helper functions
-	
-	private func nextLessonIndexPath(indexPath: NSIndexPath) -> NSIndexPath? {
-		if lessons[indexPath.section].endIndex > indexPath.row+1 {
-			return NSIndexPath(forRow: indexPath.row+1, inSection: indexPath.section)
-		} else if lessons.endIndex > indexPath.section+1 {
-			return NSIndexPath(forRow: 0, inSection: indexPath.section+1)
-		} else {
-			return nil
-		}
-	}
+
 }

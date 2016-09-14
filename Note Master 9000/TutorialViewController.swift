@@ -14,7 +14,14 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 	
 	// MARK: Model
 	
-	var lesson: TutorialLesson?
+	var lesson: TutorialLesson? {
+		didSet {
+			if lesson != nil {
+				createPageViewController()
+				setupPageControl()
+			}
+		}
+	}
 	
 	// MARK: Constants
 	
@@ -28,13 +35,10 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		createPageViewController()
-		setupPageControl()
-	}
-	
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+		if lesson != nil {
+			createPageViewController()
+			setupPageControl()
+		}
 	}
 	
 	// MARK: PageViewController
@@ -58,9 +62,9 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
  
 	private func setupPageControl() {
 		let appearance = UIPageControl.appearance()
-		appearance.pageIndicatorTintColor = UIColor.grayColor()
-		appearance.currentPageIndicatorTintColor = UIColor.blackColor()
-		appearance.backgroundColor = UIColor.whiteColor()
+		appearance.pageIndicatorTintColor = ColorPalette.Asbestos
+		appearance.currentPageIndicatorTintColor = ColorPalette.MidnightBlue
+		appearance.backgroundColor = ColorPalette.Clouds
 	}
 	
 	// MARK: PageItemController
