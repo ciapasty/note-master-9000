@@ -12,6 +12,7 @@ class Lesson {
 	let index: Int
 	let title: String
 	let description: String
+	// TODO: Move clef only to NoteLesson
 	let clef: Clef
 	let color: UIColor
 	var complete: Bool = false
@@ -38,13 +39,31 @@ class NoteLesson: Lesson {
 }
 
 class TutorialLesson: Lesson {
-	let imageNames: [String]
-	let imageTexts: [String]
+	let pages: [TutorialPageContent]
 	
-	init(index: Int, title: String, description: String, clef: Clef, color: UIColor, images: [String], texts: [String]) {
-		self.imageNames = images
-		self.imageTexts = texts
+	init(index: Int, title: String, description: String, clef: Clef, color: UIColor, pages: [TutorialPageContent]) {
+		self.pages = pages
 		
 		super.init(index: index, title: title, description: description, clef: clef, color: color)
+	}
+}
+
+class TutorialPageContent {
+	let content: AnyObject?
+	let text: String
+	
+	init (content: AnyObject?, text: String) {
+		self.content = content
+		self.text = text
+	}
+}
+
+class NoteTutorial {
+	let clef: Clef?
+	let notesToDraw: [Note]
+	
+	init(clef: Clef?, notesToDraw: [Note]) {
+		self.clef = clef
+		self.notesToDraw = notesToDraw
 	}
 }

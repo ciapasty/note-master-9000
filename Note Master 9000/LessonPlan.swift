@@ -6,7 +6,7 @@
 //  Copyright © 2016 Mattijah. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // MARK: Lesson section names
 
@@ -16,6 +16,13 @@ let lessonsSections = [
 	"Basic Bass Clef",
 	"Advanced Bass Clef"]
 
+let testTutorialContent = [
+	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.N12]), text: "This is note G."),
+	TutorialPageContent(content: NoteTutorial(clef: Clef.bassClef, notesToDraw: [Note.N8]), text: "This is note F."),
+	TutorialPageContent(content: NoteTutorial(clef: nil, notesToDraw: [Note.N10, Note.N16]), text: "Some random text"),
+	TutorialPageContent(content: UIImage(named: "gup-vertical"), text: "This is a PUG")
+]
+
 // MARK: Lesson plan
 
 var lessons: [[Lesson]] = [
@@ -23,11 +30,10 @@ var lessons: [[Lesson]] = [
 		TutorialLesson(
 			index: 1,
 			title: "Tutorial",
-			description: "A simple tutorial screen",
+			description: "A simple tutorial test",
 			clef: Clef.trebleClef,
 			color: ColorPalette.PeterRiver,
-			images: ["trebleClef", "bassClef"],
-			texts: ["This is treble clef", "This is a bass clef"]),
+			pages: testTutorialContent),
 		NoteLesson(
 			index: 2,
 			title: "Basic",

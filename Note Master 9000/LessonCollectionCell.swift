@@ -10,15 +10,11 @@ import UIKit
 
 class LessonCollectionCell: UICollectionViewCell {
 	
-	// MARK: Properties
+	// MARK: Model
 	
-	var clef: Clef?
-	var color: UIColor?
 	var lesson: Lesson? {
 		didSet {
 			lessonTitle.text = lesson!.title
-			clef = lesson!.clef
-			color = lesson!.color
 			drawLessonMiniatureLayer(withCompletion: lesson!.complete)
 		}
 	}
@@ -52,13 +48,13 @@ class LessonCollectionCell: UICollectionViewCell {
 		    height: lessonImg.frame.height+Constants.LessonIconLayerHorizontalMargin)
 		
 		layer.borderWidth = Constants.LessonIconLayerBorderWidth
-		layer.borderColor = color!.CGColor
-		layer.backgroundColor = color!.colorWithAlphaComponent(Constants.LassonIconLayerBackgroundAlpha).CGColor
+		layer.borderColor = lesson!.color.CGColor
+		layer.backgroundColor = lesson!.color.colorWithAlphaComponent(Constants.LassonIconLayerBackgroundAlpha).CGColor
 		layer.cornerRadius = layer.frame.width/2
 		lessonTitle.textColor = ColorPalette.MidnightBlue
 		
 		imgLayer.frame = CGRect(origin: CGPointZero, size: lessonImg.frame.size)
-		imgLayer.contents = UIImage(named: clef!.rawValue+"_small")?.CGImage
+		imgLayer.contents = UIImage(named: lesson!.clef.rawValue+"_small")?.CGImage
 		imgLayer.contentsGravity = kCAGravityResizeAspect
 		
 		lessonImg.layer.addSublayer(layer)

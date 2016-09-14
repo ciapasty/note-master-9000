@@ -10,6 +10,8 @@ import UIKit
 
 class StaffDrawingView: UIView {
 	
+	// MARK: Constants
+	
 	private struct Constants {
 		static let NoteBodyLineWidth: CGFloat = 1.0
 		static let NoteStemLineWidth: CGFloat = 2.0
@@ -22,11 +24,20 @@ class StaffDrawingView: UIView {
 	
 	// MARK: Note Drawing
 	
-	func drawNote(note: Note){
-		self.layer.sublayers = nil
+	func drawNote(note: Note, withStem stem: Bool){
+		layer.sublayers = nil
+//		if layer.sublayers?.count > 1 {
+//			layer.sublayers?.popLast()
+//		}
+		let noteLayer = CALayer()
 		
-		self.layer.addSublayer(drawAddLines(note))
-		self.layer.addSublayer(drawNoteLayer(note, noteRect: getNoteRect(note), color: ColorPalette.MidnightBlue))
+		let noteRect = getNoteRect(note)
+		noteLayer.addSublayer(drawAddLines(note))
+		noteLayer.addSublayer(drawNoteLayer(note, noteRect: noteRect, color: ColorPalette.MidnightBlue))
+		if stem {
+			noteLayer.addSublayer(drawNoteStem(note, noteRect: noteRect, color: ColorPalette.MidnightBlue))
+		}
+		layer.addSublayer(noteLayer)
 	}
 	
 	private func drawNoteLayer(note: Note, noteRect: CGRect, color: UIColor) -> CALayer {
@@ -36,7 +47,7 @@ class StaffDrawingView: UIView {
 		var rotation:CATransform3D = noteLayer.transform
 		rotation = CATransform3DRotate(rotation, 0.4, 0.0, 0.0, -1.0)
 		noteLayer.transform = rotation
-		noteLayer.position = CGPointMake(self.frame.width*3/5, (self.frame.height*CGFloat(Double(note.rawValue)/20.0)))
+		noteLayer.position = CGPointMake(frame.width*3/5, (frame.height*CGFloat(Double(note.rawValue)/20.0)))
 		
 		noteLayer.path = notePath.CGPath
 		noteLayer.lineWidth = Constants.NoteBodyLineWidth
@@ -52,10 +63,10 @@ class StaffDrawingView: UIView {
 		
 		if note.rawValue < 10 {
 			noteStemPath.moveToPoint(CGPointMake(noteRect.origin.x+1.5, noteRect.origin.y+noteRect.height/1.5))
-			noteStemPath.addLineToPoint(CGPointMake(noteRect.origin.x+1.5, (noteRect.origin.y+noteRect.height/1.5)+(self.frame.height*3.4/10)))
+			noteStemPath.addLineToPoint(CGPointMake(noteRect.origin.x+1.5, (noteRect.origin.y+noteRect.height/1.5)+(frame.height*3.4/10)))
 		} else {
 			noteStemPath.moveToPoint(CGPointMake(noteRect.origin.x+noteRect.width-1.5, noteRect.origin.y+noteRect.height/2.5))
-			noteStemPath.addLineToPoint(CGPointMake(noteRect.origin.x+noteRect.width-1.5, (noteRect.origin.y+noteRect.height/2.5)-(self.frame.height*3.4/10)))
+			noteStemPath.addLineToPoint(CGPointMake(noteRect.origin.x+noteRect.width-1.5, (noteRect.origin.y+noteRect.height/2.5)-(frame.height*3.4/10)))
 		}
 		
 		noteStemLayer.path = noteStemPath.CGPath
@@ -67,26 +78,26 @@ class StaffDrawingView: UIView {
 	
 	private func drawAddLines(note : Note) -> CALayer {
 
-		let lineStart = self.frame.width/2
-		let lineEnd = self.frame.width*7/10
+		let lineStart = frame.width/2
+		let lineEnd = frame.width*7/10
 		let linePath = UIBezierPath()
 		let lineLayer = CAShapeLayer()
 		
 		if note.rawValue < 5 {
-			linePath.moveToPoint(CGPointMake(lineStart, self.frame.height*2/10))
-			linePath.addLineToPoint(CGPointMake(lineEnd, self.frame.height*2/10))
+			linePath.moveToPoint(CGPointMake(lineStart, frame.height*2/10))
+			linePath.addLineToPoint(CGPointMake(lineEnd, frame.height*2/10))
 			if note.rawValue < 3 {
-				linePath.moveToPoint(CGPointMake(lineStart, self.frame.height/10))
-				linePath.addLineToPoint(CGPointMake(lineEnd, self.frame.height/10.0))
+				linePath.moveToPoint(CGPointMake(lineStart, frame.height/10))
+				linePath.addLineToPoint(CGPointMake(lineEnd, frame.height/10.0))
 			}
 		}
 		
 		if note.rawValue > 15 {
-			linePath.moveToPoint(CGPointMake(lineStart, self.frame.height*8/10))
-			linePath.addLineToPoint(CGPointMake(lineEnd, self.frame.height*8/10))
+			linePath.moveToPoint(CGPointMake(lineStart, frame.height*8/10))
+			linePath.addLineToPoint(CGPointMake(lineEnd, frame.height*8/10))
 			if note.rawValue > 17 {
-				linePath.moveToPoint(CGPointMake(lineStart, self.frame.height*9/10))
-				linePath.addLineToPoint(CGPointMake(lineEnd, self.frame.height*9/10))
+				linePath.moveToPoint(CGPointMake(lineStart, frame.height*9/10))
+				linePath.addLineToPoint(CGPointMake(lineEnd, frame.height*9/10))
 			}
 		}
 		
@@ -98,11 +109,11 @@ class StaffDrawingView: UIView {
 	}
 	
 	private func getNoteRect(note: Note) -> CGRect {
-		let noteHeight = self.frame.height/12
+		let noteHeight = frame.height/12
 		let noteWidth = noteHeight*1.5
 		let noteRect = CGRect(
-			x: (self.frame.width*3/5)-(noteWidth/2),
-			y: (self.frame.height*CGFloat(Double(note.rawValue)/20.0))-(noteHeight/2),
+			x: (frame.width*3/5)-(noteWidth/2),
+			y: (frame.height*CGFloat(Double(note.rawValue)/20.0))-(noteHeight/2),
 			width: noteWidth, height: noteHeight)
 		return noteRect
 	}
@@ -112,7 +123,7 @@ class StaffDrawingView: UIView {
 	func drawGhostNote(note: Note, progress: Float) {
 		let layer = CALayer()
 		
-		layer.frame = self.frame
+		layer.frame = frame
 		
 		layer.addSublayer(drawNoteLayer(note, noteRect: getNoteRect(note), color: ColorPalette.Nephritis.colorWithAlphaComponent(0.7)))
 		layer.addSublayer(drawNoteStem(note, noteRect: getNoteRect(note), color: ColorPalette.Nephritis.colorWithAlphaComponent(0.7)))
@@ -136,11 +147,11 @@ class StaffDrawingView: UIView {
 	
 	private func drawGhostPath(progress: Float) -> UIBezierPath {
 		//let layer = CAShapeLayer()
-		let bezierStart = CGPoint(x: self.frame.width/2,
-		                          y: self.frame.height/2)
-		let bezierEnd = CGPoint(x: self.frame.width*CGFloat(progress),
+		let bezierStart = CGPoint(x: frame.width/2,
+		                          y: frame.height/2)
+		let bezierEnd = CGPoint(x: frame.width*CGFloat(progress),
 		                        y: 0)
-		let control = CGPoint(x: self.frame.width/2, y: 0)
+		let control = CGPoint(x: frame.width/2, y: 0)
 		let path = UIBezierPath()
 		
 		path.moveToPoint(bezierStart)
@@ -152,11 +163,14 @@ class StaffDrawingView: UIView {
 	// MARK: Staff Drawing
 	
 	func drawStaff(withClef clef: Clef?, animated anim: Bool) {
-		self.layer.sublayers = nil
-		self.layer.addSublayer(drawStaffLayer(anim))
+		layer.sublayers = nil
+		let staffLayer = CALayer()
+		staffLayer.sublayers = nil
+		staffLayer.addSublayer(drawStaffLayer(anim))
 		if (clef != nil) {
-			self.layer.addSublayer(drawClefLayer(clef!))
+			staffLayer.addSublayer(drawClefLayer(clef!))
 		}
+		layer.addSublayer(staffLayer)
 	}
 	
 	private func drawStaffLayer(animated: Bool) -> CALayer {
@@ -169,8 +183,8 @@ class StaffDrawingView: UIView {
 		
 		// Horizontal lines
 		for i in 3...7 {
-			staffPathH.moveToPoint(CGPointMake(self.frame.width/20, self.frame.height*CGFloat(Double(i)/10.0)))
-			staffPathH.addLineToPoint(CGPointMake(self.frame.width*19/20, self.frame.height*CGFloat(Double(i)/10.0)))
+			staffPathH.moveToPoint(CGPointMake(frame.width/20, frame.height*CGFloat(Double(i)/10.0)))
+			staffPathH.addLineToPoint(CGPointMake(frame.width*19/20, frame.height*CGFloat(Double(i)/10.0)))
 		}
 		
 		staffLayerH.path = staffPathH.CGPath
@@ -189,8 +203,8 @@ class StaffDrawingView: UIView {
 		}
 		
 		// Vertical line
-		staffPathV.moveToPoint(CGPointMake(self.frame.width/20, self.frame.height*3/10-0.5))
-		staffPathV.addLineToPoint(CGPointMake(self.frame.width/20, self.frame.height*7/10+0.5))
+		staffPathV.moveToPoint(CGPointMake(frame.width/20, frame.height*3/10-0.5))
+		staffPathV.addLineToPoint(CGPointMake(frame.width/20, frame.height*7/10+0.5))
 		
 		staffLayerV.path = staffPathV.CGPath
 		staffLayerV.lineWidth = Constants.StaffVerticalLinesWidth
@@ -215,9 +229,9 @@ class StaffDrawingView: UIView {
 	private func drawClefLayer (clef: Clef) -> CALayer {
 		let clefLayer = CALayer()
 		
-		let height = CGFloat(self.frame.height*0.68)
-		let posX = CGFloat(self.frame.width*0.05)
-		let posY = CGFloat(5+(self.frame.height-height)/2)
+		let height = CGFloat(frame.height*0.68)
+		let posX = CGFloat(frame.width*0.05)
+		let posY = CGFloat(5+(frame.height-height)/2)
 		
 		clefLayer.frame = CGRect(x: posX, y: posY, width: height*0.48, height: height)
 		clefLayer.contents = UIImage(named: clef.rawValue)?.CGImage
