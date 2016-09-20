@@ -58,7 +58,7 @@ class TutorialStaffDrawingView: StaffDrawingView {
 	
 	private func setupImageView() {
 		imageView.frame = bounds
-		imageView.contentMode = .ScaleAspectFit
+		imageView.contentMode = .scaleAspectFit
 		imageView.image = image
 		self.addSubview(imageView)
 	}

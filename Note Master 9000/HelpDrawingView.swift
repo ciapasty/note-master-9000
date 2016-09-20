@@ -22,7 +22,7 @@ class HelpDrawingView: UIView {
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)!
 		
-		backgroundColor = ColorPalette.Clouds.colorWithAlphaComponent(0.5)
+		backgroundColor = ColorPalette.Clouds.withAlphaComponent(0.5)
 	}
 	
 	/*
@@ -35,7 +35,7 @@ class HelpDrawingView: UIView {
 	
 	// MARK: Drawing
 	
-	func drawHelp(clef: Clef) {
+	func drawHelp(_ clef: Clef) {
 		
 		let letterFrame = CGRect(x: self.bounds.origin.x,
 		                         y: self.bounds.origin.y,
@@ -49,9 +49,9 @@ class HelpDrawingView: UIView {
 			let layer = CATextLayer()
 			
 			layer.frame = letterFrame
-			layer.contentsScale = UIScreen.mainScreen().scale
+			layer.contentsScale = UIScreen.main.scale
 			layer.alignmentMode = kCAAlignmentCenter
-			layer.font = UIFont.systemFontOfSize(1, weight: UIFontWeightLight)
+			layer.font = UIFont.systemFont(ofSize: 1, weight: UIFontWeightLight)
 			layer.fontSize = self.frame.height/10
 			
 			if clef == Clef.trebleClef {
@@ -60,7 +60,7 @@ class HelpDrawingView: UIView {
 				layer.string = Constants.BassClefNoteNames[i-6]
 			}
 			
-			layer.foregroundColor = ColorPalette.MidnightBlue.CGColor
+			layer.foregroundColor = ColorPalette.MidnightBlue.cgColor
 			
 			if i % 2 == 0 {
 				layer.position = CGPoint(x: helpOrigin.x,

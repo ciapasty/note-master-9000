@@ -40,17 +40,18 @@ class LessonCollectionViewController: UIViewController, UICollectionViewDataSour
 		collectionView!.dataSource = self
 		collectionView!.delegate = self
 		
-		cellHeight = round(UIScreen.mainScreen().bounds.height/Constants.LessonCellToScreenHeightRatio)
+		cellHeight = round(UIScreen.main.bounds.height/Constants.LessonCellToScreenHeightRatio)
 		cellSize = CGSize(width: cellHeight, height: cellHeight)
 		
 		lessons[3][0].complete = true
 		lessons[3][1].complete = true
     }
 	
-	override func viewWillAppear(animated: Bool) {
-		// MARK: navigationBar setup
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		// MARK: TODO navigationBar setup -> move to separate method
 		let nav = self.navigationController?.navigationBar
-		nav?.barStyle = UIBarStyle.Default
+		nav?.barStyle = UIBarStyle.default
 		nav?.barTintColor = ColorPalette.Clouds
 		nav?.tintColor = ColorPalette.MidnightBlue
 		nav?.titleTextAttributes = [NSForegroundColorAttributeName: ColorPalette.MidnightBlue]
@@ -62,44 +63,44 @@ class LessonCollectionViewController: UIViewController, UICollectionViewDataSour
 
     // MARK: - UICollectionView
 
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return lessons.count
     }
 
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return lessons[section].count
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.LessonCellIdentifier, forIndexPath: indexPath) as! LessonCollectionCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.LessonCellIdentifier, for: indexPath) as! LessonCollectionCell
 		
 		cell.lesson = lessons[indexPath.section][indexPath.row] as Lesson
 		
         return cell
     }
 	
-	func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-		let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: Constants.SectionHeaderIdentifier, forIndexPath: indexPath) as! LessonCollectionHeader
+	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Constants.SectionHeaderIdentifier, for: indexPath) as! LessonCollectionHeader
 		
 		header.sectionTitle.textColor = ColorPalette.MidnightBlue
 		header.sectionTitle.text = lessonsSections[indexPath.section]
 		return header
 	}
 	
-	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		self.performSegueWithIdentifier(Constants.ShowLessonSegueIdentifier, sender: indexPath)
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		self.performSegue(withIdentifier: Constants.ShowLessonSegueIdentifier, sender: indexPath)
 	}
 
 	// MARK: UICollectionViewDelegateFlowLayout
 	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 		
 		let spaceLeft: CGFloat
 		
-		let scWidth = UIScreen.mainScreen().bounds.width
+		let scWidth = UIScreen.main.bounds.width
 		let itemCount = CGFloat(lessons[section].count)
 		
 		if itemCount <= 3 {
@@ -114,24 +115,24 @@ class LessonCollectionViewController: UIViewController, UICollectionViewDataSour
 		                    right: spaceLeft/2)
 	}
 	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		return cellSize
 	}
 	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
 		return Constants.LessonCellMinimumInteritemSpacing
 	}
 	
 	// MARK: - Navigation
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == Constants.ShowLessonSegueIdentifier {
-			if let lessonVC = segue.destinationViewController as? LessonViewController {
-				lessonVC.lessonIndexPath = sender as? NSIndexPath
+			if let lessonVC = segue.destination as? LessonViewController {
+				lessonVC.lessonIndexPath = sender as? IndexPath
 			}
 		}
 	}
 	
-	@IBAction func backToLessonsView(segue: UIStoryboardSegue) {}
+	@IBAction func backToLessonsView(_ segue: UIStoryboardSegue) {}
 
 }

@@ -77,19 +77,19 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		setupViews()
 	}
 	
-	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+	override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
 		staffDrawingView.drawStaff(withClef: nil, animated: false)
 		drawNewNote(withDelay: 0, animated: false)
 	}
 	
 	// MARK: - Button/view touches
 	
-	@IBAction func tapOnNoteView(sender: UITapGestureRecognizer) {
+	@IBAction func tapOnNoteView(_ sender: UITapGestureRecognizer) {
 		if helpVisible {
 			hideHelpAnimation()
 		} else {
 			loadFileIntoAVPlayer(noteNameDict[currentNote!]!)
-			if avPlayer.playing {
+			if avPlayer.isPlaying {
 				stopAVPLayer()
 				loadFileIntoAVPlayer(noteNameDict[currentNote!]!)
 				startAVPlayer()
@@ -101,26 +101,26 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 	
-	@IBAction func swipeForHelp(sender: UISwipeGestureRecognizer) {
-		if sender.direction == .Left {
+	@IBAction func swipeForHelp(_ sender: UISwipeGestureRecognizer) {
+		if sender.direction == .left {
 			if !helpVisible {
 				showHelpAnimation()
 			}
-		} else if sender.direction == .Right {
+		} else if sender.direction == .right {
 			if helpVisible {
 				hideHelpAnimation()
 			}
 		}
 	}
 	
-	@IBAction func onNoteButton(sender: UIButton) {
+	@IBAction func onNoteButton(_ sender: UIButton) {
 		noteButtonsEnabled(false)
 		
 		if (currentNote!.rawValue % 7) == noteNameValueDict[sender.titleLabel!.text!] {
 			
 			staffDrawingView.drawGhostNote(currentNote!, progress: progressBar.progress)
 			currentProgress += 1.0/Float(requiredCorrectNotes)
-			NSTimer.scheduledTimerWithTimeInterval(0.45, target: self, selector: #selector(BasicClefViewController.addProgress), userInfo: nil, repeats: false)
+			Timer.scheduledTimer(timeInterval: 0.45, target: self, selector: #selector(BasicClefViewController.addProgress), userInfo: nil, repeats: false)
 			
 			if currentProgress < 1.0 {
 				previousNote = currentNote
@@ -138,11 +138,11 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	// MARK: - Audio player
 	
-	private func loadFileIntoAVPlayer(note: String) {
-		let fileURL:NSURL = NSBundle.mainBundle().URLForResource(note, withExtension: "wav", subdirectory: "Audio")!
+	private func loadFileIntoAVPlayer(_ note: String) {
+		let fileURL:URL = Bundle.main.url(forResource: note, withExtension: "wav", subdirectory: "Audio")!
 		
 		do {
-			self.avPlayer = try AVAudioPlayer(contentsOfURL: fileURL)
+			self.avPlayer = try AVAudioPlayer(contentsOf: fileURL)
 		} catch {
 			print("Could not create AVAudioPlayer")
 		}
@@ -158,13 +158,13 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	}
 	
 	private func stopAVPLayer() {
-		if avPlayer.playing {
+		if avPlayer.isPlaying {
 			avPlayer.stop()
 		}
 	}
 	
 	private func toggleAVPlayer() {
-		if avPlayer.playing {
+		if avPlayer.isPlaying {
 			avPlayer.pause()
 		} else {
 			avPlayer.play()
@@ -173,11 +173,11 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	// MARK: AVAudioPlayerDelegate
 	
-	func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
 		//print("Finished playing \(flag)")
 	}
 	
-	func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?) {
+	func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
 		//print("\(error!.localizedDescription)")
 	}
 	
@@ -185,11 +185,11 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	private func setupViews() {
 		for button in noteButtons {
-			button.setTitleColor(ColorPalette.MidnightBlue, forState: .Normal)
+			button.setTitleColor(ColorPalette.MidnightBlue, for: UIControlState())
 		}
 		
 		progressBar.progressTintColor = ColorPalette.Nephritis
-		progressBar.trackTintColor = UIColor.clearColor()
+		progressBar.trackTintColor = UIColor.clear
 		progressBar.progress = 0
 		
 		view.backgroundColor = ColorPalette.Clouds
@@ -216,14 +216,14 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 	
-	private func setupStaffView(clef: Clef) {
-		clefImageView.image = UIImage(named: clef.rawValue)?.imageWithRenderingMode(.AlwaysTemplate)
+	private func setupStaffView(_ clef: Clef) {
+		clefImageView.image = UIImage(named: clef.rawValue)?.withRenderingMode(.alwaysTemplate)
 		clefImageView.tintColor = ColorPalette.MidnightBlue
 	}
 	
 	// MARK: - Helper methods
 	
-	private func drawNewNote(withDelay delay: NSTimeInterval, animated: Bool) {
+	private func drawNewNote(withDelay delay: TimeInterval, animated: Bool) {
 		stemDrawingView.setupStem(currentNote!, animated: animated)
 		notesDrawingView.drawNote(currentNote!, withStem: false)
 		if animated {
@@ -231,7 +231,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 	
-	private func randomNoteInRange(range: (min: Int, max: Int), gauss: Bool) -> Note {
+	private func randomNoteInRange(_ range: (min: Int, max: Int), gauss: Bool) -> Note {
 		var note: Note
 		if gauss {
 			let noteInRange = GKGaussianDistribution(randomSource: randSource, lowestValue: range.min, highestValue: range.max+1)
@@ -247,15 +247,15 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 	
-	private func noteButtonsEnabled(enabled: Bool) {
+	private func noteButtonsEnabled(_ enabled: Bool) {
 		for button in noteButtons {
-			button.enabled = enabled
+			button.isEnabled = enabled
 		}
 	}
 	
 	func addProgress() { // can't be private if set as selector
 		progressBar.setProgress(currentProgress, animated: true)
-		staffDrawingView.layer.sublayers?.popLast()
+		let _ = staffDrawingView.layer.sublayers?.popLast()
 		
 		noteButtonsEnabled(true)
 	}
@@ -264,7 +264,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		lesson!.complete = true
 		
 		noteButtonsEnabled(false)
-		notesDrawingView.userInteractionEnabled = false
+		notesDrawingView.isUserInteractionEnabled = false
 		notesDrawingView.layer.sublayers = nil
 		stemDrawingView.layer.sublayers = nil
 		
@@ -281,7 +281,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		
 		noteButtonsEnabled(false)
 		
-		UIView.animateWithDuration(Constants.BasicAnimationDuration, delay: 0.0, usingSpringWithDamping: Constants.WrongAnimationDamping, initialSpringVelocity: Constants.WrongAnimationVelocity, options: [], animations: {
+		UIView.animate(withDuration: Constants.BasicAnimationDuration, delay: 0.0, usingSpringWithDamping: Constants.WrongAnimationDamping, initialSpringVelocity: Constants.WrongAnimationVelocity, options: [], animations: {
 			self.notesDrawingView.center.x -= Constants.WrongAnimationOffset
 			self.stemDrawingView.center.x -= Constants.WrongAnimationOffset
 			self.staffDrawingView.center.x -= Constants.WrongAnimationOffset
@@ -293,7 +293,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	private func showHelpAnimation() {
 		 if !helpVisible {
-			UIView.animateWithDuration(Constants.BasicAnimationDuration, animations: {
+			UIView.animate(withDuration: Constants.BasicAnimationDuration, animations: {
 				self.helpDrawingView.alpha = 1.0
 				self.helpDrawingView.center.x -= self.helpDrawingView.frame.width
 				self.helpVisible = true
@@ -303,7 +303,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	private func hideHelpAnimation() {
 		if helpVisible {
-			UIView.animateWithDuration(Constants.BasicAnimationDuration, animations: {
+			UIView.animate(withDuration: Constants.BasicAnimationDuration, animations: {
 				self.helpDrawingView.alpha = 0.0
 				self.helpDrawingView.center.x += self.helpDrawingView.frame.width
 				self.helpVisible = false
@@ -311,10 +311,10 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 	
-	private func noteSlideAnimation(delay: NSTimeInterval) {
+	private func noteSlideAnimation(_ delay: TimeInterval) {
 		notesDrawingView.center.x += self.view.bounds.width
 		stemDrawingView.center.x += self.view.bounds.width
-		UIView.animateWithDuration(Constants.BasicAnimationDuration/2, delay: delay, options: [.CurveEaseIn], animations: {
+		UIView.animate(withDuration: Constants.BasicAnimationDuration/2, delay: delay, options: [.curveEaseIn], animations: {
 			self.notesDrawingView.center.x -= self.view.bounds.width
 			self.stemDrawingView.center.x -= self.view.bounds.width
 			}, completion: { finished in
@@ -326,7 +326,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		stemDrawingView.animateNoteStem()
 		notesDrawingView.center.x += Constants.NoteVibrateAnimationOffset
 		stemDrawingView.center.x += Constants.NoteVibrateAnimationOffset
-		UIView.animateWithDuration(Constants.BasicAnimationDuration, delay: 0.0, usingSpringWithDamping: Constants.NoteVibrateAnimationDamping, initialSpringVelocity: Constants.NoteVibrateAnimationVelocity, options: [], animations: { () -> Void in
+		UIView.animate(withDuration: Constants.BasicAnimationDuration, delay: 0.0, usingSpringWithDamping: Constants.NoteVibrateAnimationDamping, initialSpringVelocity: Constants.NoteVibrateAnimationVelocity, options: [], animations: { () -> Void in
 			self.notesDrawingView.center.x -= Constants.NoteVibrateAnimationOffset
 			self.stemDrawingView.center.x -= Constants.NoteVibrateAnimationOffset
 			}, completion: nil)
@@ -344,7 +344,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		//Clef ImageView Animation
 		staffDrawingView.drawStaff(withClef: nil, animated: true)
 		clefImageView.center.x += self.view.bounds.width
-		UIView.animateWithDuration(Constants.BasicAnimationDuration, delay: Constants.ButtonAnimationStartDelay+0.1, usingSpringWithDamping: Constants.ClefAnimationDamping, initialSpringVelocity: Constants.ButtonAnimationVelocity, options: [], animations: {
+		UIView.animate(withDuration: Constants.BasicAnimationDuration, delay: Constants.ButtonAnimationStartDelay+0.1, usingSpringWithDamping: Constants.ClefAnimationDamping, initialSpringVelocity: Constants.ButtonAnimationVelocity, options: [], animations: {
 			self.clefImageView.center.x -= self.view.bounds.width
 			}, completion: nil)
 		
@@ -352,9 +352,9 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		drawNewNote(withDelay: Constants.ButtonAnimationStartDelay+0.3, animated: true)
 	}
 	
-	private func animateButton(button: UIButton, withDuration duration: Double, andDelay delay: Double) {
+	private func animateButton(_ button: UIButton, withDuration duration: Double, andDelay delay: Double) {
 		button.center.y += self.view.bounds.height/2
-		UIView.animateWithDuration(duration, delay: delay, usingSpringWithDamping: Constants.ButtonAnimationDamping, initialSpringVelocity: Constants.ButtonAnimationVelocity, options: [], animations: {
+		UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: Constants.ButtonAnimationDamping, initialSpringVelocity: Constants.ButtonAnimationVelocity, options: [], animations: {
 			button.center.y -= self.view.bounds.height/2
 			}, completion: nil)
 	}

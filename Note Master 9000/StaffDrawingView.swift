@@ -24,7 +24,7 @@ class StaffDrawingView: UIView {
 	
 	// MARK: Note Drawing
 	
-	func drawNote(note: Note, withStem stem: Bool){
+	func drawNote(_ note: Note, withStem stem: Bool){
 		layer.sublayers = nil
 //		if layer.sublayers?.count > 1 {
 //			layer.sublayers?.popLast()
@@ -40,43 +40,43 @@ class StaffDrawingView: UIView {
 		layer.addSublayer(noteLayer)
 	}
 	
-	private func drawNoteLayer(note: Note, noteRect: CGRect, color: UIColor) -> CALayer {
-		let notePath = UIBezierPath(ovalInRect: CGRect(x: 0-noteRect.width/2, y: 0-noteRect.height/2, width: noteRect.width, height: noteRect.height))
+	private func drawNoteLayer(_ note: Note, noteRect: CGRect, color: UIColor) -> CALayer {
+		let notePath = UIBezierPath(ovalIn: CGRect(x: 0-noteRect.width/2, y: 0-noteRect.height/2, width: noteRect.width, height: noteRect.height))
 		let noteLayer = CAShapeLayer()
 		
 		var rotation:CATransform3D = noteLayer.transform
 		rotation = CATransform3DRotate(rotation, 0.4, 0.0, 0.0, -1.0)
 		noteLayer.transform = rotation
-		noteLayer.position = CGPointMake(frame.width*3/5, (frame.height*CGFloat(Double(note.rawValue)/20.0)))
+		noteLayer.position = CGPoint(x: frame.width*3/5, y: (frame.height*CGFloat(Double(note.rawValue)/20.0)))
 		
-		noteLayer.path = notePath.CGPath
+		noteLayer.path = notePath.cgPath
 		noteLayer.lineWidth = Constants.NoteBodyLineWidth
-		noteLayer.strokeColor = color.CGColor
-		noteLayer.fillColor = color.CGColor
+		noteLayer.strokeColor = color.cgColor
+		noteLayer.fillColor = color.cgColor
 		
 		return noteLayer
 	}
 	
-	private func drawNoteStem(note: Note, noteRect: CGRect, color: UIColor) -> CALayer {
+	private func drawNoteStem(_ note: Note, noteRect: CGRect, color: UIColor) -> CALayer {
 		let noteStemPath = UIBezierPath()
 		let noteStemLayer = CAShapeLayer()
 		
 		if note.rawValue < 10 {
-			noteStemPath.moveToPoint(CGPointMake(noteRect.origin.x+1.5, noteRect.origin.y+noteRect.height/1.5))
-			noteStemPath.addLineToPoint(CGPointMake(noteRect.origin.x+1.5, (noteRect.origin.y+noteRect.height/1.5)+(frame.height*3.4/10)))
+			noteStemPath.move(to: CGPoint(x: noteRect.origin.x+1.5, y: noteRect.origin.y+noteRect.height/1.5))
+			noteStemPath.addLine(to: CGPoint(x: noteRect.origin.x+1.5, y: (noteRect.origin.y+noteRect.height/1.5)+(frame.height*3.4/10)))
 		} else {
-			noteStemPath.moveToPoint(CGPointMake(noteRect.origin.x+noteRect.width-1.5, noteRect.origin.y+noteRect.height/2.5))
-			noteStemPath.addLineToPoint(CGPointMake(noteRect.origin.x+noteRect.width-1.5, (noteRect.origin.y+noteRect.height/2.5)-(frame.height*3.4/10)))
+			noteStemPath.move(to: CGPoint(x: noteRect.origin.x+noteRect.width-1.5, y: noteRect.origin.y+noteRect.height/2.5))
+			noteStemPath.addLine(to: CGPoint(x: noteRect.origin.x+noteRect.width-1.5, y: (noteRect.origin.y+noteRect.height/2.5)-(frame.height*3.4/10)))
 		}
 		
-		noteStemLayer.path = noteStemPath.CGPath
+		noteStemLayer.path = noteStemPath.cgPath
 		noteStemLayer.lineWidth = Constants.NoteStemLineWidth
-		noteStemLayer.strokeColor = color.CGColor
+		noteStemLayer.strokeColor = color.cgColor
 		
 		return noteStemLayer
 	}
 	
-	private func drawAddLines(note : Note) -> CALayer {
+	private func drawAddLines(_ note : Note) -> CALayer {
 
 		let lineStart = frame.width/2
 		let lineEnd = frame.width*7/10
@@ -84,31 +84,31 @@ class StaffDrawingView: UIView {
 		let lineLayer = CAShapeLayer()
 		
 		if note.rawValue < 5 {
-			linePath.moveToPoint(CGPointMake(lineStart, frame.height*2/10))
-			linePath.addLineToPoint(CGPointMake(lineEnd, frame.height*2/10))
+			linePath.move(to: CGPoint(x: lineStart, y: frame.height*2/10))
+			linePath.addLine(to: CGPoint(x: lineEnd, y: frame.height*2/10))
 			if note.rawValue < 3 {
-				linePath.moveToPoint(CGPointMake(lineStart, frame.height/10))
-				linePath.addLineToPoint(CGPointMake(lineEnd, frame.height/10.0))
+				linePath.move(to: CGPoint(x: lineStart, y: frame.height/10))
+				linePath.addLine(to: CGPoint(x: lineEnd, y: frame.height/10.0))
 			}
 		}
 		
 		if note.rawValue > 15 {
-			linePath.moveToPoint(CGPointMake(lineStart, frame.height*8/10))
-			linePath.addLineToPoint(CGPointMake(lineEnd, frame.height*8/10))
+			linePath.move(to: CGPoint(x: lineStart, y: frame.height*8/10))
+			linePath.addLine(to: CGPoint(x: lineEnd, y: frame.height*8/10))
 			if note.rawValue > 17 {
-				linePath.moveToPoint(CGPointMake(lineStart, frame.height*9/10))
-				linePath.addLineToPoint(CGPointMake(lineEnd, frame.height*9/10))
+				linePath.move(to: CGPoint(x: lineStart, y: frame.height*9/10))
+				linePath.addLine(to: CGPoint(x: lineEnd, y: frame.height*9/10))
 			}
 		}
 		
-		lineLayer.path = linePath.CGPath
+		lineLayer.path = linePath.cgPath
 		lineLayer.lineWidth = Constants.StaffHorizontalLinesWidth
-		lineLayer.strokeColor = ColorPalette.MidnightBlue.CGColor
+		lineLayer.strokeColor = ColorPalette.MidnightBlue.cgColor
 		return lineLayer
 		
 	}
 	
-	private func getNoteRect(note: Note) -> CGRect {
+	private func getNoteRect(_ note: Note) -> CGRect {
 		let noteHeight = frame.height/12
 		let noteWidth = noteHeight*1.5
 		let noteRect = CGRect(
@@ -120,32 +120,32 @@ class StaffDrawingView: UIView {
 	
 	// MARK: Ghost note drawing
 	
-	func drawGhostNote(note: Note, progress: Float) {
+	func drawGhostNote(_ note: Note, progress: Float) {
 		let layer = CALayer()
 		
 		layer.frame = frame
 		
-		layer.addSublayer(drawNoteLayer(note, noteRect: getNoteRect(note), color: ColorPalette.Nephritis.colorWithAlphaComponent(0.7)))
-		layer.addSublayer(drawNoteStem(note, noteRect: getNoteRect(note), color: ColorPalette.Nephritis.colorWithAlphaComponent(0.7)))
+		layer.addSublayer(drawNoteLayer(note, noteRect: getNoteRect(note), color: ColorPalette.Nephritis.withAlphaComponent(0.7)))
+		layer.addSublayer(drawNoteStem(note, noteRect: getNoteRect(note), color: ColorPalette.Nephritis.withAlphaComponent(0.7)))
 		
 		self.layer.addSublayer(layer)
 		
 		let anim = CAKeyframeAnimation(keyPath: "position")
-		anim.path = drawGhostPath(progress).CGPath
+		anim.path = drawGhostPath(progress).cgPath
 		anim.duration = Constants.GhostNoteAnimationDuration
 		
 		var scaling:CATransform3D = layer.transform
 		scaling = CATransform3DScale(scaling, 0.01, 0.01, 1.0)
 		let scale = CABasicAnimation(keyPath: "transform")
 		scale.duration = Constants.GhostNoteAnimationDuration
-		scale.toValue = NSValue.init(CATransform3D: scaling)
+		scale.toValue = NSValue.init(caTransform3D: scaling)
 		
-		layer.addAnimation(scale, forKey: "transformAnimation")
-		layer.addAnimation(anim, forKey: "animate position along path")
+		layer.add(scale, forKey: "transformAnimation")
+		layer.add(anim, forKey: "animate position along path")
 		
 	}
 	
-	private func drawGhostPath(progress: Float) -> UIBezierPath {
+	private func drawGhostPath(_ progress: Float) -> UIBezierPath {
 		//let layer = CAShapeLayer()
 		let bezierStart = CGPoint(x: frame.width/2,
 		                          y: frame.height/2)
@@ -154,8 +154,8 @@ class StaffDrawingView: UIView {
 		let control = CGPoint(x: frame.width/2, y: 0)
 		let path = UIBezierPath()
 		
-		path.moveToPoint(bezierStart)
-		path.addQuadCurveToPoint(bezierEnd, controlPoint: control)
+		path.move(to: bezierStart)
+		path.addQuadCurve(to: bezierEnd, controlPoint: control)
 		
 		return path
 	}
@@ -173,7 +173,7 @@ class StaffDrawingView: UIView {
 		layer.addSublayer(staffLayer)
 	}
 	
-	private func drawStaffLayer(animated: Bool) -> CALayer {
+	private func drawStaffLayer(_ animated: Bool) -> CALayer {
 		
 		let staffPathH = UIBezierPath()
 		let staffPathV = UIBezierPath()
@@ -183,13 +183,13 @@ class StaffDrawingView: UIView {
 		
 		// Horizontal lines
 		for i in 3...7 {
-			staffPathH.moveToPoint(CGPointMake(frame.width/20, frame.height*CGFloat(Double(i)/10.0)))
-			staffPathH.addLineToPoint(CGPointMake(frame.width*19/20, frame.height*CGFloat(Double(i)/10.0)))
+			staffPathH.move(to: CGPoint(x: frame.width/20, y: frame.height*CGFloat(Double(i)/10.0)))
+			staffPathH.addLine(to: CGPoint(x: frame.width*19/20, y: frame.height*CGFloat(Double(i)/10.0)))
 		}
 		
-		staffLayerH.path = staffPathH.CGPath
+		staffLayerH.path = staffPathH.cgPath
 		staffLayerH.lineWidth = Constants.StaffHorizontalLinesWidth
-		staffLayerH.strokeColor = ColorPalette.MidnightBlue.CGColor
+		staffLayerH.strokeColor = ColorPalette.MidnightBlue.cgColor
 		
 		staffLayer.addSublayer(staffLayerH)
 		
@@ -199,16 +199,16 @@ class StaffDrawingView: UIView {
 			animateHorizontal.duration = Constants.StaffHorizontalLinesAnimationDuration
 			animateHorizontal.fromValue = 0.0
 			animateHorizontal.toValue = 1.0
-			staffLayerH.addAnimation(animateHorizontal, forKey: "animate stroke end animation")
+			staffLayerH.add(animateHorizontal, forKey: "animate stroke end animation")
 		}
 		
 		// Vertical line
-		staffPathV.moveToPoint(CGPointMake(frame.width/20, frame.height*3/10-0.5))
-		staffPathV.addLineToPoint(CGPointMake(frame.width/20, frame.height*7/10+0.5))
+		staffPathV.move(to: CGPoint(x: frame.width/20, y: frame.height*3/10-0.5))
+		staffPathV.addLine(to: CGPoint(x: frame.width/20, y: frame.height*7/10+0.5))
 		
-		staffLayerV.path = staffPathV.CGPath
+		staffLayerV.path = staffPathV.cgPath
 		staffLayerV.lineWidth = Constants.StaffVerticalLinesWidth
-		staffLayerV.strokeColor = ColorPalette.MidnightBlue.CGColor
+		staffLayerV.strokeColor = ColorPalette.MidnightBlue.cgColor
 		
 		staffLayer.addSublayer(staffLayerV)
 		
@@ -218,7 +218,7 @@ class StaffDrawingView: UIView {
 			animateVertical.duration = Constants.StaffVerticalLinesAnimationDuration
 			animateVertical.fromValue = 0.0
 			animateVertical.toValue = 1.0
-			staffLayerV.addAnimation(animateVertical, forKey: "animate stroke end animation")
+			staffLayerV.add(animateVertical, forKey: "animate stroke end animation")
 		}
 		
 		return staffLayer
@@ -226,7 +226,7 @@ class StaffDrawingView: UIView {
 	
 	// MARK: Clef drawing
 	
-	private func drawClefLayer (clef: Clef) -> CALayer {
+	private func drawClefLayer (_ clef: Clef) -> CALayer {
 		let clefLayer = CALayer()
 		
 		let height = CGFloat(frame.height*0.68)
@@ -234,7 +234,7 @@ class StaffDrawingView: UIView {
 		let posY = CGFloat(5+(frame.height-height)/2)
 		
 		clefLayer.frame = CGRect(x: posX, y: posY, width: height*0.48, height: height)
-		clefLayer.contents = UIImage(named: clef.rawValue)?.CGImage
+		clefLayer.contents = UIImage(named: clef.rawValue)?.cgImage
 		clefLayer.contentsGravity = kCAGravityResizeAspect
 		
 		return clefLayer

@@ -45,19 +45,19 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 	
 	private func createPageViewController() {
 		
-		let pageController = self.storyboard!.instantiateViewControllerWithIdentifier(Constants.PageControllerIdentifier) as! UIPageViewController
+		let pageController = self.storyboard!.instantiateViewController(withIdentifier: Constants.PageControllerIdentifier) as! UIPageViewController
 		pageController.dataSource = self
 		
 		if lesson!.pages.count > 0 {
 			let firstController = getItemController(0)!
 			let startingViewControllers: NSArray = [firstController]
-			pageController.setViewControllers(startingViewControllers as? [UIViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+			pageController.setViewControllers(startingViewControllers as? [UIViewController], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
 		}
 		
 		pageViewController = pageController
 		addChildViewController(pageViewController!)
 		self.view.addSubview(pageViewController!.view)
-		pageViewController!.didMoveToParentViewController(self)
+		pageViewController!.didMove(toParentViewController: self)
 	}
  
 	private func setupPageControl() {
@@ -69,10 +69,10 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 	
 	// MARK: PageItemController
 	
-	private func getItemController(itemIndex: Int) -> TutorialPageItemController? {
+	private func getItemController(_ itemIndex: Int) -> TutorialPageItemController? {
 		
 		if itemIndex < lesson!.pages.count {
-			let pageItemController = self.storyboard!.instantiateViewControllerWithIdentifier(Constants.PageItemControllerIdentifier) as! TutorialPageItemController
+			let pageItemController = self.storyboard!.instantiateViewController(withIdentifier: Constants.PageItemControllerIdentifier) as! TutorialPageItemController
 			pageItemController.itemIndex = itemIndex
 			pageItemController.content = lesson!.pages[itemIndex]
 			return pageItemController
@@ -83,15 +83,15 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 	
 	// MARK: PaegViewControllerDelegate
 	
-	func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+	func presentationCount(for pageViewController: UIPageViewController) -> Int {
 		return lesson!.pages.count
 	}
 	
-	func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+	func presentationIndex(for pageViewController: UIPageViewController) -> Int {
 		return 0
 	}
 	
-	func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+	func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 		
 		let itemController = viewController as! TutorialPageItemController
 		
@@ -102,7 +102,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 		return nil
 	}
 	
-	func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+	func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
 		
 		let itemController = viewController as! TutorialPageItemController
 		

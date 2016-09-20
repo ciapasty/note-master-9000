@@ -11,8 +11,8 @@ import UIKit
 // MARK: UIView Extension
 
 extension UIView {
-	func dg_center(usePresentationLayerIfPossible: Bool) -> CGPoint {
-		if usePresentationLayerIfPossible, let presentationLayer = layer.presentationLayer() as? CALayer {
+	func dg_center(_ usePresentationLayerIfPossible: Bool) -> CGPoint {
+		if usePresentationLayerIfPossible, let presentationLayer = layer.presentation() {
 			return presentationLayer.position
 		}
 		return center
@@ -36,8 +36,8 @@ class StemDrawingView: UIView {
 	private var displayLink: CADisplayLink!
 	private var animating = false {
 		didSet {
-			self.userInteractionEnabled = !animating
-			displayLink.paused = !animating
+			self.isUserInteractionEnabled = !animating
+			displayLink.isPaused = !animating
 		}
 	}
 	
@@ -47,24 +47,24 @@ class StemDrawingView: UIView {
 		super.init(coder: aDecoder)!
 		
 		controlPoint.frame = CGRect(x: 0.0, y: 0.0, width: 3.0, height: 3.0)
-		controlPoint.backgroundColor = .clearColor()
+		controlPoint.backgroundColor = UIColor.clear
 		self.addSubview(controlPoint)
 		
 		pathLayer.frame = CGRect(x: 0.0, y: 0.0, width: self.frame.width, height: self.frame.height)
 		
 		pathLayer.actions = ["position" : NSNull(), "bounds" : NSNull(), "path" : NSNull()]
 		pathLayer.fillRule = kCAFillModeRemoved
-		pathLayer.fillColor = UIColor.clearColor().CGColor
+		pathLayer.fillColor = UIColor.clear.cgColor
 		pathLayer.lineWidth = 2
-		pathLayer.strokeColor = ColorPalette.MidnightBlue.CGColor
+		pathLayer.strokeColor = ColorPalette.MidnightBlue.cgColor
 		
 		self.layer.addSublayer(pathLayer)
 		
 		//updatePathLayer()
 		
 		displayLink = CADisplayLink(target: self, selector: #selector(self.updatePathLayer))
-		displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
-		displayLink.paused = true
+		displayLink.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
+		displayLink.isPaused = true
 	}
 	
 	//MARK: Note stem drawing/animation
@@ -79,7 +79,7 @@ class StemDrawingView: UIView {
 		}
 		updatePathLayer()
 		animating = true
-		UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.05, initialSpringVelocity: 8.0, options: [], animations: { () -> Void in
+		UIView.animate(withDuration: 0.7, delay: 0.0, usingSpringWithDamping: 0.05, initialSpringVelocity: 8.0, options: [], animations: { () -> Void in
 			if self.note!.rawValue < 10 {
 				self.controlPoint.center = CGPoint(x: self.noteRect.origin.x+1.5,
 					y: self.noteRect.origin.y+self.noteRect.height/1.5+(self.height*1.7/10))
@@ -96,21 +96,21 @@ class StemDrawingView: UIView {
 		pathLayer.path = currentPath(note!)
 	}
 	
-	private func currentPath(note: Note) -> CGPath {
+	private func currentPath(_ note: Note) -> CGPath {
 		let bezierPath = UIBezierPath()
 		
 		if note.rawValue < 10 {
-			bezierPath.moveToPoint(CGPointMake(noteRect.origin.x+1.5, noteRect.origin.y+noteRect.height/1.5))
-			bezierPath.addQuadCurveToPoint(CGPointMake(noteRect.origin.x+1.5, (noteRect.origin.y+noteRect.height/1.5)+(height*3.4/10)), controlPoint: controlPoint.dg_center(animating))
+			bezierPath.move(to: CGPoint(x: noteRect.origin.x+1.5, y: noteRect.origin.y+noteRect.height/1.5))
+			bezierPath.addQuadCurve(to: CGPoint(x: noteRect.origin.x+1.5, y: (noteRect.origin.y+noteRect.height/1.5)+(height*3.4/10)), controlPoint: controlPoint.dg_center(animating))
 		} else {
-			bezierPath.moveToPoint(CGPointMake(noteRect.origin.x+noteRect.width-1.5, noteRect.origin.y+noteRect.height/2.5))
-			bezierPath.addQuadCurveToPoint(CGPointMake(noteRect.origin.x+noteRect.width-1.5, (noteRect.origin.y+noteRect.height/2.5)-(height*3.4/10)), controlPoint: controlPoint.dg_center(animating))
+			bezierPath.move(to: CGPoint(x: noteRect.origin.x+noteRect.width-1.5, y: noteRect.origin.y+noteRect.height/2.5))
+			bezierPath.addQuadCurve(to: CGPoint(x: noteRect.origin.x+noteRect.width-1.5, y: (noteRect.origin.y+noteRect.height/2.5)-(height*3.4/10)), controlPoint: controlPoint.dg_center(animating))
 		}
 		
-		return bezierPath.CGPath
+		return bezierPath.cgPath
 	}
 	
-	func setupStem(note: Note, animated: Bool) {
+	func setupStem(_ note: Note, animated: Bool) {
 		width = self.bounds.width
 		height = self.bounds.height
 		noteHeight = height/12
@@ -132,13 +132,13 @@ class StemDrawingView: UIView {
 		updatePathLayer()
 	}
 	
-	private func drawNoteStem(note: Note, noteRect: CGRect) -> CALayer {
+	private func drawNoteStem(_ note: Note, noteRect: CGRect) -> CALayer {
 		let noteStemPath = UIBezierPath()
 		let noteStemLayer = CAShapeLayer()
 		
-		noteStemLayer.path = noteStemPath.CGPath
+		noteStemLayer.path = noteStemPath.cgPath
 		noteStemLayer.lineWidth = 2.0
-		noteStemLayer.strokeColor = ColorPalette.MidnightBlue.CGColor
+		noteStemLayer.strokeColor = ColorPalette.MidnightBlue.cgColor
 		
 		return noteStemLayer
 	}

@@ -17,9 +17,9 @@ let lessonsSections = [
 	"Advanced Bass Clef"]
 
 let testTutorialContent = [
-	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.N12]), text: "This is note G."),
-	TutorialPageContent(content: NoteTutorial(clef: Clef.bassClef, notesToDraw: [Note.N8]), text: "This is note F."),
-	TutorialPageContent(content: NoteTutorial(clef: nil, notesToDraw: [Note.N10, Note.N16]), text: "Some random text"),
+	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.n12]), text: "This is note G."),
+	TutorialPageContent(content: NoteTutorial(clef: Clef.bassClef, notesToDraw: [Note.n8]), text: "This is note F."),
+	TutorialPageContent(content: NoteTutorial(clef: nil, notesToDraw: [Note.n10, Note.n16]), text: "Some random text"),
 	TutorialPageContent(content: UIImage(named: "gup-vertical"), text: "This is a PUG")
 ]
 
@@ -40,7 +40,7 @@ var lessons: [[Lesson]] = [
 			description: "Basic treble clef practice with gauss randomization",
 			clef: Clef.trebleClef,
 			color: ColorPalette.Orange,
-			fromNote: Note.N5, toNote: Note.N15,
+			fromNote: Note.n5, toNote: Note.n15,
 			gauss: true),
 		NoteLesson(
 			index: 3,
@@ -48,7 +48,7 @@ var lessons: [[Lesson]] = [
 			description: "Treble clef practice with full note range and linear randomization",
 			clef: Clef.trebleClef,
 			color: ColorPalette.BelizeHole,
-			fromNote: Note.N1, toNote: Note.N19,
+			fromNote: Note.n1, toNote: Note.n19,
 			gauss: false)
 	],
 	[
@@ -58,7 +58,7 @@ var lessons: [[Lesson]] = [
 			description: "Practice covering only narrow note range",
 			clef: Clef.trebleClef,
 			color: ColorPalette.Wisteria,
-			fromNote: Note.N7, toNote: Note.N11,
+			fromNote: Note.n7, toNote: Note.n11,
 			gauss: false),
 	],
 	[
@@ -68,7 +68,7 @@ var lessons: [[Lesson]] = [
 			description: "Bass clef practice",
 			clef: Clef.bassClef,
 			color: ColorPalette.Pomegrante,
-			fromNote: Note.N4, toNote: Note.N16,
+			fromNote: Note.n4, toNote: Note.n16,
 			gauss: true)
 	],
 	[
@@ -78,7 +78,7 @@ var lessons: [[Lesson]] = [
 			description: "Upper range bass clef practice",
 			clef: Clef.bassClef,
 			color: ColorPalette.GreenSee,
-			fromNote: Note.N1, toNote: Note.N5,
+			fromNote: Note.n1, toNote: Note.n5,
 			gauss: false),
 		NoteLesson(
 			index: 7,
@@ -86,7 +86,7 @@ var lessons: [[Lesson]] = [
 			description: "Lower range bass clef practice",
 			clef: Clef.bassClef,
 			color: ColorPalette.Asbestos,
-			fromNote: Note.N14, toNote: Note.N19,
+			fromNote: Note.n14, toNote: Note.n19,
 			gauss: false)
 	]
 ]

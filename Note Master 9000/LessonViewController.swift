@@ -24,7 +24,7 @@ class LessonViewController: UIViewController {
 	@IBOutlet weak var lessonPlanButton: UIButton!
 
 	// MARK: Model
-	var lessonIndexPath: NSIndexPath? {
+	var lessonIndexPath: IndexPath? {
 		didSet {
 			if let indexPath = lessonIndexPath {
 				if let nl = lessons[indexPath.section][indexPath.row] as? NoteLesson {
@@ -67,7 +67,7 @@ class LessonViewController: UIViewController {
 		setupWelcomeView()
     }
 	
-	@IBAction func hideWelcomeView(sender: UITapGestureRecognizer) {
+	@IBAction func hideWelcomeView(_ sender: UITapGestureRecognizer) {
 		// TODO: Prepare views in containers
 		hideWelcomeViewAnimation()
 		setupTutorialView(tutorialLesson)
@@ -75,41 +75,46 @@ class LessonViewController: UIViewController {
 	}
 	
 	@IBAction func goToNextLesson() {
-		// TODO: Show welcomeView for next lesson
-		// TODO: Switch visible containerView in background
-		// TODO: Configure visible view in background
+		if let nextLessonIndex = nextLessonIndexPath(lessonIndexPath!) {
+			lessonIndexPath = nextLessonIndex
+			
+			setupNavBar()
+			
+			hideFinishedViewAnimation()
+		}
 	}
 
-	@IBAction func endLesson(sender: AnyObject) {
+	// Temporarily here
+	@IBAction func endLesson(_ sender: AnyObject) {
 		lessonFinished()
 	}
 	// MARK: - Setup methods
 	
-	private func setupTutorialView(lesson: TutorialLesson?) {
+	private func setupTutorialView(_ lesson: TutorialLesson?) {
 		if lesson != nil {
 			tutorialLessonVC?.lesson = lesson
-			noteLessonContainer.hidden = true
-			tutorialLessonContainer.hidden = false
+			noteLessonContainer.isHidden = true
+			tutorialLessonContainer.isHidden = false
 		}
 	}
 	
-	private func setupNoteView(lesson: NoteLesson?) {
+	private func setupNoteView(_ lesson: NoteLesson?) {
 		if lesson != nil {
 			noteLessonVC?.lesson = lesson
-			noteLessonContainer.hidden = false
-			tutorialLessonContainer.hidden = true
+			noteLessonContainer.isHidden = false
+			tutorialLessonContainer.isHidden = true
 		}
 	}
 	
 	private func setupNavBar() {
 		if lesson!.color == ColorPalette.Orange {
 			let textColor = ColorPalette.WetAsphalt
-			navBar!.barStyle = .Default
+			navBar!.barStyle = .default
 			navBar!.tintColor = textColor
 			navBar!.titleTextAttributes = [NSForegroundColorAttributeName: textColor]
 		} else {
 			let textColor = ColorPalette.Clouds
-			navBar!.barStyle = .Black
+			navBar!.barStyle = .black
 			navBar!.tintColor = textColor
 			navBar!.titleTextAttributes = [NSForegroundColorAttributeName: textColor]
 		}
@@ -143,31 +148,34 @@ class LessonViewController: UIViewController {
 		if lesson!.color == ColorPalette.Orange {
 			let textColor = ColorPalette.WetAsphalt
 			finishedLabel?.textColor = textColor
-			lessonPlanButton?.setTitleColor(textColor, forState: .Normal)
-			nextLessonButton?.setTitleColor(textColor, forState: .Normal)
+			lessonPlanButton?.setTitleColor(textColor, for: UIControlState())
+			nextLessonButton?.setTitleColor(textColor, for: UIControlState())
 		} else {
 			let textColor = ColorPalette.Clouds
 			finishedLabel?.textColor = textColor
-			lessonPlanButton?.setTitleColor(textColor, forState: .Normal)
-			nextLessonButton?.setTitleColor(textColor, forState: .Normal)
+			lessonPlanButton?.setTitleColor(textColor, for: UIControlState())
+			nextLessonButton?.setTitleColor(textColor, for: UIControlState())
 		}
 		finishedView?.backgroundColor = lesson!.color
 	}
 	
 	private func lessonFinished() {
 		setupFinishedView()
+		if nextLessonIndexPath(lessonIndexPath!) == nil {
+			nextLessonButton.isHidden = true
+		}
 		showFinishedViewAnimation()
 	}
 	
     // MARK: - Navigation
 	
-	@IBAction func exitButtonTap(sender: UIBarButtonItem) {
-		let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .Alert)
-		let exitAction = UIAlertAction(title: "Quit", style: .Default, handler: {
+	@IBAction func exitButtonTap(_ sender: UIBarButtonItem) {
+		let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
+		let exitAction = UIAlertAction(title: "Quit", style: .default, handler: {
 			(_)in
-			self.performSegueWithIdentifier(Constants.BackToLessonsCollectionSegue, sender: self)
+			self.performSegue(withIdentifier: Constants.BackToLessonsCollectionSegue, sender: self)
 		})
-		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 		
 		alert.addAction(exitAction)
 		alert.addAction(cancelAction)
@@ -176,27 +184,27 @@ class LessonViewController: UIViewController {
 		let alertContentView = subview.subviews.first! as UIView
 		alertContentView.backgroundColor = ColorPalette.Clouds
 		
-		self.presentViewController(alert, animated: true, completion: nil)
+		self.present(alert, animated: true, completion: nil)
 		
 		alert.view.tintColor = (lessons[lessonIndexPath!.section][lessonIndexPath!.row] as Lesson).color
 	}
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == Constants.EmbedTutorialLessonSegue {
-			tutorialLessonVC = segue.destinationViewController as? TutorialViewController
+			tutorialLessonVC = segue.destination as? TutorialViewController
 		}
 		if segue.identifier == Constants.EmbedNoteLessonSegue {
-			noteLessonVC = segue.destinationViewController as? BasicClefViewController
+			noteLessonVC = segue.destination as? BasicClefViewController
 		}
     }
 	
 	// MARK: - Helper functions
 	
-	private func nextLessonIndexPath(indexPath: NSIndexPath) -> NSIndexPath? {
+	private func nextLessonIndexPath(_ indexPath: IndexPath) -> IndexPath? {
 		if lessons[indexPath.section].endIndex > indexPath.row+1 {
-			return NSIndexPath(forRow: indexPath.row+1, inSection: indexPath.section)
+			return IndexPath(row: indexPath.row+1, section: indexPath.section)
 		} else if lessons.endIndex > indexPath.section+1 {
-			return NSIndexPath(forRow: 0, inSection: indexPath.section+1)
+			return IndexPath(row: 0, section: indexPath.section+1)
 		} else {
 			return nil
 		}
@@ -204,43 +212,36 @@ class LessonViewController: UIViewController {
 	
 	// MARK: - Animations
 	
-	private func showWelcomeViewAnimation() {
-		welcomeView.center.x += self.view.bounds.width
-		welcomeView.hidden = false
-		UIView.animateWithDuration(Constants.BasicAnimationDuration, animations: {
-			self.welcomeView.center.x -= self.view.bounds.width
-		}) { finished in
-			
-		}
-	}
-	
 	private func hideWelcomeViewAnimation() {
-		UIView.animateWithDuration(Constants.BasicAnimationDuration, animations: {
+		UIView.animate(withDuration: Constants.BasicAnimationDuration, animations: {
 			self.welcomeView.center.x -= self.view.bounds.width
 			//self.navBar!.alpha = 1.0
-		}) { finished in
+		}, completion: { finished in
 			self.welcomeView.center.x += 2*self.view.bounds.width
-			self.welcomeView.hidden = true
-		}
+			self.welcomeView.isHidden = true
+		}) 
 	}
 
 	private func showFinishedViewAnimation() {
-		finishedView.hidden = false
+		finishedView.isHidden = false
 		finishedView.center.x += self.view.bounds.width
-		UIView.animateWithDuration(Constants.BasicAnimationDuration, animations: {
+		UIView.animate(withDuration: Constants.BasicAnimationDuration, animations: {
 			self.finishedView.center.x -= self.view.bounds.width
 			//self.navBar!.alpha = 0.0
-			}) { finished in
+			}, completion: { finished in
 				
-		}
+		}) 
 	}
 	
 	private func hideFinishedViewAnimation() {
-		UIView.animateWithDuration(Constants.BasicAnimationDuration, animations: {
+		welcomeView.center.x += self.view.bounds.width
+		welcomeView.isHidden = false
+		UIView.animate(withDuration: Constants.BasicAnimationDuration, animations: {
+			self.welcomeView.center.x -= self.view.bounds.width
 			self.finishedView.center.x -= self.view.bounds.width
-			}) { finished in
+			}, completion: { finished in
 				self.finishedView.center.x += 2*self.view.bounds.width
-				self.finishedView.hidden = true
-		}
+				self.finishedView.isHidden = true
+		}) 
 	}
 }

@@ -48,13 +48,13 @@ class LessonCollectionCell: UICollectionViewCell {
 		    height: lessonImg.frame.height+Constants.LessonIconLayerHorizontalMargin)
 		
 		layer.borderWidth = Constants.LessonIconLayerBorderWidth
-		layer.borderColor = lesson!.color.CGColor
-		layer.backgroundColor = lesson!.color.colorWithAlphaComponent(Constants.LassonIconLayerBackgroundAlpha).CGColor
+		layer.borderColor = lesson!.color.cgColor
+		layer.backgroundColor = lesson!.color.withAlphaComponent(Constants.LassonIconLayerBackgroundAlpha).cgColor
 		layer.cornerRadius = layer.frame.width/2
 		lessonTitle.textColor = ColorPalette.MidnightBlue
 		
-		imgLayer.frame = CGRect(origin: CGPointZero, size: lessonImg.frame.size)
-		imgLayer.contents = UIImage(named: lesson!.clef.rawValue+"_small")?.CGImage
+		imgLayer.frame = CGRect(origin: CGPoint.zero, size: lessonImg.frame.size)
+		imgLayer.contents = UIImage(named: lesson!.clef.rawValue+"_small")?.cgImage
 		imgLayer.contentsGravity = kCAGravityResizeAspect
 		
 		lessonImg.layer.addSublayer(layer)
@@ -65,14 +65,14 @@ class LessonCollectionCell: UICollectionViewCell {
 		}
 	}
 	
-	private func drawCompletionSign(frame: CGRect) -> CALayer {
+	private func drawCompletionSign(_ frame: CGRect) -> CALayer {
 		let layer = CAShapeLayer()
 		
 		layer.frame = CGRect(x: frame.width*3/4,
 		                     y: -Constants.LessonIconLayerVerticalMargin,
 		                     width: frame.height/3,
 		                     height: frame.height/3)
-		layer.backgroundColor = ColorPalette.Nephritis.CGColor
+		layer.backgroundColor = ColorPalette.Nephritis.cgColor
 		layer.cornerRadius = layer.frame.height/2
 		
 		return layer
