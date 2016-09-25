@@ -66,7 +66,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		static let WrongAnimationVelocity: CGFloat = 8.0
 		static let WrongAnimationDamping: CGFloat = 0.1
 		static let WrongAnimationOffset: CGFloat = 12
-		static let RequiredCorrectNotes = 5
+		static let RequiredCorrectNotes = 20
 	}
 	
 	// MARK: - ViewController lifecycle
@@ -124,7 +124,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 			
 			if currentProgress < 1.0 {
 				previousNote = currentNote
-				currentNote = randomNoteInRange(lesson!.noteRange, gauss: lesson!.gauss)
+				currentNote = randomNoteFromSet(lesson!.noteSet, gauss: lesson!.gauss)
 				drawNewNote(withDelay: 0, animated: true)
 			} else {
 				finishedLesson()
@@ -205,12 +205,12 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 				noteNameDict = bassNotesNameDict
 			}
 			
-			currentNote = randomNoteInRange(lesson!.noteRange, gauss: lesson!.gauss)
+			currentNote = randomNoteFromSet(lesson!.noteSet, gauss: lesson!.gauss)
 			previousNote = currentNote
 			
 			startLessonViewsAnimation()
-			setupStaffView(lesson!.clef)
-			helpDrawingView.drawHelp(lesson!.clef)
+			setupStaffView(lesson!.clef!)
+			helpDrawingView.drawHelp(lesson!.clef!)
 			
 			drawNewNote(withDelay: Constants.BasicAnimationDuration, animated: true)
 		}
@@ -239,17 +239,18 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 	
-	private func randomNoteInRange(_ range: (min: Int, max: Int), gauss: Bool) -> Note {
+	private func randomNoteFromSet(_ set: [Note], gauss: Bool) -> Note {
 		var note: Note
+		
 		if gauss {
-			let noteInRange = GKGaussianDistribution(randomSource: randSource, lowestValue: range.min, highestValue: range.max+1)
-			note = Note(rawValue: noteInRange.nextInt())!
+			let noteInRange = GKGaussianDistribution(randomSource: randSource, lowestValue: 0, highestValue: set.count)
+			note = set[noteInRange.nextInt()]
 		} else {
-			note = Note(rawValue: Int(arc4random_uniform(UInt32(range.max+1 - range.min))) + range.min)!
+			note = set[Int(arc4random_uniform(UInt32(set.count)))]
 		}
 	
 		if note == previousNote {
-			return randomNoteInRange(range, gauss: gauss)
+			return randomNoteFromSet(set, gauss: gauss)
 		} else {
 			return note
 		}

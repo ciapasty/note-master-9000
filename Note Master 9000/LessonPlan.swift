@@ -11,8 +11,8 @@ import UIKit
 // MARK: Lesson section names
 
 let lessonsSections = [
-	"Basic Treble Clef",
-	"Advanced Treble Clef",
+	"Random Section 1",
+	"Section 2: CC",
 	"Basic Bass Clef",
 	"Advanced Bass Clef"]
 
@@ -31,34 +31,34 @@ var lessons: [[Lesson]] = [
 			index: 1,
 			title: "Tutorial",
 			description: "A simple tutorial test",
-			clef: Clef.trebleClef,
+			clef: nil,
 			color: ColorPalette.PeterRiver,
 			pages: testTutorialContent),
 		NoteLesson(
 			index: 2,
-			title: "Basic",
-			description: "Basic treble clef practice with gauss randomization",
+			title: "G4 to G5",
+			description: "One octave from G4 to G5, with gaussian randomisation",
 			clef: Clef.trebleClef,
 			color: ColorPalette.Orange,
-			fromNote: Note.n5, toNote: Note.n15,
+			noteSet: noteRange(from: Note.n5, to: Note.n12),
 			gauss: true),
 		NoteLesson(
 			index: 3,
-			title: "Extended",
-			description: "Treble clef practice with full note range and linear randomization",
+			title: "G4 to G5",
+			description: "One octave from G4 to G5, with liniear randomisation",
 			clef: Clef.trebleClef,
 			color: ColorPalette.BelizeHole,
-			fromNote: Note.n1, toNote: Note.n19,
+			noteSet: noteRange(from: Note.n5, to: Note.n12),
 			gauss: false)
 	],
 	[
 		NoteLesson(
 			index: 4,
-			title: "A B C D E",
-			description: "Practice covering only narrow note range",
+			title: "CC",
+			description: "Only C present on extended clef",
 			clef: Clef.trebleClef,
 			color: ColorPalette.Wisteria,
-			fromNote: Note.n7, toNote: Note.n11,
+			noteSet: [Note.n2, Note.n9, Note.n16],
 			gauss: false),
 	],
 	[
@@ -68,7 +68,7 @@ var lessons: [[Lesson]] = [
 			description: "Bass clef practice",
 			clef: Clef.bassClef,
 			color: ColorPalette.Pomegrante,
-			fromNote: Note.n4, toNote: Note.n16,
+			noteSet: noteRange(from: Note.n4, to: Note.n16),
 			gauss: true)
 	],
 	[
@@ -78,7 +78,7 @@ var lessons: [[Lesson]] = [
 			description: "Upper range bass clef practice",
 			clef: Clef.bassClef,
 			color: ColorPalette.GreenSee,
-			fromNote: Note.n1, toNote: Note.n5,
+			noteSet: noteRange(from: Note.n1, to: Note.n5),
 			gauss: false),
 		NoteLesson(
 			index: 7,
@@ -86,7 +86,16 @@ var lessons: [[Lesson]] = [
 			description: "Lower range bass clef practice",
 			clef: Clef.bassClef,
 			color: ColorPalette.Asbestos,
-			fromNote: Note.n14, toNote: Note.n19,
+			noteSet: noteRange(from: Note.n14, to: Note.n19),
 			gauss: false)
 	]
 ]
+
+
+func noteRange(from: Note, to: Note) -> [Note] {
+	var noteSet = [Note]()
+	for i in from.rawValue...to.rawValue {
+		noteSet.append(Note(rawValue: i)!)
+	}
+	return noteSet
+}

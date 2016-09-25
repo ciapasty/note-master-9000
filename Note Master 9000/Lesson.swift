@@ -12,12 +12,11 @@ class Lesson {
 	let index: Int
 	let title: String
 	let description: String
-	// TODO: Move clef only to NoteLesson
-	let clef: Clef
+	let clef: Clef?
 	let color: UIColor
 	var complete: Bool = false
 	
-	init(index: Int, title: String, description: String, clef: Clef, color: UIColor) {
+	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor) {
 		self.index = index
 		self.title = title
 		self.description = description
@@ -27,11 +26,11 @@ class Lesson {
 }
 
 class NoteLesson: Lesson {
-	let noteRange: (Int,Int)
+	let noteSet: [Note]
 	let gauss: Bool
 	
-	init(index: Int, title: String, description: String, clef: Clef, color: UIColor, fromNote: Note, toNote: Note, gauss: Bool) {
-		self.noteRange = (fromNote.rawValue, toNote.rawValue)
+	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, noteSet: [Note], gauss: Bool) {
+		self.noteSet = noteSet
 		self.gauss = gauss
 		
 		super.init(index: index, title: title, description: description, clef: clef, color: color)
@@ -41,7 +40,7 @@ class NoteLesson: Lesson {
 class TutorialLesson: Lesson {
 	let pages: [TutorialPageContent]
 	
-	init(index: Int, title: String, description: String, clef: Clef, color: UIColor, pages: [TutorialPageContent]) {
+	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, pages: [TutorialPageContent]) {
 		self.pages = pages
 		
 		super.init(index: index, title: title, description: description, clef: clef, color: color)

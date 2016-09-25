@@ -45,7 +45,11 @@ class LessonMiniature: UIView {
 			
 			let imgLayer = CALayer()
 			imgLayer.frame = circleRect
-			imgLayer.contents = UIImage(named: lesson!.clef.rawValue+"_small")?.cgImage
+			if let clef = ls.clef {
+				imgLayer.contents = UIImage(named: clef.rawValue+"_small")?.cgImage
+			} else {
+				imgLayer.contents = UIImage(named: "questionmark_small")?.cgImage
+			}
 			imgLayer.contentsGravity = kCAGravityResizeAspect
 			
 			layer.addSublayer(imgLayer)
