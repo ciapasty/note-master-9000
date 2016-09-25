@@ -69,7 +69,7 @@ class LessonViewController: UIViewController {
 		setupWelcomeView(withLesson: lesson!)
     }
 	
-	@IBAction func hideWelcomeView(_ sender: UITapGestureRecognizer) {
+	@IBAction func hideWelcomeView(_ sender: AnyObject?) {
 		// TODO: Prepare views in containers
 		hideWelcomeViewAnimation()
 		setupTutorialView(tutorialLesson)
@@ -85,10 +85,6 @@ class LessonViewController: UIViewController {
 		}
 	}
 
-	// Temporarily here
-	@IBAction func endLesson(_ sender: AnyObject) {
-		lessonFinished()
-	}
 	// MARK: - Setup methods
 	
 	private func setupTutorialView(_ lesson: TutorialLesson?) {

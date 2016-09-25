@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TutorialPageItemController: UIViewController {
+class TutorialPageController: UIViewController {
 	
 	// MARK: Outlets
 	

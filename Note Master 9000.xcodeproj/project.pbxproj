@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CE060D1D1CB190BE001FA9B9 /* LessonCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE060D1C1CB190BE001FA9B9 /* LessonCollectionHeader.swift */; };
-		CE2EA3761CA9A99700135AC8 /* TutorialPageItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2EA3751CA9A99700135AC8 /* TutorialPageItemController.swift */; };
+		CE136E341D983EEE001851AB /* TutorialEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE136E331D983EEE001851AB /* TutorialEndViewController.swift */; };
+		CE2EA3761CA9A99700135AC8 /* TutorialPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2EA3751CA9A99700135AC8 /* TutorialPageController.swift */; };
 		CE323A9D1D97CC6D0084815A /* LessonMiniature.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE323A9C1D97CC6D0084815A /* LessonMiniature.swift */; };
 		CE335F091CBA2C9000A32355 /* HelpDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */; };
 		CE38BF771CD90EEB00E6A31C /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38BF761CD90EEB00E6A31C /* ColorPalette.swift */; };
@@ -31,7 +32,8 @@
 
 /* Begin PBXFileReference section */
 		CE060D1C1CB190BE001FA9B9 /* LessonCollectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonCollectionHeader.swift; sourceTree = "<group>"; };
-		CE2EA3751CA9A99700135AC8 /* TutorialPageItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageItemController.swift; sourceTree = "<group>"; };
+		CE136E331D983EEE001851AB /* TutorialEndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialEndViewController.swift; sourceTree = "<group>"; };
+		CE2EA3751CA9A99700135AC8 /* TutorialPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageController.swift; sourceTree = "<group>"; };
 		CE323A9C1D97CC6D0084815A /* LessonMiniature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonMiniature.swift; sourceTree = "<group>"; };
 		CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpDrawingView.swift; sourceTree = "<group>"; };
 		CE38BF761CD90EEB00E6A31C /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
@@ -103,7 +105,8 @@
 				CE77223D1CAAF3EC00D26F33 /* LessonCollectionViewController.swift */,
 				CEC9BD5D1D8598CC00953AAC /* LessonViewController.swift */,
 				CEB104BC1CA958CC0057D49E /* TutorialViewController.swift */,
-				CE2EA3751CA9A99700135AC8 /* TutorialPageItemController.swift */,
+				CE2EA3751CA9A99700135AC8 /* TutorialPageController.swift */,
+				CE136E331D983EEE001851AB /* TutorialEndViewController.swift */,
 				CEC1D4B91C9C651600C29666 /* BasicClefViewController.swift */,
 			);
 			name = ViewControllers;
@@ -219,8 +222,9 @@
 				CE060D1D1CB190BE001FA9B9 /* LessonCollectionHeader.swift in Sources */,
 				CE323A9D1D97CC6D0084815A /* LessonMiniature.swift in Sources */,
 				CEBE3F9B1CAFB09C00C87B5A /* LessonCollectionCell.swift in Sources */,
+				CE136E341D983EEE001851AB /* TutorialEndViewController.swift in Sources */,
 				CEB104C31CA9855C0057D49E /* StemDrawingView.swift in Sources */,
-				CE2EA3761CA9A99700135AC8 /* TutorialPageItemController.swift in Sources */,
+				CE2EA3761CA9A99700135AC8 /* TutorialPageController.swift in Sources */,
 				CEC1D4BA1C9C651600C29666 /* BasicClefViewController.swift in Sources */,
 				CEB2412D1CA1CD9600BDD998 /* StaffDrawingView.swift in Sources */,
 				CE77223E1CAAF3EC00D26F33 /* LessonCollectionViewController.swift in Sources */,

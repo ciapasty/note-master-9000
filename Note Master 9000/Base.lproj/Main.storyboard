@@ -286,10 +286,10 @@
             </objects>
             <point key="canvasLocation" x="2098" y="672"/>
         </scene>
-        <!--Tutorial Page Item Controller-->
+        <!--Tutorial Page Controller-->
         <scene sceneID="Pj3-AW-Yhb">
             <objects>
-                <viewController storyboardIdentifier="ItemController" id="Ayw-X5-bAe" customClass="TutorialPageItemController" customModule="Note_Master_9000" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LessonPageView" id="Ayw-X5-bAe" customClass="TutorialPageController" customModule="Note_Master_9000" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xdo-nn-CG3"/>
                         <viewControllerLayoutGuide type="bottom" id="bvP-qy-c7H"/>
@@ -330,6 +330,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jml-r5-P2t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3471" y="-18"/>
+        </scene>
+        <!--Tutorial End View Controller-->
+        <scene sceneID="MWn-rL-Dfs">
+            <objects>
+                <viewController storyboardIdentifier="LastPageView" id="5da-Qk-CaC" customClass="TutorialEndViewController" customModule="Note_Master_9000" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aEU-lc-Vxp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Whb-jq-UOx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3WJ-Yj-knw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lesson End" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12K-Z3-ugl">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="12K-Z3-ugl" firstAttribute="centerX" secondItem="3WJ-Yj-knw" secondAttribute="centerX" id="UL7-UD-c9M"/>
+                            <constraint firstItem="12K-Z3-ugl" firstAttribute="centerY" secondItem="3WJ-Yj-knw" secondAttribute="centerY" id="Zde-Qq-y5f"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zzt-cJ-bua" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4162" y="-19"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="BFK-dJ-QNq">
@@ -422,6 +451,7 @@
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="9Br-AB-n7y" appends="YES" id="Zmd-I8-1dW"/>
+                                    <outletCollection property="gestureRecognizers" destination="FPM-1k-tro" appends="YES" id="Rpa-D8-pEw"/>
                                 </connections>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDF-OE-sfz">
@@ -532,11 +562,6 @@
                                 <action selector="exitButtonTap:" destination="hk8-vp-bzt" id="Fff-7e-4uh"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="end!" id="14G-DP-vnj">
-                            <connections>
-                                <action selector="endLesson:" destination="hk8-vp-bzt" id="VAW-j6-fKV"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="finishedLabel" destination="b7d-KS-ofm" id="XhO-xU-3wf"/>
@@ -555,11 +580,16 @@
                 <exit id="W2e-nk-n6u" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="9Br-AB-n7y">
                     <connections>
-                        <action selector="hideWelcomeView:" destination="hk8-vp-bzt" id="Vz5-od-cvH"/>
+                        <action selector="hideWelcomeView:" destination="hk8-vp-bzt" id="40f-q9-gWa"/>
                     </connections>
                 </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="FPM-1k-tro">
+                    <connections>
+                        <action selector="hideWelcomeView:" destination="hk8-vp-bzt" id="ytF-xH-TUP"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1264" y="310"/>
+            <point key="canvasLocation" x="1263.2" y="309.89505247376314"/>
         </scene>
         <!--Tutorial-->
         <scene sceneID="0bC-3c-06Z">
@@ -638,7 +668,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lessonHeader" id="WD4-7P-ecd" customClass="LessonCollectionHeader" customModule="Note_Master_9000" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WcW-xY-PaG">

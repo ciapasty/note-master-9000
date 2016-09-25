@@ -11,7 +11,7 @@ import UIKit
 class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 	
 	// MARK: Model
-	
+	var parentVC: LessonViewController?
 	var lesson: TutorialLesson? {
 		didSet {
 			if lesson != nil {
@@ -21,15 +21,14 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 		}
 	}
 	
-	var parentVC: LessonViewController?
-	
 	private var pageViewController: UIPageViewController?
 	
 	// MARK: Constants
 	
 	private struct Constants {
 		static let PageControllerIdentifier = "PageController"
-		static let PageItemControllerIdentifier = "ItemController"
+		static let PageItemControllerIdentifier = "LessonPageView"
+		static let LastPageControllerIdentifier = "LastPageView"
 	}
 	
 	// MARK: - ViewController lifecycle
@@ -47,7 +46,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 		pageController.dataSource = self
 		
 		if lesson!.pages.count > 0 {
-			let firstController = getItemController(0)!
+			let firstController = getTutorialPageController(0)!
 			let startingViewControllers: NSArray = [firstController]
 			pageController.setViewControllers(startingViewControllers as? [UIViewController], direction: .forward, animated: true, completion: nil)
 		}
@@ -67,26 +66,38 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 	
 	// MARK: PageItemController
 	
-	private func getItemController(_ itemIndex: Int) -> TutorialPageItemController? {
+	private func getTutorialPageController(_ itemIndex: Int) -> TutorialPageController? {
 		
 		if itemIndex < lesson!.pages.count {
-			let pageItemController = self.storyboard!.instantiateViewController(withIdentifier: Constants.PageItemControllerIdentifier) as! TutorialPageItemController
+			let pageItemController = self.storyboard!.instantiateViewController(withIdentifier: Constants.PageItemControllerIdentifier) as! TutorialPageController
 			pageItemController.itemIndex = itemIndex
 			pageItemController.content = lesson!.pages[itemIndex]
 			return pageItemController
+		} else {
+			return nil
 		}
-		
-		return nil
+	}
+	
+	private func getLastPageController(_ itemIndex: Int) -> TutorialEndViewController? {
+		if itemIndex == lesson!.pages.count {
+			let pageItemController = self.storyboard!.instantiateViewController(withIdentifier: Constants.LastPageControllerIdentifier) as! TutorialEndViewController
+			pageItemController.parentVC = parentVC
+			return pageItemController
+		} else {
+			return nil
+		}
 	}
 	
 	// MARK: PageViewControllerDelegate
 	
 	func presentationCount(for pageViewController: UIPageViewController) -> Int {
-		return lesson!.pages.count
+		return lesson!.pages.count+1
 	}
 	
 	func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-		if let firstViewController = pageViewController.viewControllers?.first as? TutorialPageItemController {
+		if let firstViewController = pageViewController.viewControllers?.first as? TutorialPageController {
+			return firstViewController.itemIndex
+		} else if let firstViewController = pageViewController.viewControllers?.first as? TutorialEndViewController {
 			return firstViewController.itemIndex
 		} else {
 			return 0
@@ -95,23 +106,27 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 	
 	func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 		
-		let itemController = viewController as! TutorialPageItemController
-		
-		if itemController.itemIndex > 0 {
-			return getItemController(itemController.itemIndex-1)
+		if let itemController = viewController as? TutorialPageController {
+			if itemController.itemIndex > 0 {
+				return getTutorialPageController(itemController.itemIndex-1)
+			}
+		} else if let itemController = viewController as? TutorialEndViewController {
+			return getTutorialPageController(itemController.itemIndex-1)
 		}
-		
 		return nil
 	}
 	
 	func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
 		
-		let itemController = viewController as! TutorialPageItemController
-		
-		if itemController.itemIndex+1 < lesson!.pages.count {
-			return getItemController(itemController.itemIndex+1)
+		if let itemController = viewController as? TutorialPageController {
+			if itemController.itemIndex < lesson!.pages.count-1 {
+				return getTutorialPageController(itemController.itemIndex+1)
+			} else {
+				return getLastPageController(itemController.itemIndex+1)
+			}
+		} else if let _ = viewController as? TutorialEndViewController {
+			return nil
 		}
-		
 		return nil
 	}
 

@@ -28,6 +28,8 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	@IBOutlet weak var aNoteButton: UIButton!
 	@IBOutlet weak var bNoteButton: UIButton!
 	
+	// MARK: - Model
+	var parentVC: LessonViewController?
 	var lesson: NoteLesson? {
 		didSet {
 			if lesson != nil {
@@ -37,8 +39,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 			}
 		}
 	}
-	
-	var parentVC: LessonViewController?
 
 	private lazy var avPlayer:AVAudioPlayer = AVAudioPlayer()
 	
@@ -97,7 +97,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 			} else {
 				startAVPlayer()
 			}
-			// Animation
 			noteVibrateAnimation()
 		}
 	}
