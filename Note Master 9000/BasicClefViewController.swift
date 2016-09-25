@@ -18,7 +18,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	@IBOutlet weak var staffDrawingView: StaffDrawingView!
 	@IBOutlet weak var notesDrawingView: StaffDrawingView!
 	@IBOutlet weak var clefImageView: UIImageView!
-	@IBOutlet weak var stemDrawingView: StemDrawingView!
 	@IBOutlet weak var helpDrawingView: HelpDrawingView!
 	
 	@IBOutlet weak var cNoteButton: UIButton!
@@ -33,19 +32,20 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		didSet {
 			if lesson != nil {
 				setupLesson()
+			} else {
+				resetLesson()
 			}
 		}
 	}
 	
-	var goToNextLessonFlag: Bool = false // temporary solution
-	
+	var parentVC: LessonViewController?
+
 	private lazy var avPlayer:AVAudioPlayer = AVAudioPlayer()
 	
 	private var noteButtons = [UIButton]()
 	private var noteNameValueDict = [String:Int]()
 	private var noteNameDict = [Note:String]()
 	
-	var requiredCorrectNotes: Int = 10 // temporarily here
 	private var currentProgress: Float = 0.0
 	private var currentNote: Note?
 	private var previousNote: Note?
@@ -66,6 +66,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		static let WrongAnimationVelocity: CGFloat = 8.0
 		static let WrongAnimationDamping: CGFloat = 0.1
 		static let WrongAnimationOffset: CGFloat = 12
+		static let RequiredCorrectNotes = 5
 	}
 	
 	// MARK: - ViewController lifecycle
@@ -84,7 +85,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	// MARK: - Button/view touches
 	
-	@IBAction func tapOnStemView(_ sender: UITapGestureRecognizer) {
+	@IBAction func tapOnNoteView(_ sender: UITapGestureRecognizer) {
 		if helpVisible {
 			hideHelpAnimation()
 		} else {
@@ -118,9 +119,9 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		
 		if (currentNote!.rawValue % 7) == noteNameValueDict[sender.titleLabel!.text!] {
 			
-			staffDrawingView.drawGhostNote(currentNote!, progress: progressBar.progress)
-			currentProgress += 1.0/Float(requiredCorrectNotes)
-			Timer.scheduledTimer(timeInterval: 0.45, target: self, selector: #selector(BasicClefViewController.addProgress), userInfo: nil, repeats: false)
+			staffDrawingView.drawGhostNote(currentNote!, progress: currentProgress)
+			currentProgress += 1.0/Float(Constants.RequiredCorrectNotes)
+			Timer.scheduledTimer(timeInterval: 0.45, target: self, selector: #selector(self.addProgress), userInfo: nil, repeats: false)
 			
 			if currentProgress < 1.0 {
 				previousNote = currentNote
@@ -221,11 +222,19 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		clefImageView.tintColor = ColorPalette.MidnightBlue
 	}
 	
+	private func resetLesson() {
+		clefImageView.layer.sublayers = nil
+		currentProgress = 0.0
+		progressBar.setProgress(currentProgress, animated: false)
+		currentNote = nil
+		previousNote = nil
+		hideHelpAnimation()
+	}
+	
 	// MARK: - Helper methods
 	
 	private func drawNewNote(withDelay delay: TimeInterval, animated: Bool) {
-		stemDrawingView.setupStem(currentNote!, animated: animated)
-		notesDrawingView.drawNote(currentNote!, withStem: false)
+		notesDrawingView.drawNote(currentNote!, withStem: true)
 		if animated {
 			noteSlideAnimation(delay)
 		}
@@ -253,29 +262,33 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 	
-	func addProgress() { // can't be private if set as selector
-		progressBar.setProgress(currentProgress, animated: true)
-		let _ = staffDrawingView.layer.sublayers?.popLast()
-		
-		noteButtonsEnabled(true)
-	}
-	
 	private func finishedLesson() {
 		lesson!.complete = true
 		
 		noteButtonsEnabled(false)
 		notesDrawingView.isUserInteractionEnabled = false
 		notesDrawingView.layer.sublayers = nil
-		stemDrawingView.layer.sublayers = nil
 		
-		// TODO: signal LessonViewController
+		Timer.scheduledTimer(timeInterval: Constants.BasicAnimationDuration, target: self, selector: #selector(self.showFinishedView), userInfo: nil, repeats: false)
+	}
+	
+	// MARK: Can't be private if set as selector
+	func addProgress() {
+		progressBar.setProgress(currentProgress, animated: true)
+		let _ = staffDrawingView.layer.sublayers?.popLast()
+		
+		noteButtonsEnabled(true)
+	}
+	
+	func showFinishedView() {
+		resetLesson()
+		parentVC!.lessonFinished()
 	}
 	
 	// MARK: - Layout animations
 	
 	private func wrongAnimation() {
 		self.notesDrawingView.center.x += Constants.WrongAnimationOffset
-		self.stemDrawingView.center.x += Constants.WrongAnimationOffset
 		self.staffDrawingView.center.x += Constants.WrongAnimationOffset
 		self.clefImageView.center.x += Constants.WrongAnimationOffset
 		
@@ -283,7 +296,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		
 		UIView.animate(withDuration: Constants.BasicAnimationDuration, delay: 0.0, usingSpringWithDamping: Constants.WrongAnimationDamping, initialSpringVelocity: Constants.WrongAnimationVelocity, options: [], animations: {
 			self.notesDrawingView.center.x -= Constants.WrongAnimationOffset
-			self.stemDrawingView.center.x -= Constants.WrongAnimationOffset
 			self.staffDrawingView.center.x -= Constants.WrongAnimationOffset
 			self.clefImageView.center.x -= Constants.WrongAnimationOffset
 			}, completion: { finished in
@@ -313,22 +325,17 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	private func noteSlideAnimation(_ delay: TimeInterval) {
 		notesDrawingView.center.x += self.view.bounds.width
-		stemDrawingView.center.x += self.view.bounds.width
 		UIView.animate(withDuration: Constants.BasicAnimationDuration/2, delay: delay, options: [.curveEaseIn], animations: {
 			self.notesDrawingView.center.x -= self.view.bounds.width
-			self.stemDrawingView.center.x -= self.view.bounds.width
 			}, completion: { finished in
 				self.noteVibrateAnimation()
 		})
 	}
 	
 	private func noteVibrateAnimation() {
-		stemDrawingView.animateNoteStem()
 		notesDrawingView.center.x += Constants.NoteVibrateAnimationOffset
-		stemDrawingView.center.x += Constants.NoteVibrateAnimationOffset
 		UIView.animate(withDuration: Constants.BasicAnimationDuration, delay: 0.0, usingSpringWithDamping: Constants.NoteVibrateAnimationDamping, initialSpringVelocity: Constants.NoteVibrateAnimationVelocity, options: [], animations: { () -> Void in
 			self.notesDrawingView.center.x -= Constants.NoteVibrateAnimationOffset
-			self.stemDrawingView.center.x -= Constants.NoteVibrateAnimationOffset
 			}, completion: nil)
 	}
 	

@@ -160,7 +160,7 @@ class LessonViewController: UIViewController {
 		finishedView?.backgroundColor = lesson!.color
 	}
 	
-	private func lessonFinished() {
+	func lessonFinished() {
 		lesson?.complete = true
 		setupFinishedView()
 		if nextLessonIndexPath(lessonIndexPath!) == nil {
@@ -194,13 +194,15 @@ class LessonViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == Constants.EmbedTutorialLessonSegue {
 			tutorialLessonVC = segue.destination as? TutorialViewController
+			tutorialLessonVC!.parentVC = self
 		}
 		if segue.identifier == Constants.EmbedNoteLessonSegue {
 			noteLessonVC = segue.destination as? BasicClefViewController
+			noteLessonVC!.parentVC = self
 		}
     }
 	
-	// MARK: - Helper functions
+	// MARK: - Helper methods
 	
 	private func nextLessonIndexPath(_ indexPath: IndexPath) -> IndexPath? {
 		if lessons[indexPath.section].endIndex > indexPath.row+1 {

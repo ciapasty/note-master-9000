@@ -10,8 +10,6 @@ import UIKit
 
 class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 	
-	private var pageViewController: UIPageViewController?
-	
 	// MARK: Model
 	
 	var lesson: TutorialLesson? {
@@ -22,6 +20,10 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 			}
 		}
 	}
+	
+	var parentVC: LessonViewController?
+	
+	private var pageViewController: UIPageViewController?
 	
 	// MARK: Constants
 	
@@ -78,7 +80,6 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 	}
 	
 	// MARK: PageViewControllerDelegate
-	// MARK: TODO -> Make pages indicatior visible!!
 	
 	func presentationCount(for pageViewController: UIPageViewController) -> Int {
 		return lesson!.pages.count

@@ -18,7 +18,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7V-ba-6Jb" customClass="StaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
@@ -36,14 +36,8 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="k2g-wU-eI4" secondAttribute="height" multiplier="1:1" id="7fz-Im-drz"/>
                                 </constraints>
-                            </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GnV-Ii-xgp" customClass="StemDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="GnV-Ii-xgp" secondAttribute="height" multiplier="1:1" id="dqo-ry-zUM"/>
-                                </constraints>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="dNT-dN-0zI" appends="YES" id="CEC-Pr-ZlK"/>
+                                    <outletCollection property="gestureRecognizers" destination="dNT-dN-0zI" appends="YES" id="c3S-o5-IZg"/>
                                 </connections>
                             </view>
                             <view userInteractionEnabled="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="7nA-QV-DWy" customClass="HelpDrawingView" customModule="Note_Master_9000" customModuleProvider="target"/>
@@ -212,7 +206,6 @@
                         <constraints>
                             <constraint firstItem="p6J-ml-9nN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1y6-Cp-lsm"/>
                             <constraint firstItem="7nA-QV-DWy" firstAttribute="top" secondItem="A7V-ba-6Jb" secondAttribute="top" id="5Th-IO-lCy"/>
-                            <constraint firstItem="GnV-Ii-xgp" firstAttribute="width" secondItem="A7V-ba-6Jb" secondAttribute="width" id="7i0-zY-NFf"/>
                             <constraint firstItem="fCY-Wx-llc" firstAttribute="top" secondItem="A7V-ba-6Jb" secondAttribute="bottom" id="8bq-gI-cLS"/>
                             <constraint firstItem="p6J-ml-9nN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="GPk-QE-UWX"/>
                             <constraint firstItem="k2g-wU-eI4" firstAttribute="width" secondItem="A7V-ba-6Jb" secondAttribute="width" id="HEg-Xd-GgR"/>
@@ -225,7 +218,6 @@
                             <constraint firstAttribute="bottom" secondItem="fCY-Wx-llc" secondAttribute="bottom" id="XHL-YJ-1ZP"/>
                             <constraint firstItem="7nA-QV-DWy" firstAttribute="bottom" secondItem="A7V-ba-6Jb" secondAttribute="bottom" id="ZLx-Hz-kqA"/>
                             <constraint firstItem="k2g-wU-eI4" firstAttribute="centerX" secondItem="A7V-ba-6Jb" secondAttribute="centerX" id="aNW-ZC-7i4"/>
-                            <constraint firstItem="GnV-Ii-xgp" firstAttribute="centerY" secondItem="A7V-ba-6Jb" secondAttribute="centerY" id="avx-Ee-jXj"/>
                             <constraint firstItem="fCY-Wx-llc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bbb-Ge-XYd"/>
                             <constraint firstItem="A7V-ba-6Jb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="f7X-0f-aDD"/>
                             <constraint firstItem="ReZ-ec-Y6n" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="fUc-Ii-bNH"/>
@@ -233,7 +225,6 @@
                             <constraint firstAttribute="trailing" secondItem="p6J-ml-9nN" secondAttribute="trailing" id="ju7-fM-3Oa"/>
                             <constraint firstItem="7nA-QV-DWy" firstAttribute="width" secondItem="A7V-ba-6Jb" secondAttribute="width" multiplier="0.2" id="kyd-sG-Vcj"/>
                             <constraint firstItem="xlg-OX-WBz" firstAttribute="height" secondItem="A7V-ba-6Jb" secondAttribute="height" multiplier="0.68" id="sdt-zA-Omp"/>
-                            <constraint firstItem="GnV-Ii-xgp" firstAttribute="centerX" secondItem="A7V-ba-6Jb" secondAttribute="centerX" id="sr4-69-dvx"/>
                             <constraint firstItem="A7V-ba-6Jb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="vFN-8L-TS1"/>
                         </constraints>
                         <variation key="default">
@@ -272,7 +263,6 @@
                         <outlet property="notesDrawingView" destination="k2g-wU-eI4" id="cZB-T4-1Mq"/>
                         <outlet property="progressBar" destination="p6J-ml-9nN" id="OUH-2y-GNf"/>
                         <outlet property="staffDrawingView" destination="A7V-ba-6Jb" id="Lne-Pf-Zrm"/>
-                        <outlet property="stemDrawingView" destination="GnV-Ii-xgp" id="KX6-Ka-nLS"/>
                         <segue destination="Kym-7b-BDG" kind="unwind" identifier="backToLessons" unwindAction="backToLessonsView:" id="7ID-bd-j0I"/>
                     </connections>
                 </viewController>
@@ -280,7 +270,7 @@
                 <exit id="Kym-7b-BDG" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="dNT-dN-0zI">
                     <connections>
-                        <action selector="tapOnStemView:" destination="BYZ-38-t0r" id="aI5-dy-X4e"/>
+                        <action selector="tapOnNoteView:" destination="BYZ-38-t0r" id="ke3-Qf-N81"/>
                     </connections>
                 </tapGestureRecognizer>
                 <swipeGestureRecognizer direction="left" id="cyc-E9-Cjg" userLabel="Swipe Left On NoteView">
@@ -305,7 +295,7 @@
                         <viewControllerLayoutGuide type="bottom" id="bvP-qy-c7H"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vrk-R9-9Wx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a long placeholder text to check font size" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="q2w-VU-CWd">
@@ -360,7 +350,7 @@
                         <viewControllerLayoutGuide type="bottom" id="GYv-qh-R6F"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2T8-zH-Cgd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PaH-yO-aYB">
@@ -580,9 +570,10 @@
                         <viewControllerLayoutGuide type="bottom" id="eli-ws-cZK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="C40-9F-qCA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                     </view>
                     <navigationItem key="navigationItem" title="Tutorial" id="M6p-OZ-JFF">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Ila-Zi-Zp1"/>
@@ -602,7 +593,7 @@
                         <viewControllerLayoutGuide type="bottom" id="TvP-Kk-OOW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kMo-Xt-9fC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fu7-0Y-h6k">
@@ -647,7 +638,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lessonHeader" id="WD4-7P-ecd" customClass="LessonCollectionHeader" customModule="Note_Master_9000" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WcW-xY-PaG">
