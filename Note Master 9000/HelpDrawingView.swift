@@ -36,14 +36,14 @@ class HelpDrawingView: UIView {
 	// MARK: Drawing
 	
 	func drawHelp(_ clef: Clef) {
+		layer.sublayers = nil
+		let letterFrame = CGRect(x: bounds.origin.x,
+		                         y: bounds.origin.y,
+		                         width: bounds.height/10,
+		                         height: bounds.height/10)
 		
-		let letterFrame = CGRect(x: self.bounds.origin.x,
-		                         y: self.bounds.origin.y,
-		                         width: self.bounds.height/10,
-		                         height: self.bounds.height/10)
-		
-		let helpOrigin = CGPoint(x: self.bounds.origin.x+letterFrame.width/2,
-		                         y: self.bounds.origin.y+letterFrame.height/2)
+		let helpOrigin = CGPoint(x: bounds.origin.x+letterFrame.width/2,
+		                         y: bounds.origin.y+letterFrame.height/2)
 		
 		for i in 6...12 {
 			let layer = CATextLayer()
@@ -52,7 +52,7 @@ class HelpDrawingView: UIView {
 			layer.contentsScale = UIScreen.main.scale
 			layer.alignmentMode = kCAAlignmentCenter
 			layer.font = UIFont.systemFont(ofSize: 1, weight: UIFontWeightLight)
-			layer.fontSize = self.frame.height/10
+			layer.fontSize = frame.height/10
 			
 			if clef == Clef.trebleClef {
 				layer.string = Constants.TrebleClefNoteNames[i-6]
@@ -64,10 +64,10 @@ class HelpDrawingView: UIView {
 			
 			if i % 2 == 0 {
 				layer.position = CGPoint(x: helpOrigin.x,
-				                         y: helpOrigin.y+(self.bounds.height*CGFloat(Double(i)/20.0))-(self.bounds.height/100))
+				                         y: helpOrigin.y+(bounds.height*CGFloat(Double(i)/20.0))-(bounds.height/100))
 			} else {
 				layer.position = CGPoint(x: helpOrigin.x+letterFrame.width*3/4,
-				                         y: helpOrigin.y+(self.bounds.height*CGFloat(Double(i)/20.0))-(self.bounds.height/100))
+				                         y: helpOrigin.y+(bounds.height*CGFloat(Double(i)/20.0))-(bounds.height/100))
 			}
 			
 			self.layer.addSublayer(layer)

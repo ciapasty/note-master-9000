@@ -84,7 +84,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	// MARK: - Button/view touches
 	
-	@IBAction func tapOnNoteView(_ sender: UITapGestureRecognizer) {
+	@IBAction func tapOnStemView(_ sender: UITapGestureRecognizer) {
 		if helpVisible {
 			hideHelpAnimation()
 		} else {

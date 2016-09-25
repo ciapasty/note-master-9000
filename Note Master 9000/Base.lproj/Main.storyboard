@@ -31,22 +31,22 @@
                                     <constraint firstAttribute="width" secondItem="xlg-OX-WBz" secondAttribute="height" multiplier="296:612" id="BtJ-U4-bqw"/>
                                 </constraints>
                             </imageView>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2g-wU-eI4" customClass="StaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2g-wU-eI4" customClass="StaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="k2g-wU-eI4" secondAttribute="height" multiplier="1:1" id="7fz-Im-drz"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="twt-f5-6i7" appends="YES" id="muX-St-3Mi"/>
-                                </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GnV-Ii-xgp" customClass="StemDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GnV-Ii-xgp" customClass="StemDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="GnV-Ii-xgp" secondAttribute="height" multiplier="1:1" id="dqo-ry-zUM"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="dNT-dN-0zI" appends="YES" id="CEC-Pr-ZlK"/>
+                                </connections>
                             </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nA-QV-DWy" customClass="HelpDrawingView" customModule="Note_Master_9000" customModuleProvider="target"/>
+                            <view userInteractionEnabled="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="7nA-QV-DWy" customClass="HelpDrawingView" customModule="Note_Master_9000" customModuleProvider="target"/>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="p6J-ml-9nN"/>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCY-Wx-llc" userLabel="Bottom Buttons View">
                                 <subviews>
@@ -278,9 +278,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="Kym-7b-BDG" userLabel="Exit" sceneMemberID="exit"/>
-                <tapGestureRecognizer id="twt-f5-6i7" userLabel="Tap On NoteView">
+                <tapGestureRecognizer id="dNT-dN-0zI">
                     <connections>
-                        <action selector="tapOnNoteView:" destination="BYZ-38-t0r" id="ddq-kG-1GU"/>
+                        <action selector="tapOnStemView:" destination="BYZ-38-t0r" id="aI5-dy-X4e"/>
                     </connections>
                 </tapGestureRecognizer>
                 <swipeGestureRecognizer direction="left" id="cyc-E9-Cjg" userLabel="Swipe Left On NoteView">
