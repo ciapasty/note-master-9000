@@ -160,6 +160,7 @@ class LessonViewController: UIViewController {
 	}
 	
 	private func lessonFinished() {
+		lesson?.complete = true
 		setupFinishedView()
 		if nextLessonIndexPath(lessonIndexPath!) == nil {
 			nextLessonButton.isHidden = true

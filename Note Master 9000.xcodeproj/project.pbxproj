@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CE060D1D1CB190BE001FA9B9 /* LessonCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE060D1C1CB190BE001FA9B9 /* LessonCollectionHeader.swift */; };
 		CE2EA3761CA9A99700135AC8 /* TutorialPageItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2EA3751CA9A99700135AC8 /* TutorialPageItemController.swift */; };
+		CE323A9D1D97CC6D0084815A /* LessonMiniature.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE323A9C1D97CC6D0084815A /* LessonMiniature.swift */; };
 		CE335F091CBA2C9000A32355 /* HelpDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */; };
 		CE38BF771CD90EEB00E6A31C /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38BF761CD90EEB00E6A31C /* ColorPalette.swift */; };
 		CE4E351E1CB024D900420A25 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4E351D1CB024D900420A25 /* Lesson.swift */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		CE060D1C1CB190BE001FA9B9 /* LessonCollectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonCollectionHeader.swift; sourceTree = "<group>"; };
 		CE2EA3751CA9A99700135AC8 /* TutorialPageItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageItemController.swift; sourceTree = "<group>"; };
+		CE323A9C1D97CC6D0084815A /* LessonMiniature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonMiniature.swift; sourceTree = "<group>"; };
 		CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpDrawingView.swift; sourceTree = "<group>"; };
 		CE38BF761CD90EEB00E6A31C /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		CE3F91C01D16BD3400AD54CA /* Note Master 9000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Note Master 9000.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				CEBE3F9A1CAFB09C00C87B5A /* LessonCollectionCell.swift */,
+				CE323A9C1D97CC6D0084815A /* LessonMiniature.swift */,
 				CE060D1C1CB190BE001FA9B9 /* LessonCollectionHeader.swift */,
 				CEB2412C1CA1CD9600BDD998 /* StaffDrawingView.swift */,
 				CEB104C21CA9855C0057D49E /* StemDrawingView.swift */,
@@ -214,6 +217,7 @@
 			files = (
 				CED1A6D01D4E22690063E9B3 /* LessonPlan.swift in Sources */,
 				CE060D1D1CB190BE001FA9B9 /* LessonCollectionHeader.swift in Sources */,
+				CE323A9D1D97CC6D0084815A /* LessonMiniature.swift in Sources */,
 				CEBE3F9B1CAFB09C00C87B5A /* LessonCollectionCell.swift in Sources */,
 				CEB104C31CA9855C0057D49E /* StemDrawingView.swift in Sources */,
 				CE2EA3761CA9A99700135AC8 /* TutorialPageItemController.swift in Sources */,

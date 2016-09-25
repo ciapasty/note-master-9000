@@ -349,7 +349,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i4u-5l-eTs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2794" y="-18"/>
+            <point key="canvasLocation" x="2781" y="-19"/>
         </scene>
         <!--Lesson-->
         <scene sceneID="rtx-Df-HaI">
@@ -620,7 +620,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPl-Mq-1B3"/>
+                                                <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="JPl-Mq-1B3" customClass="LessonMiniature" customModule="Note_Master_9000" customModuleProvider="target">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="JPl-Mq-1B3" secondAttribute="height" id="Wcz-uk-JOS"/>
+                                                    </constraints>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtJ-JS-fJw">
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -630,11 +634,10 @@
                                         </view>
                                         <constraints>
                                             <constraint firstItem="jtJ-JS-fJw" firstAttribute="leading" secondItem="Trj-QP-Viy" secondAttribute="leading" id="3s6-LU-glJ"/>
-                                            <constraint firstItem="jtJ-JS-fJw" firstAttribute="top" secondItem="JPl-Mq-1B3" secondAttribute="bottom" constant="5" id="55M-kV-Xac"/>
-                                            <constraint firstItem="JPl-Mq-1B3" firstAttribute="top" secondItem="Trj-QP-Viy" secondAttribute="top" constant="5" id="CBc-SL-J7G"/>
+                                            <constraint firstItem="jtJ-JS-fJw" firstAttribute="top" secondItem="JPl-Mq-1B3" secondAttribute="bottom" id="55M-kV-Xac"/>
+                                            <constraint firstItem="JPl-Mq-1B3" firstAttribute="top" secondItem="Trj-QP-Viy" secondAttribute="top" id="CBc-SL-J7G"/>
+                                            <constraint firstItem="JPl-Mq-1B3" firstAttribute="centerX" secondItem="Trj-QP-Viy" secondAttribute="centerX" id="STE-Nj-WJk"/>
                                             <constraint firstAttribute="bottom" secondItem="jtJ-JS-fJw" secondAttribute="bottom" id="Z01-cs-fW1"/>
-                                            <constraint firstAttribute="trailing" secondItem="JPl-Mq-1B3" secondAttribute="trailing" constant="5" id="dsO-0J-wLP"/>
-                                            <constraint firstItem="JPl-Mq-1B3" firstAttribute="leading" secondItem="Trj-QP-Viy" secondAttribute="leading" constant="5" id="g50-y9-ESe"/>
                                             <constraint firstAttribute="trailing" secondItem="jtJ-JS-fJw" secondAttribute="trailing" id="oR2-X4-5LC"/>
                                         </constraints>
                                         <connections>
@@ -703,7 +706,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ybr-l3-UY2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-203" y="310"/>
+            <point key="canvasLocation" x="-278" y="310"/>
         </scene>
     </scenes>
 </document>
