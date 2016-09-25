@@ -64,7 +64,9 @@ class LessonViewController: UIViewController {
 		
 		view.backgroundColor = ColorPalette.Clouds
 		setupNavBar()
-		setupWelcomeView()
+		navBar!.alpha = 0.01
+		
+		setupWelcomeView(withLesson: lesson!)
     }
 	
 	@IBAction func hideWelcomeView(_ sender: UITapGestureRecognizer) {
@@ -79,7 +81,6 @@ class LessonViewController: UIViewController {
 			lessonIndexPath = nextLessonIndex
 			
 			setupNavBar()
-			
 			hideFinishedViewAnimation()
 		}
 	}
@@ -125,8 +126,8 @@ class LessonViewController: UIViewController {
 		navigationItem.title = lesson!.title
 	}
 	
-	private func setupWelcomeView() {
-		if lesson!.color == ColorPalette.Orange {
+	private func setupWelcomeView(withLesson lesson: Lesson) {
+		if lesson.color == ColorPalette.Orange {
 			let textColor = ColorPalette.WetAsphalt
 			lessonNumberLabel?.textColor = textColor
 			lessonTitleLabel?.textColor = textColor
@@ -137,11 +138,11 @@ class LessonViewController: UIViewController {
 			lessonTitleLabel?.textColor = textColor
 			lessonDescriptionLabel?.textColor = textColor
 		}
-		welcomeView?.backgroundColor = lesson!.color
+		welcomeView?.backgroundColor = lesson.color
 		
-		lessonNumberLabel?.text = "Lesson \(lesson!.index)"
-		lessonTitleLabel?.text = lesson!.title
-		lessonDescriptionLabel?.text = lesson!.description
+		lessonNumberLabel?.text = "Lesson \(lesson.index)"
+		lessonTitleLabel?.text = lesson.title
+		lessonDescriptionLabel?.text = lesson.description
 	}
 	
 	private func setupFinishedView() {
@@ -216,10 +217,13 @@ class LessonViewController: UIViewController {
 	private func hideWelcomeViewAnimation() {
 		UIView.animate(withDuration: Constants.BasicAnimationDuration, animations: {
 			self.welcomeView.center.x -= self.view.bounds.width
-			//self.navBar!.alpha = 1.0
+			self.navBar!.alpha = 1.0
 		}, completion: { finished in
-			self.welcomeView.center.x += 2*self.view.bounds.width
+			self.welcomeView.center.x += self.view.bounds.width
 			self.welcomeView.isHidden = true
+			if let nextLessonIndex = self.nextLessonIndexPath(self.lessonIndexPath!) {
+				self.setupWelcomeView(withLesson: lessons[nextLessonIndex.section][nextLessonIndex.row])
+			}
 		}) 
 	}
 
@@ -228,7 +232,7 @@ class LessonViewController: UIViewController {
 		finishedView.center.x += self.view.bounds.width
 		UIView.animate(withDuration: Constants.BasicAnimationDuration, animations: {
 			self.finishedView.center.x -= self.view.bounds.width
-			//self.navBar!.alpha = 0.0
+			self.navBar!.alpha = 0.01
 			}, completion: { finished in
 				
 		}) 
@@ -241,7 +245,7 @@ class LessonViewController: UIViewController {
 			self.welcomeView.center.x -= self.view.bounds.width
 			self.finishedView.center.x -= self.view.bounds.width
 			}, completion: { finished in
-				self.finishedView.center.x += 2*self.view.bounds.width
+				self.finishedView.center.x += self.view.bounds.width
 				self.finishedView.isHidden = true
 		}) 
 	}

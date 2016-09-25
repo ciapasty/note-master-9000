@@ -34,11 +34,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		
-		if lesson != nil {
-			createPageViewController()
-			setupPageControl()
-		}
+		setupPageControl()
 	}
 	
 	// MARK: PageViewController
@@ -62,9 +58,9 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
  
 	private func setupPageControl() {
 		let appearance = UIPageControl.appearance()
-		appearance.pageIndicatorTintColor = ColorPalette.MidnightBlue
+		appearance.pageIndicatorTintColor = ColorPalette.Asbestos
 		appearance.currentPageIndicatorTintColor = ColorPalette.MidnightBlue
-		appearance.backgroundColor = ColorPalette.Alizarin
+		appearance.backgroundColor = ColorPalette.Clouds
 	}
 	
 	// MARK: PageItemController
