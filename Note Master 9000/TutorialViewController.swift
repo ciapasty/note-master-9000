@@ -51,7 +51,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 		if lesson!.pages.count > 0 {
 			let firstController = getItemController(0)!
 			let startingViewControllers: NSArray = [firstController]
-			pageController.setViewControllers(startingViewControllers as? [UIViewController], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
+			pageController.setViewControllers(startingViewControllers as? [UIViewController], direction: .forward, animated: true, completion: nil)
 		}
 		
 		pageViewController = pageController
@@ -62,9 +62,9 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
  
 	private func setupPageControl() {
 		let appearance = UIPageControl.appearance()
-		appearance.pageIndicatorTintColor = ColorPalette.Asbestos
+		appearance.pageIndicatorTintColor = ColorPalette.MidnightBlue
 		appearance.currentPageIndicatorTintColor = ColorPalette.MidnightBlue
-		appearance.backgroundColor = ColorPalette.Clouds
+		appearance.backgroundColor = ColorPalette.Alizarin
 	}
 	
 	// MARK: PageItemController
@@ -81,14 +81,19 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 		return nil
 	}
 	
-	// MARK: PaegViewControllerDelegate
+	// MARK: PageViewControllerDelegate
+	// MARK: TODO -> Make pages indicatior visible!!
 	
 	func presentationCount(for pageViewController: UIPageViewController) -> Int {
 		return lesson!.pages.count
 	}
 	
 	func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-		return 0
+		if let firstViewController = pageViewController.viewControllers?.first as? TutorialPageItemController {
+			return firstViewController.itemIndex
+		} else {
+			return 0
+		}
 	}
 	
 	func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {

@@ -22,15 +22,16 @@ class TutorialPageItemController: UIViewController {
 	
 	// MARK: - ViewController lifecycle
 	
+	/*
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupView()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+	*/
+	
+	override func viewDidLayoutSubviews() {
+		setupView() // Temporary place for setup. Proper frame not set on viewDidLoad
+	}
 	
 	// MARK: Setup methods
 
