@@ -35,6 +35,8 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		view.backgroundColor = ColorPalette.Clouds
 		setupPageControl()
 	}
 	

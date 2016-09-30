@@ -19,24 +19,45 @@ class NoteView: UIView {
 			setNeedsDisplay()
 		}
 	}
-	var stem: StemOrientation?
+	var stem: StemOrientation? {
+		didSet {
+			setNeedsDisplay()
+		}
+	}
 	
 	private struct Constants {
 		static let NoteBodyLineWidth: CGFloat = 1.0
 		static let NoteStemLineWidth: CGFloat = 2.0
 		static let StaffHorizontalLinesWidth: CGFloat = 1.0
-		static let GhostNoteAnimationDuration: Double = 0.5
+	}
+	
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		
+		self.isOpaque = false
+	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
+	
+	convenience init(frame: CGRect, withStemPointing stem: StemOrientation) {
+		self.init(frame: frame)
+		self.stem = stem
+	}
+	
+	convenience init(frame: CGRect, withStemPointing stem: StemOrientation, color: UIColor) {
+		self.init(frame: frame, withStemPointing: stem)
+		self.color = color
 	}
 	
 	override func draw(_ rect: CGRect) {
-		layer.sublayers = nil
-		// Background fill
-		ColorPalette.Clouds.set()
-		UIBezierPath(rect: rect).fill()
+		super.draw(rect)
 		
 		if stem != nil {
-			ColorPalette.MidnightBlue.set()
 			let stemPath = UIBezierPath()
+			color.set()
+			stemPath.lineWidth = Constants.NoteStemLineWidth*UIScreen.main.scale
 			
 			switch stem! {
 			case .up:
@@ -50,6 +71,7 @@ class NoteView: UIView {
 				stemPath.move(to: CGPoint(x: 0, y: rect.height*1/8))
 				stemPath.addLine(to: CGPoint(x: 0, y: rect.height))
 			}
+			
 			
 			stemPath.stroke()
 		}

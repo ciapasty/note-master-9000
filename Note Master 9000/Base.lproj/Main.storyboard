@@ -303,7 +303,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGk-C6-iYx" customClass="TutorialStaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
+                            <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="dGk-C6-iYx" customClass="TutorialStaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dGk-C6-iYx" secondAttribute="height" id="htC-up-NRr"/>
                                 </constraints>
@@ -612,7 +612,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tdm-4h-eWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2096" y="-17"/>
+            <point key="canvasLocation" x="2095.1999999999998" y="-17.541229385307346"/>
         </scene>
         <!--Lessons-->
         <scene sceneID="8w6-7q-iGU">

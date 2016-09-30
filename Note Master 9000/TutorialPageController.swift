@@ -22,12 +22,11 @@ class TutorialPageController: UIViewController {
 	
 	// MARK: - ViewController lifecycle
 	
-	/*
     override func viewDidLoad() {
         super.viewDidLoad()
-		setupView()
+		//setupView()
+		view.backgroundColor = ColorPalette.Clouds
     }
-	*/
 	
 	override func viewDidLayoutSubviews() {
 		setupView() // Temporary place for setup. Proper frame not set on viewDidLoad
@@ -40,15 +39,15 @@ class TutorialPageController: UIViewController {
 		if let image = content!.content as? UIImage {
 			contentView.image = image
 		} else if let noteT = content!.content as? NoteTutorial {
-			contentView.drawStaff(withClef: noteT.clef, animated: false)
-			contentView.drawNote(noteT.notesToDraw[0], withStem: true)
+			contentView.clef =  noteT.clef
+			contentView.notes = noteT.notesToDraw
 		}
 	}
 }
 
 // MARK: - StaffDrawingView subclass adding imageView
 
-class TutorialStaffDrawingView: StaffDrawingView {
+class TutorialStaffDrawingView: StaffView {
 	let imageView = UIImageView()
 	
 	var image: UIImage? {

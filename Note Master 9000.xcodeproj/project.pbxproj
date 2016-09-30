@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CE060D1D1CB190BE001FA9B9 /* LessonCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE060D1C1CB190BE001FA9B9 /* LessonCollectionHeader.swift */; };
 		CE136E341D983EEE001851AB /* TutorialEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE136E331D983EEE001851AB /* TutorialEndViewController.swift */; };
+		CE24F4721D9EC64A002DB250 /* StaffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE24F4711D9EC64A002DB250 /* StaffView.swift */; };
 		CE2EA3761CA9A99700135AC8 /* TutorialPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2EA3751CA9A99700135AC8 /* TutorialPageController.swift */; };
 		CE323A9D1D97CC6D0084815A /* LessonMiniature.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE323A9C1D97CC6D0084815A /* LessonMiniature.swift */; };
 		CE335F091CBA2C9000A32355 /* HelpDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		CE060D1C1CB190BE001FA9B9 /* LessonCollectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonCollectionHeader.swift; sourceTree = "<group>"; };
 		CE136E331D983EEE001851AB /* TutorialEndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialEndViewController.swift; sourceTree = "<group>"; };
+		CE24F4711D9EC64A002DB250 /* StaffView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffView.swift; sourceTree = "<group>"; };
 		CE2EA3751CA9A99700135AC8 /* TutorialPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageController.swift; sourceTree = "<group>"; };
 		CE323A9C1D97CC6D0084815A /* LessonMiniature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonMiniature.swift; sourceTree = "<group>"; };
 		CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpDrawingView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				CE323A9C1D97CC6D0084815A /* LessonMiniature.swift */,
 				CE060D1C1CB190BE001FA9B9 /* LessonCollectionHeader.swift */,
 				CEE551351D9B85FC0041F618 /* StaffDrawingView.swift */,
+				CE24F4711D9EC64A002DB250 /* StaffView.swift */,
 				CE58DF9E1D997DF200D1400C /* NoteView.swift */,
 				CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */,
 			);
@@ -246,6 +249,7 @@
 				CEE551361D9B85FC0041F618 /* StaffDrawingView.swift in Sources */,
 				CEC1D4B81C9C651600C29666 /* AppDelegate.swift in Sources */,
 				CEC9BD5E1D8598CC00953AAC /* LessonViewController.swift in Sources */,
+				CE24F4721D9EC64A002DB250 /* StaffView.swift in Sources */,
 				CEB104BD1CA958CC0057D49E /* TutorialViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

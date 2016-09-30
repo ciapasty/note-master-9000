@@ -36,7 +36,6 @@ class LessonMiniature: UIView {
 			// Miniature circle
 
 			let circle = UIBezierPath(ovalIn: rect)
-			//circle.lineWidth = Constants.IconBorderWidth
 			
 			ls.color.withAlphaComponent(Constants.IconBackgroundAlpha).set()
 			circle.fill()
