@@ -78,10 +78,10 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		setupViews()
 	}
 	
-	override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-		staffDrawingView.drawStaff(withClef: nil, animated: false)
-		drawNewNote(withDelay: 0, animated: false)
-	}
+//	override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+//		staffDrawingView.drawStaff(withClef: nil, animated: false)
+//		drawNewNote(withDelay: 0, animated: false)
+//	}
 	
 	// MARK: - Button/view touches
 	

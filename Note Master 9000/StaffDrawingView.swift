@@ -1,15 +1,15 @@
 //
-//  StaffImageView.swift
+//  StaffDrawingView.swift
 //  Note Master 9000
 //
-//  Created by Maciej Eichler on 22/03/16.
+//  Created by Maciej Eichler on 28/09/2016.
 //  Copyright © 2016 Mattijah. All rights reserved.
 //
 
 import UIKit
 
 class StaffDrawingView: UIView {
-	
+
 	// MARK: Constants
 	
 	private struct Constants {
@@ -26,9 +26,9 @@ class StaffDrawingView: UIView {
 	
 	func drawNote(_ note: Note, withStem stem: Bool){
 		layer.sublayers = nil
-//		if layer.sublayers?.count > 1 {
-//			layer.sublayers?.popLast()
-//		}
+		//		if layer.sublayers?.count > 1 {
+		//			layer.sublayers?.popLast()
+		//		}
 		let noteLayer = CALayer()
 		
 		let noteRect = getNoteRect(note)
@@ -77,7 +77,7 @@ class StaffDrawingView: UIView {
 	}
 	
 	private func drawAddLines(_ note : Note) -> CALayer {
-
+		
 		let lineStart = frame.width/2
 		let lineEnd = frame.width*7/10
 		let linePath = UIBezierPath()

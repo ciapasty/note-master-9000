@@ -17,8 +17,9 @@ class LessonMiniature: UIView {
 	}
 	
 	private struct Constants {
-		static let LessonIconBorderWidth: CGFloat = 3.0
-		static let LessonIconBackgroundAlpha: CGFloat = 0.5
+		static let ImageRectMargin: CGFloat = 4.0
+		static let IconBorderWidth: CGFloat = 3.0
+		static let IconBackgroundAlpha: CGFloat = 0.6
 	}
 	
     override func draw(_ rect: CGRect) {
@@ -28,23 +29,22 @@ class LessonMiniature: UIView {
 		UIBezierPath(rect: rect).fill()
 		
 		if let ls = lesson {
+			let rectWithMargin = CGRect(x: Constants.ImageRectMargin,
+			                      y: Constants.ImageRectMargin,
+			                      width: rect.width-2*Constants.ImageRectMargin,
+			                      height: rect.height-2*Constants.ImageRectMargin)
 			// Miniature circle
-			let circleRect = CGRect(x: Constants.LessonIconBorderWidth/2,
-			                      y: Constants.LessonIconBorderWidth/2,
-			                      width: rect.width-Constants.LessonIconBorderWidth,
-			                      height: rect.height-Constants.LessonIconBorderWidth)
+
+			let circle = UIBezierPath(ovalIn: rect)
+			//circle.lineWidth = Constants.IconBorderWidth
 			
-			let circle = UIBezierPath(ovalIn: circleRect)
-			circle.lineWidth = Constants.LessonIconBorderWidth
-			
-			ls.color.set()
-			circle.stroke()
-			
-			ls.color.withAlphaComponent(Constants.LessonIconBackgroundAlpha).set()
+			ls.color.withAlphaComponent(Constants.IconBackgroundAlpha).set()
 			circle.fill()
 			
+			//drawDiamond(rect) // Alternative layout design
+			
 			let imgLayer = CALayer()
-			imgLayer.frame = circleRect
+			imgLayer.frame = rectWithMargin
 			if let clef = ls.clef {
 				imgLayer.contents = UIImage(named: clef.rawValue+"_small")?.cgImage
 			} else {
@@ -64,4 +64,40 @@ class LessonMiniature: UIView {
 			}
 		}
     }
+	
+	private func drawDiamond (_ rect: CGRect) {
+		let center = CGPoint(x: rect.midX, y: rect.midY)
+		let topPoint = CGPoint(x: rect.width*5/6, y: 0)
+		let bottomPoint = CGPoint(x: rect.width*1/6, y: rect.height)
+		let leftPoint = CGPoint(x: rect.width*1/6, y: rect.height*1/6)
+		let rightPoint = CGPoint(x: rect.width*5/6, y: rect.height*5/6)
+		
+		let lightTriangle = UIBezierPath()
+		lightTriangle.move(to: topPoint)
+		lightTriangle.addLine(to: leftPoint)
+		lightTriangle.addLine(to: bottomPoint)
+		lesson!.color.withAlphaComponent(0.6).set()
+		lightTriangle.fill()
+		
+		let medTriangle1 = UIBezierPath()
+		medTriangle1.move(to: leftPoint)
+		medTriangle1.addLine(to: center)
+		medTriangle1.addLine(to: bottomPoint)
+		lesson!.color.withAlphaComponent(0.7).set()
+		medTriangle1.fill()
+		
+		let medTriangle2 = UIBezierPath()
+		medTriangle2.move(to: topPoint)
+		medTriangle2.addLine(to: rightPoint)
+		medTriangle2.addLine(to: center)
+		lesson!.color.withAlphaComponent(0.9).set()
+		medTriangle2.fill()
+		
+		let darkTriangle = UIBezierPath()
+		darkTriangle.move(to: center)
+		darkTriangle.addLine(to: rightPoint)
+		darkTriangle.addLine(to: bottomPoint)
+		lesson!.color.set()
+		darkTriangle.fill()
+	}
 }

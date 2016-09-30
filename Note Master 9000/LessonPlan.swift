@@ -57,7 +57,7 @@ var lessons: [[Lesson]] = [
 			title: "CC",
 			description: "Only C present on extended clef",
 			clef: Clef.trebleClef,
-			color: ColorPalette.Wisteria,
+			color: ColorPalette.Amethyst,
 			noteSet: [Note.n2, Note.n9, Note.n16],
 			gauss: false),
 	],
