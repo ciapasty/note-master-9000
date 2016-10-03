@@ -17,9 +17,9 @@ let lessonsSections = [
 	"Advanced Bass Clef"]
 
 let testTutorialContent = [
-	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.n12]), text: "This is note G."),
-	TutorialPageContent(content: NoteTutorial(clef: Clef.bassClef, notesToDraw: [Note.n8]), text: "This is note F."),
-	TutorialPageContent(content: NoteTutorial(clef: nil, notesToDraw: [Note.n10, Note.n16]), text: "Some random text"),
+	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.n12]), text: "This is note G4."),
+	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.n8, Note.n18]), text: "This is note D5 and A3"),
+	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.n12, Note.n11, Note.n10, Note.n9]), text: "G4, A4, B4, C5"),
 	TutorialPageContent(content: UIImage(named: "gup-vertical"), text: "This is a PUG")
 ]
 
@@ -57,7 +57,7 @@ var lessons: [[Lesson]] = [
 			title: "CC",
 			description: "Only C present on extended clef",
 			clef: Clef.trebleClef,
-			color: ColorPalette.Wisteria,
+			color: ColorPalette.Amethyst,
 			noteSet: [Note.n2, Note.n9, Note.n16],
 			gauss: false),
 	],

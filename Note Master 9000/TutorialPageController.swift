@@ -22,12 +22,13 @@ class TutorialPageController: UIViewController {
 	
 	// MARK: - ViewController lifecycle
 	
-	/*
     override func viewDidLoad() {
         super.viewDidLoad()
-		setupView()
+		//setupView()
+		
+		view.backgroundColor = ColorPalette.Clouds
+		contentLabel.textColor = ColorPalette.MidnightBlue
     }
-	*/
 	
 	override func viewDidLayoutSubviews() {
 		setupView() // Temporary place for setup. Proper frame not set on viewDidLoad
@@ -41,7 +42,7 @@ class TutorialPageController: UIViewController {
 			contentView.image = image
 		} else if let noteT = content!.content as? NoteTutorial {
 			contentView.drawStaff(withClef: noteT.clef, animated: false)
-			contentView.drawNote(noteT.notesToDraw[0], withStem: true)
+			contentView.drawNotes(noteT.notesToDraw)
 		}
 	}
 }

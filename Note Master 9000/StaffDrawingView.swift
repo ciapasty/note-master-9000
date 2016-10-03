@@ -1,14 +1,16 @@
 //
-//  StaffImageView.swift
+//  StaffDrawingView.swift
 //  Note Master 9000
 //
-//  Created by Maciej Eichler on 22/03/16.
+//  Created by Maciej Eichler on 28/09/2016.
 //  Copyright © 2016 Mattijah. All rights reserved.
 //
 
 import UIKit
 
 class StaffDrawingView: UIView {
+	
+	private var noteView = UIView()
 	
 	// MARK: Constants
 	
@@ -24,20 +26,23 @@ class StaffDrawingView: UIView {
 	
 	// MARK: Note Drawing
 	
-	func drawNote(_ note: Note, withStem stem: Bool){
-		layer.sublayers = nil
-//		if layer.sublayers?.count > 1 {
-//			layer.sublayers?.popLast()
-//		}
-		let noteLayer = CALayer()
-		
-		let noteRect = getNoteRect(note)
-		noteLayer.addSublayer(drawAddLines(note))
-		noteLayer.addSublayer(drawNoteLayer(note, noteRect: noteRect, color: ColorPalette.MidnightBlue))
-		if stem {
+	func drawNotes(_ notes: [Note]){
+		noteView.frame = bounds
+		noteView.layer.sublayers = nil
+		for (index, note) in notes.enumerated() {
+			let noteLayer = CALayer()
+			var noteRect = getRect(for: note)
+			let noteDistance = ((bounds.width*3/4) / CGFloat(notes.count+1))
+			
+			noteRect.origin.x = (bounds.width/5) + (noteDistance*CGFloat(index+1))
+			
+			noteLayer.addSublayer(drawNoteLayer(note, noteRect: noteRect, color: ColorPalette.MidnightBlue))
 			noteLayer.addSublayer(drawNoteStem(note, noteRect: noteRect, color: ColorPalette.MidnightBlue))
+			
+			noteView.layer.addSublayer(drawAddLines(for: note, at: noteRect.origin.x))
+			noteView.layer.addSublayer(noteLayer)
 		}
-		layer.addSublayer(noteLayer)
+		self.addSubview(noteView)
 	}
 	
 	private func drawNoteLayer(_ note: Note, noteRect: CGRect, color: UIColor) -> CALayer {
@@ -47,7 +52,7 @@ class StaffDrawingView: UIView {
 		var rotation:CATransform3D = noteLayer.transform
 		rotation = CATransform3DRotate(rotation, 0.4, 0.0, 0.0, -1.0)
 		noteLayer.transform = rotation
-		noteLayer.position = CGPoint(x: frame.width*3/5, y: (frame.height*CGFloat(Double(note.rawValue)/20.0)))
+		noteLayer.position = CGPoint(x: noteRect.origin.x+noteRect.width/2, y: (frame.height*CGFloat(Double(note.rawValue)/20.0)))
 		
 		noteLayer.path = notePath.cgPath
 		noteLayer.lineWidth = Constants.NoteBodyLineWidth
@@ -76,28 +81,29 @@ class StaffDrawingView: UIView {
 		return noteStemLayer
 	}
 	
-	private func drawAddLines(_ note : Note) -> CALayer {
-
-		let lineStart = frame.width/2
-		let lineEnd = frame.width*7/10
+	private func drawAddLines(for note: Note, at width: CGFloat) -> CALayer {
+		let lineWidth = bounds.width/5
+		let noteWidth = bounds.height/8
+		let lineStart = width + (noteWidth/2) - lineWidth/2
+		let lineEnd = width + (noteWidth/2) + lineWidth/2
 		let linePath = UIBezierPath()
 		let lineLayer = CAShapeLayer()
 		
 		if note.rawValue < 5 {
-			linePath.move(to: CGPoint(x: lineStart, y: frame.height*2/10))
-			linePath.addLine(to: CGPoint(x: lineEnd, y: frame.height*2/10))
+			linePath.move(to: CGPoint(x: lineStart, y: bounds.height*2/10))
+			linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*2/10))
 			if note.rawValue < 3 {
-				linePath.move(to: CGPoint(x: lineStart, y: frame.height/10))
-				linePath.addLine(to: CGPoint(x: lineEnd, y: frame.height/10.0))
+				linePath.move(to: CGPoint(x: lineStart, y: bounds.height/10))
+				linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height/10.0))
 			}
 		}
 		
 		if note.rawValue > 15 {
-			linePath.move(to: CGPoint(x: lineStart, y: frame.height*8/10))
-			linePath.addLine(to: CGPoint(x: lineEnd, y: frame.height*8/10))
+			linePath.move(to: CGPoint(x: lineStart, y: bounds.height*8/10))
+			linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*8/10))
 			if note.rawValue > 17 {
-				linePath.move(to: CGPoint(x: lineStart, y: frame.height*9/10))
-				linePath.addLine(to: CGPoint(x: lineEnd, y: frame.height*9/10))
+				linePath.move(to: CGPoint(x: lineStart, y: bounds.height*9/10))
+				linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*9/10))
 			}
 		}
 		
@@ -105,14 +111,16 @@ class StaffDrawingView: UIView {
 		lineLayer.lineWidth = Constants.StaffHorizontalLinesWidth
 		lineLayer.strokeColor = ColorPalette.MidnightBlue.cgColor
 		return lineLayer
-		
 	}
 	
-	private func getNoteRect(_ note: Note) -> CGRect {
+	private func getRect(for note: Note) -> CGRect {
 		let noteHeight = frame.height/12
 		let noteWidth = noteHeight*1.5
+		
+		let noteDistance = ((bounds.width*3/4) / 2)
+		
 		let noteRect = CGRect(
-			x: (frame.width*3/5)-(noteWidth/2),
+			x: (bounds.width/5) + noteDistance,
 			y: (frame.height*CGFloat(Double(note.rawValue)/20.0))-(noteHeight/2),
 			width: noteWidth, height: noteHeight)
 		return noteRect
@@ -125,8 +133,8 @@ class StaffDrawingView: UIView {
 		
 		layer.frame = frame
 		
-		layer.addSublayer(drawNoteLayer(note, noteRect: getNoteRect(note), color: ColorPalette.Nephritis.withAlphaComponent(0.7)))
-		layer.addSublayer(drawNoteStem(note, noteRect: getNoteRect(note), color: ColorPalette.Nephritis.withAlphaComponent(0.7)))
+		layer.addSublayer(drawNoteLayer(note, noteRect: getRect(for: note), color: ColorPalette.Nephritis.withAlphaComponent(0.7)))
+		layer.addSublayer(drawNoteStem(note, noteRect: getRect(for: note), color: ColorPalette.Nephritis.withAlphaComponent(0.7)))
 		
 		self.layer.addSublayer(layer)
 		
@@ -230,7 +238,7 @@ class StaffDrawingView: UIView {
 		let clefLayer = CALayer()
 		
 		let height = CGFloat(frame.height*0.68)
-		let posX = CGFloat(frame.width*0.05)
+		let posX = CGFloat(frame.width*0.03)
 		let posY = CGFloat(5+(frame.height-height)/2)
 		
 		clefLayer.frame = CGRect(x: posX, y: posY, width: height*0.48, height: height)
