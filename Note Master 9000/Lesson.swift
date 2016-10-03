@@ -8,13 +8,17 @@
 
 import UIKit
 
+enum LessonState {
+	case new, neutral, completed
+}
+
 class Lesson {
 	let index: Int
 	let title: String
 	let description: String
 	let clef: Clef?
 	let color: UIColor
-	var complete: Bool = false
+	var state: LessonState = .neutral
 	
 	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor) {
 		self.index = index

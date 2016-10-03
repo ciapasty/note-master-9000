@@ -43,8 +43,11 @@ class LessonCollectionViewController: UIViewController, UICollectionViewDataSour
 		cellHeight = round(UIScreen.main.bounds.height/Constants.LessonCellToScreenHeightRatio)
 		cellSize = CGSize(width: cellHeight, height: cellHeight)
 		
-		lessons[3][0].complete = true
-		lessons[3][1].complete = true
+		// TEMP - for testing
+		lessons[1][0].state = .completed
+		lessons[2][0].state = .completed
+		lessons[3][0].state = .new
+		lessons[3][1].state = .new
     }
 	
 	override func viewWillAppear(_ animated: Bool) {

@@ -263,7 +263,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	}
 	
 	private func finishedLesson() {
-		lesson!.complete = true
+		lesson!.state = .completed
 		
 		noteButtonsEnabled(false)
 		notesDrawingView.isUserInteractionEnabled = false

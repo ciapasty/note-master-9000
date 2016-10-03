@@ -40,7 +40,13 @@ class LessonViewController: UIViewController {
 		}
 	}
 	
-	private var lesson: Lesson?
+	private var lesson: Lesson? {
+		didSet {
+			if lesson!.state == .new {
+				lesson!.state = .neutral
+			}
+		}
+	}
 	private var tutorialLesson: TutorialLesson?
 	private var noteLesson: NoteLesson?
 	
@@ -157,7 +163,7 @@ class LessonViewController: UIViewController {
 	}
 	
 	func lessonFinished() {
-		lesson?.complete = true
+		lesson?.state = .completed
 		setupFinishedView()
 		if nextLessonIndexPath(lessonIndexPath!) == nil {
 			nextLessonButton.isHidden = true

@@ -5,6 +5,8 @@
 //  Created by Maciej Eichler on 03/05/16.
 //  Copyright © 2016 Mattijah. All rights reserved.
 //
+//  Colors taken from http://flatuicolors.com/
+//
 
 import UIKit
 

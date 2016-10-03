@@ -53,16 +53,25 @@ class LessonMiniature: UIView {
 			
 			layer.addSublayer(imgLayer)
 					
-			if ls.complete {
-				let completeSing = UIBezierPath(ovalIn: CGRect(x: rect.width*2/3,
-				                                               y: 0,
-				                                               width: rect.height/3,
-				                                               height: rect.height/3))
-				ColorPalette.Nephritis.set()
-				completeSing.fill()
+			switch ls.state {
+			case .new:
+				drawMiniCircle(colored: ColorPalette.SunFlower)
+			case .neutral:
+				break
+			case .completed:
+				drawMiniCircle(colored: ColorPalette.Nephritis)
 			}
 		}
     }
+	
+	private func drawMiniCircle(colored color: UIColor) {
+		let circle = UIBezierPath(ovalIn: CGRect(x: bounds.width*2/3,
+		                                               y: 0,
+		                                               width: bounds.height/3,
+		                                               height: bounds.height/3))
+		color.set()
+		circle.fill()
+	}
 	
 	private func drawDiamond (_ rect: CGRect) {
 		let center = CGPoint(x: rect.midX, y: rect.midY)
