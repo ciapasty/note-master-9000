@@ -25,7 +25,9 @@ class TutorialPageController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		//setupView()
+		
 		view.backgroundColor = ColorPalette.Clouds
+		contentLabel.textColor = ColorPalette.MidnightBlue
     }
 	
 	override func viewDidLayoutSubviews() {
@@ -39,15 +41,15 @@ class TutorialPageController: UIViewController {
 		if let image = content!.content as? UIImage {
 			contentView.image = image
 		} else if let noteT = content!.content as? NoteTutorial {
-			contentView.clef =  noteT.clef
-			contentView.notes = noteT.notesToDraw
+			contentView.drawStaff(withClef: noteT.clef, animated: false)
+			contentView.drawNotes(noteT.notesToDraw)
 		}
 	}
 }
 
 // MARK: - StaffDrawingView subclass adding imageView
 
-class TutorialStaffDrawingView: StaffView {
+class TutorialStaffDrawingView: StaffDrawingView {
 	let imageView = UIImageView()
 	
 	var image: UIImage? {

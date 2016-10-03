@@ -233,7 +233,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	// MARK: - Helper methods
 	
 	private func drawNewNote(withDelay delay: TimeInterval, animated: Bool) {
-		notesDrawingView.drawNote(currentNote!, withStem: true)
+		notesDrawingView.drawNotes([currentNote!])
 		if animated {
 			noteSlideAnimation(delay)
 		}

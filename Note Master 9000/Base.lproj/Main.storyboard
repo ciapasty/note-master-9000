@@ -303,7 +303,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="dGk-C6-iYx" customClass="TutorialStaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGk-C6-iYx" customClass="TutorialStaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dGk-C6-iYx" secondAttribute="height" id="htC-up-NRr"/>
                                 </constraints>
