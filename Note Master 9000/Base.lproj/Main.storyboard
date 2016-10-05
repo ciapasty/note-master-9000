@@ -214,7 +214,7 @@
                             <constraint firstItem="fCY-Wx-llc" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="KhT-mU-NeC"/>
                             <constraint firstItem="k2g-wU-eI4" firstAttribute="centerY" secondItem="A7V-ba-6Jb" secondAttribute="centerY" id="Lc5-d8-Czv"/>
                             <constraint firstItem="A7V-ba-6Jb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PWo-mH-zep"/>
-                            <constraint firstItem="xlg-OX-WBz" firstAttribute="leading" secondItem="A7V-ba-6Jb" secondAttribute="leading" constant="20" id="Vyk-jE-tsp"/>
+                            <constraint firstItem="xlg-OX-WBz" firstAttribute="leading" secondItem="A7V-ba-6Jb" secondAttribute="leading" constant="15" id="Vyk-jE-tsp"/>
                             <constraint firstAttribute="bottom" secondItem="fCY-Wx-llc" secondAttribute="bottom" id="XHL-YJ-1ZP"/>
                             <constraint firstItem="7nA-QV-DWy" firstAttribute="bottom" secondItem="A7V-ba-6Jb" secondAttribute="bottom" id="ZLx-Hz-kqA"/>
                             <constraint firstItem="k2g-wU-eI4" firstAttribute="centerX" secondItem="A7V-ba-6Jb" secondAttribute="centerX" id="aNW-ZC-7i4"/>
@@ -308,16 +308,21 @@
                                     <constraint firstAttribute="width" secondItem="dGk-C6-iYx" secondAttribute="height" id="htC-up-NRr"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SRC-hU-6fA" customClass="StaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target"/>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="q2w-VU-CWd" firstAttribute="height" secondItem="vrk-R9-9Wx" secondAttribute="height" multiplier="0.3" id="0Vn-x1-v4H"/>
                             <constraint firstItem="dGk-C6-iYx" firstAttribute="centerX" secondItem="vrk-R9-9Wx" secondAttribute="centerX" id="0dx-jS-Ur2"/>
+                            <constraint firstItem="SRC-hU-6fA" firstAttribute="width" secondItem="dGk-C6-iYx" secondAttribute="width" id="ECw-VK-k7V"/>
                             <constraint firstAttribute="trailing" secondItem="q2w-VU-CWd" secondAttribute="trailing" constant="20" symbolic="YES" id="ENT-2n-x2E"/>
+                            <constraint firstItem="SRC-hU-6fA" firstAttribute="centerX" secondItem="dGk-C6-iYx" secondAttribute="centerX" id="NtW-Uk-7fs"/>
                             <constraint firstItem="bvP-qy-c7H" firstAttribute="top" secondItem="q2w-VU-CWd" secondAttribute="bottom" id="PfB-n6-OFg"/>
+                            <constraint firstItem="SRC-hU-6fA" firstAttribute="height" secondItem="dGk-C6-iYx" secondAttribute="height" id="QsI-uT-IN8"/>
                             <constraint firstItem="dGk-C6-iYx" firstAttribute="top" secondItem="xdo-nn-CG3" secondAttribute="bottom" id="RZj-p6-6wu"/>
                             <constraint firstItem="q2w-VU-CWd" firstAttribute="leading" secondItem="vrk-R9-9Wx" secondAttribute="leading" constant="20" symbolic="YES" id="Vhs-ao-vFs"/>
                             <constraint firstItem="dGk-C6-iYx" firstAttribute="bottom" secondItem="q2w-VU-CWd" secondAttribute="top" id="ZpQ-EB-XiO"/>
+                            <constraint firstItem="SRC-hU-6fA" firstAttribute="centerY" secondItem="dGk-C6-iYx" secondAttribute="centerY" id="oap-gJ-qKb"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -325,6 +330,7 @@
                     <connections>
                         <outlet property="contentLabel" destination="q2w-VU-CWd" id="LhA-dz-tdl"/>
                         <outlet property="contentView" destination="dGk-C6-iYx" id="ys0-Ko-mNY"/>
+                        <outlet property="noteDrawingView" destination="SRC-hU-6fA" id="8Xc-5c-tOx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jml-r5-P2t" userLabel="First Responder" sceneMemberID="firstResponder"/>

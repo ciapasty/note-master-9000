@@ -40,7 +40,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 
-	private lazy var avPlayer:AVAudioPlayer = AVAudioPlayer()
+	private var avPlayer:AVAudioPlayer = AVAudioPlayer()
 	
 	private var noteButtons = [UIButton]()
 	private var noteNameValueDict = [String:Int]()
@@ -66,7 +66,8 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		static let WrongAnimationVelocity: CGFloat = 8.0
 		static let WrongAnimationDamping: CGFloat = 0.1
 		static let WrongAnimationOffset: CGFloat = 12
-		static let RequiredCorrectNotes = 20
+		
+		static let RequiredCorrectNotes = 2
 	}
 	
 	// MARK: - ViewController lifecycle
@@ -223,6 +224,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	private func resetLesson() {
 		clefImageView.layer.sublayers = nil
+		notesDrawingView.layer.sublayers = nil
 		currentProgress = 0.0
 		progressBar.setProgress(currentProgress, animated: false)
 		currentNote = nil

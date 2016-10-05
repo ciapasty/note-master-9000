@@ -10,25 +10,22 @@ import UIKit
 
 class StaffDrawingView: UIView {
 	
-	private var noteView = UIView()
-	
 	// MARK: Constants
 	
 	private struct Constants {
 		static let NoteBodyLineWidth: CGFloat = 1.0
 		static let NoteStemLineWidth: CGFloat = 2.0
+		static let GhostNoteAnimationDuration: Double = 0.5
 		static let StaffVerticalLinesWidth: CGFloat = 3.0
 		static let StaffHorizontalLinesWidth: CGFloat = 1.0
 		static let StaffVerticalLinesAnimationDuration: Double = 0.56
 		static let StaffHorizontalLinesAnimationDuration: Double = 0.7
-		static let GhostNoteAnimationDuration: Double = 0.5
 	}
 	
 	// MARK: Note Drawing
 	
 	func drawNotes(_ notes: [Note]){
-		noteView.frame = bounds
-		noteView.layer.sublayers = nil
+		layer.sublayers = nil
 		for (index, note) in notes.enumerated() {
 			let noteLayer = CALayer()
 			var noteRect = getRect(for: note)
@@ -39,10 +36,9 @@ class StaffDrawingView: UIView {
 			noteLayer.addSublayer(drawNoteLayer(note, noteRect: noteRect, color: ColorPalette.MidnightBlue))
 			noteLayer.addSublayer(drawNoteStem(note, noteRect: noteRect, color: ColorPalette.MidnightBlue))
 			
-			noteView.layer.addSublayer(drawAddLines(for: note, at: noteRect.origin.x))
-			noteView.layer.addSublayer(noteLayer)
+			layer.addSublayer(drawAddLines(for: note, at: noteRect.origin.x))
+			layer.addSublayer(noteLayer)
 		}
-		self.addSubview(noteView)
 	}
 	
 	private func drawNoteLayer(_ note: Note, noteRect: CGRect, color: UIColor) -> CALayer {
@@ -81,38 +77,6 @@ class StaffDrawingView: UIView {
 		return noteStemLayer
 	}
 	
-	private func drawAddLines(for note: Note, at width: CGFloat) -> CALayer {
-		let lineWidth = bounds.width/5
-		let noteWidth = bounds.height/8
-		let lineStart = width + (noteWidth/2) - lineWidth/2
-		let lineEnd = width + (noteWidth/2) + lineWidth/2
-		let linePath = UIBezierPath()
-		let lineLayer = CAShapeLayer()
-		
-		if note.rawValue < 5 {
-			linePath.move(to: CGPoint(x: lineStart, y: bounds.height*2/10))
-			linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*2/10))
-			if note.rawValue < 3 {
-				linePath.move(to: CGPoint(x: lineStart, y: bounds.height/10))
-				linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height/10.0))
-			}
-		}
-		
-		if note.rawValue > 15 {
-			linePath.move(to: CGPoint(x: lineStart, y: bounds.height*8/10))
-			linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*8/10))
-			if note.rawValue > 17 {
-				linePath.move(to: CGPoint(x: lineStart, y: bounds.height*9/10))
-				linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*9/10))
-			}
-		}
-		
-		lineLayer.path = linePath.cgPath
-		lineLayer.lineWidth = Constants.StaffHorizontalLinesWidth
-		lineLayer.strokeColor = ColorPalette.MidnightBlue.cgColor
-		return lineLayer
-	}
-	
 	private func getRect(for note: Note) -> CGRect {
 		let noteHeight = frame.height/12
 		let noteWidth = noteHeight*1.5
@@ -124,6 +88,38 @@ class StaffDrawingView: UIView {
 			y: (frame.height*CGFloat(Double(note.rawValue)/20.0))-(noteHeight/2),
 			width: noteWidth, height: noteHeight)
 		return noteRect
+	}
+	
+	private func drawAddLines(for note: Note, at width: CGFloat) -> CALayer {
+		let lineWidth = bounds.width/5
+		let noteWidth = bounds.height/8
+		let lineStart = width + (noteWidth/2) - lineWidth/2
+		let lineEnd = width + (noteWidth/2) + lineWidth/2
+		let linePath = UIBezierPath()
+		let lineLayer = CAShapeLayer()
+		
+		if note.rawValue > 15 {
+			linePath.move(to: CGPoint(x: lineStart, y: bounds.height*8/10))
+			linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*8/10))
+			if note.rawValue > 17 {
+				linePath.move(to: CGPoint(x: lineStart, y: bounds.height*9/10))
+				linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*9/10))
+			}
+		}
+		
+		if note.rawValue < 5 {
+			linePath.move(to: CGPoint(x: lineStart, y: bounds.height*2/10))
+			linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*2/10))
+			if note.rawValue < 3 {
+				linePath.move(to: CGPoint(x: lineStart, y: bounds.height/10))
+				linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height/10.0))
+			}
+		}
+		
+		lineLayer.path = linePath.cgPath
+		lineLayer.lineWidth = Constants.StaffHorizontalLinesWidth
+		lineLayer.strokeColor = ColorPalette.MidnightBlue.cgColor
+		return lineLayer
 	}
 	
 	// MARK: Ghost note drawing
@@ -173,7 +169,6 @@ class StaffDrawingView: UIView {
 	func drawStaff(withClef clef: Clef?, animated anim: Bool) {
 		layer.sublayers = nil
 		let staffLayer = CALayer()
-		staffLayer.sublayers = nil
 		staffLayer.addSublayer(drawStaffLayer(anim))
 		if (clef != nil) {
 			staffLayer.addSublayer(drawClefLayer(clef!))
@@ -238,7 +233,7 @@ class StaffDrawingView: UIView {
 		let clefLayer = CALayer()
 		
 		let height = CGFloat(frame.height*0.68)
-		let posX = CGFloat(frame.width*0.03)
+		let posX = CGFloat(frame.width*0.045)
 		let posY = CGFloat(5+(frame.height-height)/2)
 		
 		clefLayer.frame = CGRect(x: posX, y: posY, width: height*0.48, height: height)
