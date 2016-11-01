@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum LessonState {
+enum LessonState: Int {
 	case new, neutral, completed
 }
 

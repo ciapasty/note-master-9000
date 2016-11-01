@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="LessonsTracking" representedClassName="LessonsTracking" syncable="YES" codeGenerationType="class">
+        <attribute name="lessonID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="NoteCorrectness" representedClassName="NoteCorrectness" syncable="YES" codeGenerationType="class">
+        <attribute name="badCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="clef" attributeType="String" syncable="YES"/>
+        <attribute name="goodBadRatio" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="goodCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="noteID" attributeType="Integer 16" minValueString="1" maxValueString="19" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="LessonsTracking" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="NoteCorrectness" positionX="97" positionY="6" width="128" height="120"/>
+    </elements>
+</model>

@@ -20,6 +20,7 @@ let testTutorialContent = [
 	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.n12]), text: "This is note G4."),
 	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.n8, Note.n18]), text: "This is note D5 and A3"),
 	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.n12, Note.n11, Note.n10, Note.n9]), text: "G4, A4, B4, C5"),
+	TutorialPageContent(content: NoteTutorial(clef: Clef.bassClef, notesToDraw: [Note.n12, Note.n11, Note.n10, Note.n9]), text: "B2, C3, D3, E3"),
 	TutorialPageContent(content: UIImage(named: "gup-vertical"), text: "This is a PUG")
 ]
 
