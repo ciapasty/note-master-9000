@@ -104,7 +104,7 @@ var lessons: [[Lesson]] = [
 	],
 	[
         NoteLesson(
-            index: 8,
+            index: 9,
             title: "10 worst",
             description: "10 worst notes from treble clef",
             clef: Clef.trebleClef,
@@ -112,7 +112,7 @@ var lessons: [[Lesson]] = [
             noteSet: nil,
             gauss: true),
         NoteLesson(
-            index: 8,
+            index: 10,
             title: "10 worst",
             description: "10 worst notes from bass clef",
             clef: Clef.bassClef,
