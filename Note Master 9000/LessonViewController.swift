@@ -43,6 +43,7 @@ class LessonViewController: UIViewController {
 		}
 	}
 	
+    // MARK: -
 	private var lesson: Lesson? {
 		didSet {
 			if lesson!.state == .new {
@@ -53,7 +54,7 @@ class LessonViewController: UIViewController {
                 do {
                     try managedObjectContext?.save()
                 } catch let error {
-                    print("lesson::didSet::managedObjectContext?.save() -- ", error.localizedDescription)
+                    print("LessonViewController::lesson::didSet::managedObjectContext?.save() -- ", error.localizedDescription)
                 }
 			}
 		}
@@ -182,7 +183,7 @@ class LessonViewController: UIViewController {
         do {
             try managedObjectContext?.save()
         } catch let error {
-            print("lessonFinished::managedObjectContext?.save() -- ", error.localizedDescription)
+            print("LessonViewController::lessonFinished::managedObjectContext?.save() -- ", error.localizedDescription)
         }
         
 		setupFinishedView()

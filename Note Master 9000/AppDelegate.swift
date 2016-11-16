@@ -16,12 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        let context = persistentContainer.viewContext
+        
         for section in lessons {
             for lesson in section {
-                let context = persistentContainer.viewContext
                 context.performAndWait {
                     lesson.state = LessonsTracking.setStateFor(lesson, in: context)
                 }
+            }
+        }
+        
+        for i in 1...19 {
+            context.perform {
+                NoteCorrectness.setup(note: Note(rawValue: i)!, inClef: Clef.trebleClef, in: context)
+                NoteCorrectness.setup(note: Note(rawValue: i)!, inClef: Clef.bassClef, in: context)
             }
         }
         

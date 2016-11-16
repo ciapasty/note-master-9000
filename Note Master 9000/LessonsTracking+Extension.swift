@@ -13,8 +13,7 @@ import CoreData
 
 extension LessonsTracking {
     
-    class func getStateFor(_ lesson: Lesson, in context: NSManagedObjectContext) -> LessonState?
-    {
+    class func getStateFor(_ lesson: Lesson, in context: NSManagedObjectContext) -> LessonState? {
         let request: NSFetchRequest<LessonsTracking> = LessonsTracking.fetchRequest()
         request.predicate = NSPredicate(format: "index = %d", Int16(lesson.index))
         
@@ -25,8 +24,7 @@ extension LessonsTracking {
         return nil
     }
     
-    class func setStateFor(_ lesson: Lesson, in context: NSManagedObjectContext) -> LessonState?
-    {
+    class func setStateFor(_ lesson: Lesson, in context: NSManagedObjectContext) -> LessonState? {
         let request: NSFetchRequest<LessonsTracking> = LessonsTracking.fetchRequest()
         request.predicate = NSPredicate(format: "index = %d", Int16(lesson.index))
         
