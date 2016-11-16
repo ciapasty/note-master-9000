@@ -37,10 +37,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 			} else {
 				resetLesson()
 			}
-            // DEBUG
-            managedObjectContext?.perform {
-                NoteCorrectness.fetchNoteStats(inClef: self.lesson!.clef!, recordsCount: 10, ascending: true, in: self.managedObjectContext!)
-            }
 		}
 	}
 
@@ -55,6 +51,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	private var noteNameDict = [Note:String]()
 	
 	private var currentProgress: Float = 0.0
+    private var noteSet: [Note]?
 	private var currentNote: Note?
 	private var previousNote: Note?
 	private let randSource = GKRandomSource()
@@ -75,7 +72,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		static let WrongAnimationDamping: CGFloat = 0.1
 		static let WrongAnimationOffset: CGFloat = 12
 		
-		static let RequiredCorrectNotes = 100
+		static let RequiredCorrectNotes = 20
 	}
 	
 	// MARK: - ViewController lifecycle
@@ -137,7 +134,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 			
 			if currentProgress < 1.0 {
 				previousNote = currentNote
-				currentNote = randomNoteFromSet(lesson!.noteSet, gauss: lesson!.gauss)
+				currentNote = randomNoteFromSet(noteSet!, gauss: lesson!.gauss)
 				drawNewNote(withDelay: 0, animated: true)
 			} else {
 				finishedLesson()
@@ -229,7 +226,17 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 				noteNameDict = bassNotesNameDict
 			}
 			
-			currentNote = randomNoteFromSet(lesson!.noteSet, gauss: lesson!.gauss)
+            if ls.noteSet == nil {
+                var set = [Note]()
+                managedObjectContext?.performAndWait {
+                    set = NoteCorrectness.fetchWorstNotes(inClef: ls.clef!, recordsCount: 10, in: self.managedObjectContext!)!
+                }
+                noteSet = set
+            } else {
+                noteSet = ls.noteSet
+            }
+            
+			currentNote = randomNoteFromSet(noteSet!, gauss: lesson!.gauss)
 			previousNote = currentNote
 			
 			startLessonViewsAnimation()

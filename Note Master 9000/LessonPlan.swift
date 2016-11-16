@@ -14,7 +14,9 @@ let lessonsSections = [
 	"Random Section 1",
 	"Section 2: CC",
 	"Basic Bass Clef",
-	"Advanced Bass Clef"]
+	"Advanced Bass Clef",
+    "Generated Lessons"
+]
 
 // MARK: Tutorials content
 
@@ -99,7 +101,25 @@ var lessons: [[Lesson]] = [
             color: ColorPalette.Carrot,
             noteSet: notesInRange(from: Note.n14, to: Note.n19),
             gauss: true)
-	]
+	],
+	[
+        NoteLesson(
+            index: 8,
+            title: "10 worst",
+            description: "10 worst notes from treble clef",
+            clef: Clef.trebleClef,
+            color: ColorPalette.Torquoise,
+            noteSet: nil,
+            gauss: true),
+        NoteLesson(
+            index: 8,
+            title: "10 worst",
+            description: "10 worst notes from bass clef",
+            clef: Clef.bassClef,
+            color: ColorPalette.SunFlower,
+            noteSet: nil,
+            gauss: true)
+    ]
 ]
 
 

@@ -50,16 +50,20 @@ extension NoteCorrectness {
         }
     }
     
-    class func fetchNoteStats(inClef clef: Clef, recordsCount n: Int, ascending: Bool, in context: NSManagedObjectContext) {
+    class func fetchWorstNotes(inClef clef: Clef, recordsCount n: Int, in context: NSManagedObjectContext) -> [Note]? {
         let request: NSFetchRequest<NoteCorrectness> = NoteCorrectness.fetchRequest()
         request.predicate = NSPredicate(format: "clef = %@", clef.rawValue)
         request.fetchLimit = n
-        request.sortDescriptors = [NSSortDescriptor(key: "goodBadRatio", ascending: ascending)]
+        request.sortDescriptors = [NSSortDescriptor(key: "goodBadRatio", ascending: true)]
         
         if let ncs = try? context.fetch(request) {
+            var notes =  [Note]()
             for nc in ncs {
                 print(nc.noteID, nc.goodBadRatio)
+                notes.append(Note(rawValue: Int(nc.noteID))!)
             }
+            return notes
         }
+        return nil
     }
 }

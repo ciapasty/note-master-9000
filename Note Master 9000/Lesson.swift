@@ -30,10 +30,10 @@ class Lesson {
 }
 
 class NoteLesson: Lesson {
-	let noteSet: [Note]
+	let noteSet: [Note]?
 	let gauss: Bool
 	
-	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, noteSet: [Note], gauss: Bool) {
+	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, noteSet: [Note]?, gauss: Bool) {
 		self.noteSet = noteSet
 		self.gauss = gauss
 		
