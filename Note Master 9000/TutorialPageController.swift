@@ -13,6 +13,7 @@ class TutorialPageController: UIViewController {
 	// MARK: Outlets
 	
 	@IBOutlet weak var contentView: TutorialStaffDrawingView!
+	@IBOutlet weak var noteDrawingView: StaffDrawingView!
 	@IBOutlet weak var contentLabel: UILabel!
 	
 	// MARK: Model
@@ -42,7 +43,7 @@ class TutorialPageController: UIViewController {
 			contentView.image = image
 		} else if let noteT = content!.content as? NoteTutorial {
 			contentView.drawStaff(withClef: noteT.clef, animated: false)
-			contentView.drawNotes(noteT.notesToDraw)
+			noteDrawingView.drawNotes(noteT.notesToDraw)
 		}
 	}
 }

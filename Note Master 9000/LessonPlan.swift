@@ -14,12 +14,17 @@ let lessonsSections = [
 	"Random Section 1",
 	"Section 2: CC",
 	"Basic Bass Clef",
-	"Advanced Bass Clef"]
+	"Advanced Bass Clef",
+    "Generated Lessons"
+]
+
+// MARK: Tutorials content
 
 let testTutorialContent = [
 	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.n12]), text: "This is note G4."),
 	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.n8, Note.n18]), text: "This is note D5 and A3"),
 	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.n12, Note.n11, Note.n10, Note.n9]), text: "G4, A4, B4, C5"),
+	TutorialPageContent(content: NoteTutorial(clef: Clef.bassClef, notesToDraw: [Note.n12, Note.n11, Note.n10, Note.n9]), text: "B2, C3, D3, E3"),
 	TutorialPageContent(content: UIImage(named: "gup-vertical"), text: "This is a PUG")
 ]
 
@@ -40,7 +45,7 @@ var lessons: [[Lesson]] = [
 			description: "One octave from G4 to G5, with gaussian randomisation",
 			clef: Clef.trebleClef,
 			color: ColorPalette.Orange,
-			noteSet: noteRange(from: Note.n5, to: Note.n12),
+			noteSet: notesInRange(from: Note.n5, to: Note.n12),
 			gauss: true),
 		NoteLesson(
 			index: 3,
@@ -48,7 +53,7 @@ var lessons: [[Lesson]] = [
 			description: "One octave from G4 to G5, with liniear randomisation",
 			clef: Clef.trebleClef,
 			color: ColorPalette.BelizeHole,
-			noteSet: noteRange(from: Note.n5, to: Note.n12),
+			noteSet: notesInRange(from: Note.n5, to: Note.n12),
 			gauss: false)
 	],
 	[
@@ -68,7 +73,7 @@ var lessons: [[Lesson]] = [
 			description: "Bass clef practice",
 			clef: Clef.bassClef,
 			color: ColorPalette.Pomegrante,
-			noteSet: noteRange(from: Note.n4, to: Note.n16),
+			noteSet: notesInRange(from: Note.n4, to: Note.n16),
 			gauss: true)
 	],
 	[
@@ -78,7 +83,7 @@ var lessons: [[Lesson]] = [
 			description: "Upper range bass clef practice",
 			clef: Clef.bassClef,
 			color: ColorPalette.GreenSee,
-			noteSet: noteRange(from: Note.n1, to: Note.n5),
+			noteSet: notesInRange(from: Note.n1, to: Note.n5),
 			gauss: false),
 		NoteLesson(
 			index: 7,
@@ -86,13 +91,39 @@ var lessons: [[Lesson]] = [
 			description: "Lower range bass clef practice",
 			clef: Clef.bassClef,
 			color: ColorPalette.Asbestos,
-			noteSet: noteRange(from: Note.n14, to: Note.n19),
-			gauss: false)
-	]
+			noteSet: notesInRange(from: Note.n14, to: Note.n19),
+			gauss: false),
+        NoteLesson(
+            index: 8,
+            title: "Tests",
+            description: "Some meaningless description",
+            clef: Clef.trebleClef,
+            color: ColorPalette.Carrot,
+            noteSet: notesInRange(from: Note.n14, to: Note.n19),
+            gauss: true)
+	],
+	[
+        NoteLesson(
+            index: 8,
+            title: "10 worst",
+            description: "10 worst notes from treble clef",
+            clef: Clef.trebleClef,
+            color: ColorPalette.Torquoise,
+            noteSet: nil,
+            gauss: true),
+        NoteLesson(
+            index: 8,
+            title: "10 worst",
+            description: "10 worst notes from bass clef",
+            clef: Clef.bassClef,
+            color: ColorPalette.SunFlower,
+            noteSet: nil,
+            gauss: true)
+    ]
 ]
 
 
-func noteRange(from: Note, to: Note) -> [Note] {
+func notesInRange(from: Note, to: Note) -> [Note] {
 	var noteSet = [Note]()
 	for i in from.rawValue...to.rawValue {
 		noteSet.append(Note(rawValue: i)!)

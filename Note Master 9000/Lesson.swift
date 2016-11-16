@@ -8,13 +8,17 @@
 
 import UIKit
 
+enum LessonState: String {
+	case new, opened, finished
+}
+
 class Lesson {
 	let index: Int
 	let title: String
 	let description: String
 	let clef: Clef?
 	let color: UIColor
-	var complete: Bool = false
+	var state: LessonState?
 	
 	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor) {
 		self.index = index
@@ -26,10 +30,10 @@ class Lesson {
 }
 
 class NoteLesson: Lesson {
-	let noteSet: [Note]
+	let noteSet: [Note]?
 	let gauss: Bool
 	
-	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, noteSet: [Note], gauss: Bool) {
+	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, noteSet: [Note]?, gauss: Bool) {
 		self.noteSet = noteSet
 		self.gauss = gauss
 		

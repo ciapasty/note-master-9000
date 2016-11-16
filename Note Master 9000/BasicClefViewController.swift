@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import GameplayKit
 import AVFoundation
 
@@ -29,7 +30,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	@IBOutlet weak var bNoteButton: UIButton!
 	
 	// MARK: - Model
-	var parentVC: LessonViewController?
 	var lesson: NoteLesson? {
 		didSet {
 			if lesson != nil {
@@ -40,19 +40,24 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 
-	private lazy var avPlayer:AVAudioPlayer = AVAudioPlayer()
+    // MARK: -
+    var parentVC: LessonViewController?
+    var managedObjectContext: NSManagedObjectContext? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    
+	private var avPlayer:AVAudioPlayer = AVAudioPlayer()
 	
 	private var noteButtons = [UIButton]()
 	private var noteNameValueDict = [String:Int]()
 	private var noteNameDict = [Note:String]()
 	
 	private var currentProgress: Float = 0.0
+    private var noteSet: [Note]?
 	private var currentNote: Note?
 	private var previousNote: Note?
 	private let randSource = GKRandomSource()
 	private var helpVisible = false
 	
-	// MARK: - Constants
+	// MARK: -
 	private struct Constants {
 		static let BasicAnimationDuration: Double = 0.4
 		static let ButtonAnimationStartDelay: Double = 0.5
@@ -66,6 +71,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		static let WrongAnimationVelocity: CGFloat = 8.0
 		static let WrongAnimationDamping: CGFloat = 0.1
 		static let WrongAnimationOffset: CGFloat = 12
+		
 		static let RequiredCorrectNotes = 20
 	}
 	
@@ -117,22 +123,37 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		noteButtonsEnabled(false)
 		
 		if (currentNote!.rawValue % 7) == noteNameValueDict[sender.titleLabel!.text!] {
-			
+			// Correct anwser
+            managedObjectContext?.performAndWait {
+                NoteCorrectness.add(correctAnswer: true, forNote: self.currentNote!, inClef: self.lesson!.clef!, in: self.managedObjectContext!)
+            }
+            
 			staffDrawingView.drawGhostNote(currentNote!, progress: currentProgress)
 			currentProgress += 1.0/Float(Constants.RequiredCorrectNotes)
 			Timer.scheduledTimer(timeInterval: 0.45, target: self, selector: #selector(self.addProgress), userInfo: nil, repeats: false)
 			
 			if currentProgress < 1.0 {
 				previousNote = currentNote
-				currentNote = randomNoteFromSet(lesson!.noteSet, gauss: lesson!.gauss)
+				currentNote = randomNoteFromSet(noteSet!, gauss: lesson!.gauss)
 				drawNewNote(withDelay: 0, animated: true)
 			} else {
 				finishedLesson()
 			}
 		} else {
+            // Wrong anwser
+            managedObjectContext?.performAndWait {
+                NoteCorrectness.add(correctAnswer: false, forNote: self.currentNote!, inClef: self.lesson!.clef!, in: self.managedObjectContext!)
+            }
+            
 			wrongAnimation()
 		}
 		
+        do {
+            try managedObjectContext?.save()
+        } catch let error {
+            print("BasicClefViewController::onNoteButton::managedObjectContext?.save() -- ", error.localizedDescription)
+        }
+        
 		hideHelpAnimation()
 	}
 	
@@ -205,7 +226,17 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 				noteNameDict = bassNotesNameDict
 			}
 			
-			currentNote = randomNoteFromSet(lesson!.noteSet, gauss: lesson!.gauss)
+            if ls.noteSet == nil {
+                var set = [Note]()
+                managedObjectContext?.performAndWait {
+                    set = NoteCorrectness.fetchWorstNotes(inClef: ls.clef!, recordsCount: 10, in: self.managedObjectContext!)!
+                }
+                noteSet = set
+            } else {
+                noteSet = ls.noteSet
+            }
+            
+			currentNote = randomNoteFromSet(noteSet!, gauss: lesson!.gauss)
 			previousNote = currentNote
 			
 			startLessonViewsAnimation()
@@ -223,6 +254,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	private func resetLesson() {
 		clefImageView.layer.sublayers = nil
+		notesDrawingView.layer.sublayers = nil
 		currentProgress = 0.0
 		progressBar.setProgress(currentProgress, animated: false)
 		currentNote = nil
@@ -263,8 +295,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	}
 	
 	private func finishedLesson() {
-		lesson!.complete = true
-		
 		noteButtonsEnabled(false)
 		notesDrawingView.isUserInteractionEnabled = false
 		notesDrawingView.layer.sublayers = nil
