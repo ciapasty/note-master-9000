@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class LessonViewController: UIViewController {
 	
@@ -23,6 +24,8 @@ class LessonViewController: UIViewController {
 	@IBOutlet weak var nextLessonButton: UIButton!
 	@IBOutlet weak var lessonPlanButton: UIButton!
 
+    var managedObjectContext: NSManagedObjectContext? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    
 	// MARK: Model
 	var lessonIndexPath: IndexPath? {
 		didSet {
@@ -43,7 +46,15 @@ class LessonViewController: UIViewController {
 	private var lesson: Lesson? {
 		didSet {
 			if lesson!.state == .new {
-				lesson!.state = .neutral
+				lesson!.state = .opened
+                managedObjectContext?.performAndWait {
+                    _ = LessonsTracking.setStateFor(self.lesson!, in: self.managedObjectContext!)
+                }
+                do {
+                    try managedObjectContext?.save()
+                } catch let error {
+                    print("lesson::didSet::managedObjectContext?.save() -- ", error.localizedDescription)
+                }
 			}
 		}
 	}
@@ -163,7 +174,17 @@ class LessonViewController: UIViewController {
 	}
 	
 	func lessonFinished() {
-		lesson?.state = .completed
+		lesson?.state = .finished
+        managedObjectContext?.performAndWait {
+            _ = LessonsTracking.setStateFor(self.lesson!, in: self.managedObjectContext!)
+        }
+        
+        do {
+            try managedObjectContext?.save()
+        } catch let error {
+            print("lessonFinished::managedObjectContext?.save() -- ", error.localizedDescription)
+        }
+        
 		setupFinishedView()
 		if nextLessonIndexPath(lessonIndexPath!) == nil {
 			nextLessonButton.isHidden = true

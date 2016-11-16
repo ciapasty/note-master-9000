@@ -15,8 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-		// Override point for customization after application launch.
-		return true
+        
+        for section in lessons {
+            for lesson in section {
+                let context = persistentContainer.viewContext
+                context.performAndWait {
+                    lesson.state = LessonsTracking.setStateFor(lesson, in: context)
+                }
+            }
+        }
+        
+        return true
 	}
 
 	func applicationWillResignActive(_ application: UIApplication) {

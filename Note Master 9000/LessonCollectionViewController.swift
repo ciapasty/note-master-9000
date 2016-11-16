@@ -11,7 +11,7 @@ import UIKit
 class LessonCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 	
 	@IBOutlet weak var collectionView: UICollectionView!
-	
+    
 	private var cellHeight = CGFloat()
 	private var cellSize = CGSize()
 	
@@ -42,14 +42,8 @@ class LessonCollectionViewController: UIViewController, UICollectionViewDataSour
 		
 		cellHeight = round(UIScreen.main.bounds.height/Constants.LessonCellToScreenHeightRatio)
 		cellSize = CGSize(width: cellHeight, height: cellHeight)
-		
-		// TEMP - for testing
-		lessons[1][0].state = .completed
-		lessons[2][0].state = .completed
-		lessons[3][0].state = .new
-		lessons[3][1].state = .new
     }
-	
+
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		// MARK: TODO navigationBar setup -> move to separate method
@@ -79,8 +73,8 @@ class LessonCollectionViewController: UIViewController, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.LessonCellIdentifier, for: indexPath) as! LessonCollectionCell
-		
-		cell.lesson = lessons[indexPath.section][indexPath.row] as Lesson
+        
+        cell.lesson = lessons[indexPath.section][indexPath.row] as Lesson
 		
         return cell
     }

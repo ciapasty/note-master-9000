@@ -8,8 +8,8 @@
 
 import UIKit
 
-enum LessonState: Int {
-	case new, neutral, completed
+enum LessonState: String {
+	case new, opened, finished
 }
 
 class Lesson {
@@ -18,7 +18,7 @@ class Lesson {
 	let description: String
 	let clef: Clef?
 	let color: UIColor
-	var state: LessonState = .neutral
+	var state: LessonState?
 	
 	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor) {
 		self.index = index

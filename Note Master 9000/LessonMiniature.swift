@@ -52,13 +52,13 @@ class LessonMiniature: UIView {
 			imgLayer.contentsGravity = kCAGravityResizeAspect
 			
 			layer.addSublayer(imgLayer)
-					
-			switch ls.state {
+            
+			switch ls.state! {
 			case .new:
 				drawMiniCircle(colored: ColorPalette.SunFlower)
-			case .neutral:
+			case .opened:
 				break
-			case .completed:
+			case .finished:
 				drawMiniCircle(colored: ColorPalette.Nephritis)
 			}
 		}

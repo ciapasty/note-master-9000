@@ -16,6 +16,8 @@ let lessonsSections = [
 	"Basic Bass Clef",
 	"Advanced Bass Clef"]
 
+// MARK: Tutorials content
+
 let testTutorialContent = [
 	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.n12]), text: "This is note G4."),
 	TutorialPageContent(content: NoteTutorial(clef: Clef.trebleClef, notesToDraw: [Note.n8, Note.n18]), text: "This is note D5 and A3"),
@@ -41,7 +43,7 @@ var lessons: [[Lesson]] = [
 			description: "One octave from G4 to G5, with gaussian randomisation",
 			clef: Clef.trebleClef,
 			color: ColorPalette.Orange,
-			noteSet: noteRange(from: Note.n5, to: Note.n12),
+			noteSet: notesInRange(from: Note.n5, to: Note.n12),
 			gauss: true),
 		NoteLesson(
 			index: 3,
@@ -49,7 +51,7 @@ var lessons: [[Lesson]] = [
 			description: "One octave from G4 to G5, with liniear randomisation",
 			clef: Clef.trebleClef,
 			color: ColorPalette.BelizeHole,
-			noteSet: noteRange(from: Note.n5, to: Note.n12),
+			noteSet: notesInRange(from: Note.n5, to: Note.n12),
 			gauss: false)
 	],
 	[
@@ -69,7 +71,7 @@ var lessons: [[Lesson]] = [
 			description: "Bass clef practice",
 			clef: Clef.bassClef,
 			color: ColorPalette.Pomegrante,
-			noteSet: noteRange(from: Note.n4, to: Note.n16),
+			noteSet: notesInRange(from: Note.n4, to: Note.n16),
 			gauss: true)
 	],
 	[
@@ -79,7 +81,7 @@ var lessons: [[Lesson]] = [
 			description: "Upper range bass clef practice",
 			clef: Clef.bassClef,
 			color: ColorPalette.GreenSee,
-			noteSet: noteRange(from: Note.n1, to: Note.n5),
+			noteSet: notesInRange(from: Note.n1, to: Note.n5),
 			gauss: false),
 		NoteLesson(
 			index: 7,
@@ -87,13 +89,21 @@ var lessons: [[Lesson]] = [
 			description: "Lower range bass clef practice",
 			clef: Clef.bassClef,
 			color: ColorPalette.Asbestos,
-			noteSet: noteRange(from: Note.n14, to: Note.n19),
-			gauss: false)
+			noteSet: notesInRange(from: Note.n14, to: Note.n19),
+			gauss: false),
+        NoteLesson(
+            index: 8,
+            title: "Tests",
+            description: "Some meaningless description",
+            clef: Clef.trebleClef,
+            color: ColorPalette.Carrot,
+            noteSet: notesInRange(from: Note.n14, to: Note.n19),
+            gauss: true)
 	]
 ]
 
 
-func noteRange(from: Note, to: Note) -> [Note] {
+func notesInRange(from: Note, to: Note) -> [Note] {
 	var noteSet = [Note]()
 	for i in from.rawValue...to.rawValue {
 		noteSet.append(Note(rawValue: i)!)
