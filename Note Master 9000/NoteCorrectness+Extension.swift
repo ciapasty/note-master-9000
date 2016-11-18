@@ -34,9 +34,7 @@ extension NoteCorrectness {
             } else {
                 nc.badCount += 1
             }
-            nc.goodBadRatio = Float(nc.goodCount)/Float(nc.badCount)
-            print(note, nc.goodBadRatio)
-            
+            nc.goodBadRatio = Float(nc.goodCount)/Float(nc.badCount)            
         } else if let nc = NSEntityDescription.insertNewObject(forEntityName: "NoteCorrectness", into: context) as? NoteCorrectness {
             nc.clef = clef.rawValue
             nc.noteID = Int16(note.rawValue)
@@ -46,7 +44,6 @@ extension NoteCorrectness {
                 nc.badCount = 1
             }
             nc.goodBadRatio = Float(nc.goodCount)/Float(nc.badCount)
-            print(note, nc.goodBadRatio)
         }
     }
     

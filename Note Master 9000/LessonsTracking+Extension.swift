@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension LessonsTracking {
     
     class func getStateFor(_ lesson: Lesson, in context: NSManagedObjectContext) -> LessonState? {

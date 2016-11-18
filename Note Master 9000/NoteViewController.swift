@@ -11,7 +11,7 @@ import CoreData
 import GameplayKit
 import AVFoundation
 
-class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
+class NoteViewController: UIViewController {
 	
 	// MARK: Outlets
 	
@@ -41,11 +41,11 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	}
 
     // MARK: -
-    var parentVC: LessonViewController?
+    var parentVC: LessonsViewController?
     var managedObjectContext: NSManagedObjectContext? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     
-	private var avPlayer:AVAudioPlayer = AVAudioPlayer()
-	
+    var avPlayer: AVAudioPlayer = AVAudioPlayer()
+    
 	private var noteButtons = [UIButton]()
 	private var noteNameValueDict = [String:Int]()
 	private var noteNameDict = [Note:String]()
@@ -157,51 +157,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		hideHelpAnimation()
 	}
 	
-	// MARK: - Audio player
-	
-	private func loadFileIntoAVPlayer(_ note: String) {
-		let fileURL:URL = Bundle.main.url(forResource: note, withExtension: "wav", subdirectory: "Audio")!
-		
-		do {
-			self.avPlayer = try AVAudioPlayer(contentsOf: fileURL)
-		} catch {
-			print("Could not create AVAudioPlayer")
-		}
-		
-		//print("playing \(fileURL)")
-		avPlayer.delegate = self
-		avPlayer.prepareToPlay()
-		avPlayer.volume = 1.0
-	}
-	
-	private func startAVPlayer() {
-		avPlayer.play()
-	}
-	
-	private func stopAVPLayer() {
-		if avPlayer.isPlaying {
-			avPlayer.stop()
-		}
-	}
-	
-	private func toggleAVPlayer() {
-		if avPlayer.isPlaying {
-			avPlayer.pause()
-		} else {
-			avPlayer.play()
-		}
-	}
-	
-	// MARK: AVAudioPlayerDelegate
-	
-	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-		//print("Finished playing \(flag)")
-	}
-	
-	func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
-		//print("\(error!.localizedDescription)")
-	}
-	
 	// MARK: - Setup methods
 	
 	private func setupViews() {
@@ -261,6 +216,39 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		previousNote = nil
 		hideHelpAnimation()
 	}
+    
+    // MARK: - Audio Player
+    
+    private func loadFileIntoAVPlayer(_ note: String) {
+        let fileURL:URL = Bundle.main.url(forResource: note, withExtension: "wav", subdirectory: "Audio")!
+        
+        do {
+            self.avPlayer = try AVAudioPlayer(contentsOf: fileURL)
+        } catch {
+            print("Could not create AVAudioPlayer")
+        }
+        
+        avPlayer.prepareToPlay()
+        avPlayer.volume = 1.0
+    }
+    
+    private func startAVPlayer() {
+        avPlayer.play()
+    }
+    
+    private func stopAVPLayer() {
+        if avPlayer.isPlaying {
+            avPlayer.stop()
+        }
+    }
+    
+    private func toggleAVPlayer() {
+        if avPlayer.isPlaying {
+            avPlayer.pause()
+        } else {
+            avPlayer.play()
+        }
+    }
 	
 	// MARK: - Helper methods
 	
@@ -302,7 +290,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		Timer.scheduledTimer(timeInterval: Constants.BasicAnimationDuration, target: self, selector: #selector(self.showFinishedView), userInfo: nil, repeats: false)
 	}
 	
-	// MARK: Can't be private if set as selector
+	// Can't be private if set as selector
 	func addProgress() {
 		progressBar.setProgress(currentProgress, animated: true)
 		let _ = staffDrawingView.layer.sublayers?.popLast()

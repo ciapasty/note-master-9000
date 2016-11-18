@@ -11,7 +11,7 @@ import UIKit
 class TutorialEndViewController: UIViewController {
 	
 	var itemIndex: Int = 0
-	var parentVC: LessonViewController?
+	var parentVC: LessonsViewController?
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LessonCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class LessonsCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 	
 	@IBOutlet weak var collectionView: UICollectionView!
     
@@ -124,7 +124,7 @@ class LessonCollectionViewController: UIViewController, UICollectionViewDataSour
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == Constants.ShowLessonSegueIdentifier {
-			if let lessonVC = segue.destination as? LessonViewController {
+			if let lessonVC = segue.destination as? LessonsViewController {
 				lessonVC.lessonIndexPath = sender as? IndexPath
 			}
 		}

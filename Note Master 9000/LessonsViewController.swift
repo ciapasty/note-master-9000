@@ -9,11 +9,20 @@
 import UIKit
 import CoreData
 
-class LessonViewController: UIViewController {
+class LessonsViewController: UIViewController {
 	
-	@IBOutlet weak var tutorialLessonContainer: UIView!
-	@IBOutlet weak var noteLessonContainer: UIView!
-	
+    @IBOutlet weak var lessonContainerView: UIView! {
+        didSet {
+            if let _ = lesson as? NoteLesson {
+                setupContaierView(withViewControllerWithID: Constants.NoteViewControllerStoryboardID)
+                //setupNoteView()
+            } else if let _ = lesson as? TutorialLesson {
+                setupContaierView(withViewControllerWithID: Constants.TutorialViewControllerStoryboardID)
+                //setupTutorialView()
+            }
+        }
+    }
+    
 	@IBOutlet weak var welcomeView: UIView!
 	@IBOutlet weak var lessonNumberLabel: UILabel!
 	@IBOutlet weak var lessonTitleLabel: UILabel!
@@ -30,15 +39,7 @@ class LessonViewController: UIViewController {
 	var lessonIndexPath: IndexPath? {
 		didSet {
 			if let indexPath = lessonIndexPath {
-				if let nl = lessons[indexPath.section][indexPath.row] as? NoteLesson {
-					tutorialLesson = nil
-					noteLesson =  nl
-					lesson = nl as Lesson
-				} else if let tl = lessons[indexPath.section][indexPath.row] as? TutorialLesson {
-					tutorialLesson = tl
-					noteLesson = nil
-					lesson = tl as Lesson
-				}
+                lesson = lessons[indexPath.section][indexPath.row] as Lesson
 			}
 		}
 	}
@@ -48,22 +49,12 @@ class LessonViewController: UIViewController {
 		didSet {
 			if lesson!.state == .new {
 				lesson!.state = .opened
-                managedObjectContext?.performAndWait {
-                    _ = LessonsTracking.setStateFor(self.lesson!, in: self.managedObjectContext!)
-                }
-                do {
-                    try managedObjectContext?.save()
-                } catch let error {
-                    print("LessonViewController::lesson::didSet::managedObjectContext?.save() -- ", error.localizedDescription)
-                }
+                saveLessonState()
 			}
 		}
 	}
-	private var tutorialLesson: TutorialLesson?
-	private var noteLesson: NoteLesson?
 	
-	private var noteLessonVC: BasicClefViewController?
-	private var tutorialLessonVC: TutorialViewController?
+    private var currentChildVC: UIViewController?
 	private var navBar: UINavigationBar?
 	
 	private struct Constants {
@@ -71,6 +62,8 @@ class LessonViewController: UIViewController {
 		static let EmbedTutorialLessonSegue = "embedTutorialLesson"
 		static let EmbedNoteLessonSegue = "embedNoteLesson"
 		static let BackToLessonsCollectionSegue = "backToLessonPlan"
+        static let TutorialViewControllerStoryboardID = "TutorialViewController"
+        static let NoteViewControllerStoryboardID = "NoteViewController"
 	}
 	
 	// MARK: - ViewController lifecycle
@@ -88,36 +81,77 @@ class LessonViewController: UIViewController {
     }
 	
 	@IBAction func hideWelcomeView(_ sender: AnyObject?) {
-		// TODO: Prepare views in containers
-		hideWelcomeViewAnimation()
-		setupTutorialView(tutorialLesson)
-		setupNoteView(noteLesson)
+        if let cvc = currentChildVC as? NoteViewController {
+            cvc.parentVC = self
+            cvc.lesson = lesson as? NoteLesson
+        } else if let cvc = currentChildVC as? TutorialViewController {
+            cvc.parentVC = self
+            cvc.lesson = lesson as? TutorialLesson
+        }
+        hideWelcomeViewAnimation()
 	}
 	
 	@IBAction func goToNextLesson() {
 		if let nextLessonIndex = nextLessonIndexPath(lessonIndexPath!) {
 			lessonIndexPath = nextLessonIndex
-			
+            
 			setupNavBar()
 			hideFinishedViewAnimation()
 		}
 	}
+    
+    func lessonFinished() {
+        lesson?.state = .finished
+        saveLessonState()
+        
+        setupFinishedView()
+        if nextLessonIndexPath(lessonIndexPath!) == nil {
+            nextLessonButton.isHidden = true
+        }
+        showFinishedViewAnimation()
+    }
 
 	// MARK: - Setup methods
+    
+    private func setupContaierView(withViewControllerWithID id: String) {
+        if lesson != nil {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: id) {
+                addChildViewController(vc)
+                vc.view.frame = CGRect(x: 0, y: 0, width: lessonContainerView.frame.size.width, height: lessonContainerView.frame.size.height)
+                lessonContainerView.addSubview(vc.view)
+                vc.didMove(toParentViewController: self)
+                //vc.parentVC = self
+                
+                currentChildVC = vc
+            }
+        }
+    }
 	
-	private func setupTutorialView(_ lesson: TutorialLesson?) {
+	private func setupTutorialView() {
 		if lesson != nil {
-			tutorialLessonVC?.lesson = lesson
-			noteLessonContainer.isHidden = true
-			tutorialLessonContainer.isHidden = false
+            if let tlvc = storyboard?.instantiateViewController(withIdentifier: Constants.TutorialViewControllerStoryboardID) as? TutorialViewController {
+                addChildViewController(tlvc)
+                tlvc.view.frame = CGRect(x: 0, y: 0, width: lessonContainerView.frame.size.width, height: lessonContainerView.frame.size.height)
+                lessonContainerView.addSubview(tlvc.view)
+                tlvc.didMove(toParentViewController: self)
+                tlvc.parentVC = self
+                
+                currentChildVC = tlvc
+            }
 		}
 	}
 	
-	private func setupNoteView(_ lesson: NoteLesson?) {
+	private func setupNoteView() {
 		if lesson != nil {
-			noteLessonVC?.lesson = lesson
-			noteLessonContainer.isHidden = false
-			tutorialLessonContainer.isHidden = true
+            if let bcvc = storyboard?.instantiateViewController(withIdentifier: Constants.NoteViewControllerStoryboardID) as? NoteViewController {
+                addChildViewController(bcvc)
+                bcvc.view.frame = CGRect(x: 0, y: 0, width: lessonContainerView.frame.size.width, height: lessonContainerView.frame.size.height)
+                lessonContainerView.addSubview(bcvc.view)
+                bcvc.didMove(toParentViewController: self)
+                bcvc.parentVC = self
+
+                currentChildVC = bcvc
+            }
 		}
 	}
 	
@@ -135,8 +169,6 @@ class LessonViewController: UIViewController {
 		}
 		
 		navBar!.barTintColor = lesson!.color //ColorPalette.MidnightBlue
-		//navBar!.alpha = 0.0
-		
 		navigationItem.title = lesson!.title
 	}
 	
@@ -173,25 +205,20 @@ class LessonViewController: UIViewController {
 		}
 		finishedView?.backgroundColor = lesson!.color
 	}
-	
-	func lessonFinished() {
-		lesson?.state = .finished
-        managedObjectContext?.performAndWait {
-            _ = LessonsTracking.setStateFor(self.lesson!, in: self.managedObjectContext!)
-        }
+    
+    private func clearContainerView() {
+        currentChildVC?.willMove(toParentViewController: nil)
+        currentChildVC?.view.removeFromSuperview()
+        currentChildVC?.removeFromParentViewController()
         
-        do {
-            try managedObjectContext?.save()
-        } catch let error {
-            print("LessonViewController::lessonFinished::managedObjectContext?.save() -- ", error.localizedDescription)
+        if let tlvc = currentChildVC as? TutorialViewController {
+            tlvc.parentVC = nil
+            tlvc.lesson = nil
+        } else if let bcvc = currentChildVC as? NoteViewController {
+            bcvc.parentVC = nil
+            bcvc.lesson = nil
         }
-        
-		setupFinishedView()
-		if nextLessonIndexPath(lessonIndexPath!) == nil {
-			nextLessonButton.isHidden = true
-		}
-		showFinishedViewAnimation()
-	}
+    }
 	
     // MARK: - Navigation
 	
@@ -214,20 +241,20 @@ class LessonViewController: UIViewController {
 		
 		alert.view.tintColor = (lessons[lessonIndexPath!.section][lessonIndexPath!.row] as Lesson).color
 	}
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == Constants.EmbedTutorialLessonSegue {
-			tutorialLessonVC = segue.destination as? TutorialViewController
-			tutorialLessonVC!.parentVC = self
-		}
-		if segue.identifier == Constants.EmbedNoteLessonSegue {
-			noteLessonVC = segue.destination as? BasicClefViewController
-			noteLessonVC!.parentVC = self
-		}
-    }
 	
 	// MARK: - Helper methods
 	
+    private func saveLessonState() {
+        managedObjectContext?.performAndWait {
+            _ = LessonsTracking.setStateFor(self.lesson!, in: self.managedObjectContext!)
+        }
+        do {
+            try managedObjectContext?.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
 	private func nextLessonIndexPath(_ indexPath: IndexPath) -> IndexPath? {
 		if lessons[indexPath.section].endIndex > indexPath.row+1 {
 			return IndexPath(row: indexPath.row+1, section: indexPath.section)
@@ -260,7 +287,7 @@ class LessonViewController: UIViewController {
 			self.finishedView.center.x -= self.view.bounds.width
 			self.navBar!.alpha = 0.01
 			}, completion: { finished in
-				
+				self.clearContainerView()
 		}) 
 	}
 	
@@ -273,6 +300,15 @@ class LessonViewController: UIViewController {
 			}, completion: { finished in
 				self.finishedView.center.x += self.view.bounds.width
 				self.finishedView.isHidden = true
+                
+                // TODO: Should this be in animation code??
+                if let _ = self.lesson as? NoteLesson {
+                    self.setupContaierView(withViewControllerWithID: Constants.NoteViewControllerStoryboardID)
+                    //setupNoteView()
+                } else if let _ = self.lesson as? TutorialLesson {
+                    self.setupContaierView(withViewControllerWithID: Constants.TutorialViewControllerStoryboardID)
+                    //setupTutorialView()
+                }
 		}) 
 	}
 }

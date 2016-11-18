@@ -12,10 +12,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Basic Clef View Controller-->
+        <!--Note View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="BasicClefViewController" customModule="Note_Master_9000" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NoteViewController" id="BYZ-38-t0r" customClass="NoteViewController" customModule="Note_Master_9000" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -192,30 +192,30 @@
                                 </constraints>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
-                                        <exclude reference="Fd3-5a-R8U"/>
-                                        <include reference="aHk-AS-Yrg"/>
-                                        <exclude reference="HTJ-VH-ew6"/>
-                                        <exclude reference="aB2-J8-0eo"/>
-                                        <include reference="ap5-OI-g0V"/>
-                                        <exclude reference="BIW-p4-hUp"/>
-                                        <exclude reference="f17-TQ-hgN"/>
-                                        <exclude reference="zWM-xQ-695"/>
-                                        <include reference="NqJ-L9-PXV"/>
-                                        <exclude reference="UaK-Mp-mrC"/>
-                                        <exclude reference="rp5-nN-2rv"/>
                                         <exclude reference="BxK-Ne-sSI"/>
                                         <exclude reference="boJ-U7-pEF"/>
                                         <exclude reference="cyS-JE-0hv"/>
                                         <exclude reference="t2W-1x-TZZ"/>
                                         <exclude reference="kqi-gX-O6L"/>
+                                        <exclude reference="BIW-p4-hUp"/>
+                                        <exclude reference="f17-TQ-hgN"/>
+                                        <exclude reference="zWM-xQ-695"/>
+                                        <exclude reference="Fd3-5a-R8U"/>
+                                        <include reference="aHk-AS-Yrg"/>
+                                        <exclude reference="HTJ-VH-ew6"/>
+                                        <exclude reference="aB2-J8-0eo"/>
+                                        <include reference="ap5-OI-g0V"/>
+                                        <include reference="NqJ-L9-PXV"/>
+                                        <exclude reference="UaK-Mp-mrC"/>
+                                        <exclude reference="rp5-nN-2rv"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="aHk-AS-Yrg"/>
-                                        <include reference="rp5-nN-2rv"/>
                                         <include reference="BxK-Ne-sSI"/>
                                         <include reference="boJ-U7-pEF"/>
+                                        <include reference="aHk-AS-Yrg"/>
+                                        <include reference="rp5-nN-2rv"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -402,7 +402,7 @@
         <!--Lesson-->
         <scene sceneID="rtx-Df-HaI">
             <objects>
-                <viewController id="hk8-vp-bzt" customClass="LessonViewController" customModule="Note_Master_9000" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hk8-vp-bzt" customClass="LessonsViewController" customModule="Note_Master_9000" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Jh-Dy-Cg3"/>
                         <viewControllerLayoutGuide type="bottom" id="GYv-qh-R6F"/>
@@ -411,17 +411,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PaH-yO-aYB">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PaH-yO-aYB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <connections>
-                                    <segue destination="VSE-sR-eq1" kind="embed" identifier="embedTutorialLesson" id="xSF-FG-hhR"/>
-                                </connections>
-                            </containerView>
-                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iy9-lA-Alb">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="embed" identifier="embedNoteLesson" id="fpf-x3-7N0"/>
-                                </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RTB-RT-p5U">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -586,15 +577,11 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="PaH-yO-aYB" secondAttribute="bottom" id="21C-Gl-525"/>
                             <constraint firstItem="PaH-yO-aYB" firstAttribute="leading" secondItem="2T8-zH-Cgd" secondAttribute="leading" id="2m1-fp-1bu"/>
-                            <constraint firstItem="Iy9-lA-Alb" firstAttribute="leading" secondItem="2T8-zH-Cgd" secondAttribute="leading" id="4WF-eO-NBc"/>
-                            <constraint firstAttribute="bottom" secondItem="Iy9-lA-Alb" secondAttribute="bottom" id="7DP-4y-7zJ"/>
                             <constraint firstItem="GYv-qh-R6F" firstAttribute="top" secondItem="RTB-RT-p5U" secondAttribute="bottom" id="7J4-SI-xol"/>
-                            <constraint firstAttribute="trailing" secondItem="Iy9-lA-Alb" secondAttribute="trailing" id="EOb-r9-DDz"/>
                             <constraint firstItem="PaH-yO-aYB" firstAttribute="top" secondItem="2T8-zH-Cgd" secondAttribute="top" id="EgB-9g-KGB"/>
                             <constraint firstItem="pDF-OE-sfz" firstAttribute="top" secondItem="2T8-zH-Cgd" secondAttribute="top" id="FR1-fX-CYJ"/>
                             <constraint firstItem="GYv-qh-R6F" firstAttribute="top" secondItem="pDF-OE-sfz" secondAttribute="bottom" id="OOy-80-h96"/>
                             <constraint firstItem="RTB-RT-p5U" firstAttribute="top" secondItem="2T8-zH-Cgd" secondAttribute="top" id="WMJ-Ym-ajV"/>
-                            <constraint firstItem="Iy9-lA-Alb" firstAttribute="top" secondItem="2T8-zH-Cgd" secondAttribute="top" id="kAS-ac-dMt"/>
                             <constraint firstAttribute="trailing" secondItem="RTB-RT-p5U" secondAttribute="trailing" id="ljl-Wv-VRY"/>
                             <constraint firstItem="RTB-RT-p5U" firstAttribute="leading" secondItem="2T8-zH-Cgd" secondAttribute="leading" id="op3-75-kFi"/>
                             <constraint firstAttribute="trailing" secondItem="pDF-OE-sfz" secondAttribute="trailing" id="rh8-wx-2lE"/>
@@ -612,13 +599,12 @@
                     <connections>
                         <outlet property="finishedLabel" destination="b7d-KS-ofm" id="XhO-xU-3wf"/>
                         <outlet property="finishedView" destination="pDF-OE-sfz" id="cpH-fp-aak"/>
+                        <outlet property="lessonContainerView" destination="PaH-yO-aYB" id="8gR-eN-Aso"/>
                         <outlet property="lessonDescriptionLabel" destination="I4U-GQ-sVs" id="9gN-ie-pEA"/>
                         <outlet property="lessonNumberLabel" destination="W2u-FT-v35" id="ETK-K2-ddE"/>
                         <outlet property="lessonPlanButton" destination="9Sc-W5-0DF" id="OEa-p2-CIx"/>
                         <outlet property="lessonTitleLabel" destination="W5T-eK-VV4" id="a32-Jl-c8a"/>
                         <outlet property="nextLessonButton" destination="LlJ-J4-R8d" id="8JU-nD-n1x"/>
-                        <outlet property="noteLessonContainer" destination="Iy9-lA-Alb" id="mGH-rf-QhL"/>
-                        <outlet property="tutorialLessonContainer" destination="PaH-yO-aYB" id="uWw-tJ-GGi"/>
                         <outlet property="welcomeView" destination="RTB-RT-p5U" id="dLP-vW-fGC"/>
                     </connections>
                 </viewController>
@@ -640,7 +626,7 @@
         <!--Tutorial-->
         <scene sceneID="0bC-3c-06Z">
             <objects>
-                <viewController title="Tutorial" id="VSE-sR-eq1" customClass="TutorialViewController" customModule="Note_Master_9000" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialViewController" title="Tutorial" id="VSE-sR-eq1" customClass="TutorialViewController" customModule="Note_Master_9000" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r4z-HF-7rZ"/>
                         <viewControllerLayoutGuide type="bottom" id="eli-ws-cZK"/>
@@ -663,7 +649,7 @@
         <!--Lessons-->
         <scene sceneID="8w6-7q-iGU">
             <objects>
-                <viewController id="AXl-fb-NmK" customClass="LessonCollectionViewController" customModule="Note_Master_9000" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AXl-fb-NmK" customClass="LessonsCollectionViewController" customModule="Note_Master_9000" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yhp-Pp-PHz"/>
                         <viewControllerLayoutGuide type="bottom" id="TvP-Kk-OOW"/>
