@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LessonCollectionCell: UICollectionViewCell {
+class LessonsCollectionCell: UICollectionViewCell {
 	
 	// MARK: Model
 	

@@ -11,7 +11,7 @@ import CoreData
 import GameplayKit
 import AVFoundation
 
-class NoteViewController: UIViewController {
+class NoteLessonController: UIViewController {
 	
 	// MARK: Outlets
 	

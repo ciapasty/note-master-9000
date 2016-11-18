@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TutorialEndViewController: UIViewController {
+class TutorialEndPageController: UIViewController {
 	
 	var itemIndex: Int = 0
 	var parentVC: LessonsViewController?

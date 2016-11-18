@@ -72,7 +72,7 @@ class LessonsCollectionViewController: UIViewController, UICollectionViewDataSou
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.LessonCellIdentifier, for: indexPath) as! LessonCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.LessonCellIdentifier, for: indexPath) as! LessonsCollectionCell
         
         cell.lesson = lessons[indexPath.section][indexPath.row] as Lesson
 		
@@ -80,7 +80,7 @@ class LessonsCollectionViewController: UIViewController, UICollectionViewDataSou
     }
 	
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Constants.SectionHeaderIdentifier, for: indexPath) as! LessonCollectionHeader
+		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Constants.SectionHeaderIdentifier, for: indexPath) as! LessonsCollectionHeader
 		
 		header.sectionTitle.textColor = ColorPalette.MidnightBlue
 		header.sectionTitle.text = lessonsSections[indexPath.section]

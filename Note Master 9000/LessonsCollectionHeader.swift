@@ -8,8 +8,8 @@
 
 import UIKit
 
-class LessonCollectionHeader: UICollectionReusableView {
-	
+class LessonsCollectionHeader: UICollectionReusableView {
+    
 	@IBOutlet weak var sectionTitle: UILabel!
 	
 }

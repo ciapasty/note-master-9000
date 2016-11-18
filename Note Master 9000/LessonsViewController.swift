@@ -15,10 +15,8 @@ class LessonsViewController: UIViewController {
         didSet {
             if let _ = lesson as? NoteLesson {
                 setupContaierView(withViewControllerWithID: Constants.NoteViewControllerStoryboardID)
-                //setupNoteView()
             } else if let _ = lesson as? TutorialLesson {
                 setupContaierView(withViewControllerWithID: Constants.TutorialViewControllerStoryboardID)
-                //setupTutorialView()
             }
         }
     }
@@ -81,10 +79,10 @@ class LessonsViewController: UIViewController {
     }
 	
 	@IBAction func hideWelcomeView(_ sender: AnyObject?) {
-        if let cvc = currentChildVC as? NoteViewController {
+        if let cvc = currentChildVC as? NoteLessonController {
             cvc.parentVC = self
             cvc.lesson = lesson as? NoteLesson
-        } else if let cvc = currentChildVC as? TutorialViewController {
+        } else if let cvc = currentChildVC as? TutorialLessonController {
             cvc.parentVC = self
             cvc.lesson = lesson as? TutorialLesson
         }
@@ -129,7 +127,7 @@ class LessonsViewController: UIViewController {
 	
 	private func setupTutorialView() {
 		if lesson != nil {
-            if let tlvc = storyboard?.instantiateViewController(withIdentifier: Constants.TutorialViewControllerStoryboardID) as? TutorialViewController {
+            if let tlvc = storyboard?.instantiateViewController(withIdentifier: Constants.TutorialViewControllerStoryboardID) as? TutorialLessonController {
                 addChildViewController(tlvc)
                 tlvc.view.frame = CGRect(x: 0, y: 0, width: lessonContainerView.frame.size.width, height: lessonContainerView.frame.size.height)
                 lessonContainerView.addSubview(tlvc.view)
@@ -143,7 +141,7 @@ class LessonsViewController: UIViewController {
 	
 	private func setupNoteView() {
 		if lesson != nil {
-            if let bcvc = storyboard?.instantiateViewController(withIdentifier: Constants.NoteViewControllerStoryboardID) as? NoteViewController {
+            if let bcvc = storyboard?.instantiateViewController(withIdentifier: Constants.NoteViewControllerStoryboardID) as? NoteLessonController {
                 addChildViewController(bcvc)
                 bcvc.view.frame = CGRect(x: 0, y: 0, width: lessonContainerView.frame.size.width, height: lessonContainerView.frame.size.height)
                 lessonContainerView.addSubview(bcvc.view)
@@ -211,10 +209,10 @@ class LessonsViewController: UIViewController {
         currentChildVC?.view.removeFromSuperview()
         currentChildVC?.removeFromParentViewController()
         
-        if let tlvc = currentChildVC as? TutorialViewController {
+        if let tlvc = currentChildVC as? TutorialLessonController {
             tlvc.parentVC = nil
             tlvc.lesson = nil
-        } else if let bcvc = currentChildVC as? NoteViewController {
+        } else if let bcvc = currentChildVC as? NoteLessonController {
             bcvc.parentVC = nil
             bcvc.lesson = nil
         }
