@@ -51,6 +51,16 @@ class TutorialLesson: Lesson {
 	}
 }
 
+class IntervalLesson: Lesson {
+    let intervalSet: [Interval]?
+    
+    init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, intervalSet: [Interval]?) {
+        self.intervalSet = intervalSet
+        
+        super.init(index: index, title: title, description: description, clef: clef, color: color)
+    }
+}
+
 class TutorialPageContent {
 	let content: AnyObject?
 	let text: String

@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630CE0C81DE1E7E7008F1313 /* IntervalsLessonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630CE0C71DE1E7E7008F1313 /* IntervalsLessonController.swift */; };
+		630CE0CA1DE1EECC008F1313 /* StaffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630CE0C91DE1EECC008F1313 /* StaffView.swift */; };
 		630DCB6B1DC87DA300A8A734 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 630DCB691DC87DA300A8A734 /* Model.xcdatamodeld */; };
 		634FBD5C1DC8AFDD00B83887 /* NoteCorrectness+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634FBD581DC8AFDD00B83887 /* NoteCorrectness+Extension.swift */; };
 		634FBD5E1DC8AFDD00B83887 /* LessonsTracking+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634FBD5A1DC8AFDD00B83887 /* LessonsTracking+Extension.swift */; };
+		637D1E401DDF7DC700D9D998 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637D1E3F1DDF7DC700D9D998 /* NoteView.swift */; };
 		CE060D1D1CB190BE001FA9B9 /* LessonsCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE060D1C1CB190BE001FA9B9 /* LessonsCollectionHeader.swift */; };
 		CE136E341D983EEE001851AB /* TutorialEndPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE136E331D983EEE001851AB /* TutorialEndPageController.swift */; };
 		CE2EA3761CA9A99700135AC8 /* TutorialPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2EA3751CA9A99700135AC8 /* TutorialPageController.swift */; };
@@ -33,9 +36,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		630CE0C71DE1E7E7008F1313 /* IntervalsLessonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalsLessonController.swift; sourceTree = "<group>"; };
+		630CE0C91DE1EECC008F1313 /* StaffView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaffView.swift; sourceTree = "<group>"; };
 		630DCB6A1DC87DA300A8A734 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		634FBD581DC8AFDD00B83887 /* NoteCorrectness+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NoteCorrectness+Extension.swift"; sourceTree = "<group>"; };
 		634FBD5A1DC8AFDD00B83887 /* LessonsTracking+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LessonsTracking+Extension.swift"; sourceTree = "<group>"; };
+		637D1E3F1DDF7DC700D9D998 /* NoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		CE060D1C1CB190BE001FA9B9 /* LessonsCollectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonsCollectionHeader.swift; sourceTree = "<group>"; };
 		CE136E331D983EEE001851AB /* TutorialEndPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialEndPageController.swift; sourceTree = "<group>"; };
 		CE2EA3751CA9A99700135AC8 /* TutorialPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageController.swift; sourceTree = "<group>"; };
@@ -98,6 +104,8 @@
 				CE060D1C1CB190BE001FA9B9 /* LessonsCollectionHeader.swift */,
 				CEE551351D9B85FC0041F618 /* StaffDrawingView.swift */,
 				CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */,
+				637D1E3F1DDF7DC700D9D998 /* NoteView.swift */,
+				630CE0C91DE1EECC008F1313 /* StaffView.swift */,
 			);
 			name = "View Subclasses";
 			sourceTree = "<group>";
@@ -121,6 +129,7 @@
 				CE2EA3751CA9A99700135AC8 /* TutorialPageController.swift */,
 				CE136E331D983EEE001851AB /* TutorialEndPageController.swift */,
 				CEC1D4B91C9C651600C29666 /* NoteLessonController.swift */,
+				630CE0C71DE1E7E7008F1313 /* IntervalsLessonController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -238,17 +247,20 @@
 				CE323A9D1D97CC6D0084815A /* LessonMiniature.swift in Sources */,
 				CEBE3F9B1CAFB09C00C87B5A /* LessonsCollectionCell.swift in Sources */,
 				CE136E341D983EEE001851AB /* TutorialEndPageController.swift in Sources */,
+				637D1E401DDF7DC700D9D998 /* NoteView.swift in Sources */,
 				CE2EA3761CA9A99700135AC8 /* TutorialPageController.swift in Sources */,
 				CEC1D4BA1C9C651600C29666 /* NoteLessonController.swift in Sources */,
 				CE77223E1CAAF3EC00D26F33 /* LessonsCollectionViewController.swift in Sources */,
 				634FBD5E1DC8AFDD00B83887 /* LessonsTracking+Extension.swift in Sources */,
 				630DCB6B1DC87DA300A8A734 /* Model.xcdatamodeld in Sources */,
 				CE38BF771CD90EEB00E6A31C /* ColorPalette.swift in Sources */,
+				630CE0C81DE1E7E7008F1313 /* IntervalsLessonController.swift in Sources */,
 				CE7722421CAAFCEA00D26F33 /* NotesLibrary.swift in Sources */,
 				CE335F091CBA2C9000A32355 /* HelpDrawingView.swift in Sources */,
 				CE4E351E1CB024D900420A25 /* Lesson.swift in Sources */,
 				CEE551361D9B85FC0041F618 /* StaffDrawingView.swift in Sources */,
 				CEC1D4B81C9C651600C29666 /* AppDelegate.swift in Sources */,
+				630CE0CA1DE1EECC008F1313 /* StaffView.swift in Sources */,
 				CEC9BD5E1D8598CC00953AAC /* LessonsViewController.swift in Sources */,
 				CEB104BD1CA958CC0057D49E /* TutorialLessonController.swift in Sources */,
 			);

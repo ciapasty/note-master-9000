@@ -28,7 +28,7 @@ class NoteLessonController: UIViewController {
 	@IBOutlet weak var gNoteButton: UIButton!
 	@IBOutlet weak var aNoteButton: UIButton!
 	@IBOutlet weak var bNoteButton: UIButton!
-	
+    
 	// MARK: - Model
 	var lesson: NoteLesson? {
 		didSet {

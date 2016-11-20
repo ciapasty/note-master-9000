@@ -16,6 +16,10 @@ enum Note: Int {
 	case n1 = 1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13, n14, n15, n16, n17, n18, n19
 }
 
+enum Interval: Int {
+    case unison = 0, minorSecond, majorSecond, minorThird, majorThird, fourth, tritone, fifth, minorSixth, majorSixth, minorSeventh, majorSeventh, octave
+}
+
 let trebleNotesNameValueDict = [
 	"E": 0,
 	"D": 1,

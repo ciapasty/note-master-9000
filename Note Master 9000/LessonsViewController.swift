@@ -14,9 +14,11 @@ class LessonsViewController: UIViewController {
     @IBOutlet weak var lessonContainerView: UIView! {
         didSet {
             if let _ = lesson as? NoteLesson {
-                setupContaierView(withViewControllerWithID: Constants.NoteViewControllerStoryboardID)
+                setupContaierView(withViewControllerWithID: Constants.NoteLessonControllerStoryboardID)
             } else if let _ = lesson as? TutorialLesson {
-                setupContaierView(withViewControllerWithID: Constants.TutorialViewControllerStoryboardID)
+                setupContaierView(withViewControllerWithID: Constants.TutorialLessonControllerStoryboardID)
+            } else if let _ = lesson as? IntervalLesson {
+                setupContaierView(withViewControllerWithID: Constants.IntervalLessonControllerStoryboardID)
             }
         }
     }
@@ -60,8 +62,9 @@ class LessonsViewController: UIViewController {
 		static let EmbedTutorialLessonSegue = "embedTutorialLesson"
 		static let EmbedNoteLessonSegue = "embedNoteLesson"
 		static let BackToLessonsCollectionSegue = "backToLessonPlan"
-        static let TutorialViewControllerStoryboardID = "TutorialViewController"
-        static let NoteViewControllerStoryboardID = "NoteViewController"
+        static let TutorialLessonControllerStoryboardID = "TutorialLessonController"
+        static let NoteLessonControllerStoryboardID = "NoteLessonController"
+        static let IntervalLessonControllerStoryboardID = "IntervalLessonController"
 	}
 	
 	// MARK: - ViewController lifecycle
@@ -118,40 +121,11 @@ class LessonsViewController: UIViewController {
                 vc.view.frame = CGRect(x: 0, y: 0, width: lessonContainerView.frame.size.width, height: lessonContainerView.frame.size.height)
                 lessonContainerView.addSubview(vc.view)
                 vc.didMove(toParentViewController: self)
-                //vc.parentVC = self
                 
                 currentChildVC = vc
             }
         }
     }
-	
-	private func setupTutorialView() {
-		if lesson != nil {
-            if let tlvc = storyboard?.instantiateViewController(withIdentifier: Constants.TutorialViewControllerStoryboardID) as? TutorialLessonController {
-                addChildViewController(tlvc)
-                tlvc.view.frame = CGRect(x: 0, y: 0, width: lessonContainerView.frame.size.width, height: lessonContainerView.frame.size.height)
-                lessonContainerView.addSubview(tlvc.view)
-                tlvc.didMove(toParentViewController: self)
-                tlvc.parentVC = self
-                
-                currentChildVC = tlvc
-            }
-		}
-	}
-	
-	private func setupNoteView() {
-		if lesson != nil {
-            if let bcvc = storyboard?.instantiateViewController(withIdentifier: Constants.NoteViewControllerStoryboardID) as? NoteLessonController {
-                addChildViewController(bcvc)
-                bcvc.view.frame = CGRect(x: 0, y: 0, width: lessonContainerView.frame.size.width, height: lessonContainerView.frame.size.height)
-                lessonContainerView.addSubview(bcvc.view)
-                bcvc.didMove(toParentViewController: self)
-                bcvc.parentVC = self
-
-                currentChildVC = bcvc
-            }
-		}
-	}
 	
 	private func setupNavBar() {
 		if lesson!.color == ColorPalette.Orange {
@@ -301,11 +275,11 @@ class LessonsViewController: UIViewController {
                 
                 // TODO: Should this be in animation code??
                 if let _ = self.lesson as? NoteLesson {
-                    self.setupContaierView(withViewControllerWithID: Constants.NoteViewControllerStoryboardID)
-                    //setupNoteView()
+                    self.setupContaierView(withViewControllerWithID: Constants.NoteLessonControllerStoryboardID)
                 } else if let _ = self.lesson as? TutorialLesson {
-                    self.setupContaierView(withViewControllerWithID: Constants.TutorialViewControllerStoryboardID)
-                    //setupTutorialView()
+                    self.setupContaierView(withViewControllerWithID: Constants.TutorialLessonControllerStoryboardID)
+                } else if let _ = self.lesson as? IntervalLesson {
+                    self.setupContaierView(withViewControllerWithID: Constants.IntervalLessonControllerStoryboardID)
                 }
 		}) 
 	}

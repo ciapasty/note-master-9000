@@ -12,6 +12,7 @@ import UIKit
 
 let lessonsSections = [
 	"Random Section 1",
+	"DEBUG Section: Intervals",
 	"Section 2: CC",
 	"Basic Bass Clef",
 	"Advanced Bass Clef",
@@ -56,6 +57,15 @@ var lessons: [[Lesson]] = [
 			noteSet: notesInRange(from: Note.n5, to: Note.n12),
 			gauss: false)
 	],
+	[
+        IntervalLesson(
+            index: 11,
+            title: "Fifth",
+            description: "Simple interval test for debug",
+            clef: Clef.trebleClef,
+            color: ColorPalette.Alizarin,
+            intervalSet: [Interval.fifth])
+    ],
 	[
 		NoteLesson(
 			index: 4,
