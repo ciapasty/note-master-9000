@@ -30,8 +30,6 @@ class NoteView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-//        isOpaque = false
-//        backgroundColor = UIColor.clear
         if note != nil {
             drawNote()
         }

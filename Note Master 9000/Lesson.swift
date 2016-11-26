@@ -9,7 +9,7 @@
 import UIKit
 
 enum LessonState: String {
-	case new, opened, finished
+	case new, opened, finished, infinite
 }
 
 class Lesson {
@@ -20,12 +20,13 @@ class Lesson {
 	let color: UIColor
 	var state: LessonState?
 	
-	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor) {
+    init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, state: LessonState? = nil) {
 		self.index = index
 		self.title = title
 		self.description = description
 		self.clef = clef
 		self.color = color
+        self.state = state
 	}
 }
 
@@ -33,31 +34,31 @@ class NoteLesson: Lesson {
 	let noteSet: [Note]?
 	let gauss: Bool
 	
-	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, noteSet: [Note]?, gauss: Bool) {
+	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, noteSet: [Note]?, gauss: Bool, state: LessonState? = nil) {
 		self.noteSet = noteSet
 		self.gauss = gauss
 		
-		super.init(index: index, title: title, description: description, clef: clef, color: color)
+        super.init(index: index, title: title, description: description, clef: clef, color: color, state: state)
 	}
 }
 
 class TutorialLesson: Lesson {
 	let pages: [TutorialPageContent]
 	
-	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, pages: [TutorialPageContent]) {
+	init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, pages: [TutorialPageContent], state: LessonState? = nil) {
 		self.pages = pages
 		
-		super.init(index: index, title: title, description: description, clef: clef, color: color)
+		super.init(index: index, title: title, description: description, clef: clef, color: color, state: state)
 	}
 }
 
 class IntervalLesson: Lesson {
     let intervalSet: [Interval]?
     
-    init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, intervalSet: [Interval]?) {
+    init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, intervalSet: [Interval]?, state: LessonState? = nil) {
         self.intervalSet = intervalSet
         
-        super.init(index: index, title: title, description: description, clef: clef, color: color)
+        super.init(index: index, title: title, description: description, clef: clef, color: color, state: state)
     }
 }
 

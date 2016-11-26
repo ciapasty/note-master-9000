@@ -60,6 +60,8 @@ class LessonMiniature: UIView {
 				break
 			case .finished:
 				drawMiniCircle(colored: ColorPalette.Nephritis)
+            case .infinite:
+                drawMiniCircle(colored: ColorPalette.WetAsphalt)
 			}
 		}
     }

@@ -120,7 +120,8 @@ var lessons: [[Lesson]] = [
             clef: Clef.trebleClef,
             color: ColorPalette.Torquoise,
             noteSet: nil,
-            gauss: true),
+            gauss: true,
+            state: .infinite),
         NoteLesson(
             index: 10,
             title: "10 worst",
@@ -128,7 +129,8 @@ var lessons: [[Lesson]] = [
             clef: Clef.bassClef,
             color: ColorPalette.SunFlower,
             noteSet: nil,
-            gauss: true)
+            gauss: true,
+            state: .infinite)
     ]
 ]
 

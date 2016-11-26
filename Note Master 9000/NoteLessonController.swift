@@ -165,7 +165,6 @@ class NoteLessonController: UIViewController {
 		}
 		
 		progressBar.progressTintColor = ColorPalette.Nephritis
-		progressBar.trackTintColor = UIColor.clear
 		progressBar.progress = 0
 		
 		view.backgroundColor = ColorPalette.Clouds
@@ -191,20 +190,21 @@ class NoteLessonController: UIViewController {
                 noteSet = ls.noteSet
             }
             
-			currentNote = randomNoteFromSet(noteSet!, gauss: lesson!.gauss)
+            clefImageView.image = UIImage(named: ls.clef!.rawValue)?.withRenderingMode(.alwaysTemplate)
+            clefImageView.tintColor = ColorPalette.MidnightBlue
+            helpDrawingView.drawHelp(ls.clef!)
+            
+			currentNote = randomNoteFromSet(noteSet!, gauss: ls.gauss)
 			previousNote = currentNote
 			
 			startLessonViewsAnimation()
-			setupStaffView(lesson!.clef!)
-			helpDrawingView.drawHelp(lesson!.clef!)
 			
 			drawNewNote(withDelay: Constants.BasicAnimationDuration, animated: true)
 		}
 	}
 	
 	private func setupStaffView(_ clef: Clef) {
-		clefImageView.image = UIImage(named: clef.rawValue)?.withRenderingMode(.alwaysTemplate)
-		clefImageView.tintColor = ColorPalette.MidnightBlue
+		
 	}
 	
 	private func resetLesson() {

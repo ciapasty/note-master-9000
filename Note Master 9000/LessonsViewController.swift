@@ -88,6 +88,9 @@ class LessonsViewController: UIViewController {
         } else if let cvc = currentChildVC as? TutorialLessonController {
             cvc.parentVC = self
             cvc.lesson = lesson as? TutorialLesson
+        } else if let cvc = currentChildVC as? IntervalLessonController {
+            cvc.parentVC = self
+            cvc.lesson = lesson as? IntervalLesson
         }
         hideWelcomeViewAnimation()
 	}
