@@ -64,7 +64,14 @@ var lessons: [[Lesson]] = [
             description: "Simple interval test for debug",
             clef: Clef.trebleClef,
             color: ColorPalette.Alizarin,
-            intervalSet: [Interval.fifth])
+            intervalSet: [.fifth]),
+        IntervalLesson(
+            index: 12,
+            title: "Second",
+            description: "2nd simple interval test for debug",
+            clef: Clef.trebleClef,
+            color: ColorPalette.SunFlower,
+            intervalSet: [.majorSecond, .minorSecond])
     ],
 	[
 		NoteLesson(

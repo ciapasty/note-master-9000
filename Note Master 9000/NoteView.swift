@@ -23,13 +23,13 @@ public enum Accidental {
 @IBDesignable
 class NoteView: UIView {
     
-    public var isStemUp: Bool = true {
+    public var isStemUp: Bool? = nil {
         didSet {
             setNeedsDisplay()
         }
     }
     
-    public var accidental: Accidental? = .sharp {
+    public var accidental: Accidental? = nil {
         didSet {
             setNeedsDisplay()
         }
@@ -53,7 +53,9 @@ class NoteView: UIView {
     func drawNote(){
         layer.sublayers = nil
         layer.addSublayer(drawNoteLayer())
-        layer.addSublayer(drawNoteStem())
+        if isStemUp != nil {
+            layer.addSublayer(drawNoteStem())
+        }
         if accidental != nil {
             layer.addSublayer(drawAccidental())
         }
@@ -80,7 +82,7 @@ class NoteView: UIView {
         let noteStemPath = UIBezierPath()
         let noteStemLayer = CAShapeLayer()
         
-        if isStemUp {
+        if isStemUp! {
             let x = (bounds.midX+noteRect.width/2)-1.5
             let y = bounds.midY-noteRect.height/10
             noteStemPath.move(to: CGPoint(x: x, y: y))
@@ -101,7 +103,7 @@ class NoteView: UIView {
     
     private func drawAccidental() -> CALayer {
         let accLayer = CATextLayer()
-        accLayer.frame = CGRect(x: -noteRect.width*1.3, y: noteRect.origin.y*1.3, width: noteRect.width*4, height: noteRect.height*4)
+        accLayer.frame = CGRect(x: -noteRect.width*0.95, y: noteRect.origin.y*0.3, width: noteRect.width*4, height: noteRect.height*4)
         
         switch accidental! {
         case .sharp:
@@ -114,7 +116,7 @@ class NoteView: UIView {
         
         accLayer.foregroundColor = tintColor.cgColor
         accLayer.contentsScale = UIScreen.main.scale
-        accLayer.fontSize = (superview?.bounds.width)!/5
+        accLayer.fontSize = (superview?.bounds.width)!/6.5
         
         return accLayer
     }

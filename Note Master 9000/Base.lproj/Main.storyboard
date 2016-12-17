@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hn0-B7-Vgc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hn0-B7-Vgc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -333,7 +333,7 @@
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tMF-li-cEl" customClass="NoteView" customModule="Note_Master_9000" customModuleProvider="target">
-                                        <rect key="frame" x="50" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="232" y="219" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -356,11 +356,20 @@
                                             <action selector="noteDown:" destination="wbb-Z9-Dsp" eventType="touchUpInside" id="ruK-6b-x42"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ge-UI-HnJ">
+                                        <rect key="frame" x="314" y="178" width="41" height="30"/>
+                                        <state key="normal" title="RAND"/>
+                                        <connections>
+                                            <action selector="randomize:" destination="wbb-Z9-Dsp" eventType="touchUpInside" id="iZn-Sk-73C"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="JIh-jb-OBp" secondAttribute="bottom" constant="20" symbolic="YES" id="4P3-Eq-U0C"/>
                                     <constraint firstAttribute="bottom" secondItem="0Pb-QS-DIY" secondAttribute="bottom" constant="20" symbolic="YES" id="Dc4-RB-zBg"/>
                                     <constraint firstItem="0Pb-QS-DIY" firstAttribute="leading" secondItem="DhD-w1-J0U" secondAttribute="leading" constant="20" symbolic="YES" id="Yqq-RE-1O2"/>
+                                    <constraint firstAttribute="trailing" secondItem="5Ge-UI-HnJ" secondAttribute="trailing" constant="20" symbolic="YES" id="h7B-Mx-b2v"/>
+                                    <constraint firstAttribute="bottom" secondItem="5Ge-UI-HnJ" secondAttribute="bottom" constant="20" symbolic="YES" id="n11-hY-Csi"/>
                                     <constraint firstItem="JIh-jb-OBp" firstAttribute="leading" secondItem="0Pb-QS-DIY" secondAttribute="trailing" constant="8" symbolic="YES" id="wFb-Wq-Sr5"/>
                                 </constraints>
                             </view>

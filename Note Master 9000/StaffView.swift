@@ -76,35 +76,40 @@ class StaffView: UIView {
         return staffLayer
     }
     
-    private func drawAddLines(for note: Note, at width: CGFloat) -> CALayer {
+    func drawAddLines(at width: CGFloat, atTop top: Bool, twoLines two: Bool) {
         let lineWidth = bounds.width/5
-        let noteWidth = bounds.height/8
-        let lineStart = width + (noteWidth/2) - lineWidth/2
-        let lineEnd = width + (noteWidth/2) + lineWidth/2
+        let lineStart = width - lineWidth/2
+        let lineEnd = width + lineWidth/2
         let linePath = UIBezierPath()
         let lineLayer = CAShapeLayer()
         
-        if note.rawValue > 15 {
-            linePath.move(to: CGPoint(x: lineStart, y: bounds.height*8/10))
-            linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*8/10))
-            if note.rawValue > 17 {
-                linePath.move(to: CGPoint(x: lineStart, y: bounds.height*9/10))
-                linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*9/10))
-            }
-        }
-        
-        if note.rawValue < 5 {
+        if top {
             linePath.move(to: CGPoint(x: lineStart, y: bounds.height*2/10))
             linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*2/10))
-            if note.rawValue < 3 {
+            if two {
                 linePath.move(to: CGPoint(x: lineStart, y: bounds.height/10))
                 linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height/10.0))
+            }
+        } else {
+            linePath.move(to: CGPoint(x: lineStart, y: bounds.height*8/10))
+            linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*8/10))
+            if two {
+                linePath.move(to: CGPoint(x: lineStart, y: bounds.height*9/10))
+                linePath.addLine(to: CGPoint(x: lineEnd, y: bounds.height*9/10))
             }
         }
         
         lineLayer.path = linePath.cgPath
         lineLayer.lineWidth = Constants.StaffHorizontalLineWidth
         lineLayer.strokeColor = tintColor.cgColor
-        return lineLayer
+        layer.addSublayer(lineLayer)
+    }
+    
+    func removeAdditionalLines() {
+        if layer.sublayers != nil {
+            if layer.sublayers!.count > 1 {
+                layer.sublayers!.removeLast(layer.sublayers!.count-1)
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@
  View responsibilities:
  - Show appropriate controls for currently trained intervals
     - How many intervals at once?
-    - Dynamic UI? -> third (expanding to) -> major/minor
+    - Dynamic UI? -> third (expanding to?) -> major/minor
  - Draw staff
  - Draw treble/bass clef
  - Draw two notes
@@ -61,12 +61,19 @@ class IntervalLessonController: UIViewController {
             // TEMPORARY??
             if baseNote != nil {
                 intervalNote = getNote(forInterval: currentInterval!, from: baseNote!)
-                drawNote()
+                drawNotes()
             }
         }
     }
     private var previousNote: Note?
-    private var currentInterval: Interval?
+    private var currentInterval: Interval? {
+        didSet {
+            print(currentInterval!)
+
+            previousNote = baseNote
+            baseNote = randomNote()
+        }
+    }
     private var intervalNote: Note?
     private var notesDict: [Note: (name: String, position: Int)]?
     
@@ -118,8 +125,7 @@ class IntervalLessonController: UIViewController {
             //notesDict = bassClefNotesDict
         }
         
-        // TEMP!
-        currentInterval = lesson!.intervalSet![0]
+        currentInterval = randomInterval()
         
         baseNote = randomNote()
         previousNote = baseNote
@@ -131,12 +137,39 @@ class IntervalLessonController: UIViewController {
     
     // MARK: -
     
-    private func drawNote() {
-        noteView1.isStemUp = baseNote!.rawValue >= 16
-        noteView1.center = CGPoint(x: staffView.bounds.width/2, y: (staffView.bounds.height*CGFloat(Double(notesDict![baseNote!]!.position)/20.0)))
+    private func drawNotes() {
+        staffView.removeAdditionalLines()
         
-        noteView2.isStemUp = noteView1.isStemUp
-        noteView2.center = CGPoint(x: staffView.bounds.width/2 + 100, y: (staffView.bounds.height*CGFloat(Double(notesDict![intervalNote!]!.position)/20.0)))
+        if notesDict![baseNote!]!.name.contains("#") {
+            noteView1.accidental = .sharp
+        } else {
+            noteView1.accidental = nil
+        }
+        noteView1.center = CGPoint(x: staffView.bounds.width/2+10, y: (staffView.bounds.height*CGFloat(Double(notesDict![baseNote!]!.position)/20.0)))
+        drawAdditionalLines(forNoteAt: notesDict![baseNote!]!.position, Width: staffView.bounds.width/2+10)
+        
+        if notesDict![intervalNote!]!.name.contains("#") {
+            noteView2.accidental = .sharp
+        } else {
+            noteView2.accidental = nil
+        }
+        noteView2.center = CGPoint(x: staffView.bounds.width*3/4+10, y: (staffView.bounds.height*CGFloat(Double(notesDict![intervalNote!]!.position)/20.0)))
+        drawAdditionalLines(forNoteAt: notesDict![intervalNote!]!.position, Width: staffView.bounds.width*3/4+10)
+    }
+    
+    private func drawAdditionalLines(forNoteAt position: Int, Width width: CGFloat) {
+        if position > 15 {
+            staffView.drawAddLines(at: width, atTop: false, twoLines: false)
+            if position > 17 {
+                staffView.drawAddLines(at: width, atTop: false, twoLines: true)
+            }
+        }
+        if position < 5 {
+            staffView.drawAddLines(at: width, atTop: true, twoLines: false)
+            if position < 3 {
+                staffView.drawAddLines(at: width, atTop: true, twoLines: true)
+            }
+        }
     }
     
     // MARK: - Helper methods
@@ -150,14 +183,22 @@ class IntervalLessonController: UIViewController {
         baseNote = Note(rawValue: baseNote!.rawValue-1)
     }
     
+    @IBAction func randomize(_ sender: UIButton) {
+        currentInterval = randomInterval()
+    }
+    
     private func randomNote() -> Note {
-        let note = Note(rawValue: GKGaussianDistribution(randomSource: GKRandomSource(), lowestValue: 1, highestValue: 32-currentInterval!.rawValue).nextInt())
+        let note = Note(rawValue: GKGaussianDistribution(randomSource: GKRandomSource(), lowestValue: 1+currentInterval!.rawValue, highestValue: 32).nextInt())
         
         if note == previousNote {
             return randomNote()
         } else {
             return note!
         }
+    }
+    
+    private func randomInterval() -> Interval {
+        return lesson!.intervalSet![Int(arc4random_uniform(UInt32(lesson!.intervalSet!.count)))]
     }
     
     private func getNote(forInterval interval: Interval, from bNote: Note) -> Note {
