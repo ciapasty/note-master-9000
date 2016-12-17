@@ -6,12 +6,30 @@
 //  Copyright © 2016 Mattijah. All rights reserved.
 //
 
+/*
+ 
+ flat - ♭
+ sharp - ♯
+ natural - ♮
+ 
+*/
+
 import UIKit
+
+public enum Accidental {
+    case sharp, flat, natural
+}
 
 @IBDesignable
 class NoteView: UIView {
     
-    public var isStemUp: Bool = false {
+    public var isStemUp: Bool = true {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    public var accidental: Accidental? = .sharp {
         didSet {
             setNeedsDisplay()
         }
@@ -36,6 +54,9 @@ class NoteView: UIView {
         layer.sublayers = nil
         layer.addSublayer(drawNoteLayer())
         layer.addSublayer(drawNoteStem())
+        if accidental != nil {
+            layer.addSublayer(drawAccidental())
+        }
     }
     
     private func drawNoteLayer() -> CALayer {
@@ -76,6 +97,26 @@ class NoteView: UIView {
         noteStemLayer.strokeColor = tintColor.cgColor
         
         return noteStemLayer
+    }
+    
+    private func drawAccidental() -> CALayer {
+        let accLayer = CATextLayer()
+        accLayer.frame = CGRect(x: -noteRect.width*1.3, y: noteRect.origin.y*1.3, width: noteRect.width*4, height: noteRect.height*4)
+        
+        switch accidental! {
+        case .sharp:
+            accLayer.string = "♯"
+        case .flat:
+            accLayer.string = "♭"
+        case .natural:
+            accLayer.string = "♮"
+        }
+        
+        accLayer.foregroundColor = tintColor.cgColor
+        accLayer.contentsScale = UIScreen.main.scale
+        accLayer.fontSize = (superview?.bounds.width)!/5
+        
+        return accLayer
     }
     
     private func getRect() -> CGRect {
