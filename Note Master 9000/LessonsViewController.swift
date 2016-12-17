@@ -67,7 +67,7 @@ class LessonsViewController: UIViewController {
         static let IntervalLessonControllerStoryboardID = "IntervalLessonController"
 	}
 	
-	// MARK: - ViewController lifecycle
+	// MARK: - ViewController
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +80,8 @@ class LessonsViewController: UIViewController {
 		
 		setupWelcomeView(withLesson: lesson!)
     }
+    
+    // MARK: - Actions
 	
 	@IBAction func hideWelcomeView(_ sender: AnyObject?) {
         if let cvc = currentChildVC as? NoteLessonController {
@@ -103,17 +105,6 @@ class LessonsViewController: UIViewController {
 			hideFinishedViewAnimation()
 		}
 	}
-    
-    func lessonFinished() {
-        lesson?.state = .finished
-        saveLessonState()
-        
-        setupFinishedView()
-        if nextLessonIndexPath(lessonIndexPath!) == nil {
-            nextLessonButton.isHidden = true
-        }
-        showFinishedViewAnimation()
-    }
 
 	// MARK: - Setup methods
     
@@ -218,6 +209,19 @@ class LessonsViewController: UIViewController {
 	}
 	
 	// MARK: - Helper methods
+    
+    func lessonFinished() {
+        if lesson?.state != .infinite {
+            lesson?.state = .finished
+            saveLessonState()
+        }
+        
+        setupFinishedView()
+        if nextLessonIndexPath(lessonIndexPath!) == nil {
+            nextLessonButton.isHidden = true
+        }
+        showFinishedViewAnimation()
+    }
 	
     private func saveLessonState() {
         managedObjectContext?.performAndWait {

@@ -11,17 +11,13 @@ import UIKit
 @IBDesignable
 class NoteView: UIView {
     
-    public var note: Note? = Note.n10 {
+    public var isStemUp: Bool = false {
         didSet {
             setNeedsDisplay()
         }
     }
     
-    private var noteRect: CGRect {
-        get {
-            return getRect()
-        }
-    }
+    private var noteRect = CGRect()
     
     private struct Constants {
         static let NoteBodyLineWidth: CGFloat = 1.0
@@ -30,7 +26,8 @@ class NoteView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        if note != nil {
+        if superview != nil {
+            noteRect = getRect()
             drawNote()
         }
     }
@@ -62,16 +59,16 @@ class NoteView: UIView {
         let noteStemPath = UIBezierPath()
         let noteStemLayer = CAShapeLayer()
         
-        if note!.rawValue < 10 {
-            let x = (bounds.midX-noteRect.width/2)+1.5
-            let y = bounds.midY+noteRect.height/10
-            noteStemPath.move(to: CGPoint(x: x, y: y))
-            noteStemPath.addLine(to: CGPoint(x: x, y: y-noteRect.height/10+((superview?.bounds.width)!*3.5/10)))
-        } else {
+        if isStemUp {
             let x = (bounds.midX+noteRect.width/2)-1.5
             let y = bounds.midY-noteRect.height/10
             noteStemPath.move(to: CGPoint(x: x, y: y))
             noteStemPath.addLine(to: CGPoint(x: x, y: y+noteRect.height/10-((superview?.bounds.width)!*3.5/10)))
+        } else {
+            let x = (bounds.midX-noteRect.width/2)+1.5
+            let y = bounds.midY+noteRect.height/10
+            noteStemPath.move(to: CGPoint(x: x, y: y))
+            noteStemPath.addLine(to: CGPoint(x: x, y: y-noteRect.height/10+((superview?.bounds.width)!*3.5/10)))
         }
         
         noteStemLayer.path = noteStemPath.cgPath

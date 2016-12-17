@@ -34,8 +34,6 @@ class NoteLessonController: UIViewController {
 		didSet {
 			if lesson != nil {
 				setupLesson()
-			} else {
-				resetLesson()
 			}
 		}
 	}
@@ -206,16 +204,6 @@ class NoteLessonController: UIViewController {
 	private func setupStaffView(_ clef: Clef) {
 		
 	}
-	
-	private func resetLesson() {
-		clefImageView.layer.sublayers = nil
-		notesDrawingView.layer.sublayers = nil
-		currentProgress = 0.0
-		progressBar.setProgress(currentProgress, animated: false)
-		currentNote = nil
-		previousNote = nil
-		hideHelpAnimation()
-	}
     
     // MARK: - Audio Player
     
@@ -299,7 +287,6 @@ class NoteLessonController: UIViewController {
 	}
 	
 	func showFinishedView() {
-		resetLesson()
 		parentVC!.lessonFinished()
 	}
 	

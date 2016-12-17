@@ -14,10 +14,11 @@ enum Clef: String {
 
 enum Note: Int {
 	case n1 = 1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13, n14, n15, n16, n17, n18, n19
+    case n20, n21, n22, n23, n24, n25, n26, n27, n28, n29, n30, n31, n32
 }
 
 enum Interval: Int {
-    case unison = 0, minorSecond, majorSecond, minorThird, majorThird, fourth, tritone, fifth, minorSixth, majorSixth, minorSeventh, majorSeventh, octave
+    case unison = 0, minorSecond, majorSecond, minorThird, majorThird, fourth, tritone, fifth, minorSixth, majorSixth, minorSeventh, majorSeventh, octave // = 12
 }
 
 let trebleNotesNameValueDict = [
@@ -27,7 +28,8 @@ let trebleNotesNameValueDict = [
 	"B": 3,
 	"A": 4,
 	"G": 5,
-	"F": 6]
+	"F": 6
+]
 
 let bassNotesNameValueDict = [
 	"G": 0,
@@ -36,7 +38,43 @@ let bassNotesNameValueDict = [
 	"D": 3,
 	"C": 4,
 	"B": 5,
-	"A": 6]
+	"A": 6
+]
+
+let trebleClefNotesDict = [
+    Note.n1: ("D6", 1),
+    Note.n2: ("C#6", 2),
+    Note.n3: ("C6", 2),
+    Note.n4: ("B5", 3),
+    Note.n5: ("A#5", 4),
+    Note.n6: ("A5", 4),
+    Note.n7: ("G#5", 5),
+    Note.n8: ("G5", 5),
+    Note.n9: ("F#5", 6),
+    Note.n10: ("F5", 6),
+    Note.n11: ("E5", 7),
+    Note.n12: ("D#5", 8),
+    Note.n13: ("D5", 8),
+    Note.n14: ("C#5", 9),
+    Note.n15: ("C5", 9),
+    Note.n16: ("B4", 10),
+    Note.n17: ("A#4", 11),
+    Note.n18: ("A4", 11),
+    Note.n19: ("G#4", 12),
+    Note.n20: ("G4", 12),
+    Note.n21: ("F#4", 13),
+    Note.n22: ("F4", 13),
+    Note.n23: ("E4", 14),
+    Note.n24: ("D#4", 15),
+    Note.n25: ("D4", 15),
+    Note.n26: ("C#4", 16),
+    Note.n27: ("C4", 16),
+    Note.n28: ("B3", 17),
+    Note.n29: ("A#3", 18),
+    Note.n30: ("A3", 18),
+    Note.n31: ("G#3", 19),
+    Note.n32: ("G3", 19)
+]
 
 let trebleNotesNameDict = [
 	Note.n1: "D6",

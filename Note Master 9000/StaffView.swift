@@ -11,6 +11,8 @@ import UIKit
 @IBDesignable
 class StaffView: UIView {
     
+    public var animated: Bool = false
+    
     private struct Constants {
         static let StaffVerticalLineWidth: CGFloat = 3.0
         static let StaffHorizontalLineWidth: CGFloat = 1.0
@@ -20,10 +22,10 @@ class StaffView: UIView {
 
     override func draw(_ rect: CGRect) {
         layer.sublayers = nil
-        layer.addSublayer(drawStaffLayer(false))
+        layer.addSublayer(drawStaffLayer())
     }
     
-    private func drawStaffLayer(_ animated: Bool) -> CALayer {
+    private func drawStaffLayer() -> CALayer {
         
         let staffPathH = UIBezierPath()
         let staffPathV = UIBezierPath()

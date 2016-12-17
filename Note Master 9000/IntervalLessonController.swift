@@ -28,14 +28,17 @@
  */
 
 import UIKit
+import GameplayKit
 
 class IntervalLessonController: UIViewController {
     
     @IBOutlet weak var staffView: StaffView!
     @IBOutlet weak var clefImageView: UIImageView!
+    @IBOutlet weak var noteView1: NoteView!
+    @IBOutlet weak var noteView2: NoteView!
     @IBOutlet weak var progressBar: UIProgressView!
     
-    // Model
+    // MARK: - Model
     var lesson: IntervalLesson? {
         didSet {
             if lesson != nil {
@@ -49,8 +52,39 @@ class IntervalLessonController: UIViewController {
 
     private var lessonProgress: Float = 0.0 {
         didSet {
-            progressBar?.progress = lessonProgress
+            progressBar?.setProgress(lessonProgress, animated: true)
         }
+    }
+    
+    private var baseNote: Note? {
+        didSet {
+            // TEMPORARY??
+            if baseNote != nil {
+                intervalNote = getNote(forInterval: currentInterval!, from: baseNote!)
+                drawNote()
+            }
+        }
+    }
+    private var previousNote: Note?
+    private var currentInterval: Interval?
+    private var intervalNote: Note?
+    private var notesDict: [Note: (name: String, position: Int)]?
+    
+    private struct Constants {
+        static let BasicAnimationDuration: Double = 0.4
+        static let ButtonAnimationStartDelay: Double = 0.5
+        static let ButtonAnimationDelay: Double = 0.1
+        static let ButtonAnimationDamping: CGFloat = 0.6
+        static let ClefAnimationDamping: CGFloat = 0.8
+        static let ButtonAnimationVelocity: CGFloat = 1.0
+        static let NoteVibrateAnimationVelocity: CGFloat = 8.0
+        static let NoteVibrateAnimationDamping: CGFloat = 0.05
+        static let NoteVibrateAnimationOffset: CGFloat = 7
+        static let WrongAnimationVelocity: CGFloat = 8.0
+        static let WrongAnimationDamping: CGFloat = 0.1
+        static let WrongAnimationOffset: CGFloat = 12
+        
+        static let RequiredCorrectNotes = 20
     }
     
     override func viewDidLoad() {
@@ -63,7 +97,10 @@ class IntervalLessonController: UIViewController {
     
     private func setupViews() {
         staffView.tintColor = ColorPalette.MidnightBlue
-        
+        clefImageView.tintColor = ColorPalette.MidnightBlue
+        noteView1.tintColor = ColorPalette.MidnightBlue
+        noteView2.tintColor = ColorPalette.MidnightBlue
+
         progressBar.tintColor = ColorPalette.Nephritis
         progressBar.progress = lessonProgress
         
@@ -72,8 +109,70 @@ class IntervalLessonController: UIViewController {
     
     private func setupLesson() {
         clefImageView.image = UIImage(named: lesson!.clef!.rawValue)?.withRenderingMode(.alwaysTemplate)
-        clefImageView.tintColor = ColorPalette.MidnightBlue
         
+        switch lesson!.clef! {
+        case .trebleClef:
+            notesDict = trebleClefNotesDict
+        case .bassClef:
+            break
+            //notesDict = bassClefNotesDict
+        }
+        
+        // TEMP!
+        currentInterval = lesson!.intervalSet![0]
+        
+        baseNote = randomNote()
+        previousNote = baseNote
+        
+        staffView.animated = true
         staffView.setNeedsDisplay()
+        clefSlideIn()
     }
+    
+    // MARK: -
+    
+    private func drawNote() {
+        noteView1.isStemUp = baseNote!.rawValue >= 16
+        noteView1.center = CGPoint(x: staffView.bounds.width/2, y: (staffView.bounds.height*CGFloat(Double(notesDict![baseNote!]!.position)/20.0)))
+        
+        noteView2.isStemUp = noteView1.isStemUp
+        noteView2.center = CGPoint(x: staffView.bounds.width/2 + 100, y: (staffView.bounds.height*CGFloat(Double(notesDict![intervalNote!]!.position)/20.0)))
+    }
+    
+    // MARK: - Helper methods
+    
+    // DEBUG
+    @IBAction func noteUp(_ sender: UIButton) {
+        baseNote = Note(rawValue: baseNote!.rawValue+1)
+    }
+    
+    @IBAction func noteDown(_ sender: UIButton) {
+        baseNote = Note(rawValue: baseNote!.rawValue-1)
+    }
+    
+    private func randomNote() -> Note {
+        let note = Note(rawValue: GKGaussianDistribution(randomSource: GKRandomSource(), lowestValue: 1, highestValue: 32-currentInterval!.rawValue).nextInt())
+        
+        if note == previousNote {
+            return randomNote()
+        } else {
+            return note!
+        }
+    }
+    
+    private func getNote(forInterval interval: Interval, from bNote: Note) -> Note {
+        return Note(rawValue: bNote.rawValue-interval.rawValue)!
+    }
+    
+    // MARK: - Animations
+    
+    func clefSlideIn() {
+        clefImageView.center.x += self.view.bounds.width
+        UIView.animate(withDuration: Constants.BasicAnimationDuration, delay: Constants.ButtonAnimationStartDelay+0.1, usingSpringWithDamping: Constants.ClefAnimationDamping, initialSpringVelocity: Constants.ButtonAnimationVelocity, options: [], animations: {
+            self.clefImageView.center.x -= self.view.bounds.width
+        }, completion: { finished in
+            self.staffView.animated = false
+        })
+    }
+    
 }
