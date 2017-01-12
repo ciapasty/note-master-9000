@@ -59,19 +59,29 @@ var lessons: [[Lesson]] = [
 	],
 	[
         IntervalLesson(
-            index: 11,
-            title: "Fifth",
-            description: "Simple interval test for debug",
-            clef: Clef.trebleClef,
-            color: ColorPalette.Alizarin,
-            intervalSet: [.fifth]),
-        IntervalLesson(
             index: 12,
             title: "Second",
             description: "2nd simple interval test for debug",
             clef: Clef.trebleClef,
             color: ColorPalette.SunFlower,
-            intervalSet: [.majorSecond, .minorSecond])
+            noteSet: notesInRange(from: Note.n9, to: Note.n24),
+            intervalSet: [.majorSecond, .minorSecond]),
+        IntervalLesson(
+            index: 11,
+            title: "Fifth",
+            description: "Simple interval test for debug",
+            clef: Clef.trebleClef,
+            color: ColorPalette.Alizarin,
+            noteSet: notesInRange(from: Note.n9, to: Note.n24),
+            intervalSet: [.fifth]),
+        IntervalLesson(
+            index: 13,
+            title: "All",
+            description: "Simple interval test for debug",
+            clef: Clef.trebleClef,
+            color: ColorPalette.Carrot,
+            noteSet: [Note.n20],
+            intervalSet: nil)
     ],
 	[
 		NoteLesson(

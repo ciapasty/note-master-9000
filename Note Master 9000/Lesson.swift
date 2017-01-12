@@ -53,9 +53,11 @@ class TutorialLesson: Lesson {
 }
 
 class IntervalLesson: Lesson {
+    let noteSet: [Note]?
     let intervalSet: [Interval]?
     
-    init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, intervalSet: [Interval]?, state: LessonState? = nil) {
+    init(index: Int, title: String, description: String, clef: Clef?, color: UIColor, noteSet: [Note]?, intervalSet: [Interval]?, state: LessonState? = nil) {
+        self.noteSet = noteSet
         self.intervalSet = intervalSet
         
         super.init(index: index, title: title, description: description, clef: clef, color: color, state: state)

@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -341,37 +342,6 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DhD-w1-J0U" userLabel="Bottom Buttons View">
                                 <rect key="frame" x="0.0" y="439" width="375" height="228"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Pb-QS-DIY">
-                                        <rect key="frame" x="20" y="178" width="30" height="30"/>
-                                        <state key="normal" title="Up"/>
-                                        <connections>
-                                            <action selector="noteUp:" destination="wbb-Z9-Dsp" eventType="touchUpInside" id="Pr7-Jt-Oxo"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIh-jb-OBp">
-                                        <rect key="frame" x="58" y="178" width="39" height="30"/>
-                                        <state key="normal" title="Down"/>
-                                        <connections>
-                                            <action selector="noteDown:" destination="wbb-Z9-Dsp" eventType="touchUpInside" id="ruK-6b-x42"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ge-UI-HnJ">
-                                        <rect key="frame" x="314" y="178" width="41" height="30"/>
-                                        <state key="normal" title="RAND"/>
-                                        <connections>
-                                            <action selector="randomize:" destination="wbb-Z9-Dsp" eventType="touchUpInside" id="iZn-Sk-73C"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="JIh-jb-OBp" secondAttribute="bottom" constant="20" symbolic="YES" id="4P3-Eq-U0C"/>
-                                    <constraint firstAttribute="bottom" secondItem="0Pb-QS-DIY" secondAttribute="bottom" constant="20" symbolic="YES" id="Dc4-RB-zBg"/>
-                                    <constraint firstItem="0Pb-QS-DIY" firstAttribute="leading" secondItem="DhD-w1-J0U" secondAttribute="leading" constant="20" symbolic="YES" id="Yqq-RE-1O2"/>
-                                    <constraint firstAttribute="trailing" secondItem="5Ge-UI-HnJ" secondAttribute="trailing" constant="20" symbolic="YES" id="h7B-Mx-b2v"/>
-                                    <constraint firstAttribute="bottom" secondItem="5Ge-UI-HnJ" secondAttribute="bottom" constant="20" symbolic="YES" id="n11-hY-Csi"/>
-                                    <constraint firstItem="JIh-jb-OBp" firstAttribute="leading" secondItem="0Pb-QS-DIY" secondAttribute="trailing" constant="8" symbolic="YES" id="wFb-Wq-Sr5"/>
-                                </constraints>
                             </view>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yxl-b0-v01">
                                 <rect key="frame" x="0.0" y="63.5" width="375" height="2.5"/>
@@ -383,6 +353,27 @@
                                     <constraint firstAttribute="width" secondItem="Ba0-qB-9oS" secondAttribute="height" multiplier="296:612" id="zr7-Lj-2XG"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Pb-QS-DIY">
+                                <rect key="frame" x="24" y="629" width="30" height="30"/>
+                                <state key="normal" title="Up"/>
+                                <connections>
+                                    <action selector="noteUp:" destination="wbb-Z9-Dsp" eventType="touchUpInside" id="Pr7-Jt-Oxo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIh-jb-OBp">
+                                <rect key="frame" x="62" y="629" width="39" height="30"/>
+                                <state key="normal" title="Down"/>
+                                <connections>
+                                    <action selector="noteDown:" destination="wbb-Z9-Dsp" eventType="touchUpInside" id="ruK-6b-x42"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ge-UI-HnJ">
+                                <rect key="frame" x="310" y="629" width="41" height="30"/>
+                                <state key="normal" title="RAND"/>
+                                <connections>
+                                    <action selector="randomize:" destination="wbb-Z9-Dsp" eventType="touchUpInside" id="iZn-Sk-73C"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -390,21 +381,27 @@
                             <constraint firstAttribute="trailing" secondItem="yxl-b0-v01" secondAttribute="trailing" id="3SV-GS-YfD"/>
                             <constraint firstItem="PlB-xd-FLC" firstAttribute="height" secondItem="7dE-IQ-6rp" secondAttribute="height" id="9tp-x0-xB1"/>
                             <constraint firstItem="7dE-IQ-6rp" firstAttribute="leading" secondItem="8cO-RC-Nfd" secondAttribute="leading" id="9wX-HH-bJ8"/>
+                            <constraint firstItem="EA0-Iv-V2s" firstAttribute="top" secondItem="0Pb-QS-DIY" secondAttribute="bottom" constant="8" symbolic="YES" id="CJJ-co-PoQ"/>
                             <constraint firstItem="Ba0-qB-9oS" firstAttribute="height" secondItem="7dE-IQ-6rp" secondAttribute="height" multiplier="0.68" id="G4g-PL-U7V"/>
                             <constraint firstItem="DhD-w1-J0U" firstAttribute="height" secondItem="8cO-RC-Nfd" secondAttribute="height" multiplier="0.3" id="Grd-n4-GUC"/>
                             <constraint firstItem="Ba0-qB-9oS" firstAttribute="leading" secondItem="7dE-IQ-6rp" secondAttribute="leading" constant="15" id="PNA-gL-9uh"/>
                             <constraint firstItem="yxl-b0-v01" firstAttribute="leading" secondItem="8cO-RC-Nfd" secondAttribute="leading" id="PSU-op-olo"/>
                             <constraint firstItem="PlB-xd-FLC" firstAttribute="centerX" secondItem="7dE-IQ-6rp" secondAttribute="centerX" id="TLC-1y-Fd0"/>
+                            <constraint firstItem="0Pb-QS-DIY" firstAttribute="leading" secondItem="8cO-RC-Nfd" secondAttribute="leadingMargin" constant="8" id="UF7-4X-H58"/>
                             <constraint firstItem="DhD-w1-J0U" firstAttribute="leading" secondItem="8cO-RC-Nfd" secondAttribute="leading" id="VXG-uV-WQ7"/>
                             <constraint firstItem="7dE-IQ-6rp" firstAttribute="centerX" secondItem="8cO-RC-Nfd" secondAttribute="centerX" id="W41-Km-OfJ"/>
                             <constraint firstItem="Ba0-qB-9oS" firstAttribute="centerY" secondItem="7dE-IQ-6rp" secondAttribute="centerY" constant="5" id="bKe-6G-XIS"/>
+                            <constraint firstItem="JIh-jb-OBp" firstAttribute="leading" secondItem="0Pb-QS-DIY" secondAttribute="trailing" constant="8" symbolic="YES" id="das-hO-EJT"/>
                             <constraint firstItem="PlB-xd-FLC" firstAttribute="centerY" secondItem="7dE-IQ-6rp" secondAttribute="centerY" id="gS9-co-ZMc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Ge-UI-HnJ" secondAttribute="trailing" constant="8" id="hLb-1i-Vm9"/>
                             <constraint firstItem="7dE-IQ-6rp" firstAttribute="top" secondItem="5hy-QD-eQ8" secondAttribute="bottom" id="hq5-3d-rMw"/>
                             <constraint firstItem="7dE-IQ-6rp" firstAttribute="bottom" secondItem="DhD-w1-J0U" secondAttribute="top" id="kqe-qm-pjv"/>
                             <constraint firstAttribute="trailing" secondItem="DhD-w1-J0U" secondAttribute="trailing" id="mSI-xj-2j3"/>
                             <constraint firstItem="EA0-Iv-V2s" firstAttribute="top" secondItem="DhD-w1-J0U" secondAttribute="bottom" id="oRn-Jh-mrO"/>
+                            <constraint firstItem="EA0-Iv-V2s" firstAttribute="top" secondItem="5Ge-UI-HnJ" secondAttribute="bottom" constant="8" symbolic="YES" id="ssl-CP-rwD"/>
                             <constraint firstItem="PlB-xd-FLC" firstAttribute="width" secondItem="7dE-IQ-6rp" secondAttribute="width" id="su8-Cr-hMB"/>
                             <constraint firstItem="yxl-b0-v01" firstAttribute="top" secondItem="5hy-QD-eQ8" secondAttribute="bottom" id="sw4-hY-CzD"/>
+                            <constraint firstItem="EA0-Iv-V2s" firstAttribute="top" secondItem="JIh-jb-OBp" secondAttribute="bottom" constant="8" symbolic="YES" id="uJk-S5-fSy"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
