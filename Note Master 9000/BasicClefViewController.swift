@@ -75,6 +75,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		
 		noteButtons = [cNoteButton, gNoteButton, dNoteButton, aNoteButton, eNoteButton, bNoteButton, fNoteButton]
 		setupViews()
+        setupLesson()
 	}
 	
 //	override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -127,6 +128,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
         
 		hideHelpAnimation()
+        noteButtonsEnabled(true)
 	}
 	
 	// MARK: - Audio player
@@ -184,7 +186,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		view.backgroundColor = ColorPalette.Clouds
 	}
 	
-    // TODO: Change to setup view (treble/bass)
 	private func setupLesson() {
         if clef == .trebleClef {
             noteNameValueDict = trebleNotesNameValueDict
@@ -256,16 +257,12 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		self.notesDrawingView.center.x += Constants.WrongAnimationOffset
 		self.staffDrawingView.center.x += Constants.WrongAnimationOffset
 		self.clefImageView.center.x += Constants.WrongAnimationOffset
-		
-		noteButtonsEnabled(false)
-		
+				
 		UIView.animate(withDuration: Constants.BasicAnimationDuration, delay: 0.0, usingSpringWithDamping: Constants.WrongAnimationDamping, initialSpringVelocity: Constants.WrongAnimationVelocity, options: [], animations: {
 			self.notesDrawingView.center.x -= Constants.WrongAnimationOffset
 			self.staffDrawingView.center.x -= Constants.WrongAnimationOffset
 			self.clefImageView.center.x -= Constants.WrongAnimationOffset
-			}, completion: { finished in
-				self.noteButtonsEnabled(true)
-		})
+			})
 	}
 	
 	private func showHelpAnimation() {
