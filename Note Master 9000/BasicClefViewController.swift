@@ -11,11 +11,14 @@ import CoreData
 import GameplayKit
 import AVFoundation
 
+enum Distribution {
+    case gauss, linear
+}
+
 class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	// MARK: Outlets
 	
-	@IBOutlet weak var progressBar: UIProgressView!
 	@IBOutlet weak var staffDrawingView: StaffDrawingView!
 	@IBOutlet weak var notesDrawingView: StaffDrawingView!
 	@IBOutlet weak var clefImageView: UIImageView!
@@ -28,33 +31,23 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	@IBOutlet weak var gNoteButton: UIButton!
 	@IBOutlet weak var aNoteButton: UIButton!
 	@IBOutlet weak var bNoteButton: UIButton!
-	
-	// MARK: - Model
-	var lesson: NoteLesson? {
-		didSet {
-			if lesson != nil {
-				setupLesson()
-			} else {
-				resetLesson()
-			}
-		}
-	}
 
-    // MARK: -
-    var parentVC: LessonViewController?
-    var managedObjectContext: NSManagedObjectContext? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    // MARK: Model
     
+    private var clef:Clef = .trebleClef  // default is treble
+    
+    // MARK: -
 	private var avPlayer:AVAudioPlayer = AVAudioPlayer()
 	
 	private var noteButtons = [UIButton]()
 	private var noteNameValueDict = [String:Int]()
 	private var noteNameDict = [Note:String]()
 	
-	private var currentProgress: Float = 0.0
-    private var noteSet: [Note]?
+	//private var currentProgress: Float = 0.0
 	private var currentNote: Note?
 	private var previousNote: Note?
 	private let randSource = GKRandomSource()
+    private var distribution: Distribution = .gauss
 	private var helpVisible = false
 	
 	// MARK: -
@@ -72,7 +65,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		static let WrongAnimationDamping: CGFloat = 0.1
 		static let WrongAnimationOffset: CGFloat = 12
 		
-		static let RequiredCorrectNotes = 20
+		//static let RequiredCorrectNotes = 20
 	}
 	
 	// MARK: - ViewController lifecycle
@@ -119,40 +112,19 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 	
+    // TODO: Rewrite
 	@IBAction func onNoteButton(_ sender: UIButton) {
 		noteButtonsEnabled(false)
 		
 		if (currentNote!.rawValue % 7) == noteNameValueDict[sender.titleLabel!.text!] {
 			// Correct anwser
-            managedObjectContext?.performAndWait {
-                NoteCorrectness.add(correctAnswer: true, forNote: self.currentNote!, inClef: self.lesson!.clef!, in: self.managedObjectContext!)
-            }
-            
-			staffDrawingView.drawGhostNote(currentNote!, progress: currentProgress)
-			currentProgress += 1.0/Float(Constants.RequiredCorrectNotes)
-			Timer.scheduledTimer(timeInterval: 0.45, target: self, selector: #selector(self.addProgress), userInfo: nil, repeats: false)
-			
-			if currentProgress < 1.0 {
-				previousNote = currentNote
-				currentNote = randomNoteFromSet(noteSet!, gauss: lesson!.gauss)
-				drawNewNote(withDelay: 0, animated: true)
-			} else {
-				finishedLesson()
-			}
+            previousNote = currentNote
+            currentNote = randomNoteWith(distribution);
+            drawNewNote(withDelay: 0, animated: true)
 		} else {
             // Wrong anwser
-            managedObjectContext?.performAndWait {
-                NoteCorrectness.add(correctAnswer: false, forNote: self.currentNote!, inClef: self.lesson!.clef!, in: self.managedObjectContext!)
-            }
-            
 			wrongAnimation()
 		}
-		
-        do {
-            try managedObjectContext?.save()
-        } catch let error {
-            print("BasicClefViewController::onNoteButton::managedObjectContext?.save() -- ", error.localizedDescription)
-        }
         
 		hideHelpAnimation()
 	}
@@ -209,42 +181,27 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 			button.setTitleColor(ColorPalette.MidnightBlue, for: UIControlState())
 		}
 		
-		progressBar.progressTintColor = ColorPalette.Nephritis
-		progressBar.trackTintColor = UIColor.clear
-		progressBar.progress = 0
-		
 		view.backgroundColor = ColorPalette.Clouds
 	}
 	
+    // TODO: Change to setup view (treble/bass)
 	private func setupLesson() {
-		if let ls = lesson {
-			if ls.clef == .trebleClef {
-				noteNameValueDict = trebleNotesNameValueDict
-				noteNameDict = trebleNotesNameDict
-			} else {
-				noteNameValueDict = bassNotesNameValueDict
-				noteNameDict = bassNotesNameDict
-			}
-			
-            if ls.noteSet == nil {
-                var set = [Note]()
-                managedObjectContext?.performAndWait {
-                    set = NoteCorrectness.fetchWorstNotes(inClef: ls.clef!, recordsCount: 10, in: self.managedObjectContext!)!
-                }
-                noteSet = set
-            } else {
-                noteSet = ls.noteSet
-            }
-            
-			currentNote = randomNoteFromSet(noteSet!, gauss: lesson!.gauss)
-			previousNote = currentNote
-			
-			startLessonViewsAnimation()
-			setupStaffView(lesson!.clef!)
-			helpDrawingView.drawHelp(lesson!.clef!)
-			
-			drawNewNote(withDelay: Constants.BasicAnimationDuration, animated: true)
-		}
+        if clef == .trebleClef {
+            noteNameValueDict = trebleNotesNameValueDict
+            noteNameDict = trebleNotesNameDict
+        } else {
+            noteNameValueDict = bassNotesNameValueDict
+            noteNameDict = bassNotesNameDict
+        }
+        
+        currentNote = randomNoteWith(distribution)
+        previousNote = currentNote
+        
+        startLessonViewsAnimation()
+        setupStaffView(clef)
+        helpDrawingView.drawHelp(clef)
+        
+        drawNewNote(withDelay: Constants.BasicAnimationDuration, animated: true)
 	}
 	
 	private func setupStaffView(_ clef: Clef) {
@@ -252,11 +209,10 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		clefImageView.tintColor = ColorPalette.MidnightBlue
 	}
 	
+    // TODO: Is this necessary?
 	private func resetLesson() {
 		clefImageView.layer.sublayers = nil
 		notesDrawingView.layer.sublayers = nil
-		currentProgress = 0.0
-		progressBar.setProgress(currentProgress, animated: false)
 		currentNote = nil
 		previousNote = nil
 		hideHelpAnimation()
@@ -271,18 +227,18 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		}
 	}
 	
-	private func randomNoteFromSet(_ set: [Note], gauss: Bool) -> Note {
+	private func randomNoteWith(_ dist: Distribution) -> Note {
 		var note: Note
 		
-		if gauss {
-			let noteInRange = GKGaussianDistribution(randomSource: randSource, lowestValue: 0, highestValue: set.count)
-			note = set[noteInRange.nextInt()]
+		if dist == .gauss {
+			let index = GKGaussianDistribution(randomSource: randSource, lowestValue: 1, highestValue: 19).nextInt()
+			note = Note.init(with: index)!
 		} else {
-			note = set[Int(arc4random_uniform(UInt32(set.count)))]
+			note = Note.init(with: Int(arc4random_uniform(UInt32(19))))!
 		}
 	
 		if note == previousNote {
-			return randomNoteFromSet(set, gauss: gauss)
+			return randomNoteWith(dist)
 		} else {
 			return note
 		}
@@ -292,27 +248,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		for button in noteButtons {
 			button.isEnabled = enabled
 		}
-	}
-	
-	private func finishedLesson() {
-		noteButtonsEnabled(false)
-		notesDrawingView.isUserInteractionEnabled = false
-		notesDrawingView.layer.sublayers = nil
-		
-		Timer.scheduledTimer(timeInterval: Constants.BasicAnimationDuration, target: self, selector: #selector(self.showFinishedView), userInfo: nil, repeats: false)
-	}
-	
-	// MARK: Can't be private if set as selector
-	func addProgress() {
-		progressBar.setProgress(currentProgress, animated: true)
-		let _ = staffDrawingView.layer.sublayers?.popLast()
-		
-		noteButtonsEnabled(true)
-	}
-	
-	func showFinishedView() {
-		resetLesson()
-		parentVC!.lessonFinished()
 	}
 	
 	// MARK: - Layout animations

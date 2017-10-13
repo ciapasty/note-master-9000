@@ -51,7 +51,7 @@ class HelpDrawingView: UIView {
 			layer.frame = letterFrame
 			layer.contentsScale = UIScreen.main.scale
 			layer.alignmentMode = kCAAlignmentCenter
-			layer.font = UIFont.systemFont(ofSize: 1, weight: UIFontWeightLight)
+			layer.font = UIFont.systemFont(ofSize: 1, weight: UIFont.Weight.light)
 			layer.fontSize = frame.height/10
 			
 			if clef == Clef.trebleClef {
