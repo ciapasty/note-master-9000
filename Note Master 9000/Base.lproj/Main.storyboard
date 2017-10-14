@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina3_5" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -21,23 +21,23 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7V-ba-6Jb" customClass="StaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="320" height="319.5"/>
+                                <rect key="frame" x="8" y="64" width="304" height="304"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="A7V-ba-6Jb" secondAttribute="height" multiplier="1:1" id="Nwh-VO-rA6"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xlg-OX-WBz">
-                                <rect key="frame" x="15" y="120" width="105" height="217"/>
+                                <rect key="frame" x="23" y="117" width="100" height="207"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xlg-OX-WBz" secondAttribute="height" multiplier="296:612" id="BtJ-U4-bqw"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2g-wU-eI4" customClass="StaffDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="320" height="319.5"/>
+                                <rect key="frame" x="8" y="64" width="304" height="304"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="k2g-wU-eI4" secondAttribute="height" multiplier="1:1" id="7fz-Im-drz"/>
@@ -46,18 +46,18 @@
                                     <outletCollection property="gestureRecognizers" destination="dNT-dN-0zI" appends="YES" id="c3S-o5-IZg"/>
                                 </connections>
                             </view>
-                            <view userInteractionEnabled="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="7nA-QV-DWy" customClass="HelpDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
-                                <rect key="frame" x="320" y="64" width="64" height="319.5"/>
+                            <view userInteractionEnabled="NO" alpha="0.0" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="7nA-QV-DWy" customClass="HelpDrawingView" customModule="Note_Master_9000" customModuleProvider="target">
+                                <rect key="frame" x="312" y="64" width="60.5" height="304"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCY-Wx-llc" userLabel="Bottom Buttons View">
-                                <rect key="frame" x="0.0" y="383.5" width="320" height="96.5"/>
+                                <rect key="frame" x="0.0" y="368" width="320" height="200"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReZ-ec-Y6n">
-                                        <rect key="frame" x="49" y="-5" width="48" height="48"/>
+                                        <rect key="frame" x="32" y="38.5" width="56.5" height="56.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ReZ-ec-Y6n" secondAttribute="height" multiplier="1:1" id="7kL-hW-JBs"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="65"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
                                         <state key="normal" title="C">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -69,11 +69,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4X-qL-rVl">
-                                        <rect key="frame" x="107" y="-4.5" width="48" height="47.5"/>
+                                        <rect key="frame" x="98.5" y="38.5" width="57" height="56.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="X4X-qL-rVl" secondAttribute="height" multiplier="1:1" id="tQl-BX-pit"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="65"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
                                         <state key="normal" title="D">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -85,11 +85,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qI-d3-nig">
-                                        <rect key="frame" x="165" y="-4.5" width="48" height="47.5"/>
+                                        <rect key="frame" x="165.5" y="38.5" width="57" height="56.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="9qI-d3-nig" secondAttribute="height" multiplier="1:1" id="5D1-47-QWn"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="65"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
                                         <state key="normal" title="E">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -101,11 +101,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzF-Xd-mpU">
-                                        <rect key="frame" x="223" y="-5" width="48" height="48"/>
+                                        <rect key="frame" x="232.5" y="38.5" width="56.5" height="56.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="HzF-Xd-mpU" secondAttribute="height" multiplier="1:1" id="ods-9f-Y9U"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="65"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
                                         <state key="normal" title="F">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -117,11 +117,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNE-GH-pif">
-                                        <rect key="frame" x="77.5" y="53" width="48" height="47.5"/>
+                                        <rect key="frame" x="64.5" y="105" width="57" height="57.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="eNE-GH-pif" secondAttribute="height" multiplier="1:1" id="gCy-yv-T6x"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="65"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
                                         <state key="normal" title="G">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -133,11 +133,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVG-pX-jSx">
-                                        <rect key="frame" x="135.5" y="53" width="48" height="48.5"/>
+                                        <rect key="frame" x="131.5" y="105" width="56.5" height="56.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FVG-pX-jSx" secondAttribute="height" multiplier="1:1" id="Cd9-ty-bBq"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="65"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
                                         <state key="normal" title="A">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -149,11 +149,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bi7-DU-WTw">
-                                        <rect key="frame" x="193.5" y="53" width="48.5" height="48"/>
+                                        <rect key="frame" x="198" y="105" width="56.5" height="56.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Bi7-DU-WTw" secondAttribute="height" multiplier="1:1" id="EVX-kV-aeB"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="65"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
                                         <state key="normal" title="B">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -203,9 +203,9 @@
                                     <mask key="constraints">
                                         <exclude reference="BxK-Ne-sSI"/>
                                         <exclude reference="t2W-1x-TZZ"/>
+                                        <exclude reference="kqi-gX-O6L"/>
                                         <exclude reference="boJ-U7-pEF"/>
                                         <exclude reference="cyS-JE-0hv"/>
-                                        <exclude reference="kqi-gX-O6L"/>
                                         <exclude reference="BIW-p4-hUp"/>
                                         <exclude reference="f17-TQ-hgN"/>
                                         <exclude reference="zWM-xQ-695"/>
@@ -245,11 +245,11 @@
                             <constraint firstItem="k2g-wU-eI4" firstAttribute="centerX" secondItem="A7V-ba-6Jb" secondAttribute="centerX" id="aNW-ZC-7i4"/>
                             <constraint firstItem="fCY-Wx-llc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bbb-Ge-XYd"/>
                             <constraint firstItem="A7V-ba-6Jb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="f7X-0f-aDD"/>
-                            <constraint firstItem="ReZ-ec-Y6n" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="fUc-Ii-bNH"/>
+                            <constraint firstItem="ReZ-ec-Y6n" firstAttribute="width" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.1" id="fUc-Ii-bNH"/>
                             <constraint firstItem="xlg-OX-WBz" firstAttribute="centerY" secondItem="A7V-ba-6Jb" secondAttribute="centerY" constant="5" id="gTN-rx-cQn"/>
                             <constraint firstItem="7nA-QV-DWy" firstAttribute="width" secondItem="A7V-ba-6Jb" secondAttribute="width" multiplier="0.2" id="kyd-sG-Vcj"/>
                             <constraint firstItem="xlg-OX-WBz" firstAttribute="height" secondItem="A7V-ba-6Jb" secondAttribute="height" multiplier="0.68" id="sdt-zA-Omp"/>
-                            <constraint firstItem="A7V-ba-6Jb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="vFN-8L-TS1"/>
+                            <constraint firstItem="A7V-ba-6Jb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.95" id="vFN-8L-TS1"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
