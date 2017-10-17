@@ -34,8 +34,9 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 
     // MARK: Model
     
-    private var clef:Clef = .trebleClef  // default is treble
-    
+    public var clef:Clef = .trebleClef  // default is treble
+    public var distribution: Distribution = .gauss
+
     // MARK: -
 	private var avPlayer:AVAudioPlayer = AVAudioPlayer()
 	
@@ -47,7 +48,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	private var currentNote: Note?
 	private var previousNote: Note?
 	private let randSource = GKRandomSource()
-    private var distribution: Distribution = .gauss
 	private var helpVisible = false
 	
 	// MARK: -
@@ -74,9 +74,18 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 		super.viewDidLoad()
 		
 		noteButtons = [cNoteButton, gNoteButton, dNoteButton, aNoteButton, eNoteButton, bNoteButton, fNoteButton]
-		setupViews()
         setupLesson()
-	}
+        
+        for button in noteButtons {
+            button.setTitleColor(ColorPalette.MidnightBlue, for: UIControlState())
+        }
+        
+        view.backgroundColor = ColorPalette.Clouds
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupViews()
+    }
 	
 //	override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
 //		staffDrawingView.drawStaff(withClef: nil, animated: false)
@@ -86,19 +95,17 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	// MARK: - Button/view touches
 	
 	@IBAction func tapOnNoteView(_ sender: UITapGestureRecognizer) {
-		if helpVisible {
-			hideHelpAnimation()
-		} else {
-			loadFileIntoAVPlayer(noteNameDict[currentNote!]!)
-			if avPlayer.isPlaying {
-				stopAVPLayer()
-				loadFileIntoAVPlayer(noteNameDict[currentNote!]!)
-				startAVPlayer()
-			} else {
-				startAVPlayer()
-			}
-			noteVibrateAnimation()
-		}
+        if helpVisible { hideHelpAnimation() }
+        
+        loadFileIntoAVPlayer(noteNameDict[currentNote!]!)
+        if avPlayer.isPlaying {
+            stopAVPLayer()
+            loadFileIntoAVPlayer(noteNameDict[currentNote!]!)
+            startAVPlayer()
+        } else {
+            startAVPlayer()
+        }
+        noteVibrateAnimation()
 	}
 	
 	@IBAction func swipeForHelp(_ sender: UISwipeGestureRecognizer) {
@@ -179,11 +186,11 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 	// MARK: - Setup methods
 	
 	private func setupViews() {
-		for button in noteButtons {
-			button.setTitleColor(ColorPalette.MidnightBlue, for: UIControlState())
-		}
-		
-		view.backgroundColor = ColorPalette.Clouds
+        startLessonViewsAnimation()
+        setupStaffView(clef)
+        helpDrawingView.drawHelp(clef)
+        
+        drawNewNote(withDelay: Constants.BasicAnimationDuration, animated: true)
 	}
 	
 	private func setupLesson() {
@@ -197,12 +204,6 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
         
         currentNote = randomNoteWith(distribution)
         previousNote = currentNote
-        
-        startLessonViewsAnimation()
-        setupStaffView(clef)
-        helpDrawingView.drawHelp(clef)
-        
-        drawNewNote(withDelay: Constants.BasicAnimationDuration, animated: true)
 	}
 	
 	private func setupStaffView(_ clef: Clef) {
@@ -235,7 +236,7 @@ class BasicClefViewController: UIViewController, AVAudioPlayerDelegate {
 			let index = GKGaussianDistribution(randomSource: randSource, lowestValue: 1, highestValue: 19).nextInt()
 			note = Note.init(with: index)!
 		} else {
-			note = Note.init(with: Int(arc4random_uniform(UInt32(19))))!
+			note = Note.init(with: Int(arc4random_uniform(UInt32(19)))+1)!
 		}
 	
 		if note == previousNote {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		638874291F9693EC00E4F523 /* ClefSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638874281F9693EC00E4F523 /* ClefSelectionViewController.swift */; };
 		CE335F091CBA2C9000A32355 /* HelpDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */; };
 		CE38BF771CD90EEB00E6A31C /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38BF761CD90EEB00E6A31C /* ColorPalette.swift */; };
 		CE7393C71CAEB8DD00DFCEED /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = CE7393C61CAEB8DD00DFCEED /* Audio */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		638874281F9693EC00E4F523 /* ClefSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClefSelectionViewController.swift; sourceTree = "<group>"; };
 		CE335F081CBA2C9000A32355 /* HelpDrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpDrawingView.swift; sourceTree = "<group>"; };
 		CE38BF761CD90EEB00E6A31C /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		CE3F91C01D16BD3400AD54CA /* Note Master 9000.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Note Master 9000.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				CEC1D4B91C9C651600C29666 /* BasicClefViewController.swift */,
+				638874281F9693EC00E4F523 /* ClefSelectionViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				CE335F091CBA2C9000A32355 /* HelpDrawingView.swift in Sources */,
 				CEE551361D9B85FC0041F618 /* StaffDrawingView.swift in Sources */,
 				CEC1D4B81C9C651600C29666 /* AppDelegate.swift in Sources */,
+				638874291F9693EC00E4F523 /* ClefSelectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

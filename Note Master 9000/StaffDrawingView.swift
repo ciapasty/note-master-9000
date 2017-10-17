@@ -21,7 +21,7 @@ class StaffDrawingView: UIView {
 		static let StaffVerticalLinesAnimationDuration: Double = 0.56
 		static let StaffHorizontalLinesAnimationDuration: Double = 0.7
 	}
-	
+    
 	// MARK: Note Drawing
 	
 	func drawNotes(_ notes: [Note]){
